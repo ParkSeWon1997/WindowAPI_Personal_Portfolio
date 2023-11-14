@@ -8,8 +8,9 @@ class AnimSprite;
 
 class CPlayer :	public CObj
 {
-	enum PLAYERSTATE { IDLE, WALK, JUMP,ATTACK, HIT, DEAD, PS_END };
-
+	enum PLAYERSTATE { IDLE, RUN, JUMP,ATTACK, HIT, DEAD, PS_END };
+	enum PLAYERLEFT {LEFT};
+	
 public:
 	CPlayer();
 	virtual ~CPlayer();
@@ -35,8 +36,9 @@ private:
 	bool				m_bJump;
 	float				m_fPower;
 	float				m_fAccelTime;
-	float				AnimTime;
-	int					m_AnimIndex;
+	float				Start_Animation;
+	float				End_Animation;
+
 
 	vector<vector<TCHAR*>>	m_AnimBox[PS_END];
 	vector<TCHAR*>			m_IDLE_Sprite;

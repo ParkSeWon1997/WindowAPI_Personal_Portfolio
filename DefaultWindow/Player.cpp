@@ -15,7 +15,7 @@
 #include "CTimeMgr.h"
 
 CPlayer::CPlayer() : m_bJump(false), m_fPower(0.f), m_fAccelTime(0.f)
-, m_eCurState(IDLE), m_ePreState(PS_END),AnimTime(0.f)
+, m_eCurState(IDLE), m_ePreState(PS_END)
 {
 	ZeroMemory(&m_tPosin, sizeof(POINT));
 }
@@ -29,19 +29,10 @@ void CPlayer::Initialize()
 {
 	m_tInfo = { 50.f, 300.f, 50.f, 50.f };
 
-	m_fSpeed = 8.f;
+	m_fSpeed = 0.2f;
 	m_fDiagonal = 100.f;
 	m_fPower = 20.f;
 
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Player/Player_DOWN.bmp", L"Player_DOWN");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Player/Player_UP.bmp", L"Player_UP");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Player/Player_LEFT.bmp", L"Player_LEFT");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Player/Player_RIGHT.bmp", L"Player_RIGHT");
-
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Player/Player_LU.bmp", L"Player_LU");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Player/Player_RU.bmp", L"Player_RU");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Player/Player_LD.bmp", L"Player_LD");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Player/Player_RD.bmp", L"Player_RD");
 
 	//idle
 	//BearIdle0-resources.assets-230
@@ -91,21 +82,12 @@ void CPlayer::Initialize()
 
 
 
-
-	//m_AnimBox[IDLE].front().push_back(L"Player_Idle_01");
-	//m_AnimBox[IDLE].front().push_back(L"Player_Idle_02");
-	//m_AnimBox[IDLE].front().push_back(L"Player_Idle_03");
-	//m_AnimBox[IDLE].front().push_back(L"Player_Idle_04");
-	//m_AnimBox[IDLE].front().push_back(L"Player_Idle_05");
-
-
-
 	m_tFrame.dwSpeed = 200;
 	m_tFrame.dwTime = GetTickCount();
 
 	m_AnimBox[IDLE].push_back(m_IDLE_Sprite);
 	m_AnimBox[JUMP].push_back(m_JUMPSprite);
-	m_AnimBox[WALK].push_back(m_RUNSprite);
+	m_AnimBox[RUN].push_back(m_RUNSprite);
 
 	m_pStateKey = L"Player_Idle_01";
 
@@ -115,7 +97,7 @@ void CPlayer::Initialize()
 
 int CPlayer::Update()
 {
-	
+	Start_Animation = ElapseTimeMgr::GetInstance().GetElapsedTime();
 	Jump();
 
 	Key_Input();
@@ -127,7 +109,7 @@ int CPlayer::Update()
 
 void CPlayer::Late_Update()
 {
-	AnimTime = CTimeMgr::Get_Instance()->GetDT();
+	
 	Offset();
 	//Move_Frame();
 	Motion_Change();
@@ -151,7 +133,7 @@ void CPlayer::Render(HDC hDC)
 
 	float ImageHarf_X = img->GetWidth() / 2;
 	float ImageY = img->GetHeight();
-	g.DrawImage(img, (m_tInfo.fX - ImageHarf_X) + iScrollX, (m_tInfo.fY - ImageY) + iScrollY, img->GetWidth() * 2, img->GetHeight() * 2);
+	g.DrawImage(img, (m_tInfo.fX - ImageHarf_X) + iScrollX, (m_tInfo.fY - ImageY) + iScrollY, img->GetWidth() * 4, img->GetHeight() * 4);
 
 
 
@@ -170,20 +152,14 @@ void CPlayer::Key_Input()
 
 	if (CKeyMgr::Get_Instance()->Key_Pressing('A'))
 	{
-		m_eCurState = WALK;
-		//TCHAR* ttt= m_AnimBox[IDLE].front().front();
+		m_eCurState = RUN;
 		m_tInfo.fX -= m_fSpeed;
 	}
 
 	if (CKeyMgr::Get_Instance()->Key_Pressing('D'))
 	{
 		m_tInfo.fX += m_fSpeed;
-		m_eCurState = WALK;
-	}
-	if (CKeyMgr::Get_Instance()->Key_Pressing(VK_DOWN))
-	{
-		m_tInfo.fY += m_fSpeed;
-		m_eCurState = WALK;
+		m_eCurState = RUN;
 	}
 	if (CKeyMgr::Get_Instance()->Key_Pressing(VK_SPACE))
 	{
@@ -274,22 +250,30 @@ void CPlayer::Motion_Change()
 		
 		switch (m_eCurState)
 		{
+			
 		case IDLE:
 			for (auto& iter : m_AnimBox[IDLE])
 			{
-					for (auto& IDLE_iter : iter)
-					{
-						if (AnimTime > 0.1f)
-						{
-							m_pStateKey = IDLE_iter;
-							AnimTime = 0;
-						}
-					}
+				for (auto& IDLE_iter : iter)
+				{
+					
+					m_pStateKey = IDLE_iter;
+					
+				}
 			}
+
+			
 			break;
 	
-		case WALK:
+		case RUN:
 		
+			for (auto& iter : m_AnimBox[RUN])
+			{
+				for (auto& RUN_iter : iter)
+				{
+					m_pStateKey = RUN_iter;
+				}
+			}
 			break;
 	
 		case ATTACK:
@@ -306,7 +290,15 @@ void CPlayer::Motion_Change()
 	
 	
 		case JUMP:
+			for (auto& iter : m_AnimBox[JUMP])
+			{
+				for (auto& JUMP_iter : iter)
+				{
+					m_pStateKey = JUMP_iter;
+				}
+			}
 		
+
 			break;
 		}
 	
