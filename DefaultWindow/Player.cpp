@@ -106,13 +106,19 @@ void CPlayer::Render(HDC hDC)
 {
 	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
 	int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
+	Rectangle(hDC, m_tRect.left + iScrollX, m_tRect.top + iScrollY, m_tRect.right + iScrollX, m_tRect.bottom + iScrollY);
 
 
 	// HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Img(m_pFrameKey);
 	Graphics g(hDC);
 	Image* img = PngMrg::Get_Instance()->Get_Image(L"Player_Idle_01");
+	float ImageHarf_X=img->GetWidth()/2;
+	float ImageY = img->GetHeight();
 
-	g.DrawImage(img, m_tInfo.fX+ iScrollX, m_tInfo.fY+ iScrollY, img->GetWidth()+100, img->GetHeight()+100);
+
+
+	
+	g.DrawImage(img, (m_tInfo.fX-ImageHarf_X)+ iScrollX, (m_tInfo.fY -ImageY) + iScrollY, img->GetWidth(), img->GetHeight());
 	//GdiTransparentBlt(hDC,
 	//	m_tRect.left + iScrollX,
 	//	m_tRect.top + iScrollY,

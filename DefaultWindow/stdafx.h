@@ -9,6 +9,9 @@
 
 #define WIN32_LEAN_AND_MEAN             // 거의 사용되지 않는 내용은 Windows 헤더에서 제외합니다.
 // Windows 헤더 파일:
+
+
+
 #include <windows.h>
 
 // C 런타임 헤더 파일입니다.
@@ -24,29 +27,29 @@
 #include <map>
 #include <ctime>
 #include <algorithm>
-
 #include<ole2.h>
 #include<gdiplus.h>
 #pragma comment(lib, "gdiplus.lib")
 using namespace Gdiplus;
 
 
+
 #include <vfw.h>
 #pragma comment(lib, "vfw32.lib")
 
 
-#ifdef _DEBUG
-
-#define _CRTDBG_MAP_ALLOC
-#include <stdlib.h>
-#include <crtdbg.h>
-
-#ifndef DBG_NEW 
-#define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ ) 
-#define new DBG_NEW 
-
-#endif
-#endif
+//#ifdef _DEBUG
+//
+//#define _CRTDBG_MAP_ALLOC
+//#include <stdlib.h>
+//#include <crtdbg.h>
+//
+//#ifndef DBG_NEW 
+//#define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ ) 
+//#define new DBG_NEW 
+//
+//#endif
+//#endif
 
 
 using namespace std;
