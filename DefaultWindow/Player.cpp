@@ -23,7 +23,7 @@ CPlayer::~CPlayer()
 
 void CPlayer::Initialize()
 {
-	m_tInfo = { 100.f, 300.f, 200.f, 200.f };
+	m_tInfo = { 50.f, 300.f, 50.f, 50.f};
 
 	m_fSpeed	= 8.f;
 	m_fDiagonal = 100.f;
@@ -116,20 +116,8 @@ void CPlayer::Render(HDC hDC)
 	float ImageY = img->GetHeight();
 
 
-
-	
 	g.DrawImage(img, (m_tInfo.fX-ImageHarf_X)+ iScrollX, (m_tInfo.fY -ImageY) + iScrollY, img->GetWidth(), img->GetHeight());
-	//GdiTransparentBlt(hDC,
-	//	m_tRect.left + iScrollX,
-	//	m_tRect.top + iScrollY,
-	//	(int)m_tInfo.fCX,
-	//	(int)m_tInfo.fCY,
-	//	hMemDC,
-	//	(int)m_tInfo.fCX * m_tFrame.iFrameStart,
-	//	(int)m_tInfo.fCY * m_tFrame.iMotion,			
-	//	(int)m_tInfo.fCX,
-	//	(int)m_tInfo.fCY,
-	//	RGB(0, 0, 0)); 
+
 }
 
 void CPlayer::Release()
