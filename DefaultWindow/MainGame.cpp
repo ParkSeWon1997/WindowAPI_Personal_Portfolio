@@ -11,7 +11,8 @@
 #include "SceneMgr.h"
 #include "TileMgr.h"
 #include "PngMrg.h"
-
+#include"ElapseTimeMgr.h"
+#include "CTimeMgr.h"
 CMainGame::CMainGame() 
 	: m_iFPS(0), m_dwTime(GetTickCount())
 {
@@ -27,20 +28,23 @@ void CMainGame::Initialize(void)
 {
 	m_DC = GetDC(g_hWnd);
 
+	CTimeMgr::Get_Instance()->Initialize();
 	CSceneMgr::Get_Instance()->Scene_Change(SC_LOGO);
-	
+	CMouse::Get_Instance()->Initialize();
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Back.bmp", L"Back");
 }
 
 void CMainGame::Update(void)
 {
 	CSceneMgr::Get_Instance()->Update();
+	CMouse::Get_Instance()->Update();
 }
 
 void CMainGame::Late_Update(void)
 {
 	CSceneMgr::Get_Instance()->Late_Update();
 	CScrollMgr::Get_Instance()->Scroll_Lock();
+	CMouse::Get_Instance()->Late_Update();
 }
 
 void CMainGame::Render(void)
@@ -67,6 +71,7 @@ void CMainGame::Render(void)
 	HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Img(L"Back");
 	
 	CSceneMgr::Get_Instance()->Render(hMemDC);
+	CMouse::Get_Instance()->Render(hMemDC);
 
 	BitBlt(m_DC, 0, 0, WINCX, WINCY, hMemDC, 0, 0, SRCCOPY);
 
@@ -90,6 +95,7 @@ void CMainGame::Render(void)
 
 void CMainGame::Release(void)
 {
+
 	CBmpMgr::Destroy_Instance();
 	PngMrg::Destroy_Instance();
 	CTileMgr::Destroy_Instance();
@@ -98,7 +104,8 @@ void CMainGame::Release(void)
 	CLineMgr::Destroy_Instance();
 	CSceneMgr::Destroy_Instance();
 	CObjMgr::Destroy_Instance();
-
+	CMouse::Destroy_Instance();
+	CTimeMgr::Destroy_Instance();
 
 	ReleaseDC(g_hWnd, m_DC);
 }

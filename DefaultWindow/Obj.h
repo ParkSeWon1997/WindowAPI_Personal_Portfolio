@@ -58,6 +58,8 @@ protected:
 	bool		m_bDead;
 	float		m_fAngle;
 
+
+	TCHAR*		m_pStateKey;
 	TCHAR*		m_pFrameKey;
 };
 

@@ -106,6 +106,12 @@
     <Filter Include="02. Design\09. PngMgr\MyPng">
       <UniqueIdentifier>{2321a5e2-c142-47ae-8a57-be7f17580d6a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02. Design\09. PngMgr\AnimSprite">
+      <UniqueIdentifier>{0aedbcfe-fbed-4e7e-97a0-d5097d0ed432}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Design\10. ElapseTimeMgr">
+      <UniqueIdentifier>{905d3059-a241-4ffe-af7b-929e87350de7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -213,6 +219,15 @@
     <ClInclude Include="MyPng.h">
       <Filter>02. Design\09. PngMgr\MyPng</Filter>
     </ClInclude>
+    <ClInclude Include="ElapseTimeMgr.h">
+      <Filter>02. Design\10. ElapseTimeMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimSprite.h">
+      <Filter>02. Design\09. PngMgr\AnimSprite</Filter>
+    </ClInclude>
+    <ClInclude Include="CTimeMgr.h">
+      <Filter>02. Design\10. ElapseTimeMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DefaultWindow.cpp">
@@ -304,6 +319,15 @@
     </ClCompile>
     <ClCompile Include="MyPng.cpp">
       <Filter>02. Design\09. PngMgr\MyPng</Filter>
+    </ClCompile>
+    <ClCompile Include="ElapseTimeMgr.cpp">
+      <Filter>02. Design\10. ElapseTimeMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimSprite.cpp">
+      <Filter>02. Design\09. PngMgr\AnimSprite</Filter>
+    </ClCompile>
+    <ClCompile Include="CTimeMgr.cpp">
+      <Filter>02. Design\10. ElapseTimeMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

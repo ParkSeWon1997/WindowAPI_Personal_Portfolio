@@ -105,6 +105,14 @@ typedef struct tagLine
 
 typedef struct tagFrame
 {
+	int mCurIndexFrame;
+	float mAnitime;
+	float mTimeInterval;
+	int mTotalFrameCount;
+
+
+
+
 	int		iFrameStart;
 	int		iFrameEnd;
 	int		iMotion;

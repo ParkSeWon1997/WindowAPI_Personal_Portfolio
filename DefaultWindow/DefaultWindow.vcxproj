@@ -42,13 +42,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -147,11 +147,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractFactory.h" />
+    <ClInclude Include="AnimSprite.h" />
     <ClInclude Include="BmpMgr.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="CollisionMgr.h" />
+    <ClInclude Include="CTimeMgr.h" />
     <ClInclude Include="DefaultWindow.h" />
     <ClInclude Include="Define.h" />
+    <ClInclude Include="ElapseTimeMgr.h" />
     <ClInclude Include="GuideBullet.h" />
     <ClInclude Include="KeyMgr.h" />
     <ClInclude Include="Line.h" />
@@ -182,10 +185,13 @@
     <ClInclude Include="TileMgr.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AnimSprite.cpp" />
     <ClCompile Include="BmpMgr.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CollisionMgr.cpp" />
+    <ClCompile Include="CTimeMgr.cpp" />
     <ClCompile Include="DefaultWindow.cpp" />
+    <ClCompile Include="ElapseTimeMgr.cpp" />
     <ClCompile Include="GuideBullet.cpp" />
     <ClCompile Include="KeyMgr.cpp" />
     <ClCompile Include="Line.cpp" />

@@ -14,7 +14,7 @@ CLineMgr::~CLineMgr()
 
 void CLineMgr::Initialize(void)
 {
-	/*LINEPOINT		tLinePoint[4]
+	LINEPOINT		tLinePoint[4]
 	{
 		{ 100.f, 450.f },
 		{ 300.f, 450.f },
@@ -24,9 +24,9 @@ void CLineMgr::Initialize(void)
 
 	m_LineList.push_back(new CLine(tLinePoint[0], tLinePoint[1]));
 	m_LineList.push_back(new CLine(tLinePoint[1], tLinePoint[2]));
-	m_LineList.push_back(new CLine(tLinePoint[2], tLinePoint[3]));*/
+	m_LineList.push_back(new CLine(tLinePoint[2], tLinePoint[3]));
 
-	Load_Line();
+	//Load_Line();
 }
 
 void CLineMgr::Render(HDC hDC)

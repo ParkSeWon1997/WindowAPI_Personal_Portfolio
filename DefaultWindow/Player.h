@@ -3,6 +3,9 @@
 #include "Obj.h"
 #include "Shield.h"
 
+class AnimSprite;
+
+
 class CPlayer :	public CObj
 {
 	enum PLAYERSTATE { IDLE, WALK, JUMP,ATTACK, HIT, DEAD, PS_END };
@@ -32,10 +35,16 @@ private:
 	bool				m_bJump;
 	float				m_fPower;
 	float				m_fAccelTime;
+	float				AnimTime;
+	int					m_AnimIndex;
 
+	vector<vector<TCHAR*>>	m_AnimBox[PS_END];
+	vector<TCHAR*>			m_IDLE_Sprite;
+	vector<TCHAR*>			m_JUMPSprite;
+	vector<TCHAR*>			m_RUNSprite;
 	PLAYERSTATE			m_ePreState;
 	PLAYERSTATE			m_eCurState;
-
+	
 };
 
 // 포물선 공식을 이용하여 플레이어가 점프하는 상태를 만들어라

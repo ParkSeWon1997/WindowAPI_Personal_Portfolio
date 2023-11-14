@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Mouse.h"
 
+
+CObj* CMouse::m_Instance = nullptr;
 CMouse::CMouse()
 {
 }
