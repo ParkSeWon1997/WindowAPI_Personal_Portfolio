@@ -164,9 +164,11 @@
     <ClInclude Include="MyButton.h" />
     <ClInclude Include="MyEdit.h" />
     <ClInclude Include="MyMenu.h" />
+    <ClInclude Include="MyPng.h" />
     <ClInclude Include="Obj.h" />
     <ClInclude Include="ObjMgr.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PngMrg.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneMgr.h" />
@@ -196,9 +198,11 @@
     <ClCompile Include="MyButton.cpp" />
     <ClCompile Include="MyEdit.cpp" />
     <ClCompile Include="MyMenu.cpp" />
+    <ClCompile Include="MyPng.cpp" />
     <ClCompile Include="Obj.cpp" />
     <ClCompile Include="ObjMgr.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PngMrg.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneMgr.cpp" />
     <ClCompile Include="ScrewBullet.cpp" />

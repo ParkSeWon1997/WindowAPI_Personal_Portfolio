@@ -24,6 +24,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,				// 메모리에 할당되는 실체, 현
                      _In_ LPWSTR    lpCmdLine,				// 지원되는 문자 체계(L"")
                      _In_ int       nCmdShow)				// 실행한 창의 스타일(모양/ 최소화, 최대화 모양 변경 등)의 옵션 값이 전달됨
 {
+	GdiplusStartupInput gdiplusStartupInput;
+	ULONG_PTR gdiplusToken;
+	GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
+
+
+
+
+
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
     UNREFERENCED_PARAMETER(hPrevInstance);		
@@ -105,6 +113,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,				// 메모리에 할당되는 실체, 현
             DispatchMessage(&msg);
         }
     }*/
+
+
+	GdiplusShutdown(gdiplusToken);
 
     return (int) msg.wParam;
 }

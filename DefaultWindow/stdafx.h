@@ -25,6 +25,11 @@
 #include <ctime>
 #include <algorithm>
 
+#include<ole2.h>
+#include<gdiplus.h>
+#pragma comment(lib, "gdiplus.lib")
+using namespace Gdiplus;
+
 
 #include <vfw.h>
 #pragma comment(lib, "vfw32.lib")

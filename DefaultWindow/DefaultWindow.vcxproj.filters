@@ -100,6 +100,12 @@
     <Filter Include="02. Design\08. TileMgr">
       <UniqueIdentifier>{f47b7cdf-54b7-4a6a-8ae5-68f923eacb9e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02. Design\09. PngMgr">
+      <UniqueIdentifier>{7580a73e-98dc-485a-87d6-f1e78ad7e848}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Design\09. PngMgr\MyPng">
+      <UniqueIdentifier>{2321a5e2-c142-47ae-8a57-be7f17580d6a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -201,6 +207,12 @@
     <ClInclude Include="MyEdit.h">
       <Filter>03. Scene\02. Edit</Filter>
     </ClInclude>
+    <ClInclude Include="PngMrg.h">
+      <Filter>02. Design\09. PngMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="MyPng.h">
+      <Filter>02. Design\09. PngMgr\MyPng</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DefaultWindow.cpp">
@@ -286,6 +298,12 @@
     </ClCompile>
     <ClCompile Include="MyEdit.cpp">
       <Filter>03. Scene\02. Edit</Filter>
+    </ClCompile>
+    <ClCompile Include="PngMrg.cpp">
+      <Filter>02. Design\09. PngMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="MyPng.cpp">
+      <Filter>02. Design\09. PngMgr\MyPng</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
