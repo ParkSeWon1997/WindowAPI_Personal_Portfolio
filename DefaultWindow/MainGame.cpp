@@ -10,6 +10,7 @@
 #include "BmpMgr.h"
 #include "SceneMgr.h"
 #include "TileMgr.h"
+#include "PngMrg.h"
 
 CMainGame::CMainGame() 
 	: m_iFPS(0), m_dwTime(GetTickCount())
@@ -90,7 +91,7 @@ void CMainGame::Render(void)
 void CMainGame::Release(void)
 {
 	CBmpMgr::Destroy_Instance();
-
+	PngMrg::Destroy_Instance();
 	CTileMgr::Destroy_Instance();
 	CScrollMgr::Destroy_Instance();
 	CKeyMgr::Destroy_Instance();

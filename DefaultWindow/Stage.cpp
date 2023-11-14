@@ -23,12 +23,12 @@ void CStage::Initialize()
 	// 플레이어 추가	
 	CObjMgr::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer>::Create());		
 
-	for (int i = 0; i < 5; ++i)
-	{
-		CObjMgr::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<CMonster>::Create(rand() % WINCX, rand() % WINCY, 0.f));
-	}
+	//for (int i = 0; i < 5; ++i)
+	//{
+	//	CObjMgr::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<CMonster>::Create(rand() % WINCX, rand() % WINCY, 0.f));
+	//}
 
-	//CLineMgr::Get_Instance()->Initialize();
+	CLineMgr::Get_Instance()->Initialize();
 
 	CTileMgr::Get_Instance()->Load_Data();
 	//CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Ground.bmp", L"Ground");
@@ -60,7 +60,7 @@ void CStage::Render(HDC hDC)
 	CTileMgr::Get_Instance()->Render(hDC);
 
 	CObjMgr::Get_Instance()->Render(hDC);
-	//CLineMgr::Get_Instance()->Render(hDC);
+	CLineMgr::Get_Instance()->Render(hDC);
 
 }
 

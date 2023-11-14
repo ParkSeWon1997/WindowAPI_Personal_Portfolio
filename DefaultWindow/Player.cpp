@@ -39,6 +39,38 @@ void CPlayer::Initialize()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Player/Player_LD.bmp", L"Player_LD");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Player/Player_RD.bmp", L"Player_RD");
 
+	//idle
+	//BearIdle0-resources.assets-230
+	//BearIdle1-resources.assets-575
+	//BearIdle2-resources.assets-253
+	//BearIdle3-resources.assets-614
+	//BearIdle4-resources.assets-596
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/BearIdle0-resources.assets-230.png", L"Player_Idle_01");
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/BearIdle1-resources.assets-575.png", L"Player_Idle_02");
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/BearIdle2-resources.assets-253.png", L"Player_Idle_03");
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/BearIdle3-resources.assets-614.png", L"Player_Idle_04");
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/BearIdle4-resources.assets-596.png", L"Player_Idle_05");
+
+
+	//jump
+	//BearJump0-resources.assets-834
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/BearJump0-resources.assets-834.png", L"Player_Jump_00");
+
+
+	//Run
+	//BearRun0-resources.assets-884
+	//BearRun1-resources.assets-1408
+	//BearRun2-resources.assets-880
+	//BearRun3-resources.assets-1349
+	//BearRun4-resources.assets-1184
+	//BearRun5-resources.assets-623
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/BearRun0-resources.assets-884.png", L"Player_Run_01");
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/BearRun1-resources.assets-1408.png", L"Player_Run_02");
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/BearRun2-resources.assets-880.png", L"Player_Run_03");
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/BearRun3-resources.assets-1349.png", L"Player_Run_04");
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/BearRun4-resources.assets-1184.png", L"Player_Run_05");
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/BearRun5-resources.assets-623.png", L"Player_Run_06");
+
 	m_tFrame.iFrameStart = 0;
 	m_tFrame.iFrameEnd = 3;
 	m_tFrame.iMotion = 0;
@@ -54,7 +86,7 @@ void CPlayer::Initialize()
 
 int CPlayer::Update()
 {
-	//Jump();
+	Jump();
 
 	Key_Input();
 
@@ -75,19 +107,23 @@ void CPlayer::Render(HDC hDC)
 	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
 	int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
 
-	HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Img(m_pFrameKey);
 
-	GdiTransparentBlt(hDC,
-		m_tRect.left + iScrollX,
-		m_tRect.top + iScrollY,
-		(int)m_tInfo.fCX,
-		(int)m_tInfo.fCY,
-		hMemDC,
-		(int)m_tInfo.fCX * m_tFrame.iFrameStart,
-		(int)m_tInfo.fCY * m_tFrame.iMotion,			
-		(int)m_tInfo.fCX,
-		(int)m_tInfo.fCY,
-		RGB(0, 0, 0)); 
+	// HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Img(m_pFrameKey);
+	Graphics g(hDC);
+	Image* img = PngMrg::Get_Instance()->Get_Image(L"Player_Idle_01");
+
+	g.DrawImage(img, m_tInfo.fX+ iScrollX, m_tInfo.fY+ iScrollY, img->GetWidth()+100, img->GetHeight()+100);
+	//GdiTransparentBlt(hDC,
+	//	m_tRect.left + iScrollX,
+	//	m_tRect.top + iScrollY,
+	//	(int)m_tInfo.fCX,
+	//	(int)m_tInfo.fCY,
+	//	hMemDC,
+	//	(int)m_tInfo.fCX * m_tFrame.iFrameStart,
+	//	(int)m_tInfo.fCY * m_tFrame.iMotion,			
+	//	(int)m_tInfo.fCX,
+	//	(int)m_tInfo.fCY,
+	//	RGB(0, 0, 0)); 
 }
 
 void CPlayer::Release()
@@ -123,6 +159,12 @@ void CPlayer::Key_Input()
 		m_pFrameKey = L"Player_DOWN";
 		m_eCurState = WALK;
 	}
+	 if (CKeyMgr::Get_Instance()->Key_Pressing(VK_SPACE))
+	{
+		m_bJump = true;
+		//m_eCurState = JUMP;
+	}
+
 
 	else
 		m_eCurState = IDLE;
