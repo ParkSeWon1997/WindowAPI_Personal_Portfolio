@@ -9,7 +9,7 @@
 #include "KeyMgr.h"
 #include "ScrollMgr.h"
 #include "BmpMgr.h"
-
+#include"PngMrg.h"
 CPlayer::CPlayer()  : m_bJump(false), m_fPower(0.f), m_fAccelTime(0.f)
 , m_eCurState(IDLE), m_ePreState(PS_END)
 {
