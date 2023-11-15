@@ -4,6 +4,10 @@
 #include "ScrollMgr.h"
 
 
+
+
+
+
 CTile::CTile()
 	: m_iDrawID(0), m_iOption(0)
 {

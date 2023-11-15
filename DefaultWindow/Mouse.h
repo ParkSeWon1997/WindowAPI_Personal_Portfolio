@@ -38,6 +38,7 @@ public:
 
 private:
 	static CObj* m_Instance;
+	POINT ptMouse{};
 	
 };
 

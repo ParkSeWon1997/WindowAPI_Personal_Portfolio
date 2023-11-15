@@ -23,6 +23,20 @@ public:
 	virtual void	Render(HDC hDC) override;
 	virtual void	Release() override;
 
+
+public:
+	float		Get_Damage() { return Damage; }
+	void		Set_Damage(float _Damage) { Damage = _Damage; }
+
+	float		Get_HP() { return HP; }
+	void		Set_HP(float _HP) { HP = _HP; }
+
+	void		Set_Posin(POINT _Posin) { m_tPosin = _Posin; }
+	POINT		Get_Posin() { return m_tPosin; }
+
+
+
+
 private:
 	void		Key_Input();
 	void		Jump();
@@ -38,6 +52,11 @@ private:
 	float				m_fAccelTime;
 	float				Start_Animation;
 	float				End_Animation;
+
+	float					Damage;
+	float					HP;
+
+	int					DashCount;
 
 
 	vector<vector<TCHAR*>>	m_AnimBox[PS_END];

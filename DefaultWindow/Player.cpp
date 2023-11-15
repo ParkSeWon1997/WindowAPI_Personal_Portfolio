@@ -27,71 +27,26 @@ CPlayer::~CPlayer()
 
 void CPlayer::Initialize()
 {
-	m_tInfo = { 50.f, 300.f, 128, 128 };
+	m_tInfo = { 50.f, 300.f, 32, 32 };
 
 	m_fSpeed = 5.f;
 	m_fDiagonal = 100.f;
 	m_fPower = 20.f;
 
 
-	//idle
-	//BearIdle0-resources.assets-230
-	//BearIdle1-resources.assets-575
-	//BearIdle2-resources.assets-253
-	//BearIdle3-resources.assets-614
-	//BearIdle4-resources.assets-596
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/BearIdle0-resources.assets-230.png", L"Player_Idle_01");
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/BearIdle1-resources.assets-575.png", L"Player_Idle_02");
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/BearIdle2-resources.assets-253.png", L"Player_Idle_03");
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/BearIdle3-resources.assets-614.png", L"Player_Idle_04");
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/BearIdle4-resources.assets-596.png", L"Player_Idle_05");
-		m_IDLE_Sprite.push_back(L"Player_Idle_01");
-		m_IDLE_Sprite.push_back(L"Player_Idle_02");
-		m_IDLE_Sprite.push_back(L"Player_Idle_03");
-		m_IDLE_Sprite.push_back(L"Player_Idle_04");
-		m_IDLE_Sprite.push_back(L"Player_Idle_05");
+	//아이들, 점프, 달리기 이미지 
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/Bear01.png", L"Player");
 
 
-	
-
-	//jump
-	//BearJump0-resources.assets-834
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/BearJump0-resources.assets-834.png", L"Player_Jump_00");
-	m_JUMPSprite.push_back(L"Player_Jump_00");
-
-	//Run
-	//BearRun0-resources.assets-884
-	//BearRun1-resources.assets-1408
-	//BearRun2-resources.assets-880
-	//BearRun3-resources.assets-1349
-	//BearRun4-resources.assets-1184
-	//BearRun5-resources.assets-623
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/BearRun0-resources.assets-884.png", L"Player_Run_01");
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/BearRun1-resources.assets-1408.png", L"Player_Run_02");
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/BearRun2-resources.assets-880.png", L"Player_Run_03");
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/BearRun3-resources.assets-1349.png", L"Player_Run_04");
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/BearRun4-resources.assets-1184.png", L"Player_Run_05");
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/BearRun5-resources.assets-623.png", L"Player_Run_06");
-	m_RUNSprite.push_back(L"Player_Run_01");
-	m_RUNSprite.push_back(L"Player_Run_02");
-	m_RUNSprite.push_back(L"Player_Run_03");
-	m_RUNSprite.push_back(L"Player_Run_04");
-	m_RUNSprite.push_back(L"Player_Run_05");
-	m_RUNSprite.push_back(L"Player_Run_06");
-
-	//auto iter = m_AnimBox[IDLE];
-	//m_AnimBox[IDLE].front()
-
-
+	//Dead
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/CharDie #238158/.png", L"Player_Dead");
 
 	m_tFrame.dwSpeed = 200;
 	m_tFrame.dwTime = GetTickCount();
 
-	m_AnimBox[IDLE].push_back(m_IDLE_Sprite);
-	m_AnimBox[JUMP].push_back(m_JUMPSprite);
-	m_AnimBox[RUN].push_back(m_RUNSprite);
 
-	m_pStateKey = L"Player_Idle_01";
+
+	m_pStateKey = L"Player";
 
 	m_eRender = GAMEOBJECT;
 
@@ -111,18 +66,28 @@ int CPlayer::Update()
 
 void CPlayer::Late_Update()
 {
-	
+
 	Offset();
 	Move_Frame();
 	Motion_Change();
-	
+
 }
 
 void CPlayer::Render(HDC hDC)
 {
+
+
 	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
 	int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
-	
+	Point destinationPoints[] = {
+		Point((int)(m_tInfo.fX + m_tInfo.fCX * 0.5) + iScrollX,
+			   (int)(m_tInfo.fY - m_tInfo.fCY * 0.5) + iScrollY),   // destination for upper-left point of original
+		Point((int)(m_tInfo.fX - m_tInfo.fCX * 0.5) + iScrollX,
+			  (int)(m_tInfo.fY - m_tInfo.fCY * 0.5) + iScrollY),  // destination for upper-right point of original
+		Point((int)(m_tInfo.fX + m_tInfo.fCX * 0.5) + iScrollX,
+			   (int)(m_tInfo.fY + m_tInfo.fCY * 0.5) + iScrollY) };  // destination for lower-left point of original
+
+
 	Rectangle(hDC, m_tRect.left + iScrollX, m_tRect.top + iScrollY, m_tRect.right + iScrollX, m_tRect.bottom + iScrollY);
 
 
@@ -135,12 +100,12 @@ void CPlayer::Render(HDC hDC)
 
 	Image* img = PngMrg::Get_Instance()->Get_Image(m_pStateKey);
 
-	float ImageHarf_X = img->GetWidth() / 2;
-	float ImageY = img->GetHeight()/2;
+	//반전 이미지
+	g.DrawImage(img, destinationPoints, 3,m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, 32, 32, UnitPixel);
 
 
-	//g.DrawImage(img, (m_tRect.left - ImageHarf_X) + iScrollX, (m_tRect.top - ImageY) + iScrollY, img->GetWidth()*2 , img->GetHeight()*2 );
-	g.DrawImage(img, Rect(m_tInfo.fX- 64, m_tInfo.fY-64, m_tInfo.fCX, m_tInfo.fCY), 0, 0, 32, 32, UnitPixel);
+	//기본 이미지
+	//g.DrawImage(img, Rect(m_tInfo.fX - 64, m_tInfo.fY - 64, m_tInfo.fCX, m_tInfo.fCY), 0, 0, 32, 32, UnitPixel);
 
 
 
@@ -157,7 +122,8 @@ void CPlayer::Release()
 
 void CPlayer::Key_Input()
 {
-
+	
+	m_eCurState = IDLE;
 
 	if (CKeyMgr::Get_Instance()->Key_Pressing('A'))
 	{
@@ -165,7 +131,7 @@ void CPlayer::Key_Input()
 		m_tInfo.fX -= m_fSpeed;
 	}
 
-	if (CKeyMgr::Get_Instance()->Key_Pressing('D'))
+	else if (CKeyMgr::Get_Instance()->Key_Pressing('D'))
 	{
 		m_tInfo.fX += m_fSpeed;
 		m_eCurState = RUN;
@@ -176,13 +142,12 @@ void CPlayer::Key_Input()
 		m_eCurState = JUMP;
 	}
 
-
-	else
+	if (CKeyMgr::Get_Instance()->Key_Pressing('U'))
 	{
-
-		m_eCurState = IDLE;
-
+		m_eCurState = DEAD;
 	}
+
+	
 }
 
 void CPlayer::Jump()
@@ -256,71 +221,53 @@ void CPlayer::Motion_Change()
 {
 	if (m_ePreState != m_eCurState)
 	{
-		
+
 		switch (m_eCurState)
 		{
-			
+
 		case IDLE:
+			m_tFrame.iFrameStart = 0;
+			m_tFrame.iFrameEnd = 4;
+			m_tFrame.iMotion = 0;
 
+			m_tFrame.dwSpeed = 50;
+			m_tFrame.dwTime = GetTickCount();
 
-		
+			break;
+
+		case JUMP:
+			m_tFrame.iFrameStart = 0;
+			m_tFrame.iFrameEnd = 0;
+			m_tFrame.iMotion = 1;
+
+			m_tFrame.dwSpeed = 50;
+			m_tFrame.dwTime = GetTickCount();
+
+			break;
+
+		case RUN:
 			m_tFrame.iFrameStart = 0;
 			m_tFrame.iFrameEnd = 5;
-			m_tFrame.iMotion = 0;
-			
-			m_tFrame.dwSpeed = 200;
+			m_tFrame.iMotion = 2;
+
+			m_tFrame.dwSpeed = 100;
 			m_tFrame.dwTime = GetTickCount();
-			
-			for (auto& iter : m_AnimBox[IDLE])
-			{
-				for (auto& IDLE_iter : iter)
-				{
-					
-					m_pStateKey = IDLE_iter;
-					
-				}
-			}
-
-			
 			break;
-	
-		case RUN:
-		
-			for (auto& iter : m_AnimBox[RUN])
-			{
-				for (auto& RUN_iter : iter)
-				{
-					m_pStateKey = RUN_iter;
-				}
-			}
-			break;
-	
 		case ATTACK:
-	
-			break;
-	
-		case HIT:
-		
-			break;
-	
-		case DEAD:
-		
-			break;
-	
-	
-		case JUMP:
-			for (auto& iter : m_AnimBox[JUMP])
-			{
-				for (auto& JUMP_iter : iter)
-				{
-					m_pStateKey = JUMP_iter;
-				}
-			}
-		
 
 			break;
+
+		case HIT:
+
+			break;
+
+		case DEAD:
+			m_pStateKey = L"Player_Dead";
+			break;
+
+		
 		}
-	
+
 		m_ePreState = m_eCurState;
 	}
 

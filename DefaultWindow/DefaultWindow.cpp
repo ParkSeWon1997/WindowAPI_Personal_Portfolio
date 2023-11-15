@@ -147,7 +147,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_DEFAULTWINDOW));
 	// 윈도우가 사용할 아이콘 지정(시작 표시줄)
 
-    wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
+    wcex.hCursor        = LoadCursor(nullptr, IDC_CROSS);
 	// 윈도우에서 사용할 마우스 커서를 지정
 
     wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
