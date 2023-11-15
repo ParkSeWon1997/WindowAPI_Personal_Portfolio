@@ -57,7 +57,7 @@ protected:
 	float		m_fSpeed;
 	bool		m_bDead;
 	float		m_fAngle;
-
+	DWORD		dwFrameTime;
 
 	TCHAR*		m_pStateKey;
 	TCHAR*		m_pFrameKey;

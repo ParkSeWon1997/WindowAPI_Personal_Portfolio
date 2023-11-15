@@ -3,7 +3,7 @@
 #include "BmpMgr.h"
 #include "KeyMgr.h"
 #include "SceneMgr.h"
-
+#include"PngMrg.h"
 CLogo::CLogo()
 {
 }
@@ -17,7 +17,7 @@ CLogo::~CLogo()
 void CLogo::Initialize()
 {
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Logo/Logo.bmp", L"Logo");
-
+	//PngMrg::Get_Instance()->Insert_Png
 	
 
 }
@@ -26,7 +26,7 @@ void CLogo::Update()
 {
 	if ( CKeyMgr::Get_Instance()->Key_Down(VK_RETURN))
 	{
-		CSceneMgr::Get_Instance()->Scene_Change(SC_STAGE);
+		CSceneMgr::Get_Instance()->Scene_Change(SC_MENU);
 		return;
 	}
 

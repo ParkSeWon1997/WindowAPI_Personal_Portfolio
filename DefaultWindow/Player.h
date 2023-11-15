@@ -44,6 +44,8 @@ private:
 	vector<TCHAR*>			m_IDLE_Sprite;
 	vector<TCHAR*>			m_JUMPSprite;
 	vector<TCHAR*>			m_RUNSprite;
+	TCHAR* m_PreImage;
+	TCHAR* m_CurImage;
 	PLAYERSTATE			m_ePreState;
 	PLAYERSTATE			m_eCurState;
 	

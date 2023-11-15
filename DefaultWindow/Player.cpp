@@ -27,9 +27,9 @@ CPlayer::~CPlayer()
 
 void CPlayer::Initialize()
 {
-	m_tInfo = { 50.f, 300.f, 50.f, 50.f };
+	m_tInfo = { 50.f, 300.f, 128, 128 };
 
-	m_fSpeed = 0.2f;
+	m_fSpeed = 5.f;
 	m_fDiagonal = 100.f;
 	m_fPower = 20.f;
 
@@ -45,12 +45,14 @@ void CPlayer::Initialize()
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/BearIdle2-resources.assets-253.png", L"Player_Idle_03");
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/BearIdle3-resources.assets-614.png", L"Player_Idle_04");
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/BearIdle4-resources.assets-596.png", L"Player_Idle_05");
-	m_IDLE_Sprite.push_back(L"Player_Idle_01");
-	m_IDLE_Sprite.push_back(L"Player_Idle_02");
-	m_IDLE_Sprite.push_back(L"Player_Idle_03");
-	m_IDLE_Sprite.push_back(L"Player_Idle_04");
-	m_IDLE_Sprite.push_back(L"Player_Idle_05");
+		m_IDLE_Sprite.push_back(L"Player_Idle_01");
+		m_IDLE_Sprite.push_back(L"Player_Idle_02");
+		m_IDLE_Sprite.push_back(L"Player_Idle_03");
+		m_IDLE_Sprite.push_back(L"Player_Idle_04");
+		m_IDLE_Sprite.push_back(L"Player_Idle_05");
 
+
+	
 
 	//jump
 	//BearJump0-resources.assets-834
@@ -111,7 +113,7 @@ void CPlayer::Late_Update()
 {
 	
 	Offset();
-	//Move_Frame();
+	Move_Frame();
 	Motion_Change();
 	
 }
@@ -120,20 +122,27 @@ void CPlayer::Render(HDC hDC)
 {
 	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
 	int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
+	
 	Rectangle(hDC, m_tRect.left + iScrollX, m_tRect.top + iScrollY, m_tRect.right + iScrollX, m_tRect.bottom + iScrollY);
 
 
 
-
 	// HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Img(m_pFrameKey);
+
+	ElapseTimeMgr::GetInstance().GetElapsedTime();
 	Graphics g(hDC);
 
 
 	Image* img = PngMrg::Get_Instance()->Get_Image(m_pStateKey);
 
 	float ImageHarf_X = img->GetWidth() / 2;
-	float ImageY = img->GetHeight();
-	g.DrawImage(img, (m_tInfo.fX - ImageHarf_X) + iScrollX, (m_tInfo.fY - ImageY) + iScrollY, img->GetWidth() * 4, img->GetHeight() * 4);
+	float ImageY = img->GetHeight()/2;
+
+
+	//g.DrawImage(img, (m_tRect.left - ImageHarf_X) + iScrollX, (m_tRect.top - ImageY) + iScrollY, img->GetWidth()*2 , img->GetHeight()*2 );
+	g.DrawImage(img, Rect(m_tInfo.fX- 64, m_tInfo.fY-64, m_tInfo.fCX, m_tInfo.fCY), 0, 0, 32, 32, UnitPixel);
+
+
 
 
 
@@ -252,6 +261,16 @@ void CPlayer::Motion_Change()
 		{
 			
 		case IDLE:
+
+
+		
+			m_tFrame.iFrameStart = 0;
+			m_tFrame.iFrameEnd = 5;
+			m_tFrame.iMotion = 0;
+			
+			m_tFrame.dwSpeed = 200;
+			m_tFrame.dwTime = GetTickCount();
+			
 			for (auto& iter : m_AnimBox[IDLE])
 			{
 				for (auto& IDLE_iter : iter)

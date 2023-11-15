@@ -31,7 +31,7 @@ void CStage::Initialize()
 	CLineMgr::Get_Instance()->Initialize();
 
 	CTileMgr::Get_Instance()->Load_Data();
-	//CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Ground.bmp", L"Ground");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Ground.bmp", L"Ground");
 
 }
 
@@ -55,9 +55,9 @@ void CStage::Render(HDC hDC)
 	int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
 
 
-	//BitBlt(hDC, iScrollX, iScrollY, 1920, 1280, hGroundDC, 0, 0, SRCCOPY);
+	BitBlt(hDC, iScrollX, iScrollY, 1920, 1280, hGroundDC, 0, 0, SRCCOPY);
 
-	CTileMgr::Get_Instance()->Render(hDC);
+	//CTileMgr::Get_Instance()->Render(hDC);
 
 	CObjMgr::Get_Instance()->Render(hDC);
 	CLineMgr::Get_Instance()->Render(hDC);

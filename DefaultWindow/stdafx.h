@@ -29,6 +29,7 @@
 #include <algorithm>
 #include<ole2.h>
 #include<gdiplus.h>
+#include<string>
 #pragma comment(lib, "gdiplus.lib")
 using namespace Gdiplus;
 
