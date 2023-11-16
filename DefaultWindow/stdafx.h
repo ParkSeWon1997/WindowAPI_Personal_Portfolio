@@ -34,6 +34,9 @@
 using namespace Gdiplus;
 
 
+#include <io.h>
+#include <iostream>
+
 
 #include <vfw.h>
 #pragma comment(lib, "vfw32.lib")

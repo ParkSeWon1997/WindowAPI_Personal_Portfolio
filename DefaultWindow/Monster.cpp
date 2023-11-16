@@ -100,3 +100,8 @@ void CMonster::Render(HDC hDC)
 void CMonster::Release()
 {
 }
+
+void CMonster::Motion_Change()
+{
+
+}

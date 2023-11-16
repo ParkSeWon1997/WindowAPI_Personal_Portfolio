@@ -26,6 +26,7 @@ public:
 	RECT			Get_Rect() { return m_tRect; }
 	INFO			Get_Info() { return m_tInfo; }
 	bool			Get_Dead() { return m_bDead; }
+	
 
 	void			Set_PosX(float _fX) { m_tInfo.fX += _fX; }
 	void			Set_PosY(float _fY) { m_tInfo.fY += _fY; }
@@ -57,7 +58,7 @@ protected:
 	float		m_fSpeed;
 	bool		m_bDead;
 	float		m_fAngle;
-	DWORD		dwFrameTime;
+	DWORD		dwFrameTime=GetTickCount();
 
 	TCHAR*		m_pStateKey;
 	TCHAR*		m_pFrameKey;

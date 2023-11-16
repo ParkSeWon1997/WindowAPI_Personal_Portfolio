@@ -149,9 +149,11 @@
     <ClInclude Include="AbstractFactory.h" />
     <ClInclude Include="AnimSprite.h" />
     <ClInclude Include="BmpMgr.h" />
+    <ClInclude Include="BossMonster.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="CollisionMgr.h" />
     <ClInclude Include="CTimeMgr.h" />
+    <ClInclude Include="DefalutMonster.h" />
     <ClInclude Include="DefaultWindow.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="ElapseTimeMgr.h" />
@@ -187,9 +189,11 @@
   <ItemGroup>
     <ClCompile Include="AnimSprite.cpp" />
     <ClCompile Include="BmpMgr.cpp" />
+    <ClCompile Include="BossMonster.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CollisionMgr.cpp" />
     <ClCompile Include="CTimeMgr.cpp" />
+    <ClCompile Include="DefalutMonster.cpp" />
     <ClCompile Include="DefaultWindow.cpp" />
     <ClCompile Include="ElapseTimeMgr.cpp" />
     <ClCompile Include="GuideBullet.cpp" />

@@ -228,6 +228,12 @@
     <ClInclude Include="CTimeMgr.h">
       <Filter>02. Design\10. ElapseTimeMgr</Filter>
     </ClInclude>
+    <ClInclude Include="DefalutMonster.h">
+      <Filter>01. Obj\02. Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="BossMonster.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DefaultWindow.cpp">
@@ -328,6 +334,12 @@
     </ClCompile>
     <ClCompile Include="CTimeMgr.cpp">
       <Filter>02. Design\10. ElapseTimeMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="DefalutMonster.cpp">
+      <Filter>01. Obj\02. Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="BossMonster.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

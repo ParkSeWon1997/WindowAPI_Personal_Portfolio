@@ -9,7 +9,6 @@ class AnimSprite;
 class CPlayer :	public CObj
 {
 	enum PLAYERSTATE { IDLE, RUN, JUMP,ATTACK, HIT, DEAD, PS_END };
-	enum PLAYERLEFT {LEFT};
 	
 public:
 	CPlayer();
@@ -34,7 +33,7 @@ public:
 	void		Set_Posin(POINT _Posin) { m_tPosin = _Posin; }
 	POINT		Get_Posin() { return m_tPosin; }
 
-
+	bool		IsDead() { return m_bDead; }
 
 
 private:
@@ -42,6 +41,7 @@ private:
 	void		Jump();
 	void		Offset();
 	void		Motion_Change();
+	void		Set_Posin();
 	bool		Posin_half_Check();
 
 private:

@@ -32,6 +32,22 @@ void CMainGame::Initialize(void)
 	CSceneMgr::Get_Instance()->Scene_Change(SC_LOGO);
 	CMouse::Get_Instance()->Initialize();
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Back.bmp", L"Back");
+
+
+
+#ifdef _DEBUG
+
+	if (::AllocConsole() == TRUE)
+	{
+		FILE* nfp[3];
+		freopen_s(nfp + 0, "CONOUT$", "rb", stdin);
+		freopen_s(nfp + 1, "CONOUT$", "wb", stdout);
+		freopen_s(nfp + 2, "CONOUT$", "wb", stderr);
+		std::ios::sync_with_stdio();
+	}
+
+#endif // _DEBUG
+
 }
 
 void CMainGame::Update(void)
@@ -95,6 +111,12 @@ void CMainGame::Render(void)
 
 void CMainGame::Release(void)
 {
+#ifdef _DEBUG
+
+	FreeConsole();
+
+#endif // _DEBUG
+
 
 	CBmpMgr::Destroy_Instance();
 	PngMrg::Destroy_Instance();

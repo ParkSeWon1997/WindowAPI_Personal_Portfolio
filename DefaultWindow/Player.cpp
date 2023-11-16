@@ -37,11 +37,11 @@ void CPlayer::Initialize()
 
 
 	//아이들, 점프, 달리기 이미지 
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/Bear01.png", L"Player");
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/Bear.png", L"Player");
 
 
 	//Dead
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/CharDie #238158/.png", L"Player_Dead");
+	//PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/CharDie #238158.png", L"Player_Dead");
 
 	m_tFrame.dwSpeed = 200;
 	m_tFrame.dwTime = GetTickCount();
@@ -56,7 +56,6 @@ void CPlayer::Initialize()
 
 int CPlayer::Update()
 {
-
 	Jump();
 
 	Key_Input();
@@ -68,6 +67,11 @@ int CPlayer::Update()
 
 void CPlayer::Late_Update()
 {
+	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
+	int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
+	Offset();
+	Move_Frame();
+	Motion_Change();
 	float m_pMouse_X = m_pMouse->Get_Info().fX - m_tInfo.fX;
 	float m_pMouse_Y = m_pMouse->Get_Info().fY - m_tInfo.fY;
 	float m_pMouse_R = (float)sqrt(m_pMouse_X * m_pMouse_X + m_pMouse_Y * m_pMouse_Y);
@@ -86,9 +90,17 @@ void CPlayer::Late_Update()
 
 
 
-	Offset();
-	Move_Frame();
-	Motion_Change();
+#ifdef _DEBUG
+
+	if (dwFrameTime + 1000 < GetTickCount())
+	{
+		cout << "플레이어 좌표 : " << m_tInfo.fX << "\t" << m_tInfo.fY << endl;
+		dwFrameTime = GetTickCount();
+	}
+
+#endif
+
+
 
 }
 
@@ -96,61 +108,16 @@ void CPlayer::Render(HDC hDC)
 {
 
 
-	//void CPlayer::Render(HDC hDC)
-	//{
-	//	float      iScrollX = CScrollMgr::Get_Instance()->Get_ScrollX();
-	//	float      iScrollY = CScrollMgr::Get_Instance()->Get_ScrollY();
-	//
-	//	//Rectangle(hDC,m_tRect.left+iScrollX, 
-	//	//                  m_tRect.top+iScrollY, 
-	//	//                  m_tRect.right + iScrollX, 
-	//	//                  m_tRect.bottom + iScrollY);
-	//
-	//	Graphics   graphics(hDC);
-	//	Image* img = CPngMgr::Get_Instance()->Find_Img(L"PLAYER");
-	//	Point destinationPoints[] = {
-	//	Point((int)(m_tInfo.fX + m_tInfo.fCX * 0.5) + iScrollX,
-	//		   (int)(m_tInfo.fY - m_tInfo.fCY * 0.5) + iScrollY),   // destination for upper-left point of original
-	//	Point((int)(m_tInfo.fX - m_tInfo.fCX * 0.5) + iScrollX,
-	//		  (int)(m_tInfo.fY - m_tInfo.fCY * 0.5) + iScrollY),  // destination for upper-right point of original
-	//	Point((int)(m_tInfo.fX + m_tInfo.fCX * 0.5) + iScrollX,
-	//		   (int)(m_tInfo.fY + m_tInfo.fCY * 0.5) + iScrollY) };  // destination for lower-left point of original
-	//
-	//	//graphics.DrawImage(&image, 0, 0);
-	//	// Draw the image mapped to the parallelogram.
-	//
-	//	if (!m_bStretch)
-	//	{
-	//		graphics.DrawImage(img, (m_tFrame.iFrameProgress * 32) + m_tFrame.iPointX
-	//			,  (m_tFrame.iMotion * 48) + m_tFrame.iPointY,
-	//			32.f + m_tFrame.iPointCX, 48.f + m_tFrame.iPointCY,
-	//			UnitPixel);
-	//	}
-	//	else
-	//	{
-	//		graphics.DrawImage(img, destinationPoints, 3,
-	//			0 + (m_tFrame.iFrameProgress * 32) + m_tFrame.iPointX
-	//			, 0 + (m_tFrame.iMotion * 48) + m_tFrame.iPointY,
-	//			32.f + m_tFrame.iPointCX, 48.f + m_tFrame.iPointCY,
-	//			UnitPixel);
-	//	}
-	//
-	//
-	//}
-
-
-
-
-
-
-
-
-
 
 
 
 	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
 	int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
+
+	Rectangle(hDC, m_tRect.left + iScrollX, m_tRect.top + iScrollY, m_tRect.right + iScrollX, m_tRect.bottom + iScrollY);
+	MoveToEx(hDC, (int)m_tInfo.fX + iScrollX, (int)m_tInfo.fY + iScrollY, nullptr);
+	LineTo(hDC, m_tPosin.x, m_tPosin.y);
+
 	Point destinationPoints[] = {
 		Point((int)(m_tInfo.fX + m_tInfo.fCX * 0.5) + iScrollX,
 			   (int)(m_tInfo.fY - m_tInfo.fCY * 0.5) + iScrollY),   // destination for upper-left point of original
@@ -160,30 +127,22 @@ void CPlayer::Render(HDC hDC)
 			   (int)(m_tInfo.fY + m_tInfo.fCY * 0.5) + iScrollY) };  // destination for lower-left point of original
 
 
-	Rectangle(hDC, m_tRect.left + iScrollX, m_tRect.top + iScrollY, m_tRect.right + iScrollX, m_tRect.bottom + iScrollY);
-	MoveToEx(hDC, (int)m_tInfo.fX, (int)m_tInfo.fY, nullptr);
-	LineTo(hDC, m_tPosin.x, m_tPosin.y);
 
 
-
-	// HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Img(m_pFrameKey);
-
-	ElapseTimeMgr::GetInstance().GetElapsedTime();
 	Graphics g(hDC);
 
 
 	Image* img = PngMrg::Get_Instance()->Get_Image(m_pStateKey);
 
-	
 
-	
-	//수정할것
-		g.DrawImage(img, Rect(m_tInfo.fX , m_tInfo.fY , m_tInfo.fCX, m_tInfo.fCY), m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iFrameStart, 32, 32, UnitPixel);
-	//if (Posin_half_Check()) {
-	//}
-	//else{
-	//	g.DrawImage(img, destinationPoints, 3, m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY  * m_tFrame.iFrameStart, 32, 32, UnitPixel);
-	//}
+
+	if (Posin_half_Check()) {
+		g.DrawImage(img, Rect((m_tInfo.fX - m_tInfo.fCX * 0.5) + iScrollX, (m_tInfo.fY - m_tInfo.fCY * 0.5) + iScrollY, m_tInfo.fCX, m_tInfo.fCY), m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, 32, 32, UnitPixel);
+	}
+	else {
+		g.DrawImage(img, destinationPoints, 3, m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, 32, 32, UnitPixel);
+	}
+
 
 
 
@@ -198,32 +157,30 @@ void CPlayer::Release()
 
 void CPlayer::Key_Input()
 {
-	
-	m_eCurState = IDLE;
-
-	if (CKeyMgr::Get_Instance()->Key_Pressing('A'))
-	{
-		m_eCurState = RUN;
-		m_tInfo.fX -= m_fSpeed;
+	if (m_bDead) {
+			m_eCurState = DEAD;
 	}
+	else {
+		m_eCurState = IDLE;
 
-	else if (CKeyMgr::Get_Instance()->Key_Pressing('D'))
-	{
-		m_tInfo.fX += m_fSpeed;
-		m_eCurState = RUN;
-	}
-	if (CKeyMgr::Get_Instance()->Key_Pressing(VK_SPACE))
-	{
-		m_bJump = true;
-		m_eCurState = JUMP;
-	}
+		if (CKeyMgr::Get_Instance()->Key_Pressing('A'))
+		{
+			m_eCurState = RUN;
+			m_tInfo.fX -= m_fSpeed;
+		}
 
-	if (CKeyMgr::Get_Instance()->Key_Pressing('U'))
-	{
-		m_eCurState = DEAD;
-	}
+		else if (CKeyMgr::Get_Instance()->Key_Pressing('D'))
+		{
+			m_tInfo.fX += m_fSpeed;
+			m_eCurState = RUN;
+		}
+		if (CKeyMgr::Get_Instance()->Key_Pressing(VK_SPACE))
+		{
+			m_bJump = true;
+			m_eCurState = JUMP;
+		}
 
-	
+	}
 }
 
 void CPlayer::Jump()
@@ -338,10 +295,15 @@ void CPlayer::Motion_Change()
 			break;
 
 		case DEAD:
-			m_pStateKey = L"Player_Dead";
+			m_tFrame.iFrameStart = 0;
+			m_tFrame.iFrameEnd = 0;
+			m_tFrame.iMotion = 3;
+
+			m_tFrame.dwSpeed = 100;
+			m_tFrame.dwTime = GetTickCount();
 			break;
 
-		
+
 		}
 
 		m_ePreState = m_eCurState;
@@ -349,9 +311,16 @@ void CPlayer::Motion_Change()
 
 }
 
+void CPlayer::Set_Posin()
+{
+
+}
+
 bool CPlayer::Posin_half_Check()
 {
-	return m_pMouse->Get_Info().fX > this->m_tInfo.fX;
+
+	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
+	return m_pMouse->Get_Info().fX > this->m_tInfo.fX + iScrollX;
 }
 
 
