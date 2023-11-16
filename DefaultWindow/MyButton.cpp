@@ -18,8 +18,8 @@ CMyButton::~CMyButton()
 
 void CMyButton::Initialize()
 {
-	m_tInfo.fCX = 72.f;
-	m_tInfo.fCY = 12.f;
+	m_tInfo.fCX = 50.f;
+	m_tInfo.fCY = 24.f;
 
 	m_eRender = UI;
 }
@@ -66,16 +66,16 @@ void CMyButton::Render(HDC hDC)
 {
 	//HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Img(m_pFrameKey);
 
-
+	Rectangle(hDC, m_tRect.left , m_tRect.top , m_tRect.right , m_tRect.bottom );
 	Graphics g(hDC);
 
 	//PngMrg::Get_Instance()->Get_Image(m_pFrameKey);
 	//g.DrawImage(PngMrg::Get_Instance()->Get_Image(m_pFrameKey), 0, 0);
 	g.DrawImage(PngMrg::Get_Instance()->Get_Image(m_pFrameKey),
-		Rect( m_tInfo.fX,m_tInfo.fY,m_tInfo.fCX,m_tInfo.fCY ),
+		Rect(m_tRect.left, m_tRect.top, m_tInfo.fCX,m_tInfo.fCY ),
 		m_tInfo.fCX * m_iDrawID,
-		m_tInfo.fCY, 
-		72, 12, UnitPixel);
+		m_tInfo.fCY*0,
+		50, 24, UnitPixel);
 
 
 
