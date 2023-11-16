@@ -15,7 +15,17 @@ public:
     virtual void	Release();
 
 
+public:
+    float   Get_GunDamage() { return m_fGunDamage; }
 
+
+
+private:
+    float				m_fGunDamage;
+ 
+
+
+    list<CObj*>         m_pBulletList;
 
 };
 

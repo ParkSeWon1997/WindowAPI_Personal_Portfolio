@@ -39,11 +39,11 @@ public:
 
 
 public:
-	float		Get_Damage() { return Damage; }
-	void		Set_Damage(float _Damage) { Damage = _Damage; }
+	float		Get_Damage() { return m_fPlayerDamage; }
+	void		Set_Damage(float _Damage) { m_fPlayerDamage = _Damage; }
 
-	float		Get_HP() { return HP; }
-	void		Set_HP(float _HP) { HP = _HP; }
+	float		Get_HP() { return m_fPlayerHP; }
+	void		Set_HP(float _HP) { m_fPlayerHP = _HP; }
 
 	void		Set_Posin(POINT _Posin) { m_tPosin = _Posin; }
 	POINT		Get_Posin() { return m_tPosin; }
@@ -65,8 +65,9 @@ private:
 	float				m_fDiagonal;
 	float				m_fPower;
 	float				m_fAccelTime;
-	float				Damage;
-	float				HP;
+
+	float				m_fPlayerDamage;
+	float				m_fPlayerHP;
 
 
 	list<CObj*>			m_pWeaponList;
