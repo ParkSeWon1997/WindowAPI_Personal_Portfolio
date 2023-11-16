@@ -8,6 +8,8 @@
 #include "SoundMgr.h"
 
 extern	float g_fVolume(1.f);
+
+float	MoveSky(1.0f);
 CMyMenu::CMyMenu()
 {
 }
@@ -70,6 +72,7 @@ void CMyMenu::Late_Update()
 
 void CMyMenu::Render(HDC hDC)
 {
+	MoveSky += 0.2f;
 	HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Img(L"Menu");
 	BitBlt(hDC, 0, 0, WINCX, WINCY, hMemDC, 0, 0, SRCCOPY);
 	Graphics graphics(hDC);
@@ -80,11 +83,22 @@ void CMyMenu::Render(HDC hDC)
 		1200,800);
 	PngMrg::Get_Instance()->Get_Image(L"MainLogo");
 
+	graphics.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Sky_Day"), 0, 0,
+		1200, 800);
+
+
+	PngMrg::Get_Instance()->Get_Image(L"MainLogo");
 	graphics.DrawImage(PngMrg::Get_Instance()->Get_Image(L"MainLogo"),
 		Rect((WINCX*0.1) , (WINCY*0.3) , 316, 156),
 		316 * m_tFrame.iFrameStart,
 		156 * m_tFrame.iMotion,
 		316, 156, UnitPixel);
+
+	graphics.DrawImage(PngMrg::Get_Instance()->Get_Image(L"BackCloud"),
+		Rect(0, 0, 1200, 360),
+		316 + MoveSky,
+		156 ,
+		1280, 360, UnitPixel);
 
 	//int Harf_Width = PngMrg::Get_Instance()->Get_Image(L"Default_Map2")->GetWidth()*0.5;
 	//graphics.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Default_Map2"),
