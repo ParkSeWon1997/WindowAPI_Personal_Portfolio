@@ -42,16 +42,18 @@ private:
 	void		Jump();
 	void		Offset();
 	void		Motion_Change();
+	bool		Posin_half_Check();
 
 private:
 	POINT				m_tPosin;
 	float				m_fDiagonal;
 
+
+	CObj*				 m_pMouse;
+
 	bool				m_bJump;
 	float				m_fPower;
 	float				m_fAccelTime;
-	float				Start_Animation;
-	float				End_Animation;
 
 	float					Damage;
 	float					HP;
@@ -59,10 +61,7 @@ private:
 	int					DashCount;
 
 
-	vector<vector<TCHAR*>>	m_AnimBox[PS_END];
-	vector<TCHAR*>			m_IDLE_Sprite;
-	vector<TCHAR*>			m_JUMPSprite;
-	vector<TCHAR*>			m_RUNSprite;
+
 	TCHAR* m_PreImage;
 	TCHAR* m_CurImage;
 	PLAYERSTATE			m_ePreState;

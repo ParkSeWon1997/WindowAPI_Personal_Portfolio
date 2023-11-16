@@ -12,12 +12,14 @@
 #include"PngMrg.h"
 #include"AnimSprite.h"
 #include"ElapseTimeMgr.h"
+#include"Mouse.h"
 #include "CTimeMgr.h"
 
 CPlayer::CPlayer() : m_bJump(false), m_fPower(0.f), m_fAccelTime(0.f)
 , m_eCurState(IDLE), m_ePreState(PS_END)
 {
 	ZeroMemory(&m_tPosin, sizeof(POINT));
+	m_pMouse = CMouse::Get_Instance();
 }
 
 CPlayer::~CPlayer()
@@ -54,7 +56,7 @@ void CPlayer::Initialize()
 
 int CPlayer::Update()
 {
-	Start_Animation = ElapseTimeMgr::GetInstance().GetElapsedTime();
+
 	Jump();
 
 	Key_Input();
@@ -66,6 +68,23 @@ int CPlayer::Update()
 
 void CPlayer::Late_Update()
 {
+	float m_pMouse_X = m_pMouse->Get_Info().fX - m_tInfo.fX;
+	float m_pMouse_Y = m_pMouse->Get_Info().fY - m_tInfo.fY;
+	float m_pMouse_R = (float)sqrt(m_pMouse_X * m_pMouse_X + m_pMouse_Y * m_pMouse_Y);
+
+	m_fAngle = (float)acos(m_pMouse_X / m_pMouse_R) * 180 / PI;
+
+	m_tPosin.x = LONG(m_tInfo.fX + m_fDiagonal * cos(m_fAngle * (PI / 180.f)));
+
+	if (m_pMouse_Y < 0)
+	{
+		m_fAngle *= -1;
+	}
+
+	m_tPosin.y = LONG(m_tInfo.fY + m_fDiagonal * sin(m_fAngle * (PI / 180.f)));
+
+
+
 
 	Offset();
 	Move_Frame();
@@ -75,6 +94,59 @@ void CPlayer::Late_Update()
 
 void CPlayer::Render(HDC hDC)
 {
+
+
+	//void CPlayer::Render(HDC hDC)
+	//{
+	//	float      iScrollX = CScrollMgr::Get_Instance()->Get_ScrollX();
+	//	float      iScrollY = CScrollMgr::Get_Instance()->Get_ScrollY();
+	//
+	//	//Rectangle(hDC,m_tRect.left+iScrollX, 
+	//	//                  m_tRect.top+iScrollY, 
+	//	//                  m_tRect.right + iScrollX, 
+	//	//                  m_tRect.bottom + iScrollY);
+	//
+	//	Graphics   graphics(hDC);
+	//	Image* img = CPngMgr::Get_Instance()->Find_Img(L"PLAYER");
+	//	Point destinationPoints[] = {
+	//	Point((int)(m_tInfo.fX + m_tInfo.fCX * 0.5) + iScrollX,
+	//		   (int)(m_tInfo.fY - m_tInfo.fCY * 0.5) + iScrollY),   // destination for upper-left point of original
+	//	Point((int)(m_tInfo.fX - m_tInfo.fCX * 0.5) + iScrollX,
+	//		  (int)(m_tInfo.fY - m_tInfo.fCY * 0.5) + iScrollY),  // destination for upper-right point of original
+	//	Point((int)(m_tInfo.fX + m_tInfo.fCX * 0.5) + iScrollX,
+	//		   (int)(m_tInfo.fY + m_tInfo.fCY * 0.5) + iScrollY) };  // destination for lower-left point of original
+	//
+	//	//graphics.DrawImage(&image, 0, 0);
+	//	// Draw the image mapped to the parallelogram.
+	//
+	//	if (!m_bStretch)
+	//	{
+	//		graphics.DrawImage(img, (m_tFrame.iFrameProgress * 32) + m_tFrame.iPointX
+	//			,  (m_tFrame.iMotion * 48) + m_tFrame.iPointY,
+	//			32.f + m_tFrame.iPointCX, 48.f + m_tFrame.iPointCY,
+	//			UnitPixel);
+	//	}
+	//	else
+	//	{
+	//		graphics.DrawImage(img, destinationPoints, 3,
+	//			0 + (m_tFrame.iFrameProgress * 32) + m_tFrame.iPointX
+	//			, 0 + (m_tFrame.iMotion * 48) + m_tFrame.iPointY,
+	//			32.f + m_tFrame.iPointCX, 48.f + m_tFrame.iPointCY,
+	//			UnitPixel);
+	//	}
+	//
+	//
+	//}
+
+
+
+
+
+
+
+
+
+
 
 
 	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
@@ -89,6 +161,8 @@ void CPlayer::Render(HDC hDC)
 
 
 	Rectangle(hDC, m_tRect.left + iScrollX, m_tRect.top + iScrollY, m_tRect.right + iScrollX, m_tRect.bottom + iScrollY);
+	MoveToEx(hDC, (int)m_tInfo.fX, (int)m_tInfo.fY, nullptr);
+	LineTo(hDC, m_tPosin.x, m_tPosin.y);
 
 
 
@@ -100,14 +174,16 @@ void CPlayer::Render(HDC hDC)
 
 	Image* img = PngMrg::Get_Instance()->Get_Image(m_pStateKey);
 
-	//반전 이미지
-	g.DrawImage(img, destinationPoints, 3,m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, 32, 32, UnitPixel);
+	
 
-
-	//기본 이미지
-	//g.DrawImage(img, Rect(m_tInfo.fX - 64, m_tInfo.fY - 64, m_tInfo.fCX, m_tInfo.fCY), 0, 0, 32, 32, UnitPixel);
-
-
+	
+	//수정할것
+		g.DrawImage(img, Rect(m_tInfo.fX , m_tInfo.fY , m_tInfo.fCX, m_tInfo.fCY), m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iFrameStart, 32, 32, UnitPixel);
+	//if (Posin_half_Check()) {
+	//}
+	//else{
+	//	g.DrawImage(img, destinationPoints, 3, m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY  * m_tFrame.iFrameStart, 32, 32, UnitPixel);
+	//}
 
 
 
@@ -271,6 +347,11 @@ void CPlayer::Motion_Change()
 		m_ePreState = m_eCurState;
 	}
 
+}
+
+bool CPlayer::Posin_half_Check()
+{
+	return m_pMouse->Get_Info().fX > this->m_tInfo.fX;
 }
 
 
