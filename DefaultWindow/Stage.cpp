@@ -9,6 +9,8 @@
 #include "TileMgr.h"
 #include "Monster.h"
 #include"BossMonster.h"
+#include"Entry.h"
+#include"PngMrg.h"
 
 CStage::CStage()
 {
@@ -24,12 +26,7 @@ void CStage::Initialize()
 	// 플레이어 추가	
 	CObjMgr::Get_Instance()->Add_Object(PLAYER, CPlayer::Get_Instance());
 	CObjMgr::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<BossMonster>::Create());
-
-	//for (int i = 0; i < 5; ++i)
-	//{
-	//	CObjMgr::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<CMonster>::Create(rand() % WINCX, rand() % WINCY, 0.f));
-	//}
-
+	CObjMgr::Get_Instance()->Add_Object(ENTRY, CAbstractFactory<Entry>::Create());
 	CLineMgr::Get_Instance()->Initialize();
 
 	CTileMgr::Get_Instance()->Load_Data();
@@ -52,11 +49,11 @@ void CStage::Late_Update()
 void CStage::Render(HDC hDC)
 {
 	HDC		hGroundDC = CBmpMgr::Get_Instance()->Find_Img(L"Ground");
-
+	
 	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
 	int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
-
-
+	
+	
 	BitBlt(hDC, iScrollX, iScrollY, 1920, 1280, hGroundDC, 0, 0, SRCCOPY);
 
 	//CTileMgr::Get_Instance()->Render(hDC);

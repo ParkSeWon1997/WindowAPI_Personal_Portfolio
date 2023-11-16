@@ -7,7 +7,7 @@
 #include"PngMrg.h"
 #include "SoundMgr.h"
 
-float g_fVolume(1.f);
+extern	float g_fVolume(1.f);
 CMyMenu::CMyMenu()
 {
 }
@@ -20,15 +20,16 @@ CMyMenu::~CMyMenu()
 
 void CMyMenu::Initialize()
 {
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Button/Start.bmp", L"Start");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Button/Edit.bmp", L"Edit");
-	//CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Button/Exit.bmp", L"Exit");
+	//CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Button/Start.bmp", L"Start");
+	//CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Button/Edit.bmp", L"Edit");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Menu/Menu.bmp", L"Menu");
 
 
 
-	//PngMrg::Get_Instance()->Insert_Png(L"../Image/Button/ExitOff_Kor.png", L"ExitOff");
-	//PngMrg::Get_Instance()->Insert_Png(L"../Image/Button/ExitOn_Kor.png", L"ExitOn");
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Button/new/Exit.png", L"Exit");
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Button/new/Option.png", L"Edit");
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Button/new/Play.png", L"Start");
+
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Menu/Sky_Day.png", L"Default_Map");
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Menu/MainLogo.png", L"Default_Map2");
 
@@ -45,7 +46,7 @@ void CMyMenu::Initialize()
 	pObj->Set_FrameKey(L"Exit");
 	CObjMgr::Get_Instance()->Add_Object(BUTTON, pObj);
 
-	CSoundMgr::Get_Instance()->PlaySound(L"0.Town-sharedassets3.assets-340.wav", SOUND_EFFECT, g_fVolume);
+	CSoundMgr::Get_Instance()->PlaySound(L"title-sharedassets1.assets-54.wav", SOUND_EFFECT, g_fVolume);
 }
 
 void CMyMenu::Update()
@@ -60,10 +61,8 @@ void CMyMenu::Late_Update()
 
 void CMyMenu::Render(HDC hDC)
 {
-
-	HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Img(L"Menu");
 	
-	Graphics graphics(hMemDC);
+	Graphics graphics(hDC);
 	graphics.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Default_Map"), 0, 0, 
 		800,600);
 
@@ -72,8 +71,7 @@ void CMyMenu::Render(HDC hDC)
 		(800- PngMrg::Get_Instance()->Get_Image(L"Default_Map2")->GetWidth())*0.5,0,300- Harf_Width,200);
 
 
-	
-	BitBlt(hDC, 0, 0, WINCX, WINCY, hMemDC, 0, 0, SRCCOPY);
+
 
 	CObjMgr::Get_Instance()->Render(hDC);
 

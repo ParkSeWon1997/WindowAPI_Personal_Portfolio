@@ -24,10 +24,10 @@ void BossMonster::Initialize()
 
 
 
-    m_tInfo = { 900.f, 300.f, 40, 40 };
+    m_tInfo = { 700.f, 300.f, 80, 80 };
 
-//C:\3개월 차\포트폴리오\Image\Dun\Monster\Boss
-    PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Monster/Boss/Boss_Nifl.png", L"Boss_Monster");
+
+    PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Monster/Boss/Boss_Nifl1.png", L"Boss_Monster");
 
 	m_tFrame.dwSpeed = 200;
 	m_tFrame.dwTime = GetTickCount();
@@ -89,10 +89,10 @@ void BossMonster::Render(HDC hDC)
 	Image* img = PngMrg::Get_Instance()->Get_Image(m_pStateKey);
 
 	if (Turn_By_Player()){
-		g.DrawImage(img, Rect((m_tInfo.fX - m_tInfo.fCX * 0.5)+ iScrollX, (m_tInfo.fY - m_tInfo.fCY * 0.5)+ iScrollY, m_tInfo.fCX, m_tInfo.fCY), m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, 40, 40, UnitPixel);
+		g.DrawImage(img, Rect((m_tInfo.fX - m_tInfo.fCX * 0.5)+ iScrollX, (m_tInfo.fY - m_tInfo.fCY * 0.5)+ iScrollY, m_tInfo.fCX, m_tInfo.fCY), m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, 80, 80, UnitPixel);
 	}
 	else {
-		g.DrawImage(img, destinationPoints, 3, m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, 40, 40, UnitPixel);
+		g.DrawImage(img, destinationPoints, 3, m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, 80, 80, UnitPixel);
 
 	}
 

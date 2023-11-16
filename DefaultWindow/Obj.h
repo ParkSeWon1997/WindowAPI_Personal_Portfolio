@@ -2,6 +2,8 @@
 
 #include "Define.h"
 
+
+
 class CObj
 {
 public:
@@ -40,6 +42,9 @@ public:
 	virtual void	Late_Update()	PURE;
 	virtual void	Render(HDC hDC)	PURE;
 	virtual void	Release()		PURE;
+
+
+	
 
 protected:
 	void		Update_Rect();

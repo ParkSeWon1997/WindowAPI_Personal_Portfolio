@@ -14,10 +14,11 @@
 #include"ElapseTimeMgr.h"
 #include"Mouse.h"
 #include "CTimeMgr.h"
+#include "SoundMgr.h"
 
 
 CObj* CPlayer::m_Instance = nullptr;
-
+static float  g_fVolume = 1.0f;
 
 CPlayer::CPlayer() : m_bJump(false), m_fPower(0.f), m_fAccelTime(0.f)
 , m_eCurState(IDLE), m_ePreState(PS_END)
@@ -34,28 +35,25 @@ CPlayer::~CPlayer()
 
 void CPlayer::Initialize()
 {
-	m_tInfo = { 50.f, 300.f, 32, 32 };
+	m_tInfo = { 50.f, 300.f, 64, 64 };
 
 	m_fSpeed = 5.f;
 	m_fDiagonal = 100.f;
 	m_fPower = 20.f;
 
 
-	//아이들, 점프, 달리기 이미지 
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/Bear.png", L"Player");
-
-
-	//Dead
-	//PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/CharDie #238158.png", L"Player_Dead");
-
+	//아이들, 점프, 달리기,죽음 이미지 
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/Bear1.png", L"Player");
 	m_tFrame.dwSpeed = 200;
 	m_tFrame.dwTime = GetTickCount();
 
 
-
+	//m_bDead = true;
 	m_pStateKey = L"Player";
 
 	m_eRender = GAMEOBJECT;
+
+
 
 }
 
@@ -72,26 +70,11 @@ int CPlayer::Update()
 
 void CPlayer::Late_Update()
 {
-	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
-	int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
+	Set_Posin();
 	Offset();
 	Move_Frame();
 	Motion_Change();
-	float m_pMouse_X = (m_pMouse->Get_Info().fX - m_tInfo.fX) + iScrollX;
-	float m_pMouse_Y = (m_pMouse->Get_Info().fY - m_tInfo.fY)+ iScrollY;
-	float m_pMouse_R = (float)sqrt(m_pMouse_X * m_pMouse_X + m_pMouse_Y * m_pMouse_Y);
-
-	m_fAngle = (float)acos(m_pMouse_X / m_pMouse_R) * 180 / PI;
-
-	m_tPosin.x = iScrollX +LONG(m_tInfo.fX + m_fDiagonal * cos(m_fAngle * (PI / 180.f)));
-
-	if (m_pMouse_Y < 0)
-	{
-		m_fAngle *= -1;
-	}
-
-	m_tPosin.y = iScrollY +LONG(m_tInfo.fY + m_fDiagonal * sin(m_fAngle * (PI / 180.f)));
-
+	
 
 
 
@@ -139,10 +122,11 @@ void CPlayer::Render(HDC hDC)
 
 
 	if (Posin_half_Check()) {
-		g.DrawImage(img, Rect((m_tInfo.fX - m_tInfo.fCX * 0.5) + iScrollX, (m_tInfo.fY - m_tInfo.fCY * 0.5) + iScrollY, m_tInfo.fCX, m_tInfo.fCY), m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, 32, 32, UnitPixel);
+		g.DrawImage(img, Rect((m_tInfo.fX - m_tInfo.fCX * 0.5) + iScrollX, (m_tInfo.fY - m_tInfo.fCY * 0.5) + iScrollY, m_tInfo.fCX, m_tInfo.fCY), m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, 64, 64, UnitPixel);
 	}
 	else {
-		g.DrawImage(img, destinationPoints, 3, m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, 32, 32, UnitPixel);
+		g.DrawImage(img, destinationPoints, 3, m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, 64, 64, UnitPixel);
+			
 	}
 
 
@@ -160,9 +144,10 @@ void CPlayer::Release()
 void CPlayer::Key_Input()
 {
 	if (m_bDead) {
-			m_eCurState = DEAD;
+		//dead-sharedassets2.assets-304
+		m_eCurState = DEAD;
 	}
-	else {
+	else{
 		m_eCurState = IDLE;
 
 		if (CKeyMgr::Get_Instance()->Key_Pressing('A'))
@@ -182,7 +167,13 @@ void CPlayer::Key_Input()
 			m_eCurState = JUMP;
 		}
 
+		if (CKeyMgr::Get_Instance()->Key_Down(VK_LBUTTON))
+		{
+			CSoundMgr::Get_Instance()->PlaySound(L"Gun-sharedassets22.assets-357.wav", SOUND_EFFECT, g_fVolume);
+			
+		}
 	}
+
 }
 
 void CPlayer::Jump()
@@ -230,10 +221,10 @@ void CPlayer::Jump()
 void CPlayer::Offset()
 {
 	int		iOffSetMinX = 100;
-	int		iOffSetMaxX = 800;
+	int		iOffSetMaxX = 1100;
 
 	int		iOffSetMinY = 100;
-	int		iOffSetMaxY = 500;
+	int		iOffSetMaxY = 700;
 
 	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
 
@@ -315,6 +306,22 @@ void CPlayer::Motion_Change()
 
 void CPlayer::Set_Posin()
 {
+	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
+	int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
+	float m_pMouse_X = (m_pMouse->Get_Info().fX - m_tInfo.fX) + iScrollX;
+	float m_pMouse_Y = (m_pMouse->Get_Info().fY - m_tInfo.fY) + iScrollY;
+	float m_pMouse_R = (float)sqrt(m_pMouse_X * m_pMouse_X + m_pMouse_Y * m_pMouse_Y);
+
+	m_fAngle = (float)acos(m_pMouse_X / m_pMouse_R) * 180 / PI;
+
+	m_tPosin.x = iScrollX + LONG(m_tInfo.fX + m_fDiagonal * cos(m_fAngle * (PI / 180.f)));
+
+	if (m_pMouse_Y < 0)
+	{
+		m_fAngle *= -1;
+	}
+
+	m_tPosin.y = iScrollY + LONG(m_tInfo.fY + m_fDiagonal * sin(m_fAngle * (PI / 180.f)));
 
 }
 

@@ -118,7 +118,6 @@ void CMainGame::Release(void)
 
 #endif // _DEBUG
 
-	CSoundMgr::Destroy_Instance();
 	CBmpMgr::Destroy_Instance();
 	PngMrg::Destroy_Instance();
 	CTileMgr::Destroy_Instance();
@@ -128,6 +127,7 @@ void CMainGame::Release(void)
 	CSceneMgr::Destroy_Instance();
 	CObjMgr::Destroy_Instance();
 	CMouse::Destroy_Instance();
+	CSoundMgr::Destroy_Instance();
 	
 
 	ReleaseDC(g_hWnd, m_DC);

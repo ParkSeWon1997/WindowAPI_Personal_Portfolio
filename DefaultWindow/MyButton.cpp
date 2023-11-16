@@ -3,7 +3,7 @@
 #include "BmpMgr.h"
 #include "KeyMgr.h"
 #include "SceneMgr.h"
-
+#include"PngMrg.h"
 
 CMyButton::CMyButton()
 	: m_iDrawID(0)
@@ -18,8 +18,8 @@ CMyButton::~CMyButton()
 
 void CMyButton::Initialize()
 {
-	m_tInfo.fCX = 150.f;
-	m_tInfo.fCY = 150.f;
+	m_tInfo.fCX = 72.f;
+	m_tInfo.fCY = 12.f;
 
 	m_eRender = UI;
 }
@@ -64,19 +64,21 @@ void CMyButton::Late_Update()
 
 void CMyButton::Render(HDC hDC)
 {
-	HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Img(m_pFrameKey);
+	//HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Img(m_pFrameKey);
 
-	GdiTransparentBlt(hDC,
-		m_tRect.left,
-		m_tRect.top,
-		(int)m_tInfo.fCX,
-		(int)m_tInfo.fCY,
-		hMemDC,
-		m_iDrawID * (int)m_tInfo.fCX,
-		0,
-		(int)m_tInfo.fCX,
-		(int)m_tInfo.fCY,
-		RGB(255, 255, 255));
+
+	Graphics g(hDC);
+
+	//PngMrg::Get_Instance()->Get_Image(m_pFrameKey);
+	//g.DrawImage(PngMrg::Get_Instance()->Get_Image(m_pFrameKey), 0, 0);
+	g.DrawImage(PngMrg::Get_Instance()->Get_Image(m_pFrameKey),
+		Rect( m_tInfo.fX,m_tInfo.fY,m_tInfo.fCX,m_tInfo.fCY ),
+		m_tInfo.fCX * m_iDrawID,
+		m_tInfo.fCY, 
+		72, 12, UnitPixel);
+
+
+
 }
 
 void CMyButton::Release()

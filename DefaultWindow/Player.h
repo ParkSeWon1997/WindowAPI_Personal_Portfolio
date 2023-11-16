@@ -55,9 +55,9 @@ private:
 	void		Key_Input();
 	void		Jump();
 	void		Offset();
-	void		Motion_Change();
 	void		Set_Posin();
 	bool		Posin_half_Check();
+	void		Motion_Change();
 
 private:
 	POINT				m_tPosin;

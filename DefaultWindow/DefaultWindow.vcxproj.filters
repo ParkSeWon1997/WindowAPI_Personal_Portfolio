@@ -124,6 +124,9 @@
     <Filter Include="02. Design\11. SoundMgr">
       <UniqueIdentifier>{3602b54f-9847-442a-861c-3612f0bcd19f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Obj\08. Entry">
+      <UniqueIdentifier>{2e011230-56fc-4139-9d59-7287594fbd25}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -255,6 +258,9 @@
     <ClInclude Include="SoundMgr.h">
       <Filter>02. Design\11. SoundMgr</Filter>
     </ClInclude>
+    <ClInclude Include="Entry.h">
+      <Filter>01. Obj\08. Entry</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DefaultWindow.cpp">
@@ -370,6 +376,9 @@
     </ClCompile>
     <ClCompile Include="SoundMgr.cpp">
       <Filter>02. Design\11. SoundMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Entry.cpp">
+      <Filter>01. Obj\08. Entry</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
