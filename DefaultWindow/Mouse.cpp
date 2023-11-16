@@ -63,11 +63,11 @@ void CMouse::Render(HDC hDC)
 {
 
 	//Graphics	g(hDC);
-	Rectangle(hDC,
-		m_tRect.left,
-		m_tRect.top,
-		m_tRect.right,
-		m_tRect.bottom);
+	//Rectangle(hDC,
+	//	m_tRect.left,
+	//	m_tRect.top,
+	//	m_tRect.right,
+	//	m_tRect.bottom);
 	//g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Mouse_cousor"), ptMouse.x,ptMouse.y);
 
 
