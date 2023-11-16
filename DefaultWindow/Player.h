@@ -6,10 +6,10 @@
 
 
 
-class CPlayer :	public CObj
+class CPlayer : public CObj
 {
-	enum PLAYERSTATE { IDLE, RUN, JUMP,ATTACK, HIT, DEAD, PS_END };
-	
+	enum PLAYERSTATE { IDLE, RUN, JUMP, ATTACK, HIT, DEAD, PS_END };
+
 private:
 	CPlayer();
 	virtual ~CPlayer();
@@ -61,19 +61,17 @@ private:
 
 private:
 	POINT				m_tPosin;
+	CObj*				m_pMouse;
 	float				m_fDiagonal;
-
-
-	CObj*				 m_pMouse;
-
-	bool				m_bJump;
 	float				m_fPower;
 	float				m_fAccelTime;
+	float				Damage;
+	float				HP;
 
-	float					Damage;
-	float					HP;
 
+	list<CObj*>			m_pWeaponList;
 	int					DashCount;
+	bool				m_bJump;
 
 
 
@@ -81,7 +79,7 @@ private:
 	TCHAR* m_CurImage;
 	PLAYERSTATE			m_ePreState;
 	PLAYERSTATE			m_eCurState;
-	
+
 };
 
 // 포물선 공식을 이용하여 플레이어가 점프하는 상태를 만들어라

@@ -169,6 +169,7 @@ void CPlayer::Key_Input()
 
 		if (CKeyMgr::Get_Instance()->Key_Down(VK_LBUTTON))
 		{
+
 			CSoundMgr::Get_Instance()->PlaySound(L"Gun-sharedassets22.assets-357.wav", SOUND_EFFECT, g_fVolume);
 			
 		}

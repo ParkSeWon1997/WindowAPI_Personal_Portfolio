@@ -130,6 +130,12 @@
     <Filter Include="01. Obj\09. Logo">
       <UniqueIdentifier>{a17e96c5-240b-446c-920e-e1b3f6840a9f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Obj\01. Bullet\02. PlayerBullet">
+      <UniqueIdentifier>{07c696f5-25bd-4593-8ce2-5d075c3f5a38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\01. Bullet\03. MonsterBullet">
+      <UniqueIdentifier>{d3085e3c-c767-41bd-84a9-a85c93f079d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -264,6 +270,12 @@
     <ClInclude Include="Entry.h">
       <Filter>01. Obj\08. Entry</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerBullet.h">
+      <Filter>01. Obj\01. Bullet\02. PlayerBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterBullet.h">
+      <Filter>01. Obj\01. Bullet\03. MonsterBullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DefaultWindow.cpp">
@@ -382,6 +394,12 @@
     </ClCompile>
     <ClCompile Include="Entry.cpp">
       <Filter>01. Obj\08. Entry</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBullet.cpp">
+      <Filter>01. Obj\01. Bullet\02. PlayerBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterBullet.cpp">
+      <Filter>01. Obj\01. Bullet\03. MonsterBullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
