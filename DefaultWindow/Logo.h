@@ -1,5 +1,6 @@
 #pragma once
 #include "Scene.h"
+#include "Obj.h"
 class CLogo :
 	public CScene
 {
@@ -16,9 +17,11 @@ public:
 
 
 public:
-	void DrawXmlFile(HDC hdc, const WCHAR* xmlFilePath);
+	
        
 private:
 	HWND		m_hVideo;
 };
+
+
 

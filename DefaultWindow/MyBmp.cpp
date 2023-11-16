@@ -13,11 +13,11 @@ CMyBmp::~CMyBmp()
 void CMyBmp::Load_Bmp(const TCHAR * pFilePath)
 {
 	HDC		hDC = GetDC(g_hWnd);
-
+	
 	// CreateCompatibleDC : 매개변수와 호환되는 dc를 생성
-
+	
 	m_hMemDC = CreateCompatibleDC(hDC);
-
+	
 	ReleaseDC(g_hWnd, hDC);
 
 
@@ -29,7 +29,7 @@ void CMyBmp::Load_Bmp(const TCHAR * pFilePath)
 									LR_LOADFROMFILE | LR_CREATEDIBSECTION);
 									// LR_LOADFROMFILE : 파일로 부터 이미지 불러오기
 									// LR_CREATEDIBSECTION : 읽이온 파일을 DIB 형태로 변환
-
+	
 	// SelectObject : GDI 오브젝트를 선택하기 전에 기존에 갖고 있던 오브젝트를 반환하는 함수
 
 	m_hOldbmp = (HBITMAP)SelectObject(m_hMemDC, m_hBitmap);

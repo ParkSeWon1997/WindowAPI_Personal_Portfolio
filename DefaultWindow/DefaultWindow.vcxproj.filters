@@ -127,6 +127,9 @@
     <Filter Include="01. Obj\08. Entry">
       <UniqueIdentifier>{2e011230-56fc-4139-9d59-7287594fbd25}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Obj\09. Logo">
+      <UniqueIdentifier>{a17e96c5-240b-446c-920e-e1b3f6840a9f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

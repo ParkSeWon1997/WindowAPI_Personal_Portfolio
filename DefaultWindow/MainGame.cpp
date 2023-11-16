@@ -118,8 +118,6 @@ void CMainGame::Release(void)
 
 #endif // _DEBUG
 
-	CBmpMgr::Destroy_Instance();
-	PngMrg::Destroy_Instance();
 	CTileMgr::Destroy_Instance();
 	CScrollMgr::Destroy_Instance();
 	CKeyMgr::Destroy_Instance();
@@ -127,6 +125,8 @@ void CMainGame::Release(void)
 	CSceneMgr::Destroy_Instance();
 	CObjMgr::Destroy_Instance();
 	CMouse::Destroy_Instance();
+	CBmpMgr::Destroy_Instance();
+	PngMrg::Destroy_Instance();
 	CSoundMgr::Destroy_Instance();
 	
 
