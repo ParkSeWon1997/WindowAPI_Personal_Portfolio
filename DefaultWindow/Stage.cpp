@@ -8,6 +8,7 @@
 #include "ScrollMgr.h"
 #include "TileMgr.h"
 #include "Monster.h"
+#include"BossMonster.h"
 
 CStage::CStage()
 {
@@ -21,7 +22,8 @@ CStage::~CStage()
 void CStage::Initialize()
 {
 	// 플레이어 추가	
-	CObjMgr::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer>::Create());		
+	CObjMgr::Get_Instance()->Add_Object(PLAYER, CPlayer::Get_Instance());
+	CObjMgr::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<BossMonster>::Create());
 
 	//for (int i = 0; i < 5; ++i)
 	//{

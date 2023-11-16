@@ -3,6 +3,7 @@
 #include "BmpMgr.h"
 #include "ScrollMgr.h"
 #include "KeyMgr.h"
+#include "ObjMgr.h"
 
 
 CMonster::CMonster()
@@ -103,5 +104,11 @@ void CMonster::Release()
 
 void CMonster::Motion_Change()
 {
+
+}
+
+bool CMonster::Turn_By_Player()
+{
+	return CObjMgr::Get_Instance()->Get_Player()->Get_Info().fX > this->Get_Info().fX;
 
 }

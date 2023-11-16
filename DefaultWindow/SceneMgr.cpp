@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "SceneMgr.h"
+#include "SoundMgr.h"
 
 CSceneMgr*	CSceneMgr::m_pInstance = nullptr;
 
@@ -29,6 +30,7 @@ void CSceneMgr::Scene_Change(SCENEID eID)
 			break;
 
 		case SC_MENU:
+			
 			m_pScene = new CMyMenu;
 			break;
 

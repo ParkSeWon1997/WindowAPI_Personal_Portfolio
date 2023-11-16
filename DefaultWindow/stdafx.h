@@ -30,16 +30,23 @@
 #include<ole2.h>
 #include<gdiplus.h>
 #include<string>
+
 #pragma comment(lib, "gdiplus.lib")
 using namespace Gdiplus;
 
 
+#include <vfw.h>
+#pragma comment(lib, "vfw32.lib")
 #include <io.h>
 #include <iostream>
 
 
-#include <vfw.h>
-#pragma comment(lib, "vfw32.lib")
+
+#include "fmod.h"
+#include "fmod.hpp"
+#pragma comment(lib, "fmodex_vc.lib")
+
+
 
 
 #ifdef _DEBUG

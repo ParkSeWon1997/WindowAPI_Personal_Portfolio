@@ -5,8 +5,9 @@
 #include "MyButton.h"
 #include "ObjMgr.h"
 #include"PngMrg.h"
+#include "SoundMgr.h"
 
-
+float g_fVolume(1.f);
 CMyMenu::CMyMenu()
 {
 }
@@ -26,8 +27,8 @@ void CMyMenu::Initialize()
 
 
 
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Button/ExitOff_Kor.png", L"ExitOff");
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Button/ExitOn_Kor.png", L"ExitOn");
+	//PngMrg::Get_Instance()->Insert_Png(L"../Image/Button/ExitOff_Kor.png", L"ExitOff");
+	//PngMrg::Get_Instance()->Insert_Png(L"../Image/Button/ExitOn_Kor.png", L"ExitOn");
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Menu/Sky_Day.png", L"Default_Map");
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Menu/MainLogo.png", L"Default_Map2");
 
@@ -44,7 +45,7 @@ void CMyMenu::Initialize()
 	pObj->Set_FrameKey(L"Exit");
 	CObjMgr::Get_Instance()->Add_Object(BUTTON, pObj);
 
-
+	CSoundMgr::Get_Instance()->PlaySound(L"0.Town-sharedassets3.assets-340.wav", SOUND_EFFECT, g_fVolume);
 }
 
 void CMyMenu::Update()
@@ -81,4 +82,5 @@ void CMyMenu::Render(HDC hDC)
 void CMyMenu::Release()
 {
 	CObjMgr::Get_Instance()->Delete_ID(BUTTON);
+	CSoundMgr::Get_Instance()->StopSound(SOUND_EFFECT);
 }

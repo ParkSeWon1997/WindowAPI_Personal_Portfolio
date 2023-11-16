@@ -5,6 +5,8 @@
 #include "MyEdit.h"
 #include "Stage.h"
 
+
+
 class CSceneMgr
 {
 private:

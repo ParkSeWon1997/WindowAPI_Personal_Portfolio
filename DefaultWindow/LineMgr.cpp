@@ -14,19 +14,19 @@ CLineMgr::~CLineMgr()
 
 void CLineMgr::Initialize(void)
 {
-	LINEPOINT		tLinePoint[4]
-	{
-		{ 100.f, 450.f },
-		{ 300.f, 450.f },
-		{ 500.f, 250.f },
-		{ 700.f, 250.f } 
-	};
+	//LINEPOINT		tLinePoint[4]
+	//{
+	//	{ 100.f, 450.f },
+	//	{ 300.f, 450.f },
+	//	{ 500.f, 250.f },
+	//	{ 700.f, 250.f } 
+	//};
 
-	m_LineList.push_back(new CLine(tLinePoint[0], tLinePoint[1]));
-	m_LineList.push_back(new CLine(tLinePoint[1], tLinePoint[2]));
-	m_LineList.push_back(new CLine(tLinePoint[2], tLinePoint[3]));
+	//m_LineList.push_back(new CLine(tLinePoint[0], tLinePoint[1]));
+	//m_LineList.push_back(new CLine(tLinePoint[1], tLinePoint[2]));
+	//m_LineList.push_back(new CLine(tLinePoint[2], tLinePoint[3]));
 
-	//Load_Line();
+	Load_Line();
 }
 
 void CLineMgr::Render(HDC hDC)
@@ -75,7 +75,7 @@ bool CLineMgr::Collision_Line(float* pHeight, float& _fX)
 void CLineMgr::Load_Line()
 {
 	// CreateFile: API 파일 개방함수
-	HANDLE	hFile = CreateFile(L"../Data/Line.dat",		// 파일 경로와 이름을 명시
+	HANDLE	hFile = CreateFile(L"../Data/F_19_Room1.dat",		// 파일 경로와 이름을 명시
 		GENERIC_READ,			// 파일 접근 모드 (GENERIC_WRITE : 파일 출력, GENERIC_READ : 파일 입력)
 		NULL,					// 공유 방식, 파일이 열려있는 상태에서 다른 프로그램이 오픈하고자 할 때 공유할지 여부를 물음, NULL 지정 시 공유하지 않음
 		NULL,					// 보안 모드 설정, NULL인 경우 기본 값 보안 상태

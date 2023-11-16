@@ -112,6 +112,18 @@
     <Filter Include="02. Design\10. ElapseTimeMgr">
       <UniqueIdentifier>{905d3059-a241-4ffe-af7b-929e87350de7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Obj\07. Weapon">
+      <UniqueIdentifier>{f5365d5b-0e08-4a22-9064-37b930ee4197}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\07. Weapon\01. Gun">
+      <UniqueIdentifier>{c2984e86-adec-4d04-81d1-a905f121f1c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\07. Weapon\02. Sword">
+      <UniqueIdentifier>{214853b6-006c-4692-9cc5-0376dfb55be3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Design\11. SoundMgr">
+      <UniqueIdentifier>{3602b54f-9847-442a-861c-3612f0bcd19f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -232,7 +244,16 @@
       <Filter>01. Obj\02. Monster</Filter>
     </ClInclude>
     <ClInclude Include="BossMonster.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>01. Obj\02. Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Gun.h">
+      <Filter>01. Obj\07. Weapon\01. Gun</Filter>
+    </ClInclude>
+    <ClInclude Include="Sword.h">
+      <Filter>01. Obj\07. Weapon\02. Sword</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundMgr.h">
+      <Filter>02. Design\11. SoundMgr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -339,7 +360,16 @@
       <Filter>01. Obj\02. Monster</Filter>
     </ClCompile>
     <ClCompile Include="BossMonster.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>01. Obj\02. Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Gun.cpp">
+      <Filter>01. Obj\07. Weapon\01. Gun</Filter>
+    </ClCompile>
+    <ClCompile Include="Sword.cpp">
+      <Filter>01. Obj\07. Weapon\02. Sword</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundMgr.cpp">
+      <Filter>02. Design\11. SoundMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

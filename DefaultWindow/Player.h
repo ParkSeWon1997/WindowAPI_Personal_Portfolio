@@ -3,16 +3,29 @@
 #include "Obj.h"
 #include "Shield.h"
 
-class AnimSprite;
+
 
 
 class CPlayer :	public CObj
 {
 	enum PLAYERSTATE { IDLE, RUN, JUMP,ATTACK, HIT, DEAD, PS_END };
 	
-public:
+private:
 	CPlayer();
 	virtual ~CPlayer();
+
+public:
+	static CObj* Get_Instance()
+	{
+		if (!m_Instance)
+			m_Instance = new CPlayer;
+
+		return m_Instance;
+	}
+private:
+	static CObj* m_Instance;
+
+
 
 
 public:
@@ -21,6 +34,8 @@ public:
 	virtual void	Late_Update();
 	virtual void	Render(HDC hDC) override;
 	virtual void	Release() override;
+
+
 
 
 public:

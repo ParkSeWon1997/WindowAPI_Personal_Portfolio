@@ -24,5 +24,14 @@ public:
 private:
 	void Boss_pattern();
 
+
+
+
+
+
+private:
+	ImageSTATE			m_ePreState;
+	ImageSTATE			m_eCurState;
+
 };
 

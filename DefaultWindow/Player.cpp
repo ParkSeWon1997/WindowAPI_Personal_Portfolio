@@ -15,11 +15,16 @@
 #include"Mouse.h"
 #include "CTimeMgr.h"
 
+
+CObj* CPlayer::m_Instance = nullptr;
+
+
 CPlayer::CPlayer() : m_bJump(false), m_fPower(0.f), m_fAccelTime(0.f)
 , m_eCurState(IDLE), m_ePreState(PS_END)
 {
 	ZeroMemory(&m_tPosin, sizeof(POINT));
 	m_pMouse = CMouse::Get_Instance();
+	Initialize();
 }
 
 CPlayer::~CPlayer()
@@ -72,32 +77,29 @@ void CPlayer::Late_Update()
 	Offset();
 	Move_Frame();
 	Motion_Change();
-	float m_pMouse_X = m_pMouse->Get_Info().fX - m_tInfo.fX;
-	float m_pMouse_Y = m_pMouse->Get_Info().fY - m_tInfo.fY;
+	float m_pMouse_X = (m_pMouse->Get_Info().fX - m_tInfo.fX) + iScrollX;
+	float m_pMouse_Y = (m_pMouse->Get_Info().fY - m_tInfo.fY)+ iScrollY;
 	float m_pMouse_R = (float)sqrt(m_pMouse_X * m_pMouse_X + m_pMouse_Y * m_pMouse_Y);
 
 	m_fAngle = (float)acos(m_pMouse_X / m_pMouse_R) * 180 / PI;
 
-	m_tPosin.x = LONG(m_tInfo.fX + m_fDiagonal * cos(m_fAngle * (PI / 180.f)));
+	m_tPosin.x = iScrollX +LONG(m_tInfo.fX + m_fDiagonal * cos(m_fAngle * (PI / 180.f)));
 
 	if (m_pMouse_Y < 0)
 	{
 		m_fAngle *= -1;
 	}
 
-	m_tPosin.y = LONG(m_tInfo.fY + m_fDiagonal * sin(m_fAngle * (PI / 180.f)));
+	m_tPosin.y = iScrollY +LONG(m_tInfo.fY + m_fDiagonal * sin(m_fAngle * (PI / 180.f)));
 
 
 
 
 #ifdef _DEBUG
-
-	if (dwFrameTime + 1000 < GetTickCount())
-	{
+	if (dwFrameTime + 1000 < GetTickCount()){
 		cout << "플레이어 좌표 : " << m_tInfo.fX << "\t" << m_tInfo.fY << endl;
 		dwFrameTime = GetTickCount();
 	}
-
 #endif
 
 
@@ -116,7 +118,7 @@ void CPlayer::Render(HDC hDC)
 
 	Rectangle(hDC, m_tRect.left + iScrollX, m_tRect.top + iScrollY, m_tRect.right + iScrollX, m_tRect.bottom + iScrollY);
 	MoveToEx(hDC, (int)m_tInfo.fX + iScrollX, (int)m_tInfo.fY + iScrollY, nullptr);
-	LineTo(hDC, m_tPosin.x, m_tPosin.y);
+	LineTo(hDC, m_tPosin.x+ iScrollX, m_tPosin.y+ iScrollY);
 
 	Point destinationPoints[] = {
 		Point((int)(m_tInfo.fX + m_tInfo.fCX * 0.5) + iScrollX,
@@ -228,7 +230,7 @@ void CPlayer::Jump()
 void CPlayer::Offset()
 {
 	int		iOffSetMinX = 100;
-	int		iOffSetMaxX = 700;
+	int		iOffSetMaxX = 800;
 
 	int		iOffSetMinY = 100;
 	int		iOffSetMaxY = 500;

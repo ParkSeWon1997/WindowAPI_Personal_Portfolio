@@ -15,7 +15,10 @@ public:
 	virtual void Render(HDC hDC) override;
 	virtual void Release() override;
 
-	virtual void Motion_Change();
+
+
+	virtual void	Motion_Change();
+	bool			Turn_By_Player();
 
 public:
 	void Set_Damage(float _Damage) { fDamage = _Damage; }

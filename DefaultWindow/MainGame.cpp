@@ -11,8 +11,8 @@
 #include "SceneMgr.h"
 #include "TileMgr.h"
 #include "PngMrg.h"
-#include"ElapseTimeMgr.h"
-#include "CTimeMgr.h"
+#include "SoundMgr.h"
+
 CMainGame::CMainGame() 
 	: m_iFPS(0), m_dwTime(GetTickCount())
 {
@@ -28,11 +28,12 @@ void CMainGame::Initialize(void)
 {
 	m_DC = GetDC(g_hWnd);
 
-	CTimeMgr::Get_Instance()->Initialize();
+	
 	CSceneMgr::Get_Instance()->Scene_Change(SC_LOGO);
 	CMouse::Get_Instance()->Initialize();
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Back.bmp", L"Back");
 
+	CSoundMgr::Get_Instance()->Initialize();
 
 
 #ifdef _DEBUG
@@ -117,7 +118,7 @@ void CMainGame::Release(void)
 
 #endif // _DEBUG
 
-
+	CSoundMgr::Destroy_Instance();
 	CBmpMgr::Destroy_Instance();
 	PngMrg::Destroy_Instance();
 	CTileMgr::Destroy_Instance();
@@ -127,7 +128,7 @@ void CMainGame::Release(void)
 	CSceneMgr::Destroy_Instance();
 	CObjMgr::Destroy_Instance();
 	CMouse::Destroy_Instance();
-	CTimeMgr::Destroy_Instance();
+	
 
 	ReleaseDC(g_hWnd, m_DC);
 }
