@@ -11,6 +11,7 @@
 #include"BossMonster.h"
 #include"Entry.h"
 #include"PngMrg.h"
+#include"DefalutMonster.h"
 
 CStage::CStage()
 {
@@ -27,6 +28,7 @@ void CStage::Initialize()
 	CObjMgr::Get_Instance()->Add_Object(PLAYER, CPlayer::Get_Instance());
 	CObjMgr::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<BossMonster>::Create());
 	CObjMgr::Get_Instance()->Add_Object(ENTRY, CAbstractFactory<Entry>::Create());
+	CObjMgr::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<DefalutMonster>::Create());
 	CLineMgr::Get_Instance()->Initialize();
 
 	CTileMgr::Get_Instance()->Load_Data();

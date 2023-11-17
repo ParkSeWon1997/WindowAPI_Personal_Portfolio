@@ -89,7 +89,7 @@ void CMyMenu::Render(HDC hDC)
 
 	PngMrg::Get_Instance()->Get_Image(L"MainLogo");
 	graphics.DrawImage(PngMrg::Get_Instance()->Get_Image(L"MainLogo"),
-		Rect((WINCX*0.1) , (WINCY*0.3) , 316, 156),
+		Rect(((WINCX*0.5)-316) , (WINCY*0.3) , 316, 156),
 		316 * m_tFrame.iFrameStart,
 		156 * m_tFrame.iMotion,
 		316, 156, UnitPixel);

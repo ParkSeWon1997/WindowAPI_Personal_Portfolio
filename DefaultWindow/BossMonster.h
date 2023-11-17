@@ -18,7 +18,7 @@ public:
 	virtual void Render(HDC hDC) override;
 	virtual void Release() override;
 public:
-	virtual void Motion_Change() override;
+	void Motion_Change();
 
 
 private:

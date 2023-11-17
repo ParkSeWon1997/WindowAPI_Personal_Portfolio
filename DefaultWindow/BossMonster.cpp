@@ -132,10 +132,6 @@ void BossMonster::Motion_Change()
 
 			break;
 	
-		case HIT:
-	
-			break;
-	
 		case DEAD:
 			m_tFrame.iFrameStart = 0;
 			m_tFrame.iFrameEnd = 8;

@@ -17,7 +17,7 @@ public:
 
 
 
-	virtual void	Motion_Change();
+	
 	bool			Turn_By_Player();
 
 public:

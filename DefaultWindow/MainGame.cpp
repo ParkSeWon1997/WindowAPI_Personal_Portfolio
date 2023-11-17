@@ -33,6 +33,8 @@ void CMainGame::Initialize(void)
 	CMouse::Get_Instance()->Initialize();
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Back.bmp", L"Back");
 
+
+
 	CSoundMgr::Get_Instance()->Initialize();
 
 

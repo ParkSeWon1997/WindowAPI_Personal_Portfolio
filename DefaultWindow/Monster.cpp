@@ -102,10 +102,7 @@ void CMonster::Release()
 {
 }
 
-void CMonster::Motion_Change()
-{
 
-}
 
 bool CMonster::Turn_By_Player()
 {
