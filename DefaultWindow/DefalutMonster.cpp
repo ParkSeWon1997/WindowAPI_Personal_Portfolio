@@ -63,7 +63,7 @@ void DefalutMonster::Render(HDC hDC)
 	int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
 
 
-	Rectangle(hDC, m_tRect.left + iScrollX, m_tRect.top + iScrollY, m_tRect.right + iScrollX, m_tRect.bottom + iScrollY);
+	//Rectangle(hDC, m_tRect.left + iScrollX, m_tRect.top + iScrollY, m_tRect.right + iScrollX, m_tRect.bottom + iScrollY);
 	Point destinationPoints[] = {
 		Point((int)(m_tInfo.fX + m_tInfo.fCX * 0.5) + iScrollX,
 			   (int)(m_tInfo.fY - m_tInfo.fCY * 0.5) + iScrollY),   // destination for upper-left point of original
@@ -82,7 +82,7 @@ void DefalutMonster::Render(HDC hDC)
 		g.DrawImage(img, destinationPoints, 3, m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, 64, 40, UnitPixel);
 
 	}
-	//g.DrawImage(img,Rect())
+	
 
 }
 

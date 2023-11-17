@@ -66,7 +66,7 @@ void CMyButton::Render(HDC hDC)
 {
 	//HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Img(m_pFrameKey);
 
-	Rectangle(hDC, m_tRect.left , m_tRect.top , m_tRect.right , m_tRect.bottom );
+	//Rectangle(hDC, m_tRect.left , m_tRect.top , m_tRect.right , m_tRect.bottom );
 	Graphics g(hDC);
 
 	//PngMrg::Get_Instance()->Get_Image(m_pFrameKey);
@@ -75,7 +75,7 @@ void CMyButton::Render(HDC hDC)
 		Rect(m_tRect.left, m_tRect.top, m_tInfo.fCX,m_tInfo.fCY ),
 		m_tInfo.fCX * m_iDrawID,
 		m_tInfo.fCY*0,
-		50, 24, UnitPixel);
+		49, 24, UnitPixel);
 
 
 
