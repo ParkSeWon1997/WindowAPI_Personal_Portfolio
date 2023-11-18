@@ -15,6 +15,8 @@
 #include"Mouse.h"
 #include "CTimeMgr.h"
 #include "SoundMgr.h"
+#include"Gun.h"
+#include "PlayerBullet.h"
 
 
 CObj* CPlayer::m_Instance = nullptr;
@@ -40,7 +42,7 @@ void CPlayer::Initialize()
 	m_tInfo = { 500.f, 300.f, 64, 64 };
 
 	m_fSpeed = 5.f;
-	m_fDiagonal = 100.f;
+	m_fDiagonal = 10.f;
 	m_fPower = 20.f;
 
 
@@ -75,14 +77,15 @@ void CPlayer::Late_Update()
 	Set_Posin();
 	Offset();
 	Move_Frame();
+	WeaponChage();
 	Motion_Change();
-	
 
-	
-	
+
+
+
 
 #ifdef _DEBUG
-	if (dwFrameTime + 1000 < GetTickCount()){
+	if (dwFrameTime + 1000 < GetTickCount()) {
 		cout << "플레이어 좌표 : " << m_tInfo.fX << "\t" << m_tInfo.fY << endl;
 		dwFrameTime = GetTickCount();
 	}
@@ -112,7 +115,7 @@ void CPlayer::Render(HDC hDC)
 
 	Rectangle(hDC, m_tRect.left + iScrollX, m_tRect.top + iScrollY, m_tRect.right + iScrollX, m_tRect.bottom + iScrollY);
 	MoveToEx(hDC, (int)m_tInfo.fX + iScrollX, (int)m_tInfo.fY + iScrollY, nullptr);
-	LineTo(hDC, m_tPosin.x+ iScrollX, m_tPosin.y+ iScrollY);
+	LineTo(hDC, m_tPosin.x + iScrollX, m_tPosin.y + iScrollY);
 
 	Point destinationPoints[] = {
 		Point((int)(m_tInfo.fX + m_tInfo.fCX * 0.5) + iScrollX,
@@ -133,11 +136,17 @@ void CPlayer::Render(HDC hDC)
 
 
 	if (Posin_half_Check()) {
-		g.DrawImage(img, Rect((m_tInfo.fX - m_tInfo.fCX * 0.5) + iScrollX, (m_tInfo.fY - m_tInfo.fCY * 0.5) + iScrollY, m_tInfo.fCX, m_tInfo.fCY), m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, 64, 64, UnitPixel);
+		g.DrawImage(img,
+			Rect((m_tInfo.fX - m_tInfo.fCX * 0.5) + iScrollX,
+				(m_tInfo.fY - m_tInfo.fCY * 0.5) + iScrollY,
+				m_tInfo.fCX, m_tInfo.fCY),
+			m_tInfo.fCX * m_tFrame.iFrameStart,
+			m_tInfo.fCY * m_tFrame.iMotion,
+			64, 64, UnitPixel);
 	}
 	else {
 		g.DrawImage(img, destinationPoints, 3, m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, 64, 64, UnitPixel);
-			
+
 	}
 
 
@@ -158,7 +167,7 @@ void CPlayer::Key_Input()
 		//dead-sharedassets2.assets-304
 		m_eCurState = DEAD;
 	}
-	else{
+	else {
 		m_eCurState = IDLE;
 
 		if (CKeyMgr::Get_Instance()->Key_Pressing('A'))
@@ -177,16 +186,31 @@ void CPlayer::Key_Input()
 			m_bJump = true;
 			m_eCurState = JUMP;
 		}
-		
-	
+
+		if (CKeyMgr::Get_Instance()->Key_Down('2'))
+		{
+			m_eWeaponMode = CPlayer::GUN;
+		}
+		if (CKeyMgr::Get_Instance()->Key_Down('1'))
+		{
+			m_eWeaponMode = CPlayer::SWORD;
+		}
+
 		if (CKeyMgr::Get_Instance()->Key_Down(VK_LBUTTON))
 		{
-			CSoundMgr::Get_Instance()->PlaySound(L"Gun-sharedassets22.assets-357.wav", SOUND_EFFECT, g_fVolume);
-			
+			if (m_eWeaponMode == CPlayer::GUN)
+			{
+				CObjMgr::Get_Instance()->Add_Object(BULLET, CAbstractFactory<PlayerBullet>::Create(m_tPosin.x, m_tPosin.y, this->m_fAngle));
+				CSoundMgr::Get_Instance()->PlaySound(L"Gun-sharedassets22.assets-357.wav", SOUND_EFFECT, g_fVolume);
+
+			}
+
+			//dynamic_cast<Gun*>(m_pWeaponList.back())->FIre(true);
+
 		}
 
 	}
-	
+
 }
 
 void CPlayer::Jump()
@@ -204,9 +228,9 @@ void CPlayer::Jump()
 
 	}
 
-	else 
+	else
 		m_fAccelTime = 0.f;
-	
+
 
 	//else if (bLineCol)
 	//{
@@ -216,18 +240,7 @@ void CPlayer::Jump()
 
 }
 
-//void CPlayer::Offset()
-//{
-//	int		iOffSet = WINCX >> 1;
-//
-//	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
-//
-//	if (iOffSet > m_tInfo.fX + iScrollX)
-//		CScrollMgr::Get_Instance()->Set_ScrollX(m_fSpeed);
-//
-//	if (iOffSet < m_tInfo.fX + iScrollX)
-//		CScrollMgr::Get_Instance()->Set_ScrollX(-m_fSpeed);
-//}
+
 
 void CPlayer::Offset()
 {
@@ -311,6 +324,19 @@ void CPlayer::Motion_Change()
 		}
 
 		m_ePreState = m_eCurState;
+	}
+
+}
+
+void CPlayer::WeaponChage()
+{
+	switch (m_eWeaponMode)
+	{
+	case CPlayer::GUN:
+		//CObjMgr::Add_Object(GUN,)
+		break;
+	case CPlayer::SWORD:
+		break;
 	}
 
 }

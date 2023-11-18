@@ -17,7 +17,7 @@ Entry::~Entry()
 
 void Entry::Initialize()
 {
-    m_tInfo = { WINCX*0.5,WINCY-100,240.f,170.f };
+    m_tInfo = { WINCX*0.5,WINCY-200,240.f,170.f };
     PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/World/Entry/DungeonEntry.png", L"Dungeon_Entry");
 
 

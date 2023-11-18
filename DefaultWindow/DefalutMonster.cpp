@@ -21,7 +21,7 @@ void DefalutMonster::Initialize()
     m_tInfo = { 600.f,100.f,64.f,40.f };
 
     this->fDamage = 5.f;
-    this->fHp = 20.f;
+    this->fHp = 100.f;
     //C:\3개월 차\포트폴리오\Image\Dun\Monster\Default
     PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Monster/Default/Bat_Ice_Defalut.png", L"Defalut_Ice");
 

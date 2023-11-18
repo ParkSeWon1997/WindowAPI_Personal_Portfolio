@@ -16,13 +16,14 @@ public:
 
 
 public:
+    void    FIre(bool _IsShot);
     float   Get_GunDamage() { return m_fGunDamage; }
 
 
 
 private:
     float				m_fGunDamage;
- 
+      
 
 
     list<CObj*>         m_pBulletList;

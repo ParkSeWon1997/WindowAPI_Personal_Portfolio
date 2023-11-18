@@ -9,7 +9,7 @@
 class CPlayer : public CObj
 {
 	enum PLAYERSTATE { IDLE, RUN, JUMP, ATTACK, HIT, DEAD, PS_END };
-
+	enum WEAPONMODE {GUN,SWORD,END};
 private:
 	CPlayer();
 	virtual ~CPlayer();
@@ -58,7 +58,7 @@ private:
 	void		Set_Posin();
 	bool		Posin_half_Check();
 	void		Motion_Change();
-
+	void		WeaponChage();
 private:
 	POINT				m_tPosin;
 	CObj*				m_pMouse;
@@ -76,10 +76,10 @@ private:
 
 
 
-	list<CObj*>			m_pWeaponList;
+	list<CObj*>		m_pWeaponList;
 	int					DashCount;
 	bool				m_bJump;
-
+	WEAPONMODE			m_eWeaponMode;
 
 
 	TCHAR* m_PreImage;

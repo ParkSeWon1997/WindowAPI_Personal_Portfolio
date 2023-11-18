@@ -17,8 +17,8 @@ void CLineMgr::Initialize(void)
 {
 	LINEPOINT		tLinePoint[4]
 	{
-		{ 0.f, 800.f },
-		{ 2000.f, 800.f },
+		{ 0.f, 700.f },
+		{ 2000.f, 700.f },
 		{ 400.f, 400.f },
 		{ 600.f, 400.f } 
 	};

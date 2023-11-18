@@ -104,13 +104,6 @@ void CMyMenu::Render(HDC hDC)
 		156 * m_tFrame.iMotion,
 		316, 156, UnitPixel);
 
-	//int Harf_Width = PngMrg::Get_Instance()->Get_Image(L"Default_Map2")->GetWidth()*0.5;
-	//graphics.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Default_Map2"),
-	//	(800- PngMrg::Get_Instance()->Get_Image(L"Default_Map2")->GetWidth())*0.5,0,300- Harf_Width,200);
-
-
-
-
 	CObjMgr::Get_Instance()->Render(hDC);
 
 }

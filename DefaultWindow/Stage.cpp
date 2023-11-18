@@ -28,21 +28,19 @@ CStage::~CStage()
 
 void CStage::Initialize()
 {
-	// 플레이어 추가	
+
 	CObjMgr::Get_Instance()->Add_Object(PLAYER, CPlayer::Get_Instance());
-//	CObjMgr::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<BossMonster>::Create());
 	CObjMgr::Get_Instance()->Add_Object(ENTRY, CAbstractFactory<Entry>::Create());
-	//CObjMgr::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<DefalutMonster>::Create());
-	//CObjMgr::Get_Instance()->Add_Object(ENTRY, CAbstractFactory<StageEntry>::Create());
+
+
 
 	CLineMgr::Get_Instance()->Initialize();
 
-	//CTileMgr::Get_Instance()->Load_Data();
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/TownSky_Xmas.bmp", L"Ground");
 
 
 	//고정 이미지
-	//PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/TownSky_Xmas.png", L"BackLayer0");
+
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/Temple.png", L"Temple");
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/TempleFront.png", L"Temple_front");
 
@@ -102,7 +100,7 @@ void CStage::Render(HDC hDC)
 	//g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"BackLayer2"), 0+ (iScrollX*0.3), 400+ iScrollY, 1200, 356);
 
 
-	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"SecondFloor3"), 0+ iScrollX,  (WINCY-300) + iScrollY, 1388, 288);
+	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"SecondFloor3"), 0+ iScrollX,  (WINCY-400) + iScrollY, 1388, 288);
 
 
 	//CTileMgr::Get_Instance()->Render(hDC);

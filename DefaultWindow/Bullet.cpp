@@ -40,6 +40,7 @@ void CBullet::Late_Update()
 
 void CBullet::Render(HDC hDC)
 {
+
 	Ellipse(hDC,
 		m_tRect.left,
 		m_tRect.top,
