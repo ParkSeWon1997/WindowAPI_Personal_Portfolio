@@ -19,6 +19,9 @@
 
 CObj* CPlayer::m_Instance = nullptr;
 static float  g_fVolume = 1.0f;
+
+
+bool testLand = false;
 CPlayer::CPlayer() : m_bJump(false), m_fPower(0.f), m_fAccelTime(0.f)
 , m_eCurState(IDLE), m_ePreState(PS_END)
 {
@@ -34,7 +37,7 @@ CPlayer::~CPlayer()
 
 void CPlayer::Initialize()
 {
-	m_tInfo = { 50.f, 300.f, 64, 64 };
+	m_tInfo = { 500.f, 300.f, 64, 64 };
 
 	m_fSpeed = 5.f;
 	m_fDiagonal = 100.f;
@@ -75,17 +78,26 @@ void CPlayer::Late_Update()
 	Motion_Change();
 	
 
-
+	
+	
 
 #ifdef _DEBUG
 	if (dwFrameTime + 1000 < GetTickCount()){
 		cout << "플레이어 좌표 : " << m_tInfo.fX << "\t" << m_tInfo.fY << endl;
 		dwFrameTime = GetTickCount();
 	}
+
+
+
+	if (CLineMgr::Get_Instance()->Collision_Line(m_tInfo.fX, m_tInfo.fY))
+	{
+		m_bJump = false;
+	}
+	else
+	{
+		m_bJump = true;
+	}
 #endif
-
-
-
 }
 
 void CPlayer::Render(HDC hDC)
@@ -165,42 +177,41 @@ void CPlayer::Key_Input()
 			m_bJump = true;
 			m_eCurState = JUMP;
 		}
-
+		
+	
 		if (CKeyMgr::Get_Instance()->Key_Down(VK_LBUTTON))
 		{
-
 			CSoundMgr::Get_Instance()->PlaySound(L"Gun-sharedassets22.assets-357.wav", SOUND_EFFECT, g_fVolume);
 			
 		}
-	}
 
+	}
+	
 }
 
 void CPlayer::Jump()
 {
-	float	fY(0.f);
+	//float	fY(0.f);
 
-	bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(&fY, m_tInfo.fX);
+	//bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(&fY, m_tInfo.fX);
 
 	if (m_bJump)
 	{
+
 		m_tInfo.fY -= (m_fPower * m_fAccelTime) - (9.8f * m_fAccelTime * m_fAccelTime * 0.5f);
 
 		m_fAccelTime += 0.2f;
 
-		if (bLineCol && fY < m_tInfo.fY)
-		{
-			m_bJump = false;
-			m_fAccelTime = 0.f;
-			m_tInfo.fY = fY;
-		}
-
 	}
 
-	else if (bLineCol)
-	{
-		m_tInfo.fY = fY;
-	}
+	else 
+		m_fAccelTime = 0.f;
+	
+
+	//else if (bLineCol)
+	//{
+	//	m_tInfo.fY = fY;
+	//}
 
 
 }

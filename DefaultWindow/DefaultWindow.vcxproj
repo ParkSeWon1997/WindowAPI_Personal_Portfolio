@@ -147,8 +147,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractFactory.h" />
-    <ClInclude Include="AnimSprite.h" />
     <ClInclude Include="BmpMgr.h" />
+    <ClInclude Include="BossField.h" />
     <ClInclude Include="BossMonster.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="CollisionMgr.h" />
@@ -173,6 +173,7 @@
     <ClInclude Include="MyEdit.h" />
     <ClInclude Include="MyMenu.h" />
     <ClInclude Include="MyPng.h" />
+    <ClInclude Include="Normal.h" />
     <ClInclude Include="Obj.h" />
     <ClInclude Include="ObjMgr.h" />
     <ClInclude Include="Player.h" />
@@ -192,10 +193,11 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileMgr.h" />
+    <ClInclude Include="Village.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AnimSprite.cpp" />
     <ClCompile Include="BmpMgr.cpp" />
+    <ClCompile Include="BossField.cpp" />
     <ClCompile Include="BossMonster.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CollisionMgr.cpp" />
@@ -219,6 +221,7 @@
     <ClCompile Include="MyEdit.cpp" />
     <ClCompile Include="MyMenu.cpp" />
     <ClCompile Include="MyPng.cpp" />
+    <ClCompile Include="Normal.cpp" />
     <ClCompile Include="Obj.cpp" />
     <ClCompile Include="ObjMgr.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -241,6 +244,7 @@
     <ClCompile Include="Sword.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileMgr.cpp" />
+    <ClCompile Include="Village.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DefaultWindow.rc" />

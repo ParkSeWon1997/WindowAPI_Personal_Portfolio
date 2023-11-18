@@ -10,6 +10,10 @@ public:
 
 public:
 	static void	Collision_Rect(list<CObj*> Dst, list<CObj*> Src);
+	// Ãß°¡
+	static bool CollisionRect_to_Rect(CObj* _tmp, CObj* _Src);
+	static bool CollisionPoint_to_Point(CObj* _tmp, CObj* _Src);
+
 
 	static void	Collision_RectEx(list<CObj*> DstList, list<CObj*> SrcList);
 	static bool Check_Rect(float* pX, float* pY, CObj* pDst, CObj* pSrc);

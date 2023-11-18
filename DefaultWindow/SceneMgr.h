@@ -3,7 +3,7 @@
 #include "Logo.h"
 #include "MyMenu.h"
 #include "MyEdit.h"
-#include "Stage.h"
+
 
 
 

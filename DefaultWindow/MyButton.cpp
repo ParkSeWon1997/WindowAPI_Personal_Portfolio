@@ -43,7 +43,7 @@ void CMyButton::Late_Update()
 		if (CKeyMgr::Get_Instance()->Key_Down(VK_LBUTTON))
 		{
 			if (!lstrcmp(L"Start", m_pFrameKey))
-				CSceneMgr::Get_Instance()->Scene_Change(SC_STAGE);
+				CSceneMgr::Get_Instance()->Scene_Change(SC_VILLAGE);
 
 			else if (!lstrcmp(L"Edit", m_pFrameKey))
 				CSceneMgr::Get_Instance()->Scene_Change(SC_EDIT);

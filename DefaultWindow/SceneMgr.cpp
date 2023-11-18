@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "SceneMgr.h"
 #include "SoundMgr.h"
+#include "Stage.h"
+#include"Normal.h"
 
 CSceneMgr*	CSceneMgr::m_pInstance = nullptr;
 
@@ -38,9 +40,17 @@ void CSceneMgr::Scene_Change(SCENEID eID)
 			m_pScene = new CMyEdit;
 			break;
 
-		case SC_STAGE:
+		case SC_VILLAGE:
 			m_pScene = new CStage;
 			break;
+		case SC_NORMAL:
+			m_pScene = new Normal;
+			break;
+		case SC_BOSS:
+
+			break;
+
+
 		}
 
 		m_pScene->Initialize();

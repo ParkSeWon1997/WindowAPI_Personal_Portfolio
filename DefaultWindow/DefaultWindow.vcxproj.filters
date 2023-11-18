@@ -106,9 +106,6 @@
     <Filter Include="02. Design\09. PngMgr\MyPng">
       <UniqueIdentifier>{2321a5e2-c142-47ae-8a57-be7f17580d6a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02. Design\09. PngMgr\AnimSprite">
-      <UniqueIdentifier>{0aedbcfe-fbed-4e7e-97a0-d5097d0ed432}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02. Design\10. ElapseTimeMgr">
       <UniqueIdentifier>{905d3059-a241-4ffe-af7b-929e87350de7}</UniqueIdentifier>
     </Filter>
@@ -136,6 +133,9 @@
     <Filter Include="01. Obj\01. Bullet\03. MonsterBullet">
       <UniqueIdentifier>{d3085e3c-c767-41bd-84a9-a85c93f079d2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03. Scene\03. Stage\01. Field">
+      <UniqueIdentifier>{2723d1ad-5a14-4982-9c61-00a05f828e8e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -155,9 +155,6 @@
     </ClInclude>
     <ClInclude Include="MainGame.h">
       <Filter>00. MainGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Define.h">
-      <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Obj.h">
       <Filter>01. Obj</Filter>
@@ -246,9 +243,6 @@
     <ClInclude Include="ElapseTimeMgr.h">
       <Filter>02. Design\10. ElapseTimeMgr</Filter>
     </ClInclude>
-    <ClInclude Include="AnimSprite.h">
-      <Filter>02. Design\09. PngMgr\AnimSprite</Filter>
-    </ClInclude>
     <ClInclude Include="CTimeMgr.h">
       <Filter>02. Design\10. ElapseTimeMgr</Filter>
     </ClInclude>
@@ -278,6 +272,18 @@
     </ClInclude>
     <ClInclude Include="StageEntry.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Village.h">
+      <Filter>03. Scene\03. Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Define.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Normal.h">
+      <Filter>03. Scene\03. Stage\01. Field</Filter>
+    </ClInclude>
+    <ClInclude Include="BossField.h">
+      <Filter>03. Scene\03. Stage\01. Field</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -374,9 +380,6 @@
     <ClCompile Include="ElapseTimeMgr.cpp">
       <Filter>02. Design\10. ElapseTimeMgr</Filter>
     </ClCompile>
-    <ClCompile Include="AnimSprite.cpp">
-      <Filter>02. Design\09. PngMgr\AnimSprite</Filter>
-    </ClCompile>
     <ClCompile Include="CTimeMgr.cpp">
       <Filter>02. Design\10. ElapseTimeMgr</Filter>
     </ClCompile>
@@ -406,6 +409,15 @@
     </ClCompile>
     <ClCompile Include="StageEntry.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Village.cpp">
+      <Filter>03. Scene\03. Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Normal.cpp">
+      <Filter>03. Scene\03. Stage\01. Field</Filter>
+    </ClCompile>
+    <ClCompile Include="BossField.cpp">
+      <Filter>03. Scene\03. Stage\01. Field</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

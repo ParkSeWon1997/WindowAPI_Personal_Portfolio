@@ -69,6 +69,12 @@ private:
 	float				m_fPlayerDamage;
 	float				m_fPlayerHP;
 
+	//초기 속도
+	//경과 시간
+	//float				
+
+
+
 
 	list<CObj*>			m_pWeaponList;
 	int					DashCount;

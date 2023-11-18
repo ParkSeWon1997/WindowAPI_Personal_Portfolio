@@ -31,6 +31,21 @@ void CCollisionMgr::Collision_Rect(list<CObj*> Dst, list<CObj*> Src)
 
 }
 
+bool CCollisionMgr::CollisionRect_to_Rect(CObj* _tmp,CObj* _Src)
+{
+	RECT	rc{};
+
+	return IntersectRect(&rc,&_tmp->Get_Rect(),&_Src->Get_Rect());
+}
+
+bool CCollisionMgr::CollisionPoint_to_Point(CObj* _tmp, CObj* _Src)
+{
+	if (_tmp->Get_Info().fX == _Src->Get_Info().fX && _tmp->Get_Info().fY == _Src->Get_Info().fY) {
+		return true;
+	} 
+		return false;
+}
+
 void CCollisionMgr::Collision_RectEx(list<CObj*> DstList, list<CObj*> SrcList)
 {
 	float fX = 0.f, fY = 0.f;

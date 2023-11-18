@@ -1,6 +1,6 @@
 #pragma once
 
-#define			WINCX		1200
+#define			WINCX		1280
 #define			WINCY		800
 
 #define			PURE		= 0
@@ -17,6 +17,10 @@
 #define			TILECX		64
 #define			TILECY		64
 
+
+#define			MYTILEX		16
+#define			MYTILEY		16
+
 typedef struct tagInfo
 {
 	float		fX, fY;
@@ -26,7 +30,7 @@ typedef struct tagInfo
 
 enum DIRECTION { DIR_LEFT, DIR_RIGHT, DIR_UP, DIR_DOWN, DIR_LU, DIR_RU, DIR_END };
 enum OBJID	   { PLAYER, BULLET, MONSTER, MOUSE,ENTRY, SHIELD, BUTTON,GUN,SWORD, OBJ_END };
-enum SCENEID	{ SC_LOGO, SC_MENU, SC_EDIT, SC_STAGE, SC_END };
+enum SCENEID	{ SC_LOGO, SC_MENU, SC_EDIT, SC_VILLAGE,SC_NORMAL,SC_BOSS, SC_END };
 enum RENDERID	{ BACKGROUND, GAMEOBJECT, EFFECT, UI, RENDER_END};
 enum CHANNELID { SOUND_EFFECT, SOUND_BGM, MAXCHANNEL };
 template<typename T>

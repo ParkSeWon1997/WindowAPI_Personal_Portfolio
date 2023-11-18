@@ -13,7 +13,7 @@ public:
 	void			Render(HDC hDC);
 	void			Release();
 
-	bool			Collision_Line(float* pHeight, float& _fX);
+	bool			Collision_Line(float _fX, float _fY);
 	void			Load_Line();
 
 public:
@@ -37,5 +37,10 @@ public:
 private:
 	list<CLine*>		m_LineList;	
 	static CLineMgr*	m_pInstance;
+
+
+
+
+	DWORD					dwFrameTime = GetTickCount();
 };
 
