@@ -109,13 +109,15 @@ typedef struct tagFrame
 	float mAnitime;
 	float mTimeInterval;
 	int mTotalFrameCount;
-
+	bool	bStopMotionChanger;
 
 
 
 	int		iFrameStart;
 	int		iFrameEnd;
 	int		iMotion;
+
+
 
 	DWORD	dwSpeed;
 	DWORD	dwTime;

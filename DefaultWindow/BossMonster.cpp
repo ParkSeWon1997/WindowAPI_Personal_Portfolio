@@ -35,7 +35,7 @@ void BossMonster::Initialize()
 	m_pStateKey = L"Boss_Monster";
 
 	m_eRender = GAMEOBJECT;
-	
+	//m_bDead = true;
 
 }
 
@@ -51,7 +51,12 @@ int BossMonster::Update()
 	}
 #endif
 
+	if (CKeyMgr::Get_Instance()->Key_Down('4'))
+	{
 
+		m_eCurState = DEAD;
+
+	}
 
 	Boss_pattern();
 
@@ -89,7 +94,12 @@ void BossMonster::Render(HDC hDC)
 	Image* img = PngMrg::Get_Instance()->Get_Image(m_pStateKey);
 
 	if (Turn_By_Player()){
-		g.DrawImage(img, Rect((m_tInfo.fX - m_tInfo.fCX * 0.5)+ iScrollX, (m_tInfo.fY - m_tInfo.fCY * 0.5)+ iScrollY, m_tInfo.fCX, m_tInfo.fCY), m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, 78, 78, UnitPixel);
+		g.DrawImage(img, 
+			Rect((m_tInfo.fX - m_tInfo.fCX * 0.5)+ iScrollX
+				,(m_tInfo.fY - m_tInfo.fCY * 0.5)+ iScrollY
+				, m_tInfo.fCX, m_tInfo.fCY),
+				m_tInfo.fCX * m_tFrame.iFrameStart,
+				m_tInfo.fCY * m_tFrame.iMotion, 78, 78, UnitPixel);
 	}
 	else {
 		g.DrawImage(img, destinationPoints, 3, m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, 78, 78, UnitPixel);
@@ -150,8 +160,17 @@ void BossMonster::Motion_Change()
 
 void BossMonster::Boss_pattern()
 {
-	if (m_bDead) {
+
+	if (m_tFrame.iFrameStart)
+	{
 		m_eCurState = DEAD;
+	}
+	if (m_eCurState == DEAD) {
+		//m_eCurState = DEAD;
+		//if (m_tFrame.iFrameStart < m_tFrame.iFrameEnd) {
+		//	m_tFrame.iFrameStart = 8;
+		//	return;
+		//}
 	}
 	else {
 		m_eCurState = IDLE;

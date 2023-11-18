@@ -14,7 +14,7 @@ Entry::~Entry()
 void Entry::Initialize()
 {
     m_tInfo = { 50.f,200.f,240.f,170.f };
-    PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/World//Entry/DungeonEntry.png", L"Dungeon_Entry");
+    PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/World/Entry/DungeonEntry.png", L"Dungeon_Entry");
 
 
     m_pStateKey = L"Dungeon_Entry";
