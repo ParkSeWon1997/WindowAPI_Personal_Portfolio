@@ -9,12 +9,17 @@ private:
 	~CLineMgr();
 
 public:
+	enum MAPLINE {VILLAGE,EASY,NORMAL,BOSS,END};
+
+
 	void			Initialize(void);
 	void			Render(HDC hDC);
 	void			Release();
 
 	bool			Collision_Line(float _fX, float _fY);
 	void			Load_Line();
+
+	void			SelectMapLine(MAPLINE _ID);
 
 public:
 	static	CLineMgr*		Get_Instance()

@@ -9,6 +9,7 @@ class StageEntry :
 
 public:
     StageEntry();
+    StageEntry(float _X,float _Y);
     virtual ~StageEntry();
 
 public:

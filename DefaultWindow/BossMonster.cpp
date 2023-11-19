@@ -9,6 +9,12 @@ BossMonster::BossMonster()
 {
 }
 
+BossMonster::BossMonster(float _X, float _Y)
+{
+	m_tInfo.fX = _X;
+	m_tInfo.fY = _Y;
+}
+
 BossMonster::~BossMonster()
 {
     Release();
@@ -22,9 +28,10 @@ void BossMonster::Initialize()
 	this->fDamage = 10.f;
 	this->fHp = 200.f;
 
+	m_tInfo.fCX = 80.f;
+	m_tInfo.fCY = 80.f;
 
-
-    m_tInfo = { 700.f, 300.f, 80, 80 };
+   // m_tInfo = { 700.f, 300.f, 80, 80 };
 
 
     PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Monster/Boss/Boss_Nifl1.png", L"Boss_Monster");
@@ -163,7 +170,7 @@ void BossMonster::Boss_pattern()
 
 	if (m_tFrame.iFrameStart)
 	{
-		m_eCurState = DEAD;
+		m_eCurState = IDLE;
 	}
 	if (m_eCurState == DEAD) {
 		//m_eCurState = DEAD;

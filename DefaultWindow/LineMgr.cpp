@@ -130,3 +130,10 @@ void CLineMgr::Load_Line()
 
 	MessageBox(g_hWnd, _T("Load 완료"), L"성공", MB_OK);
 }
+
+void CLineMgr::SelectMapLine(MAPLINE _ID)
+{
+
+
+
+}

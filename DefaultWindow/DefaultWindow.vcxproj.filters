@@ -159,9 +159,6 @@
     <ClInclude Include="Obj.h">
       <Filter>01. Obj</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>01. Obj\00. Player</Filter>
-    </ClInclude>
     <ClInclude Include="Bullet.h">
       <Filter>01. Obj\01. Bullet</Filter>
     </ClInclude>
@@ -284,6 +281,9 @@
     </ClInclude>
     <ClInclude Include="StageEntry.h">
       <Filter>01. Obj\08. Entry</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>01. Obj\00. Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

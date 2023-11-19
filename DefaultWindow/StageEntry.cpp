@@ -3,6 +3,9 @@
 #include"PngMrg.h"
 #include "KeyMgr.h"
 #include"SoundMgr.h"
+#include "ObjMgr.h"
+#include "SceneMgr.h"
+#include "CollisionMgr.h"
 
 
 
@@ -14,6 +17,12 @@ StageEntry::StageEntry()
 {
 }
 
+StageEntry::StageEntry(float _X, float _Y)
+{
+	m_tInfo.fX = _X;
+	m_tInfo.fY = _Y;
+}
+
 StageEntry::~StageEntry()
 {
 	Release();
@@ -22,7 +31,9 @@ StageEntry::~StageEntry()
 void StageEntry::Initialize()
 {
 
-	m_tInfo = { 330.f,300.f,132.f,40.f };
+	m_tInfo.fCX = 132.f;
+	m_tInfo.fCY = 40.f;
+	//m_tInfo = { 330.f,700.f,132.f,40.f };
 
 
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/World/Stele.png", L"World_Stage_Entry");
@@ -50,7 +61,12 @@ int StageEntry::Update()
 void StageEntry::Late_Update()
 {
 	Move_Frame();
-
+	
+	//if (CCollisionMgr::CollisionRect_to_Rect(CObjMgr::Get_Instance()->Get_Player(), this))
+	//{
+	//	CSceneMgr::Get_Instance()->Scene_Change(SC_BOSS);
+	//
+	//}
 
 
 }

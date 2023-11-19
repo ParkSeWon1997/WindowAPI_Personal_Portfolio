@@ -29,7 +29,9 @@ void Village::Initialize()
 
 	CObjMgr::Get_Instance()->Add_Object(PLAYER, CPlayer::Get_Instance());
 	CObjMgr::Get_Instance()->Add_Object(ENTRY, CAbstractFactory<Entry>::Create());
-	//CObjMgr::Get_Instance()->Add_Object(STAGE_ENTRY, CAbstractFactory<StageEntry>::Create());
+
+	CObjMgr::Get_Instance()->Add_Object(ENTRY, CAbstractFactory<StageEntry>::Create());
+	CObjMgr::Get_Instance()->Add_Object(ENTRY, CAbstractFactory<StageEntry>::Create(100.f,200.f,0));
 
 
 	CLineMgr::Get_Instance()->Initialize();
@@ -74,6 +76,7 @@ void Village::Late_Update()
 	CObjMgr::Get_Instance()->Late_Update();
 
 	
+	
 
 
 	
@@ -111,6 +114,9 @@ void Village::Render(HDC hDC)
 void Village::Release()
 {
 
+
+	CLineMgr::Get_Instance()->Destroy_Instance();
 	CObjMgr::Get_Instance()->Delete_ID(ENTRY);
+	//CObjMgr::Get_Instance()->Delete_ID(ENTRY);
 	CSoundMgr::Get_Instance()->StopSound(SOUND_BGM);
 }

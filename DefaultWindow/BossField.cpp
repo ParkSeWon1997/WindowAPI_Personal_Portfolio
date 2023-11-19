@@ -6,6 +6,10 @@
 #include "AbstractFactory.h"
 #include "BossMonster.h"
 #include "LineMgr.h"
+#include "BmpMgr.h"
+#include "ScrollMgr.h"
+#include"PngMrg.h"
+#include "Entry.h"
 
 BossField::BossField()
 {
@@ -18,8 +22,11 @@ BossField::~BossField()
 
 void BossField::Initialize()
 {
-	CObjMgr::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<BossMonster>::Create());
+
+	//PngMrg::Get_Instance()->Insert_Png()
+	CObjMgr::Get_Instance()->Add_Object(BOSS_MONSTER, CAbstractFactory<BossMonster>::Create(200.f,500.f,0));
 	CLineMgr::Get_Instance()->Initialize();
+
 }
 
 void BossField::Update()
@@ -34,9 +41,23 @@ void BossField::Late_Update()
 
 void BossField::Render(HDC hDC)
 {
+	HDC		hGroundDC = CBmpMgr::Get_Instance()->Find_Img(L"Ground");
+
+	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
+	int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
+	BitBlt(hDC, 0, 0, 1920, 1280, hGroundDC, 0, 0, SRCCOPY);
+
 	Graphics g(hDC);
+	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Map_Layer"), 0, 0, 1280, 800);
+
+
+
+	CObjMgr::Get_Instance()->Render(hDC);
+
+	CLineMgr::Get_Instance()->Render(hDC);
 }
 
 void BossField::Release()
 {
+
 }

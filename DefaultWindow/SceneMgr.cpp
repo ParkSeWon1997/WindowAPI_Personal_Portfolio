@@ -4,6 +4,7 @@
 #include "Stage.h"
 #include"Normal.h"
 #include"Village.h"
+#include "BossField.h"
 
 CSceneMgr*	CSceneMgr::m_pInstance = nullptr;
 
@@ -48,7 +49,7 @@ void CSceneMgr::Scene_Change(SCENEID eID)
 			m_pScene = new Normal;
 			break;
 		case SC_BOSS:
-
+			m_pScene = new BossField;
 			break;
 
 

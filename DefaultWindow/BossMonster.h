@@ -8,6 +8,7 @@ class BossMonster :
 
 public:
 	BossMonster();
+	BossMonster(float _X,float _Y);
 	virtual ~BossMonster();
 
 

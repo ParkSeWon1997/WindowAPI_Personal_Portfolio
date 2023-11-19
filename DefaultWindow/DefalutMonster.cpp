@@ -11,6 +11,14 @@ DefalutMonster::DefalutMonster()
   
 }
 
+DefalutMonster::DefalutMonster(float _X, float _Y)
+{
+	m_tInfo.fX = _X;
+	m_tInfo.fY = _Y;
+}
+
+
+
 DefalutMonster::~DefalutMonster()
 {
     Release();

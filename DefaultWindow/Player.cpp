@@ -39,7 +39,10 @@ CPlayer::~CPlayer()
 
 void CPlayer::Initialize()
 {
-	m_tInfo = { 500.f, 300.f, 64, 64 };
+
+	//m_tInfo.fCX = 64.f;
+	//m_tInfo.fCY = 64.f;
+	m_tInfo = { 100.f, 500.f, 64, 64 };
 
 	m_fSpeed = 5.f;
 	m_fDiagonal = 100.f;

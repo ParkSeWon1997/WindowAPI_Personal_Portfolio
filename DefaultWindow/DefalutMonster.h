@@ -7,6 +7,7 @@ class DefalutMonster :
 	enum ImageSTATE { IDLE, ATTACK, DEAD, PS_END };
 public:
     DefalutMonster();
+    DefalutMonster(float _X,float _Y);
 	virtual ~DefalutMonster();
 
 

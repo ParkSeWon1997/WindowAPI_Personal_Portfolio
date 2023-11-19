@@ -31,57 +31,20 @@ CStage::~CStage()
 void CStage::Initialize()
 {
 
-	CObjMgr::Get_Instance()->Add_Object(PLAYER, CPlayer::Get_Instance());
-	CObjMgr::Get_Instance()->Add_Object(ENTRY, CAbstractFactory<Entry>::Create());
 
-
-
-	CLineMgr::Get_Instance()->Initialize();
-
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/TownSky_Xmas.bmp", L"Ground");
-
-
-	//고정 이미지
-
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/Temple.png", L"Temple");
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/TempleFront.png", L"Temple_front");
-
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/Tree0.png", L"Tree0");
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/Tree1.png", L"Tree1");
-
-
-	//맵 중앙
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/SecondFloor3.png", L"SecondFloor3");
-
-	//맵 좌측의 위치
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/SecondFloor_Broken0.png", L"SecondFloor_Broken0");
-
-
-
-	//움직임 1번째 느림
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/TownBG_Day.png", L"BackLayer1");
-
-	//움직임 2번째 느림
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/TownLayer_Day.png", L"BackLayer2");
 
 }
 
 void CStage::Update()
 {
 	CObjMgr::Get_Instance()->Update();
-	CSoundMgr::Get_Instance()->PlaySound(L"0.Town-sharedassets3.assets-340.wav", SOUND_BGM, g_fVolume);
-	//CTileMgr::Get_Instance()->Update();
+	//CSoundMgr::Get_Instance()->PlaySound(L"0.Town-sharedassets3.assets-340.wav", SOUND_BGM, g_fVolume);
+
 }
 
 void CStage::Late_Update()
 {
 	CObjMgr::Get_Instance()->Late_Update();
-
-	
-	
-
-
-	//CTileMgr::Get_Instance()->Late_Update();
 }
 
 void CStage::Render(HDC hDC)
