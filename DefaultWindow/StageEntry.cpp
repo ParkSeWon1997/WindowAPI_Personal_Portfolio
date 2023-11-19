@@ -8,7 +8,7 @@
 
 
 static float  g_fVolume = 1.0f;
-bool testing = false;
+
 
 StageEntry::StageEntry()
 {
@@ -58,31 +58,6 @@ void StageEntry::Late_Update()
 {
 	Motion_Change();
 
-	
-	if (CKeyMgr::Get_Instance()->Key_Pressing('1'))
-	{
-	
-		m_eCurState = IDLE;
-	
-	}
-	if (CKeyMgr::Get_Instance()->Key_Down('2'))
-	{
-		CSoundMgr::Get_Instance()->PlaySound(L"DungeonOut-sharedassets3.assets-343.wav", SOUND_EFFECT, g_fVolume);
-		m_eCurState = OPEN;
-	
-	}
-	if (CKeyMgr::Get_Instance()->Key_Down('3'))
-	{
-	
-		testing = false;
-	
-	}
-	if (CKeyMgr::Get_Instance()->Key_Down('4'))
-	{
-
-		testing = true;
-
-	}
 
 }
 

@@ -69,7 +69,7 @@ void CStage::Initialize()
 void CStage::Update()
 {
 	CObjMgr::Get_Instance()->Update();
-	CSoundMgr::Get_Instance()->PlaySound(L"0.Town-sharedassets3.assets-340.wav", SOUND_EFFECT, g_fVolume);
+	CSoundMgr::Get_Instance()->PlaySound(L"0.Town-sharedassets3.assets-340.wav", SOUND_BGM, g_fVolume);
 	//CTileMgr::Get_Instance()->Update();
 }
 
@@ -117,5 +117,5 @@ void CStage::Release()
 {
 
 	CObjMgr::Get_Instance()->Delete_ID(ENTRY);
-	CSoundMgr::Get_Instance()->StopSound(SOUND_EFFECT);
+	CSoundMgr::Get_Instance()->StopSound(SOUND_BGM);
 }

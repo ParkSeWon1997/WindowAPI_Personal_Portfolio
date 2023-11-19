@@ -57,7 +57,7 @@ void CMyMenu::Initialize()
 	pObj->Set_FrameKey(L"Exit");
 	CObjMgr::Get_Instance()->Add_Object(BUTTON, pObj);
 
-	CSoundMgr::Get_Instance()->PlaySound(L"title-sharedassets1.assets-54.wav", SOUND_EFFECT, g_fVolume);
+	CSoundMgr::Get_Instance()->PlaySound(L"title-sharedassets1.assets-54.wav", SOUND_BGM, g_fVolume);
 }
 
 void CMyMenu::Update()
@@ -111,5 +111,5 @@ void CMyMenu::Render(HDC hDC)
 void CMyMenu::Release()
 {
 	CObjMgr::Get_Instance()->Delete_ID(BUTTON);
-	CSoundMgr::Get_Instance()->StopSound(SOUND_EFFECT);
+	CSoundMgr::Get_Instance()->StopSound(SOUND_BGM);
 }
