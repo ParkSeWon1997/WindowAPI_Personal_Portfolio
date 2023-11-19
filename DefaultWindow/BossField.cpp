@@ -41,11 +41,11 @@ void BossField::Late_Update()
 
 void BossField::Render(HDC hDC)
 {
-	HDC		hGroundDC = CBmpMgr::Get_Instance()->Find_Img(L"Ground");
+	HDC		hGroundDC = CBmpMgr::Get_Instance()->Find_Img(L"MapBack");
+	BitBlt(hDC, 0, 0, 1920, 1280, hGroundDC, 0, 0, SRCCOPY);
 
 	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
 	int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
-	BitBlt(hDC, 0, 0, 1920, 1280, hGroundDC, 0, 0, SRCCOPY);
 
 	Graphics g(hDC);
 	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Map_Layer"), 0, 0, 1280, 800);

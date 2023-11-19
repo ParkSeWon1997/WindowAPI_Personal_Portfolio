@@ -158,8 +158,10 @@
     <ClInclude Include="Define.h" />
     <ClInclude Include="ElapseTimeMgr.h" />
     <ClInclude Include="Entry.h" />
+    <ClInclude Include="Ground.h" />
     <ClInclude Include="GuideBullet.h" />
     <ClInclude Include="Gun.h" />
+    <ClInclude Include="ImageCollection.h" />
     <ClInclude Include="KeyMgr.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="LineMgr.h" />
@@ -206,8 +208,10 @@
     <ClCompile Include="DefaultWindow.cpp" />
     <ClCompile Include="ElapseTimeMgr.cpp" />
     <ClCompile Include="Entry.cpp" />
+    <ClCompile Include="Ground.cpp" />
     <ClCompile Include="GuideBullet.cpp" />
     <ClCompile Include="Gun.cpp" />
+    <ClCompile Include="ImageCollection.cpp" />
     <ClCompile Include="KeyMgr.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="LineMgr.cpp" />

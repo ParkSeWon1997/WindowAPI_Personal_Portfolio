@@ -19,7 +19,6 @@ void Gun::Initialize()
 {
 	m_tInfo.fCX = 28.f;
 	m_tInfo.fCY = 20.f;
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Weapon/Gun/RussianRoulette.png", L"Player_Gun_Rusiian");
 
 	m_eRender = GAMEOBJECT;
 }

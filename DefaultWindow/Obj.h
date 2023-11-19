@@ -43,12 +43,12 @@ public:
 	virtual void	Render(HDC hDC)	PURE;
 	virtual void	Release()		PURE;
 
-
 	
 
 protected:
 	void		Update_Rect();
 	void		Move_Frame();
+	bool		Turn_By_Player() {};
 
 protected:
 	INFO		m_tInfo;

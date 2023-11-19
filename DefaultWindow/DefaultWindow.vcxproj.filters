@@ -136,6 +136,12 @@
     <Filter Include="03. Scene\03. Stage\01. Field">
       <UniqueIdentifier>{2723d1ad-5a14-4982-9c61-00a05f828e8e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Obj\10. Ground">
+      <UniqueIdentifier>{669da6a0-cd24-4897-a6b5-c86124184dad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scene\04. ImageClass">
+      <UniqueIdentifier>{f358ee29-165f-4557-92ca-4bd1426b6386}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -285,6 +291,12 @@
     <ClInclude Include="Player.h">
       <Filter>01. Obj\00. Player</Filter>
     </ClInclude>
+    <ClInclude Include="Ground.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageCollection.h">
+      <Filter>03. Scene\04. ImageClass</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DefaultWindow.cpp">
@@ -418,6 +430,12 @@
     </ClCompile>
     <ClCompile Include="StageEntry.cpp">
       <Filter>01. Obj\08. Entry</Filter>
+    </ClCompile>
+    <ClCompile Include="Ground.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageCollection.cpp">
+      <Filter>03. Scene\04. ImageClass</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

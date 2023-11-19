@@ -12,7 +12,7 @@
 #include "TileMgr.h"
 #include "PngMrg.h"
 #include "SoundMgr.h"
-
+#include"ImageCollection.h"
 CMainGame::CMainGame() 
 	: m_iFPS(0), m_dwTime(GetTickCount())
 {
@@ -32,6 +32,8 @@ void CMainGame::Initialize(void)
 	CSceneMgr::Get_Instance()->Scene_Change(SC_LOGO);
 	CMouse::Get_Instance()->Initialize();
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Back.bmp", L"Back");
+
+	ImageCollection pImageCollection;
 
 
 
@@ -130,7 +132,6 @@ void CMainGame::Release(void)
 	CBmpMgr::Destroy_Instance();
 	PngMrg::Destroy_Instance();
 	CSoundMgr::Destroy_Instance();
-	
 
 	ReleaseDC(g_hWnd, m_DC);
 }

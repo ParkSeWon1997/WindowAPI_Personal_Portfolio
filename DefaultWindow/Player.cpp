@@ -50,7 +50,6 @@ void CPlayer::Initialize()
 
 
 	//아이들, 점프, 달리기,죽음 이미지 
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/Bear1.png", L"Player");
 	m_tFrame.dwSpeed = 200;
 	m_tFrame.dwTime = GetTickCount();
 
@@ -81,7 +80,7 @@ void CPlayer::Late_Update()
 {
 	
 	Set_Posin();
-	Offset();
+	//Offset();
 	Move_Frame();
 	WeaponChage();
 	Motion_Change();
@@ -358,8 +357,8 @@ void CPlayer::WeaponChage()
 		}
 		else
 		{
-			(int)CScrollMgr::Get_Instance()->Get_ScrollX();
-			(int)CScrollMgr::Get_Instance()->Get_ScrollY();
+			int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
+			int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
 			CObjMgr::Get_Instance()->Get_ObjList(OBJID::GUN)->Set_Pos(m_tPosin.x, m_tPosin.y);
 			CObjMgr::Get_Instance()->Get_ObjList(OBJID::GUN)->Set_Angle(m_fAngle);
 
@@ -388,7 +387,7 @@ void CPlayer::Set_Posin()
 		m_fAngle *= -1;
 	}
 
-	m_tPosin.y =  LONG(m_tInfo.fY + m_fDiagonal * sin(m_fAngle * (PI / 180.f)));
+	m_tPosin.y =  LONG(m_tInfo.fY + m_fDiagonal * sin(m_fAngle * (PI / 180.f))) ;
 
 }
 

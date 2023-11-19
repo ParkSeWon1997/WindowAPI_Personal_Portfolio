@@ -34,8 +34,6 @@ void BossMonster::Initialize()
    // m_tInfo = { 700.f, 300.f, 80, 80 };
 
 
-    PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Monster/Boss/Boss_Nifl1.png", L"Boss_Monster");
-
 	m_tFrame.dwSpeed = 200;
 	m_tFrame.dwTime = GetTickCount();
 

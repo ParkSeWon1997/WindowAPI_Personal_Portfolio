@@ -17,7 +17,6 @@ void PlayerBullet::Initialize()
 	m_tInfo.fCY = 14.f;
 
 	m_fSpeed = 10.f;
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Weapon/Gun/Bullet/DogSkill.png", L"Player_Bullet");
 
 	m_eRender = GAMEOBJECT;
 }

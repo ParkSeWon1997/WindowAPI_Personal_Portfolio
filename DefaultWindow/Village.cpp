@@ -36,31 +36,7 @@ void Village::Initialize()
 
 	CLineMgr::Get_Instance()->Initialize();
 
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/TownSky_Xmas.bmp", L"Ground");
-
-
-	//고정 이미지
-
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/Temple.png", L"Temple");
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/TempleFront.png", L"Temple_front");
-
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/Tree0.png", L"Tree0");
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/Tree1.png", L"Tree1");
-
-
-	//맵 중앙
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/SecondFloor3.png", L"SecondFloor3");
-
-	//맵 좌측의 위치
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/SecondFloor_Broken0.png", L"SecondFloor_Broken0");
-
-
-
-	//움직임 1번째 느림
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/TownBG_Day.png", L"BackLayer1");
-
-	//움직임 2번째 느림
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/TownLayer_Day.png", L"BackLayer2");
+	
 
 }
 
@@ -94,14 +70,12 @@ void Village::Render(HDC hDC)
 
 	BitBlt(hDC, 0, 0, 1920, 1280, hGroundDC, 0, 0, SRCCOPY);
 
-	//Back 배경
+	
 	Graphics g(hDC);
-	//g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"BackLayer0"), 0, 0, 1200, 675);
 	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"BackLayer1"), 0 - (iScrollX * 0.05), 400 + iScrollY, 1280, 532);
-	//g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"BackLayer2"), 0+ (iScrollX*0.3), 400+ iScrollY, 1200, 356);
-
-
 	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"SecondFloor3"), 0 + iScrollX, (WINCY - 400) + iScrollY, 1388, 288);
+	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Tree0"), 400 , 700-122 , 104, 122);
+	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Tree1"), 600 , 400-77 , 67, 77);
 
 
 	//CTileMgr::Get_Instance()->Render(hDC);

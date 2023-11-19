@@ -26,7 +26,7 @@ Normal::~Normal()
 
 void Normal::Initialize()
 {
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/World/BossMap/Tile/BGLayer_1 #231958.png", L"Map_Layer");
+
 	//PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Button/new/Exit.png", L"Exit");
 	//CObj* DefaultMonster = CAbstractFactory<DefalutMonster>::Create(WINCX * 0.5, 400.f, 0.f);
 	//CObjMgr::Get_Instance()->Add_Object(MONSTER, DefaultMonster);
@@ -69,12 +69,11 @@ void Normal::Late_Update()
 
 void Normal::Render(HDC hDC)
 {
-	HDC		hGroundDC = CBmpMgr::Get_Instance()->Find_Img(L"Ground");
+	HDC		hGroundDC = CBmpMgr::Get_Instance()->Find_Img(L"MapBack");
+	BitBlt(hDC, 0, 0, 1920, 1280, hGroundDC, 0, 0, SRCCOPY);
 
 	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
 	int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
-
-	BitBlt(hDC, 0, 0, 1920, 1280, hGroundDC, 0, 0, SRCCOPY);
 
 	Graphics g(hDC);
 	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Map_Layer"), 0,0,1280,800);

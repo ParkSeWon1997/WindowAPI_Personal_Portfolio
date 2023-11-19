@@ -33,10 +33,7 @@ void StageEntry::Initialize()
 
 	m_tInfo.fCX = 132.f;
 	m_tInfo.fCY = 40.f;
-	//m_tInfo = { 330.f,700.f,132.f,40.f };
 
-
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/World/Stele.png", L"World_Stage_Entry");
 	m_pStateKey = L"World_Stage_Entry";
 
 	m_tFrame.iFrameStart = 0;
