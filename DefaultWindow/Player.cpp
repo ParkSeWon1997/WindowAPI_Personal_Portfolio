@@ -42,7 +42,7 @@ void CPlayer::Initialize()
 	m_tInfo = { 500.f, 300.f, 64, 64 };
 
 	m_fSpeed = 5.f;
-	m_fDiagonal = 10.f;
+	m_fDiagonal = 100.f;
 	m_fPower = 20.f;
 
 
@@ -117,7 +117,7 @@ void CPlayer::Render(HDC hDC)
 
 	Rectangle(hDC, m_tRect.left + iScrollX, m_tRect.top + iScrollY, m_tRect.right + iScrollX, m_tRect.bottom + iScrollY);
 	MoveToEx(hDC, (int)m_tInfo.fX + iScrollX, (int)m_tInfo.fY + iScrollY, nullptr);
-	LineTo(hDC, m_tPosin.x + iScrollX, m_tPosin.y + iScrollY);
+	//LineTo(hDC, m_tPosin.x + iScrollX, m_tPosin.y + iScrollY);
 
 	Point destinationPoints[] = {
 		Point((int)(m_tInfo.fX + m_tInfo.fCX * 0.5) + iScrollX,
@@ -250,10 +250,10 @@ void CPlayer::Jump()
 void CPlayer::Offset()
 {
 	int		iOffSetMinX = 100;
-	int		iOffSetMaxX = 1100;
+	int		iOffSetMaxX = 1280;
 
 	int		iOffSetMinY = 100;
-	int		iOffSetMaxY = 700;
+	int		iOffSetMaxY = 800;
 
 	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
 
@@ -355,7 +355,9 @@ void CPlayer::WeaponChage()
 		}
 		else
 		{
-			CObjMgr::Get_Instance()->Get_ObjList(OBJID::GUN)->Set_Pos(m_tInfo.fX, m_tInfo.fY);
+			(int)CScrollMgr::Get_Instance()->Get_ScrollX();
+			(int)CScrollMgr::Get_Instance()->Get_ScrollY();
+			CObjMgr::Get_Instance()->Get_ObjList(OBJID::GUN)->Set_Pos(m_tPosin.x, m_tPosin.y);
 			CObjMgr::Get_Instance()->Get_ObjList(OBJID::GUN)->Set_Angle(m_fAngle);
 
 		}
@@ -376,14 +378,14 @@ void CPlayer::Set_Posin()
 
 	m_fAngle = (float)acos(m_pMouse_X / m_pMouse_R) * 180 / PI;
 
-	m_tPosin.x = iScrollX + LONG(m_tInfo.fX + m_fDiagonal * cos(m_fAngle * (PI / 180.f)));
+	m_tPosin.x = LONG(m_tInfo.fX + m_fDiagonal * cos(m_fAngle * (PI / 180.f)));
 
 	if (m_pMouse_Y < 0)
 	{
 		m_fAngle *= -1;
 	}
 
-	m_tPosin.y = iScrollY + LONG(m_tInfo.fY + m_fDiagonal * sin(m_fAngle * (PI / 180.f)));
+	m_tPosin.y =  LONG(m_tInfo.fY + m_fDiagonal * sin(m_fAngle * (PI / 180.f)));
 
 }
 

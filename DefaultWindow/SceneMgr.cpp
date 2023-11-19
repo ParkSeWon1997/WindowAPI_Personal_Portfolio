@@ -3,6 +3,7 @@
 #include "SoundMgr.h"
 #include "Stage.h"
 #include"Normal.h"
+#include"Village.h"
 
 CSceneMgr*	CSceneMgr::m_pInstance = nullptr;
 
@@ -41,7 +42,7 @@ void CSceneMgr::Scene_Change(SCENEID eID)
 			break;
 
 		case SC_VILLAGE:
-			m_pScene = new CStage;
+			m_pScene = new Village;
 			break;
 		case SC_NORMAL:
 			m_pScene = new Normal;

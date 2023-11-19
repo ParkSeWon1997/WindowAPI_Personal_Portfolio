@@ -29,8 +29,8 @@ int CMouse::Update()
 	GetCursorPos(&ptMouse);
 	ScreenToClient(g_hWnd, &ptMouse);
 
-	m_tInfo.fX = (float)ptMouse.x;
-	m_tInfo.fY = (float)ptMouse.y;
+	m_tInfo.fX = (float)ptMouse.x+ iScrollX;
+	m_tInfo.fY = (float)ptMouse.y+ iScrollY;
 
 
 

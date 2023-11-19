@@ -4,6 +4,7 @@
 #include"ObjMgr.h"
 #include"PlayerBullet.h"
 #include "AbstractFactory.h"
+#include "ScrollMgr.h"
 
 
 Gun::Gun()
@@ -38,13 +39,18 @@ void Gun::Late_Update()
 
 void Gun::Render(HDC hDC)
 {
+	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
+	int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
 	Ellipse(hDC,
 		m_tRect.left,
 		m_tRect.top,
 		m_tRect.right,
 		m_tRect.bottom);
 	Graphics g(hDC);
-	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Gun_Rusiian"), (m_tInfo.fX - m_tInfo.fCX * 0.5), (m_tInfo.fY - m_tInfo.fCY * 0.5), 28.f, 20.f);
+	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Gun_Rusiian"),
+		(m_tInfo.fX - m_tInfo.fCX * 0.5)+ iScrollX,
+		(m_tInfo.fY - m_tInfo.fCY * 0.5)+ iScrollY,
+		28.f, 20.f);
 
 	//g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Gun_Rusiian"), )
 }
