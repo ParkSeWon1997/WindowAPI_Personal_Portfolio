@@ -46,11 +46,12 @@ void Entry::Late_Update()
 {
     Move_Frame();
    
-    if (CCollisionMgr::CollisionRect_to_Rect(CObjMgr::Get_Instance()->Get_Player(), this))
+    if (CCollisionMgr::CollisionRect_to_Rect(CObjMgr::Get_Instance()->Get_Player(),this))
     {
         CSceneMgr::Get_Instance()->Scene_Change(SC_NORMAL);
 
     }
+
 }
 
 void Entry::Render(HDC hDC)

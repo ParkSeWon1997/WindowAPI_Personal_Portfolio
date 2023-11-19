@@ -10,6 +10,9 @@
 #include "PngMrg.h"
 #include "SoundMgr.h"
 #include "ScrollMgr.h"
+#include "StageEntry.h"
+#include "CollisionMgr.h"
+#include "SceneMgr.h"
 
 static float g_fVolume = 1.f;
 Village::Village()
@@ -26,7 +29,7 @@ void Village::Initialize()
 
 	CObjMgr::Get_Instance()->Add_Object(PLAYER, CPlayer::Get_Instance());
 	CObjMgr::Get_Instance()->Add_Object(ENTRY, CAbstractFactory<Entry>::Create());
-
+	//CObjMgr::Get_Instance()->Add_Object(STAGE_ENTRY, CAbstractFactory<StageEntry>::Create());
 
 
 	CLineMgr::Get_Instance()->Initialize();
@@ -63,18 +66,17 @@ void Village::Update()
 {
 	CObjMgr::Get_Instance()->Update();
 	CSoundMgr::Get_Instance()->PlaySound(L"0.Town-sharedassets3.assets-340.wav", SOUND_BGM, g_fVolume);
-	//CTileMgr::Get_Instance()->Update();
+	
 }
 
 void Village::Late_Update()
 {
 	CObjMgr::Get_Instance()->Late_Update();
 
+	
 
 
-
-
-	//CTileMgr::Get_Instance()->Late_Update();
+	
 }
 
 void Village::Render(HDC hDC)

@@ -22,7 +22,7 @@ StageEntry::~StageEntry()
 void StageEntry::Initialize()
 {
 
-	m_tInfo = { 100.f,300.f,132.f,40.f };
+	m_tInfo = { 330.f,300.f,132.f,40.f };
 
 
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/World/Stele.png", L"World_Stage_Entry");
@@ -34,20 +34,13 @@ void StageEntry::Initialize()
 
 	m_tFrame.dwSpeed = 100;
 	m_tFrame.dwTime = GetTickCount();
-
 	m_eRender = GAMEOBJECT;
 }
 
 int StageEntry::Update()
 {
-	Move_Frame();
 
-
-
-
-
-
-
+	Motion_Change();
 
 	__super::Update_Rect();
 
@@ -56,7 +49,8 @@ int StageEntry::Update()
 
 void StageEntry::Late_Update()
 {
-	Motion_Change();
+	Move_Frame();
+
 
 
 }

@@ -8,6 +8,9 @@
 #include "ScrollMgr.h"
 #include "BmpMgr.h"
 #include "StageEntry.h"
+#include "Entry.h"
+#include "SoundMgr.h"
+#include "Player.h"
 
 Normal::Normal()
 {
@@ -21,8 +24,9 @@ Normal::~Normal()
 void Normal::Initialize()
 {
 	CObjMgr::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<DefalutMonster>::Create());
-	//CObjMgr::Get_Instance()->Add_Object(ENTRY, CAbstractFactory<StageEntry>::Create());
+	CObjMgr::Get_Instance()->Add_Object(STAGE_ENTRY, CAbstractFactory<StageEntry>::Create());
 	CLineMgr::Get_Instance()->Initialize();
+
 }
 
 void Normal::Update()
@@ -54,4 +58,5 @@ void Normal::Render(HDC hDC)
 void Normal::Release()
 {
 	CObjMgr::Get_Instance()->Delete_ID(ENTRY);
+	CSoundMgr::Get_Instance()->StopSound(SOUND_BGM);
 }

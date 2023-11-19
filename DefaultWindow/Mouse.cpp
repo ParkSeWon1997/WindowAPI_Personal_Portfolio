@@ -18,6 +18,7 @@ void CMouse::Initialize()
 	m_tInfo.fCX = 40.f;
 	m_tInfo.fCY = 40.f;
 
+	m_eRender = UI;
 	//PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Cusor/BasicCursor.png", L"Mouse_cousor");
 }
 
