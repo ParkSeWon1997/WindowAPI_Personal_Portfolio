@@ -168,16 +168,10 @@ void BossMonster::Motion_Change()
 void BossMonster::Boss_pattern()
 {
 
-	if (m_tFrame.iFrameStart)
-	{
-		m_eCurState = IDLE;
-	}
-	if (m_eCurState == DEAD) {
-		//m_eCurState = DEAD;
-		//if (m_tFrame.iFrameStart < m_tFrame.iFrameEnd) {
-		//	m_tFrame.iFrameStart = 8;
-		//	return;
-		//}
+
+	if (m_bDead) {
+		m_eCurState = DEAD;
+		
 	}
 	else {
 		m_eCurState = IDLE;
