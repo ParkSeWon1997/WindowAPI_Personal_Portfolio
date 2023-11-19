@@ -10,7 +10,6 @@ public:
 	{
 		CObj*		pObj = new T;
 		pObj->Initialize();
-
 		return pObj;
 	}
 

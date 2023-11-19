@@ -30,9 +30,6 @@ void Village::Initialize()
 	CObjMgr::Get_Instance()->Add_Object(PLAYER, CPlayer::Get_Instance());
 	CObjMgr::Get_Instance()->Add_Object(ENTRY, CAbstractFactory<Entry>::Create());
 
-	CObjMgr::Get_Instance()->Add_Object(ENTRY, CAbstractFactory<StageEntry>::Create());
-	CObjMgr::Get_Instance()->Add_Object(ENTRY, CAbstractFactory<StageEntry>::Create(100.f,200.f,0));
-
 
 	CLineMgr::Get_Instance()->Initialize();
 

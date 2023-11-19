@@ -17,6 +17,7 @@
 #include "SoundMgr.h"
 #include"Gun.h"
 #include "PlayerBullet.h"
+#include "SceneMgr.h"
 
 
 CObj* CPlayer::m_Instance = nullptr;
@@ -200,6 +201,11 @@ void CPlayer::Key_Input()
 		{
 			m_eWeaponMode = CPlayer::SWORD;
 		}
+		if (CKeyMgr::Get_Instance()->Key_Pressing('0'))
+		{
+			CSceneMgr::Get_Instance()->Scene_Change(SC_BOSS);
+		}
+
 
 		if (CKeyMgr::Get_Instance()->Key_Down(VK_LBUTTON))
 		{

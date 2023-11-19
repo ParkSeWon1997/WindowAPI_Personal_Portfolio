@@ -115,7 +115,7 @@ void CTileMgr::Save_Data()
 
 void CTileMgr::Load_Data()
 {
-	HANDLE	hFile = CreateFile(L"../Data/Tile.dat", GENERIC_READ, NULL, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+	HANDLE	hFile = CreateFile(L"../Data/save.dat", GENERIC_READ, NULL, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
 	if (INVALID_HANDLE_VALUE == hFile)
 		return;

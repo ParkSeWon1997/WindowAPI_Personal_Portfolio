@@ -22,30 +22,16 @@ Normal::Normal()
 Normal::~Normal()
 {
 	Release();
+
+	
 }
 
 void Normal::Initialize()
 {
 
-	//PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Button/new/Exit.png", L"Exit");
-	//CObj* DefaultMonster = CAbstractFactory<DefalutMonster>::Create(WINCX * 0.5, 400.f, 0.f);
-	//CObjMgr::Get_Instance()->Add_Object(MONSTER, DefaultMonster);
-	//
-	//DefaultMonster = CAbstractFactory<DefalutMonster>::Create(WINCX * 0.3, 400.f, 0.f);
-	//CObjMgr::Get_Instance()->Add_Object(MONSTER, DefaultMonster);
-	//
-	// DefaultMonster = CAbstractFactory<DefalutMonster>::Create(WINCX *0.1, 400.f, 0.f);
-	//CObjMgr::Get_Instance()->Add_Object(MONSTER, DefaultMonster);
-	
+	CObjMgr::Get_Instance()->Add_Object(STAGE_ENTRY, CAbstractFactory<StageEntry>::Create(0.f,600.f,0));
+	CObjMgr::Get_Instance()->Add_Object(STAGE_ENTRY, CAbstractFactory<StageEntry>::Create(100.f, 200.f, 0));
 
-	//CObj* pStageEntry= CAbstractFactory<StageEntry>::Create(100.f, 700.f, 0.f);
-	//CObjMgr::Get_Instance()->Add_Object(STAGE_ENTRY, pStageEntry);
-	//
-	//pStageEntry= CAbstractFactory<StageEntry>::Create(200.f, 400.f, 0.f);
-	//CObjMgr::Get_Instance()->Add_Object(STAGE_ENTRY, pStageEntry);
-	//
-	//pStageEntry= CAbstractFactory<StageEntry>::Create(300.f, 400.f, 0.f);
-	//CObjMgr::Get_Instance()->Add_Object(STAGE_ENTRY, pStageEntry);
 
 	CLineMgr::Get_Instance()->Initialize();
 
@@ -53,6 +39,11 @@ void Normal::Initialize()
 
 void Normal::Update()
 {
+	if (CKeyMgr::Get_Instance()->Key_Pressing('0'))
+	{
+		CSceneMgr::Get_Instance()->Scene_Change(SC_BOSS);
+	}
+
 	CObjMgr::Get_Instance()->Update();
 }
 
@@ -60,10 +51,6 @@ void Normal::Late_Update()
 {
 	CObjMgr::Get_Instance()->Late_Update();
 
-	if (CKeyMgr::Get_Instance()->Key_Pressing('0'))
-	{
-		CSceneMgr::Get_Instance()->Scene_Change(SC_BOSS);
-	}
 
 }
 
@@ -84,8 +71,8 @@ void Normal::Render(HDC hDC)
 
 void Normal::Release()
 {
+	
 	CObjMgr::Get_Instance()->Delete_ID(MONSTER);
 	CObjMgr::Get_Instance()->Delete_ID(STAGE_ENTRY);
-	CLineMgr::Get_Instance()->Destroy_Instance();
 	CSoundMgr::Get_Instance()->StopSound(SOUND_BGM);
 }

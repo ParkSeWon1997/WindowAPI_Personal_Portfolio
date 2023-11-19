@@ -25,6 +25,7 @@ void BossField::Initialize()
 
 	//PngMrg::Get_Instance()->Insert_Png()
 	CObjMgr::Get_Instance()->Add_Object(BOSS_MONSTER, CAbstractFactory<BossMonster>::Create(200.f,500.f,0));
+
 	CLineMgr::Get_Instance()->Initialize();
 
 }
@@ -59,5 +60,6 @@ void BossField::Render(HDC hDC)
 
 void BossField::Release()
 {
+	CObjMgr::Get_Instance()->Delete_ID(BOSS_MONSTER);
 
 }

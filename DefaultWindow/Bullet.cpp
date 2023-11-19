@@ -17,6 +17,8 @@ void CBullet::Initialize()
 	m_tInfo.fCY = 30.f;
 
 	m_fSpeed = 5.f;
+
+	m_eRender = GAMEOBJECT;
 }
 
 int CBullet::Update()
