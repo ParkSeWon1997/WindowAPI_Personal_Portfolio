@@ -270,9 +270,6 @@
     <ClInclude Include="MonsterBullet.h">
       <Filter>01. Obj\01. Bullet\03. MonsterBullet</Filter>
     </ClInclude>
-    <ClInclude Include="StageEntry.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Village.h">
       <Filter>03. Scene\03. Stage</Filter>
     </ClInclude>
@@ -284,6 +281,9 @@
     </ClInclude>
     <ClInclude Include="BossField.h">
       <Filter>03. Scene\03. Stage\01. Field</Filter>
+    </ClInclude>
+    <ClInclude Include="StageEntry.h">
+      <Filter>01. Obj\08. Entry</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -407,9 +407,6 @@
     <ClCompile Include="MonsterBullet.cpp">
       <Filter>01. Obj\01. Bullet\03. MonsterBullet</Filter>
     </ClCompile>
-    <ClCompile Include="StageEntry.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Village.cpp">
       <Filter>03. Scene\03. Stage</Filter>
     </ClCompile>
@@ -418,6 +415,9 @@
     </ClCompile>
     <ClCompile Include="BossField.cpp">
       <Filter>03. Scene\03. Stage\01. Field</Filter>
+    </ClCompile>
+    <ClCompile Include="StageEntry.cpp">
+      <Filter>01. Obj\08. Entry</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

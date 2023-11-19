@@ -16,7 +16,8 @@ Gun::~Gun()
 
 void Gun::Initialize()
 {
-	
+	m_tInfo.fCX = 28.f;
+	m_tInfo.fCY = 20.f;
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Weapon/Gun/RussianRoulette.png", L"Player_Gun_Rusiian");
 
 	m_eRender = GAMEOBJECT;
@@ -24,7 +25,8 @@ void Gun::Initialize()
 
 int Gun::Update()
 {
-
+	//m_tInfo.fX += m_fSpeed * cos(m_fAngle * (PI / 180.f));
+	//m_tInfo.fY += m_fSpeed * sin(m_fAngle * (PI / 180.f));
 
 	__super::Update_Rect();
 	return OBJ_NOEVENT;
@@ -42,6 +44,8 @@ void Gun::Render(HDC hDC)
 		m_tRect.right,
 		m_tRect.bottom);
 	Graphics g(hDC);
+	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Gun_Rusiian"), (m_tInfo.fX - m_tInfo.fCX * 0.5), (m_tInfo.fY - m_tInfo.fCY * 0.5), 28.f, 20.f);
+
 	//g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Gun_Rusiian"), )
 }
 

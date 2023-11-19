@@ -94,7 +94,7 @@ void CObjMgr::Late_Update()
 	//CCollisionMgr::Collision_RectEx(m_ObjList[PLAYER], m_ObjList[MONSTER]);
 	//CCollisionMgr::Collision_Rect(m_ObjList[MONSTER], m_ObjList[BULLET]);
 	CCollisionMgr::Collision_Sphere(m_ObjList[MONSTER], m_ObjList[BULLET]);
-	CCollisionMgr::Collision_RectEx(m_ObjList[MONSTER], m_ObjList[BULLET]);
+	//CCollisionMgr::Collision_RectEx(m_ObjList[MONSTER], m_ObjList[BULLET]);
 }
 
 void CObjMgr::Render(HDC hDC)

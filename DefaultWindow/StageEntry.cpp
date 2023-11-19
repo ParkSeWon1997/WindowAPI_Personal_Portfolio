@@ -84,7 +84,6 @@ void StageEntry::Late_Update()
 
 	}
 
-	EntryOpen(true, testing);
 }
 
 void StageEntry::Render(HDC hDC)
@@ -101,20 +100,16 @@ void StageEntry::Release()
 {
 }
 
-void StageEntry::EntryOpen(bool _OpenCondition, bool _PlayerInsert)
+void StageEntry::EntryOpen()
 {
-	if (_PlayerInsert)
-	{
-		m_eCurState = CLOSE;
-		if (dwFrameTime + 1000 < GetTickCount())
-		{
-			m_eCurState = IDLE;
-			dwFrameTime = GetTickCount();
-		}
-	}
+
 
 
 	
+}
+
+void StageEntry::EntryClose()
+{
 }
 
 void StageEntry::Motion_Change()

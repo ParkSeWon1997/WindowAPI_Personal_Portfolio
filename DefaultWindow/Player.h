@@ -76,7 +76,7 @@ private:
 
 
 
-	list<CObj*>		m_pWeaponList;
+	CObj*	m_pWeaponList[END];
 	int					DashCount;
 	bool				m_bJump;
 	WEAPONMODE			m_eWeaponMode;

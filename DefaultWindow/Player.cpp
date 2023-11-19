@@ -25,7 +25,7 @@ static float  g_fVolume = 1.0f;
 
 bool testLand = false;
 CPlayer::CPlayer() : m_bJump(false), m_fPower(0.f), m_fAccelTime(0.f)
-, m_eCurState(IDLE), m_ePreState(PS_END)
+, m_eCurState(IDLE), m_ePreState(PS_END), m_pWeaponList{}
 {
 	ZeroMemory(&m_tPosin, sizeof(POINT));
 	m_pMouse = CMouse::Get_Instance();
@@ -63,9 +63,11 @@ void CPlayer::Initialize()
 
 int CPlayer::Update()
 {
+
 	Jump();
 
 	Key_Input();
+	
 
 	__super::Update_Rect();
 
@@ -74,6 +76,7 @@ int CPlayer::Update()
 
 void CPlayer::Late_Update()
 {
+	
 	Set_Posin();
 	Offset();
 	Move_Frame();
@@ -105,8 +108,7 @@ void CPlayer::Late_Update()
 
 void CPlayer::Render(HDC hDC)
 {
-
-
+	
 
 
 
@@ -158,6 +160,7 @@ void CPlayer::Render(HDC hDC)
 void CPlayer::Release()
 {
 
+	
 
 }
 
@@ -200,7 +203,9 @@ void CPlayer::Key_Input()
 		{
 			if (m_eWeaponMode == CPlayer::GUN)
 			{
-				CObjMgr::Get_Instance()->Add_Object(BULLET, CAbstractFactory<PlayerBullet>::Create(m_tPosin.x, m_tPosin.y, this->m_fAngle));
+				dynamic_cast<Gun*>(CObjMgr::Get_Instance()->Get_ObjList(OBJID::GUN))->FIre(true);
+				
+				//CObjMgr::Get_Instance()->Add_Object(BULLET, CAbstractFactory<PlayerBullet>::Create(m_tPosin.x, m_tPosin.y, this->m_fAngle));
 				CSoundMgr::Get_Instance()->PlaySound(L"Gun-sharedassets22.assets-357.wav", SOUND_EFFECT, g_fVolume);
 
 			}
@@ -333,7 +338,27 @@ void CPlayer::WeaponChage()
 	switch (m_eWeaponMode)
 	{
 	case CPlayer::GUN:
-		//CObjMgr::Add_Object(GUN,)
+		
+		//CObjMgr::Get_Instance()->Add_Object(OBJID::GUN, CAbstractFactory<Gun>::Create(this->m_tInfo.fX, this->m_tInfo.fY, this->m_fAngle));
+		//if (CObjMgr::Get_Instance()->Get_ObjList(OBJID::GUN)==NULL)
+		//{
+		//
+		//}
+
+		if (m_pWeaponList[CPlayer::GUN] == nullptr)
+		{
+			CObjMgr::Get_Instance()->Add_Object(OBJID::GUN, CAbstractFactory<Gun>::Create(this->m_tPosin.x, this->m_tPosin.y, this->m_fAngle));
+			m_pWeaponList[CPlayer::GUN] = CObjMgr::Get_Instance()->Get_ObjList(OBJID::GUN);
+			//m_pWeaponList[CPlayer::GUN] = new Gun;
+			//m_pWeaponList[CPlayer::GUN]->Set_Pos(m_tPosin.x, m_tPosin.y);
+			//m_pWeaponList[CPlayer::GUN]->Set_Angle(this->m_fAngle);
+		}
+		else
+		{
+			CObjMgr::Get_Instance()->Get_ObjList(OBJID::GUN)->Set_Pos(m_tInfo.fX, m_tInfo.fY);
+			CObjMgr::Get_Instance()->Get_ObjList(OBJID::GUN)->Set_Angle(m_fAngle);
+
+		}
 		break;
 	case CPlayer::SWORD:
 		break;

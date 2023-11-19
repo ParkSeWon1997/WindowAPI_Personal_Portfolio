@@ -19,7 +19,8 @@ public:
 	virtual void Release() override;
 
 
-	void		EntryOpen(bool _OpenCondition,bool _PlayerInsert);
+	void		EntryOpen();
+	void		EntryClose();
 	void		Motion_Change();
 
 

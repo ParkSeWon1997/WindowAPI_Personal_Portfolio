@@ -49,7 +49,6 @@ void PlayerBullet::Render(HDC hDC)
 	//	m_tRect.top,
 	//	m_tRect.right,
 	//	m_tRect.bottom);
-	PngMrg::Get_Instance()->Get_Image(L"Player_Bullet");
 	Graphics g(hDC);
 	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Bullet"), (m_tInfo.fX - m_tInfo.fCX * 0.5), (m_tInfo.fY - m_tInfo.fCY * 0.5), 17.f, 14.f);
 	//g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Bullet"),
