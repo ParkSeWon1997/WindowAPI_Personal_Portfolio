@@ -30,6 +30,12 @@ void Ground::Late_Update()
 
 void Ground::Render(HDC hDC)
 {
+	Rectangle(hDC,
+		m_tRect.left ,
+		m_tRect.top ,
+		m_tRect.right ,
+		m_tRect.bottom );
+
 }
 
 void Ground::Release()

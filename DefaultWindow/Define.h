@@ -16,7 +16,9 @@
 
 #define			TILECX		64
 #define			TILECY		64
-
+		
+#define			MyTILECX	16
+#define			MyTILECY	16
 
 #define			MYTILEX		16
 #define			MYTILEY		16

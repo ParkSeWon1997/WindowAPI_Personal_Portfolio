@@ -62,6 +62,7 @@ private:
 
 
 
+	bool				IsGround;
 	//초기 속도
 	//경과 시간
 	//float				

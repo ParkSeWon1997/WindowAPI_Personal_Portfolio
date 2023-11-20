@@ -26,7 +26,7 @@ static float  g_fVolume = 1.0f;
 
 bool testLand = false;
 CPlayer::CPlayer() : m_bJump(false), m_fPower(0.f), m_fAccelTime(0.f)
-, m_eCurState(IDLE), m_ePreState(PS_END), m_pWeaponList{}
+, m_eCurState(IDLE), m_ePreState(PS_END), m_pWeaponList{}, IsGround(false)
 {
 	ZeroMemory(&m_tPosin, sizeof(POINT));
 	m_pMouse = CMouse::Get_Instance();
@@ -195,6 +195,7 @@ void CPlayer::Key_Input()
 		}
 		if (CKeyMgr::Get_Instance()->Key_Pressing(VK_SPACE))
 		{
+		
 			m_bJump = true;
 			m_eCurState = JUMP;
 		}
@@ -219,12 +220,9 @@ void CPlayer::Key_Input()
 			{
 				dynamic_cast<Gun*>(CObjMgr::Get_Instance()->Get_ObjList(OBJID::GUN))->FIre(true);
 				
-				//CObjMgr::Get_Instance()->Add_Object(BULLET, CAbstractFactory<PlayerBullet>::Create(m_tPosin.x, m_tPosin.y, this->m_fAngle));
 				CSoundMgr::Get_Instance()->PlaySound(L"Gun-sharedassets22.assets-357.wav", SOUND_EFFECT, g_fVolume);
 
 			}
-
-			//dynamic_cast<Gun*>(m_pWeaponList.back())->FIre(true);
 
 		}
 
@@ -234,27 +232,20 @@ void CPlayer::Key_Input()
 
 void CPlayer::Jump()
 {
-	//float	fY(0.f);
-
-	//bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(&fY, m_tInfo.fX);
-
-	if (m_bJump)
-	{
-
+	if (m_bJump) {
 		m_tInfo.fY -= (m_fPower * m_fAccelTime) - (9.8f * m_fAccelTime * m_fAccelTime * 0.5f);
-
 		m_fAccelTime += 0.2f;
-
 	}
 
+
 	else
-		m_fAccelTime = 0.f;
+		{
+			m_fAccelTime = 0.f;
+
+		}
 
 
-	//else if (bLineCol)
-	//{
-	//	m_tInfo.fY = fY;
-	//}
+
 
 
 }

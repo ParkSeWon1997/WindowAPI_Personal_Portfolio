@@ -52,14 +52,20 @@ bool CLineMgr::Collision_Line(float _fX, float _fY)
 	for (auto& iter : m_LineList)
 	{
 
-		if (_fY >= iter->Get_Info().tLPoint.fY ) 
+		if (_fY <iter->Get_Info().tLPoint.fY ) 
 		{
-			return true; // 충돌 발생
+			return false; //충돌아님
 		}
-		if (_fX< iter->Get_Info().tLPoint.fX|| iter->Get_Info().tRPoint.fX)
+		else
 		{
-			return false;
+			return true;
 		}
+		
+		if (_fX< iter->Get_Info().tLPoint.fX )
+		{
+			return true;
+		}
+		else return false;
 		
 	}
 
