@@ -139,7 +139,13 @@
     <Filter Include="01. Obj\10. Ground">
       <UniqueIdentifier>{669da6a0-cd24-4897-a6b5-c86124184dad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03. Scene\04. ImageClass">
+    <Filter Include="01. Obj\02. Monster\01.Boss">
+      <UniqueIdentifier>{561deaa0-463f-4202-8e46-0b886ee7e163}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\02. Monster\02. Defalut">
+      <UniqueIdentifier>{116376e3-49b4-46a6-9698-6e00a3bfb7f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\04. ImageClass">
       <UniqueIdentifier>{f358ee29-165f-4557-92ca-4bd1426b6386}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -249,12 +255,6 @@
     <ClInclude Include="CTimeMgr.h">
       <Filter>02. Design\10. ElapseTimeMgr</Filter>
     </ClInclude>
-    <ClInclude Include="DefalutMonster.h">
-      <Filter>01. Obj\02. Monster</Filter>
-    </ClInclude>
-    <ClInclude Include="BossMonster.h">
-      <Filter>01. Obj\02. Monster</Filter>
-    </ClInclude>
     <ClInclude Include="Gun.h">
       <Filter>01. Obj\07. Weapon\01. Gun</Filter>
     </ClInclude>
@@ -295,7 +295,16 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="ImageCollection.h">
-      <Filter>03. Scene\04. ImageClass</Filter>
+      <Filter>소스 파일\04. ImageClass</Filter>
+    </ClInclude>
+    <ClInclude Include="BossMonster.h">
+      <Filter>01. Obj\02. Monster\01.Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="DefalutMonster.h">
+      <Filter>01. Obj\02. Monster\02. Defalut</Filter>
+    </ClInclude>
+    <ClInclude Include="SubMonster.h">
+      <Filter>01. Obj\02. Monster\01.Boss</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -395,12 +404,6 @@
     <ClCompile Include="CTimeMgr.cpp">
       <Filter>02. Design\10. ElapseTimeMgr</Filter>
     </ClCompile>
-    <ClCompile Include="DefalutMonster.cpp">
-      <Filter>01. Obj\02. Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="BossMonster.cpp">
-      <Filter>01. Obj\02. Monster</Filter>
-    </ClCompile>
     <ClCompile Include="Gun.cpp">
       <Filter>01. Obj\07. Weapon\01. Gun</Filter>
     </ClCompile>
@@ -435,7 +438,16 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="ImageCollection.cpp">
-      <Filter>03. Scene\04. ImageClass</Filter>
+      <Filter>소스 파일\04. ImageClass</Filter>
+    </ClCompile>
+    <ClCompile Include="BossMonster.cpp">
+      <Filter>01. Obj\02. Monster\01.Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="DefalutMonster.cpp">
+      <Filter>01. Obj\02. Monster\02. Defalut</Filter>
+    </ClCompile>
+    <ClCompile Include="SubMonster.cpp">
+      <Filter>01. Obj\02. Monster\01.Boss</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

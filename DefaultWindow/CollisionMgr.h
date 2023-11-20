@@ -13,6 +13,8 @@ public:
 	// Ãß°¡
 	static bool CollisionRect_to_Rect(CObj* _tmp, CObj* _Src);
 	static bool CollisionPoint_to_Point(CObj* _tmp, CObj* _Src);
+	static void DoDamageObj_to_Obj(list<CObj*> Dst, list<CObj*> Src);
+
 
 
 	static void	Collision_RectEx(list<CObj*> DstList, list<CObj*> SrcList);

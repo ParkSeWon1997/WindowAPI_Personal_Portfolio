@@ -36,7 +36,7 @@ ImageCollection::ImageCollection()
 
 	//¸¶À» Image
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/TownBG_Day.png", L"BackLayer1");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Dun/Village/TownBG_BMP_Day.bmp", L"Map_Layer_BG_Bmp");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/TownBG.bmp",L"TownBGbmp");
 
 
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/Temple.png", L"Temple");
@@ -63,6 +63,12 @@ ImageCollection::ImageCollection()
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Map/FrontCloud.png", L"FrontCloud");
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Map/Sky_Day.png", L"Sky_Day");
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Map/MainLogo01.png", L"MainLogo");
+
+
+
+
+	//SubMonster ÃÑ¾Ë
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Monster/Boss/Bullet/IceBullet.png", L"SubMonster_Bullet");
 }
 
 ImageCollection::~ImageCollection()

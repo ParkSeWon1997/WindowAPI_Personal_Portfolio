@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GuideBullet.h"
 #include "ObjMgr.h"
+#include "PngMrg.h"
 
 
 CGuideBullet::CGuideBullet()
@@ -14,10 +15,11 @@ CGuideBullet::~CGuideBullet()
 
 void CGuideBullet::Initialize()
 {
-	m_tInfo.fCX = 30.f;
-	m_tInfo.fCY = 30.f;
+	m_tInfo.fCX = 36.f;
+	m_tInfo.fCY = 72.f;
 
 	m_fSpeed = 5.f;
+	m_eRender = GAMEOBJECT;
 }
 
 int CGuideBullet::Update()
@@ -25,7 +27,7 @@ int CGuideBullet::Update()
 	if (m_bDead)
 		return OBJ_DEAD;
 
-	m_pTarget = CObjMgr::Get_Instance()->Get_Target(MONSTER, this);
+	m_pTarget = CObjMgr::Get_Instance()->Get_Target(PLAYER, this);
 	
 	float		fWidth, fHeight, fDiagonal, fRadian;
 
@@ -44,6 +46,13 @@ int CGuideBullet::Update()
 			m_fAngle *= -1.f;
 	}
 	
+	//m_tRect.left+= m_fSpeed * cos(m_fAngle * PI / 180.f);
+	//m_tRect.top+= m_fSpeed * cos(m_fAngle * PI / 180.f);
+	//
+	//m_tRect.right -= m_fSpeed * sin(m_fAngle * PI / 180.f);
+	//m_tRect.bottom -= m_fSpeed * sin(m_fAngle * PI / 180.f);
+
+
 	m_tInfo.fX += m_fSpeed * cos(m_fAngle * PI / 180.f);
 	m_tInfo.fY -= m_fSpeed * sin(m_fAngle * PI / 180.f);
 
@@ -58,11 +67,16 @@ void CGuideBullet::Late_Update()
 
 void CGuideBullet::Render(HDC hDC)
 {
-	Ellipse(hDC,
-		m_tRect.left,
-		m_tRect.top,
-		m_tRect.right,
-		m_tRect.bottom);
+
+	Graphics g(hDC);
+	//Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"SubMonster_Bullet"),
+		(m_tInfo.fX - m_tInfo.fCX * 0.5), (m_tInfo.fY - m_tInfo.fCY * 0.5), 18.f, 36.f);
+	//g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"SubMonster_Bullet"),
+	//	Rect((m_tInfo.fX - m_tInfo.fCX * 0.5),
+	//		(m_tInfo.fY - m_tInfo.fCY * 0.5),
+	//		m_tInfo.fCX, m_tInfo.fCY), m_tInfo.fCX, m_tInfo.fCY, 9.f, 18.f, UnitPixel);
+	//Rectangle(hDC, m_tRect.left , m_tRect.top , m_tRect.right, m_tRect.bottom );
 }
 
 void CGuideBullet::Release()

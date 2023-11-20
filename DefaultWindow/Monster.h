@@ -20,19 +20,6 @@ public:
 	
 	bool			Turn_By_Player();
 
-public:
-	void Set_Damage(float _Damage) { fDamage = _Damage; }
-	float Get_Damage() { return fDamage; }
-
-	void Set_HP(float _HP) { fHp = _HP; }
-	float Get_HP() { return fHp; }
-
-	 
-protected:
-	float	fHp;
-	float	fDamage;
-
-
 private:
 	POINT		m_tPoint[3];
 };

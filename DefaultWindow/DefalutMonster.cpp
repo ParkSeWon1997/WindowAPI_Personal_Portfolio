@@ -28,8 +28,7 @@ void DefalutMonster::Initialize()
 {
     m_tInfo = { 600.f,100.f,64.f,40.f };
 
-    this->fDamage = 5.f;
-    this->fHp = 100.f;
+   
 
 
 

@@ -14,6 +14,16 @@ CObjMgr::~CObjMgr()
 	Release();
 }
 
+CObj* CObjMgr::Get_ObjList(OBJID eID)
+{
+	if (m_ObjList[eID].empty())
+		return nullptr;
+	
+
+
+	 return m_ObjList[eID].front(); 
+}
+
 CObj * CObjMgr::Get_Target(OBJID eID, CObj * pObj)
 {
 	if (m_ObjList[eID].empty())
@@ -93,7 +103,11 @@ void CObjMgr::Late_Update()
 	//CCollisionMgr::Collision_RectEx(m_ObjList[MONSTER], m_ObjList[PLAYER]);
 	//CCollisionMgr::Collision_RectEx(m_ObjList[PLAYER], m_ObjList[MONSTER]);
 	//CCollisionMgr::Collision_Rect(m_ObjList[MONSTER], m_ObjList[BULLET]);
-	//CCollisionMgr::Collision_Sphere(m_ObjList[MONSTER], m_ObjList[BULLET]);
+	//CCollisionMgr::Collision_Sphere(m_ObjList[BULLET], m_ObjList[SUB_MONSTER_BULLET]);
+	CCollisionMgr::DoDamageObj_to_Obj(m_ObjList[PLAYER], m_ObjList[SUB_MONSTER_BULLET]);
+	CCollisionMgr::DoDamageObj_to_Obj(m_ObjList[BOSS_MONSTER], m_ObjList[BULLET]);
+	CCollisionMgr::DoDamageObj_to_Obj(m_ObjList[MONSTER], m_ObjList[BULLET]);
+
 	//CCollisionMgr::Collision_RectEx(m_ObjList[MONSTER], m_ObjList[BULLET]);
 }
 

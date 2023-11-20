@@ -18,6 +18,9 @@ void PlayerBullet::Initialize()
 
 	m_fSpeed = 10.f;
 
+
+	m_fDamage = 10.f;
+	m_fHP = 1.f;
 	m_eRender = GAMEOBJECT;
 }
 
@@ -49,7 +52,8 @@ void PlayerBullet::Render(HDC hDC)
 	//	m_tRect.right,
 	//	m_tRect.bottom);
 	Graphics g(hDC);
-	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Bullet"), (m_tInfo.fX - m_tInfo.fCX * 0.5), (m_tInfo.fY - m_tInfo.fCY * 0.5), 17.f, 14.f);
+	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Bullet"),
+		(m_tInfo.fX - m_tInfo.fCX * 0.5), (m_tInfo.fY - m_tInfo.fCY * 0.5), 17.f, 14.f);
 	//g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Bullet"),
 	//	Rect((m_tInfo.fX - m_tInfo.fCX * 0.5),
 	//		(m_tInfo.fY - m_tInfo.fCY * 0.5),

@@ -15,6 +15,8 @@
 #include "SceneMgr.h"
 #include "KeyMgr.h"
 
+
+static float g_fVolume = 0.7f;
 Normal::Normal()
 {
 }
@@ -31,7 +33,7 @@ void Normal::Initialize()
 
 	CObjMgr::Get_Instance()->Add_Object(STAGE_ENTRY, CAbstractFactory<StageEntry>::Create(0.f,600.f,0));
 	CObjMgr::Get_Instance()->Add_Object(STAGE_ENTRY, CAbstractFactory<StageEntry>::Create(100.f, 200.f, 0));
-
+	CSoundMgr::Get_Instance()->PlaySound(L"2.IceField-sharedassets10.assets-124.wav", SOUND_BGM, g_fVolume);
 
 	CLineMgr::Get_Instance()->Initialize();
 

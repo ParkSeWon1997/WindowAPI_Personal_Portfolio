@@ -39,16 +39,11 @@ public:
 
 
 public:
-	float		Get_Damage() { return m_fPlayerDamage; }
-	void		Set_Damage(float _Damage) { m_fPlayerDamage = _Damage; }
-
-	float		Get_HP() { return m_fPlayerHP; }
-	void		Set_HP(float _HP) { m_fPlayerHP = _HP; }
-
 	void		Set_Posin(POINT _Posin) { m_tPosin = _Posin; }
 	POINT		Get_Posin() { return m_tPosin; }
 
 	bool		IsDead() { return m_bDead; }
+	bool		Posin_half_Check();
 
 
 private:
@@ -56,7 +51,6 @@ private:
 	void		Jump();
 	void		Offset();
 	void		Set_Posin();
-	bool		Posin_half_Check();
 	void		Motion_Change();
 	void		WeaponChage();
 private:
@@ -66,8 +60,7 @@ private:
 	float				m_fPower;
 	float				m_fAccelTime;
 
-	float				m_fPlayerDamage;
-	float				m_fPlayerHP;
+
 
 	//초기 속도
 	//경과 시간

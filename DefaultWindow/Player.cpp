@@ -49,8 +49,10 @@ void CPlayer::Initialize()
 	m_fDiagonal = 10.f;
 	m_fPower = 20.f;
 
-
-	//아이들, 점프, 달리기,죽음 이미지 
+	
+	this->m_fHP = 100.f;
+	this->m_fDamage = 10.f;
+	
 	m_tFrame.dwSpeed = 200;
 	m_tFrame.dwTime = GetTickCount();
 
@@ -93,6 +95,8 @@ void CPlayer::Late_Update()
 #ifdef _DEBUG
 	if (dwFrameTime + 1000 < GetTickCount()) {
 		cout << "플레이어 좌표 : " << m_tInfo.fX << "\t" << m_tInfo.fY << endl;
+		cout << "플레이어 HP : " << m_fHP << endl;
+
 		dwFrameTime = GetTickCount();
 	}
 
@@ -118,8 +122,8 @@ void CPlayer::Render(HDC hDC)
 	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
 	int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
 
-	Rectangle(hDC, m_tRect.left + iScrollX, m_tRect.top + iScrollY, m_tRect.right + iScrollX, m_tRect.bottom + iScrollY);
-	MoveToEx(hDC, (int)m_tInfo.fX + iScrollX, (int)m_tInfo.fY + iScrollY, nullptr);
+	//Rectangle(hDC, m_tRect.left + iScrollX, m_tRect.top + iScrollY, m_tRect.right + iScrollX, m_tRect.bottom + iScrollY);
+	//MoveToEx(hDC, (int)m_tInfo.fX + iScrollX, (int)m_tInfo.fY + iScrollY, nullptr);
 	//LineTo(hDC, m_tPosin.x + iScrollX, m_tPosin.y + iScrollY);
 
 	Point destinationPoints[] = {
@@ -140,6 +144,7 @@ void CPlayer::Render(HDC hDC)
 
 
 
+
 	if (Posin_half_Check()) {
 		g.DrawImage(img,
 			Rect((m_tInfo.fX - m_tInfo.fCX * 0.5) + iScrollX,
@@ -155,6 +160,7 @@ void CPlayer::Render(HDC hDC)
 	}
 
 
+	
 
 
 
@@ -378,6 +384,9 @@ void CPlayer::WeaponChage()
 
 void CPlayer::Set_Posin()
 {
+	if (!m_bDead)
+	{
+
 	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
 	int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
 	float m_pMouse_X = (m_pMouse->Get_Info().fX - m_tInfo.fX) + iScrollX;
@@ -394,14 +403,20 @@ void CPlayer::Set_Posin()
 	}
 
 	m_tPosin.y =  LONG(m_tInfo.fY + m_fDiagonal * sin(m_fAngle * (PI / 180.f))) ;
+	}
 
 }
 
 bool CPlayer::Posin_half_Check()
 {
+	if (!m_bDead)
+	{
+		int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
+		return m_pMouse->Get_Info().fX > this->m_tInfo.fX + iScrollX;
 
-	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
-	return m_pMouse->Get_Info().fX > this->m_tInfo.fX + iScrollX;
+	}
+	else
+		return false;
 }
 
 

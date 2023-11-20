@@ -1,5 +1,8 @@
 #include "stdafx.h"
 #include "CollisionMgr.h"
+#include"Player.h"
+#include"Monster.h"
+
 
 CCollisionMgr::CCollisionMgr()
 {
@@ -31,19 +34,43 @@ void CCollisionMgr::Collision_Rect(list<CObj*> Dst, list<CObj*> Src)
 
 }
 
-bool CCollisionMgr::CollisionRect_to_Rect(CObj* _tmp,CObj* _Src)
+bool CCollisionMgr::CollisionRect_to_Rect(CObj* _tmp, CObj* _Src)
 {
 	RECT	rc{};
 
-	return IntersectRect(&rc,&_tmp->Get_Rect(),&_Src->Get_Rect());
+	return IntersectRect(&rc, &_tmp->Get_Rect(), &_Src->Get_Rect());
 }
 
 bool CCollisionMgr::CollisionPoint_to_Point(CObj* _tmp, CObj* _Src)
 {
 	if (_tmp->Get_Info().fX == _Src->Get_Info().fX && _tmp->Get_Info().fY == _Src->Get_Info().fY) {
 		return true;
-	} 
-		return false;
+	}
+	return false;
+}
+
+
+//Player가 데미지를 받았을 때
+void CCollisionMgr::DoDamageObj_to_Obj(list<CObj*> Dst, list<CObj*> Src)
+{
+	for (auto& DstList : Dst)
+	{
+		for (auto& SrcList : Src)
+		{
+			if (Check_Sphere(DstList, SrcList))
+			{
+				if (DstList->Get_Dead() == false)
+				{
+					DstList->TakeDamage(SrcList->GetDamage());
+					if (DstList->Get_HP() <= 0)
+					{
+						DstList->Set_Dead();
+					}
+					SrcList->Set_Dead();
+				}
+			}
+		}
+	}
 }
 
 void CCollisionMgr::Collision_RectEx(list<CObj*> DstList, list<CObj*> SrcList)
@@ -82,9 +109,9 @@ void CCollisionMgr::Collision_RectEx(list<CObj*> DstList, list<CObj*> SrcList)
 	}
 }
 
-bool CCollisionMgr::Check_Rect(float * pX, float * pY, CObj * pDst, CObj * pSrc)
+bool CCollisionMgr::Check_Rect(float* pX, float* pY, CObj* pDst, CObj* pSrc)
 {
-	float		fWidth  = abs(pDst->Get_Info().fX - pSrc->Get_Info().fX);
+	float		fWidth = abs(pDst->Get_Info().fX - pSrc->Get_Info().fX);
 	float		fHeight = abs(pDst->Get_Info().fY - pSrc->Get_Info().fY);
 
 	float		fRadiusX = (pDst->Get_Info().fCX + pSrc->Get_Info().fCX) * 0.5f;
@@ -117,14 +144,14 @@ void CCollisionMgr::Collision_Sphere(list<CObj*> Dst, list<CObj*> Src)
 	}
 }
 
-bool CCollisionMgr::Check_Sphere(CObj * pDst, CObj * pSrc)
+bool CCollisionMgr::Check_Sphere(CObj* pDst, CObj* pSrc)
 {
-	float		fWidth  = abs(pDst->Get_Info().fX - pSrc->Get_Info().fX);
+	float		fWidth = abs(pDst->Get_Info().fX - pSrc->Get_Info().fX);
 	float		fHeight = abs(pDst->Get_Info().fY - pSrc->Get_Info().fY);
 
 	float		fDistance = sqrt(fWidth * fWidth + fHeight * fHeight);
 
 	float		fRadius = (pDst->Get_Info().fCX + pSrc->Get_Info().fCX) * 0.5f;
-	
+
 	return fRadius >= fDistance;
 }

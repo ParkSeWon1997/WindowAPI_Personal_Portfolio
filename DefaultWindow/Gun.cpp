@@ -5,6 +5,7 @@
 #include"PlayerBullet.h"
 #include "AbstractFactory.h"
 #include "ScrollMgr.h"
+#include "Player.h"
 
 
 Gun::Gun()
@@ -20,7 +21,7 @@ void Gun::Initialize()
 	m_tInfo.fCX = 28.f;
 	m_tInfo.fCY = 20.f;
 
-	m_eRender = GAMEOBJECT;
+	m_eRender = UI;
 }
 
 int Gun::Update()
@@ -46,11 +47,29 @@ void Gun::Render(HDC hDC)
 		m_tRect.right,
 		m_tRect.bottom);
 	Graphics g(hDC);
-	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Gun_Rusiian"),
-		(m_tInfo.fX - m_tInfo.fCX * 0.5)+ iScrollX,
-		(m_tInfo.fY - m_tInfo.fCY * 0.5)+ iScrollY,
-		28.f, 20.f);
 
+	Point destinationPoints[] = {
+		Point((int)(m_tInfo.fX + m_tInfo.fCX * 0.5) ,
+			   (int)(m_tInfo.fY - m_tInfo.fCY * 0.5) ),   // destination for upper-left point of original
+		Point((int)(m_tInfo.fX - m_tInfo.fCX * 0.5),
+			  (int)(m_tInfo.fY - m_tInfo.fCY * 0.5) ),  // destination for upper-right point of original
+		Point((int)(m_tInfo.fX + m_tInfo.fCX * 0.5),
+			   (int)(m_tInfo.fY + m_tInfo.fCY * 0.5) ) };  // destination for lower-left point of original
+
+
+	
+	if (dynamic_cast<CPlayer*>(CObjMgr::Get_Instance()->Get_Player())->Posin_half_Check())
+	{
+		g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Gun_Rusiian"),
+			(m_tInfo.fX - m_tInfo.fCX * 0.5) + iScrollX,
+			(m_tInfo.fY - m_tInfo.fCY * 0.5) + iScrollY,
+			28.f, 20.f);
+	}
+	else
+	{
+		g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Gun_Rusiian"), destinationPoints, 3, m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, 28.f, 20.f, UnitPixel);
+	}
+	//dynamic_cast<CPlayer*>(CObjMgr::Get_Instance()->Get_Player())->Posin_half_Check()
 	//g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Gun_Rusiian"), )
 }
 

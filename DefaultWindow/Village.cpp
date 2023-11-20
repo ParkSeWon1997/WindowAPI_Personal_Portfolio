@@ -4,7 +4,7 @@
 #include "Player.h"
 #include "Entry.h"
 #include "AbstractFactory.h"
-#include "AbstractFactory.h"
+
 #include "LineMgr.h"
 #include "BmpMgr.h"
 #include "PngMrg.h"
@@ -13,6 +13,10 @@
 #include "StageEntry.h"
 #include "CollisionMgr.h"
 #include "SceneMgr.h"
+#include"SubMonster.h"
+
+#include"BossMonster.h"
+#include"Shield.h"
 
 static float g_fVolume = 1.f;
 Village::Village()
@@ -29,6 +33,9 @@ void Village::Initialize()
 
 	CObjMgr::Get_Instance()->Add_Object(PLAYER, CPlayer::Get_Instance());
 	CObjMgr::Get_Instance()->Add_Object(ENTRY, CAbstractFactory<Entry>::Create());
+	
+	//CObjMgr::Get_Instance()->Add_Object(BOSS_MONSTER, CAbstractFactory<BossMonster>::Create(100.f,300.f,0));
+	//CObjMgr::Get_Instance()->Add_Object(SHIELD, CAbstractFactory<CShield>::Create(100.f,300.f,0));
 
 
 	CLineMgr::Get_Instance()->Initialize();
@@ -58,36 +65,37 @@ void Village::Late_Update()
 void Village::Render(HDC hDC)
 {
 	HDC		hGroundDC = CBmpMgr::Get_Instance()->Find_Img(L"Ground");
-
+	//
 	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
 	int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
-
 	BitBlt(hDC, 0, 0, 1920, 1280, hGroundDC, 0, 0, SRCCOPY);
+	//HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Img(L"TownBGbmp");
+	//
+	//
+	//GdiTransparentBlt(hDC,
+	//	100,
+	//	100,
+	//	1280,
+	//	800,
+	//	hMemDC,
+	//	0,
+	//	0,
+	//	1280,
+	//	532,
+	//	RGB(255, 255, 255));
 
 
-	//g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"BackLayer1"), 0 - (iScrollX * 0.05), 400 + iScrollY, 1280, 532);
-	HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Img(L"Map_Layer_BG_Bmp");
 
-	GdiTransparentBlt(hDC,
-		0,
-		0,
-		1280,
-		800,
-		hMemDC,
-		0,
-		0,
-		1280,
-		532,
-		RGB(255, 255, 255));
 
 
 
 
 	
-	//Graphics g(hDC);
-	//g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"SecondFloor3"), 0 + iScrollX, (WINCY - 400) + iScrollY, 1388, 288);
-	//g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Tree0"), 400 , 700-122 , 104, 122);
-	//g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Tree1"), 600 , 400-77 , 67, 77);
+	Graphics g(hDC);
+	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"BackLayer1"), 0 - (iScrollX * 0.05), 400 + iScrollY, 1280, 532);
+	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"SecondFloor3"), 0 + iScrollX, (WINCY - 400) + iScrollY, 1388, 288);
+	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Tree0"), 400 , 700-122 , 104, 122);
+	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Tree1"), 600 , 400-77 , 67, 77);
 
 
 	//CTileMgr::Get_Instance()->Render(hDC);

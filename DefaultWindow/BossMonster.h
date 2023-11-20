@@ -4,6 +4,7 @@ class BossMonster :
     public CMonster
 {
 	enum ImageSTATE { IDLE, ATTACK, HIT, DEAD, PS_END };
+	enum BOSSSTATE {SC_CREATE_SUB,SC_IDLE,SC_EASY,SC_NORMAL,SC_HARD,SC_DEAD,SC_END};
 
 
 public:
@@ -33,6 +34,17 @@ private:
 private:
 	ImageSTATE			m_ePreState;
 	ImageSTATE			m_eCurState;
+private:
+	BOSSSTATE			m_eBossSTATE;
+
+	int					CreateSubCount = 0;
+
+
+	list<CObj*>			m_pSubMonsterList;
+	//CObj*				m_pSubMonster1;
+	//CObj*				m_pSubMonster2;
+	//CObj*				m_pSubMonster3;
+	//CObj*				m_pSubMonster4;
 
 };
 

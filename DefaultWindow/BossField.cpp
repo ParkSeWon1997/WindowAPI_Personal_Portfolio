@@ -10,7 +10,10 @@
 #include "ScrollMgr.h"
 #include"PngMrg.h"
 #include "Entry.h"
+#include "SoundMgr.h"
 
+
+static float g_fVolume = 0.7f;
 BossField::BossField()
 {
 }
@@ -24,10 +27,9 @@ void BossField::Initialize()
 {
 
 	//PngMrg::Get_Instance()->Insert_Png()
-	CObjMgr::Get_Instance()->Add_Object(BOSS_MONSTER, CAbstractFactory<BossMonster>::Create(200.f,500.f,0));
-
+	CObjMgr::Get_Instance()->Add_Object(BOSS_MONSTER, CAbstractFactory<BossMonster>::Create(WINCX*0.5,WINCY*0.3,0));
 	CLineMgr::Get_Instance()->Initialize();
-
+	CSoundMgr::Get_Instance()->PlaySound(L"2.IceBoss-sharedassets12.assets-132.wav", SOUND_BGM, g_fVolume);
 }
 
 void BossField::Update()
@@ -74,5 +76,6 @@ void BossField::Render(HDC hDC)
 void BossField::Release()
 {
 	CObjMgr::Get_Instance()->Delete_ID(BOSS_MONSTER);
+	CSoundMgr::Get_Instance()->StopSound(SOUND_BGM);
 
 }

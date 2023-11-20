@@ -25,6 +25,14 @@ public:
 	void			Set_Angle(float _fAngle) { m_fAngle = _fAngle; }
 	void			Set_Target(CObj* pTarget) { m_pTarget = pTarget; }
 
+	float			Get_HP() { return m_fHP; }
+	void			Set_HP(float _HP) { m_fHP = _HP; }
+	void			TakeDamage(float _Damage) { m_fHP -= _Damage; }
+
+	float			GetDamage() { return m_fDamage; }
+	void			SetDamage(float _Damage) { m_fDamage = _Damage; }
+	
+
 	RECT			Get_Rect() { return m_tRect; }
 	INFO			Get_Info() { return m_tInfo; }
 	bool			Get_Dead() { return m_bDead; }
@@ -60,10 +68,16 @@ protected:
 
 	CObj*		m_pTarget;
 
+	//Ãß°¡
+	float m_fHP;
+	float m_fDamage;
+
+
+
 	float		m_fSpeed;
 	bool		m_bDead;
 	float		m_fAngle;
-	DWORD		dwFrameTime=GetTickCount();
+	DWORD		dwFrameTime=GetTickCount64();
 
 	TCHAR*		m_pStateKey;
 	TCHAR*		m_pFrameKey;
