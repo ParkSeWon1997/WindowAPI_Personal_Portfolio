@@ -65,6 +65,10 @@ ImageCollection::ImageCollection()
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Map/MainLogo01.png", L"MainLogo");
 
 
+	//BossMonset 창
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Monster/Boss/Bullet/IceSpear12.png", L"BossMonset_Spear");
+	//BossMonset 고드름
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Monster/Boss/Bullet/Icicle9-sharedassets12.assets-102.png", L"BossMonset_Icicle");
 
 
 	//SubMonster 총알

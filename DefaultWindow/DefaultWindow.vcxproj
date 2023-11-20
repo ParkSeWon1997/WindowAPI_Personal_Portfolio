@@ -169,6 +169,7 @@
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="MonsterBullet.h" />
+    <ClInclude Include="MonsterIceSpear.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="MyBmp.h" />
     <ClInclude Include="MyButton.h" />
@@ -220,6 +221,7 @@
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="MonsterBullet.cpp" />
+    <ClCompile Include="MonsterIceSpear.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="MyBmp.cpp" />
     <ClCompile Include="MyButton.cpp" />

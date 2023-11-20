@@ -21,7 +21,10 @@ public:
 	virtual void Release() override;
 public:
 	void Motion_Change();
+	bool IsSubMonsterAlive();
+	void MoveSubMonster();
 
+	void Around_To_THis();
 
 private:
 	void Boss_pattern();
@@ -38,7 +41,7 @@ private:
 	BOSSSTATE			m_eBossSTATE;
 
 	int					CreateSubCount = 0;
-
+	int					FrameCheck = 0;
 
 	list<CObj*>			m_pSubMonsterList;
 	//CObj*				m_pSubMonster1;

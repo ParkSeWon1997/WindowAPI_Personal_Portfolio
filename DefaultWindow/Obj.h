@@ -24,6 +24,7 @@ public:
 	void			Set_Dead() { m_bDead = true; }
 	void			Set_Angle(float _fAngle) { m_fAngle = _fAngle; }
 	void			Set_Target(CObj* pTarget) { m_pTarget = pTarget; }
+	float			Get_Speed() { return m_fSpeed; }
 
 	float			Get_HP() { return m_fHP; }
 	void			Set_HP(float _HP) { m_fHP = _HP; }

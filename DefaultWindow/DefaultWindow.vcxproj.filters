@@ -195,9 +195,6 @@
     <ClInclude Include="ObjMgr.h">
       <Filter>02. Design\02. ObjMgr</Filter>
     </ClInclude>
-    <ClInclude Include="GuideBullet.h">
-      <Filter>01. Obj\01. Bullet\01. GuideBullet</Filter>
-    </ClInclude>
     <ClInclude Include="Line.h">
       <Filter>02. Design\03. LineMgr\Line</Filter>
     </ClInclude>
@@ -291,9 +288,6 @@
     <ClInclude Include="Player.h">
       <Filter>01. Obj\00. Player</Filter>
     </ClInclude>
-    <ClInclude Include="Ground.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="ImageCollection.h">
       <Filter>소스 파일\04. ImageClass</Filter>
     </ClInclude>
@@ -305,6 +299,15 @@
     </ClInclude>
     <ClInclude Include="SubMonster.h">
       <Filter>01. Obj\02. Monster\01.Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="GuideBullet.h">
+      <Filter>01. Obj\01. Bullet\01. GuideBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterIceSpear.h">
+      <Filter>01. Obj\01. Bullet\03. MonsterBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Ground.h">
+      <Filter>01. Obj\10. Ground</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -340,9 +343,6 @@
     </ClCompile>
     <ClCompile Include="ObjMgr.cpp">
       <Filter>02. Design\02. ObjMgr</Filter>
-    </ClCompile>
-    <ClCompile Include="GuideBullet.cpp">
-      <Filter>01. Obj\01. Bullet\01. GuideBullet</Filter>
     </ClCompile>
     <ClCompile Include="Line.cpp">
       <Filter>02. Design\03. LineMgr\Line</Filter>
@@ -434,9 +434,6 @@
     <ClCompile Include="StageEntry.cpp">
       <Filter>01. Obj\08. Entry</Filter>
     </ClCompile>
-    <ClCompile Include="Ground.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="ImageCollection.cpp">
       <Filter>소스 파일\04. ImageClass</Filter>
     </ClCompile>
@@ -448,6 +445,15 @@
     </ClCompile>
     <ClCompile Include="SubMonster.cpp">
       <Filter>01. Obj\02. Monster\01.Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="GuideBullet.cpp">
+      <Filter>01. Obj\01. Bullet\01. GuideBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterIceSpear.cpp">
+      <Filter>01. Obj\01. Bullet\03. MonsterBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Ground.cpp">
+      <Filter>01. Obj\10. Ground</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

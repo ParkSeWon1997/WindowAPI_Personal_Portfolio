@@ -7,6 +7,8 @@
 #include"Player.h"
 #include"SubMonster.h"
 #include "AbstractFactory.h"
+#include"MonsterIceSpear.h"
+
 BossMonster::BossMonster()
 {
 }
@@ -30,7 +32,7 @@ void BossMonster::Initialize()
 
 	// m_tInfo = { 700.f, 300.f, 80, 80 };
 
-	m_fHP = 200.f;
+	m_fHP = 300.f;
 
 	m_tFrame.dwSpeed = 200;
 	m_tFrame.dwTime = GetTickCount();
@@ -189,6 +191,37 @@ void BossMonster::Motion_Change()
 	}
 }
 
+bool BossMonster::IsSubMonsterAlive()
+{
+	if (CObjMgr::Get_Instance()->Get_ObjListProperty(MONSTER).empty())
+		return true;
+	else
+		return false;
+
+}
+
+void BossMonster::MoveSubMonster()
+{
+	for (auto& iter : CObjMgr::Get_Instance()->Get_ObjListProperty(MONSTER))
+	{
+		
+		dynamic_cast<SubMonster*>(iter)->MoveToBoss();
+		
+	}
+
+	
+}
+
+void BossMonster::Around_To_THis()
+{
+	for (auto& iter : CObjMgr::Get_Instance()->Get_ObjListProperty(MONSTER))
+	{
+
+		dynamic_cast<SubMonster*>(iter)->AroundBOss();
+
+	}
+}
+
 void BossMonster::Boss_pattern()
 {
 	switch (m_eBossSTATE)
@@ -215,12 +248,20 @@ void BossMonster::Boss_pattern()
 	case BossMonster::SC_IDLE:
 	{
 		m_eCurState = ImageSTATE::IDLE;
-		//if (fHp<150)
-		//{
-		//	m_tInfo.fX = 200.f;
-		//	m_tInfo.fY = 200.f;
-		//
-		//}
+		if (m_fHP < 200)
+		{
+			m_tInfo.fX = 200.f;
+			m_tInfo.fY = 200.f;
+
+			m_eBossSTATE = BossMonster::SC_EASY;
+
+		}
+		else if (IsSubMonsterAlive())
+		{
+			CreateSubCount = 0;
+			m_eBossSTATE = BossMonster::SC_CREATE_SUB;
+		}
+
 
 		break;
 	}
@@ -231,7 +272,25 @@ void BossMonster::Boss_pattern()
 	case BossMonster::SC_EASY:
 	{
 		m_eCurState = ImageSTATE::IDLE;
+		MoveSubMonster();
+		FrameCheck++;
+		if (FrameCheck > 300)
+		{
+			for (auto& iter : CObjMgr::Get_Instance()->Get_ObjListProperty(MONSTER))
+			{
+				dynamic_cast<SubMonster*>(iter)->SetSubState(SUBMOSTER_TATE123::END);
+			}
+			FrameCheck = 0;
+			m_eBossSTATE = BossMonster::SC_NORMAL;
+		}
 
+
+
+		if (IsSubMonsterAlive())
+		{
+			CreateSubCount = 0;
+			m_eBossSTATE = BossMonster::SC_CREATE_SUB;
+		}
 		break;
 	}
 

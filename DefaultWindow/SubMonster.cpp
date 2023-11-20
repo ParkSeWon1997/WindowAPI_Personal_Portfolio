@@ -27,7 +27,7 @@ void SubMonster::Initialize()
 
 	m_fDistance = 100.f;
 	m_fSpeed = 2.75f;
-	SubState = SUBMOSTER_TATE::IDLE;
+	SubState = SUBMOSTER_TATE123::IDLE;
 	m_eRender = GAMEOBJECT;
 }
 
@@ -42,7 +42,7 @@ int SubMonster::Update()
 	{
 		Monster_AngleAdd = 0;
 	}
-
+	FrameChek++;
 
 
 	
@@ -54,17 +54,7 @@ int SubMonster::Update()
 
 void SubMonster::Late_Update()
 {
-	if (CObjMgr::Get_Instance()->Get_ObjList(SUB_MONSTER_BULLET))
-	{
-		if (CObjMgr::Get_Instance()->Get_ObjList(SUB_MONSTER_BULLET)->Get_Info().fX > WINCX ||
-			CObjMgr::Get_Instance()->Get_ObjList(SUB_MONSTER_BULLET)->Get_Info().fX < 0 ||
-			CObjMgr::Get_Instance()->Get_ObjList(SUB_MONSTER_BULLET)->Get_Info().fY > WINCY ||
-			CObjMgr::Get_Instance()->Get_ObjList(SUB_MONSTER_BULLET)->Get_Info().fY < 0)
-		{
-			CObjMgr::Get_Instance()->Get_ObjList(SUB_MONSTER_BULLET)->Set_Dead();
-		}
-
-	}
+	CheckOverrWindow();
 
 	if (dynamic_cast<BossMonster*>(CObjMgr::Get_Instance()->Get_ObjList(BOSS_MONSTER))) {
 		SubMonster_pattern();
@@ -150,6 +140,21 @@ void SubMonster::AroundBOss()
 
 }
 
+void SubMonster::CheckOverrWindow()
+{
+	if (CObjMgr::Get_Instance()->Get_ObjList(SUB_MONSTER_BULLET))
+	{
+		if (CObjMgr::Get_Instance()->Get_ObjList(SUB_MONSTER_BULLET)->Get_Info().fX > WINCX ||
+			CObjMgr::Get_Instance()->Get_ObjList(SUB_MONSTER_BULLET)->Get_Info().fX < 0 ||
+			CObjMgr::Get_Instance()->Get_ObjList(SUB_MONSTER_BULLET)->Get_Info().fY > WINCY ||
+			CObjMgr::Get_Instance()->Get_ObjList(SUB_MONSTER_BULLET)->Get_Info().fY < 0)
+		{
+			CObjMgr::Get_Instance()->Get_ObjList(SUB_MONSTER_BULLET)->Set_Dead();
+		}
+
+	}
+}
+
 void SubMonster::Motion_Change()
 {
 }
@@ -158,38 +163,54 @@ void SubMonster::SubMonster_pattern()
 {
 	switch (SubState)
 	{
-	case SubMonster::IDLE:
+	case SUBMOSTER_TATE123::IDLE:
 	{   //Move()
 		AroundBOss();
-		FrameChek++;
+		Attack();
 		if (FrameChek>500)
 		{
-			SubState = SubMonster::ATTACK;
+			
+			SubState = SUBMOSTER_TATE123::ATTACK;
 			FrameChek = 0;
 		}
 	}  break;
 
-	case SubMonster::ATTACK:
+	case SUBMOSTER_TATE123::ATTACK:
 	{
-		AroundBOss();
-		Attack();
-		//Target_Attack();
-		//MoveToWidth(100.f);
+		
+		//for (auto iter : CObjMgr::Get_Instance()->Get_ObjListProperty(MONSTER))
+		//{
+		//	if (this->m_tInfo.fX> iter->Get_Info().fX)
+		//	{
+		//		m_tInfo.fX = iter->Get_Info().fX + m_fSpeed;
+		//			//this->m_tInfo.fX += m_fSpeed;
+		//	}
+		//	
+		//
+		//}
+
+		//if(CObjMgr::Get_Instance()->Get_ObjList(MONSTER)->Get_Info().fX)
 
 		break;
 	}
-	case SubMonster::TARGET_SHOT:
+	case SUBMOSTER_TATE123::TARGET_SHOT:
 	{
-		Target_Attack();
+		
 
 	}
-	case SubMonster::MOVE_TO_BOSS:
+	case SUBMOSTER_TATE123::MOVE_TO_BOSS:
 	{
-		MoveToBoss();
+	
 
 		break;
 
 	}
+
+	case SUBMOSTER_TATE123::END:
+	{
+		break;
+	}
+
 	}
 
 

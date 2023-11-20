@@ -1,11 +1,11 @@
 #pragma once
-#include "Obj.h"
-class CBullet :	public CObj
+#include "Bullet.h"
+class MonsterIceSpear :
+    public CBullet
 {
 public:
-	CBullet();
-	virtual ~CBullet();
-
+	MonsterIceSpear();
+	virtual ~MonsterIceSpear();
 public:
 	virtual void Initialize() override;
 	virtual int		Update() override;
@@ -13,7 +13,9 @@ public:
 	virtual void Render(HDC hDC) override;
 	virtual void Release() override;
 
+public:
+	//void		MoveToWidth(float _X);
 
-	//virtual void CheckOverrWindow() {};
+
 };
 
