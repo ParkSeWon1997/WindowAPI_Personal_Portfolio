@@ -7,6 +7,8 @@ ImageCollection::ImageCollection()
 {
 	//던전 백그라운드 이미지
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Dun/World/BossMap/Tile/BGLayer_0-sharedassets10.assets-1031.bmp", L"MapBack");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Dun/World/BossMap/Tile/BGLayer_1 #2319581.bmp", L"Map_Layer_Bmp");
+
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/World/BossMap/Tile/BGLayer_1 #2319581.png", L"Map_Layer");
 	//플레이어 Image
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/Bear1.png", L"Player");
@@ -34,11 +36,17 @@ ImageCollection::ImageCollection()
 
 	//마을 Image
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/TownBG_Day.png", L"BackLayer1");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Dun/Village/TownBG_BMP_Day.bmp", L"Map_Layer_BG_Bmp");
+
+
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/Temple.png", L"Temple");
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/TempleFront.png", L"Temple_front");
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/Tree0.png", L"Tree0");
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/Tree1.png", L"Tree1");
+
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/SecondFloor3.png", L"SecondFloor3");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Dun/Village/SecondFloor3.bmp", L"Map_LayerFloor_Bmp");
+
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/SecondFloor_Broken0.png", L"SecondFloor_Broken0");
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/TownLayer_Day.png", L"BackLayer2");
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/BGLayer_3-sharedassets19.assets-112.png", L"BackLayer3");

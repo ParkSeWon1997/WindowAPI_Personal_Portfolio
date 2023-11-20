@@ -46,7 +46,7 @@ void CPlayer::Initialize()
 	m_tInfo = { 100.f, 500.f, 64, 64 };
 
 	m_fSpeed = 5.f;
-	m_fDiagonal = 100.f;
+	m_fDiagonal = 10.f;
 	m_fPower = 20.f;
 
 

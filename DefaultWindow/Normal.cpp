@@ -63,7 +63,26 @@ void Normal::Render(HDC hDC)
 	int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
 
 	Graphics g(hDC);
-	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Map_Layer"), 0,0,1280,800);
+	//g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Map_Layer"), 0,0,1280,800);
+
+
+
+	//bmp파일  특정 색상을 빼주는 작업
+	// //추후 수정하기
+	HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Img(L"Map_Layer_Bmp");
+	
+	GdiTransparentBlt(hDC,
+		0,
+		0,
+		1280,
+		800,
+		hMemDC,
+		0,
+		0,
+		1280,
+		800,
+		RGB(255, 255, 255));
+
 
 	CObjMgr::Get_Instance()->Render(hDC);
 	CLineMgr::Get_Instance()->Render(hDC);
