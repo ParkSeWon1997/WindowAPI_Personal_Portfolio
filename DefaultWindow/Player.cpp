@@ -223,11 +223,11 @@ void CPlayer::Key_Input()
 		//}
 		if (CKeyMgr::Get_Instance()->Key_Up(VK_SPACE))
 		{
-			m_InitSpeedY=m_fGravity
-			mInitSpeedY = -GRAVITY * 3.0f;
-
-			mInitX = mActorX;
-			mInitY = mActorY;
+			//m_InitSpeedY = m_fGravity;
+			//mInitSpeedY = -GRAVITY * 3.0f;
+			//
+			//mInitX = mActorX;
+			//mInitY = mActorY;
 
 			
 			m_bJump = true;

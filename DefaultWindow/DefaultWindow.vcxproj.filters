@@ -309,6 +309,12 @@
     <ClInclude Include="Ground.h">
       <Filter>01. Obj\10. Ground</Filter>
     </ClInclude>
+    <ClInclude Include="GroundTopo.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DefaultWindow.cpp">
@@ -454,6 +460,12 @@
     </ClCompile>
     <ClCompile Include="Ground.cpp">
       <Filter>01. Obj\10. Ground</Filter>
+    </ClCompile>
+    <ClCompile Include="GroundTopo.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -78,7 +78,7 @@ protected:
 	float		m_fSpeed;
 	bool		m_bDead;
 	float		m_fAngle;
-	DWORD		dwFrameTime=GetTickCount64();
+	ULONGLONG		dwFrameTime=GetTickCount64();
 
 	TCHAR*		m_pStateKey;
 	TCHAR*		m_pFrameKey;

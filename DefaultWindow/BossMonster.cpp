@@ -48,7 +48,7 @@ void BossMonster::Initialize()
 int BossMonster::Update()
 {
 	if (m_bDead) {
-		for (int i = 0; i < m_pSubMonsterList.size(); i++)
+		for (size_t i = 0; i < m_pSubMonsterList.size(); i++)
 		{
 			m_pSubMonsterList.clear();
 		}
@@ -121,14 +121,14 @@ void BossMonster::Render(HDC hDC)
 
 	if (Turn_By_Player()) {
 		g.DrawImage(img,
-			Rect((m_tInfo.fX - m_tInfo.fCX * 0.5) + iScrollX
-				, (m_tInfo.fY - m_tInfo.fCY * 0.5) + iScrollY
-				, m_tInfo.fCX, m_tInfo.fCY),
-			m_tInfo.fCX * m_tFrame.iFrameStart,
-			m_tInfo.fCY * m_tFrame.iMotion, 78, 78, UnitPixel);
+			Rect((int)(m_tInfo.fX - m_tInfo.fCX * 0.5) + iScrollX
+				, (int)(m_tInfo.fY - m_tInfo.fCY * 0.5) + iScrollY
+				, (int)m_tInfo.fCX, (int)m_tInfo.fCY),
+			(int)m_tInfo.fCX * m_tFrame.iFrameStart,
+			(int)m_tInfo.fCY * m_tFrame.iMotion, 78, 78, UnitPixel);
 	}
 	else {
-		g.DrawImage(img, destinationPoints, 3, m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, 78, 78, UnitPixel);
+		g.DrawImage(img, destinationPoints, 3, (int)m_tInfo.fCX * m_tFrame.iFrameStart, (int)m_tInfo.fCY * m_tFrame.iMotion, 78, 78, UnitPixel);
 
 	}
 

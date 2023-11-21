@@ -65,6 +65,7 @@ void CSceneMgr::Scene_Change(SCENEID eID)
 void CSceneMgr::Update()
 {
 	m_pScene->Update();
+
 }
 
 void CSceneMgr::Late_Update()
