@@ -43,11 +43,15 @@ void CPlayer::Initialize()
 
 	//m_tInfo.fCX = 64.f;
 	//m_tInfo.fCY = 64.f;
-	m_tInfo = { 100.f, 500.f, 64, 64 };
+
+	m_InitX = 100.f;
+	m_InitX = 100.f;
+
+	m_tInfo = { m_InitX, m_InitX, 64, 64 };
 
 	m_fSpeed = 5.f;
 	m_fDiagonal = 10.f;
-	m_fPower = 20.f;
+	m_fPower = 10.f;
 
 	
 	this->m_fHP = 100.f;
@@ -102,14 +106,14 @@ void CPlayer::Late_Update()
 
 
 
-	if (CLineMgr::Get_Instance()->Collision_Line(m_tInfo.fX, m_tInfo.fY))
-	{
-		m_bJump = false;
-	}
-	else
-	{
-		m_bJump = true;
-	}
+	//if (CLineMgr::Get_Instance()->Collision_Line(m_tInfo.fX, m_tInfo.fY))
+	//{
+	//	m_bJump = false;
+	//}
+	//else
+	//{
+	//	m_bJump = true;
+	//}
 #endif
 }
 
@@ -182,21 +186,53 @@ void CPlayer::Key_Input()
 	else {
 		m_eCurState = IDLE;
 
-		if (CKeyMgr::Get_Instance()->Key_Pressing('A'))
+		if (CKeyMgr::Get_Instance()->Key_Down('A'))
 		{
 			m_eCurState = RUN;
-			m_tInfo.fX -= m_fSpeed;
+			m_InitSpeedX = -20.f;
+			//m_tInfo.fX -= m_fSpeed;
+		}
+		if (CKeyMgr::Get_Instance()->Key_Up('A'))
+		{
+			m_eCurState = RUN;
+			m_InitSpeedX = 0.f;
+			m_InitX = m_tInfo.fX;
+			//m_tInfo.fX -= m_fSpeed;
+		}
+		
+		if (CKeyMgr::Get_Instance()->Key_Down('D'))
+		{
+			m_eCurState = RUN;
+			m_InitSpeedX = +20.f;
+			//m_tInfo.fX -= m_fSpeed;
 		}
 
-		else if (CKeyMgr::Get_Instance()->Key_Pressing('D'))
+		if (CKeyMgr::Get_Instance()->Key_Up('D'))
 		{
-			m_tInfo.fX += m_fSpeed;
 			m_eCurState = RUN;
+			m_InitSpeedX = 0.f;
+			m_InitX = m_tInfo.fX;
+			//m_tInfo.fX -= m_fSpeed;
 		}
-		if (CKeyMgr::Get_Instance()->Key_Pressing(VK_SPACE))
+
+
+		//else if (CKeyMgr::Get_Instance()->Key_Pressing('D'))
+		//{
+		//	m_tInfo.fX += m_fSpeed;
+		//	m_eCurState = RUN;
+		//}
+		if (CKeyMgr::Get_Instance()->Key_Up(VK_SPACE))
 		{
-		
+			m_InitSpeedY=m_fGravity
+			mInitSpeedY = -GRAVITY * 3.0f;
+
+			mInitX = mActorX;
+			mInitY = mActorY;
+
+			
 			m_bJump = true;
+			
+			
 			m_eCurState = JUMP;
 		}
 
@@ -232,20 +268,21 @@ void CPlayer::Key_Input()
 
 void CPlayer::Jump()
 {
-	if (m_bJump) {
-		m_tInfo.fY -= (m_fPower * m_fAccelTime) - (9.8f * m_fAccelTime * m_fAccelTime * 0.5f);
+	if (m_bJump)
+	{
+		m_tInfo.fY -= (m_fPower * m_fAccelTime) + (9.8f * m_fAccelTime * m_fAccelTime * 0.5f);
+
 		m_fAccelTime += 0.2f;
 	}
+	else {
+		m_tInfo.fY -= (m_fPower * m_fAccelTime) - (9.8f * m_fAccelTime * m_fAccelTime * 0.5f);
 
-
-	else
-		{
-			m_fAccelTime = 0.f;
-
-		}
-
-
-
+		m_fAccelTime += 0.2f;
+	}
+	//시작 위치가 현재위치 이고 속도가 10이라면 (가속도는 0)1초후에는 y의 좌표는 어디인가
+	//m_tInfo.fY -= ((0 * t * t) * 0.5f) + m_fSpeed * t;
+	//if (CLineMgr::Get_Instance()->Collision_Line(m_tInfo.fX, m_tRect.bottom))
+	//	m_bJump = false;
 
 
 }

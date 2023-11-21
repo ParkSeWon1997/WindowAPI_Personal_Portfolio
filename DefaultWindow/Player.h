@@ -57,8 +57,24 @@ private:
 	POINT				m_tPosin;
 	CObj*				m_pMouse;
 	float				m_fDiagonal;
+
+	float				m_fJumpPower;
+	float				m_fJumpTime;
+
 	float				m_fPower;
 	float				m_fAccelTime;
+
+
+
+
+	float				m_InitSpeedX = 0.0f;
+	float				m_InitSpeedY = 0.0f;
+
+	float				m_InitX = 0.0f;
+	float				m_InitY = 0.0f;
+	float				m_t = 0.0f;
+	
+	float				m_fGravity = 9.8f;
 
 
 

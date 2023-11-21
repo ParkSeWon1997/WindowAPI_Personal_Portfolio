@@ -159,6 +159,7 @@
     <ClInclude Include="ElapseTimeMgr.h" />
     <ClInclude Include="Entry.h" />
     <ClInclude Include="Ground.h" />
+    <ClInclude Include="GroundTopo.h" />
     <ClInclude Include="GuideBullet.h" />
     <ClInclude Include="Gun.h" />
     <ClInclude Include="ImageCollection.h" />
@@ -198,6 +199,7 @@
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileMgr.h" />
     <ClInclude Include="Village.h" />
+    <ClInclude Include="Wall.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BmpMgr.cpp" />
@@ -211,6 +213,7 @@
     <ClCompile Include="ElapseTimeMgr.cpp" />
     <ClCompile Include="Entry.cpp" />
     <ClCompile Include="Ground.cpp" />
+    <ClCompile Include="GroundTopo.cpp" />
     <ClCompile Include="GuideBullet.cpp" />
     <ClCompile Include="Gun.cpp" />
     <ClCompile Include="ImageCollection.cpp" />
@@ -253,6 +256,7 @@
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileMgr.cpp" />
     <ClCompile Include="Village.cpp" />
+    <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DefaultWindow.rc" />

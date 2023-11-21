@@ -51,21 +51,23 @@ bool CLineMgr::Collision_Line(float _fX, float _fY)
 
 	for (auto& iter : m_LineList)
 	{
-
+		//플레이어의 y좌표가 라인의 좌표보다 작다면 충돌되지 않은 것으로 false를 리턴
 		if (_fY <iter->Get_Info().tLPoint.fY ) 
 		{
 			return false; //충돌아님
 		}
-		else
+
+		//플레이어의 y좌표가 라인의 좌표와 같다면 충돌된 것으로 true를 리턴
+		else if(_fY == iter->Get_Info().tLPoint.fY)
 		{
 			return true;
 		}
 		
-		if (_fX< iter->Get_Info().tLPoint.fX )
-		{
-			return true;
-		}
-		else return false;
+		//if (_fX< iter->Get_Info().tLPoint.fX )
+		//{
+		//	return true;
+		//}
+		//else return false;
 		
 	}
 
