@@ -43,7 +43,7 @@ int SubMonster::Update()
 		Monster_AngleAdd = 0;
 	}
 	FrameChek++;
-
+	GFireCount++;
 
 	
 
@@ -81,12 +81,12 @@ void SubMonster::Release()
 void SubMonster::Attack()
 {
 	if (dwFrameTime + 200 < GetTickCount()) {
-		if (FireCount < 10)
-		{
-			++FireCount;
 		CObjMgr::Get_Instance()->Add_Object(SUB_MONSTER_BULLET, CAbstractFactory<MonsterBullet>::Create(this->m_tInfo.fX, this->m_tInfo.fY, Monster_AngleAdd));
+		//if (FireCount < 10)
+		//{
+		//	++FireCount;
 		dwFrameTime = GetTickCount();
-		}
+		//}
 
 
 	}
@@ -96,10 +96,9 @@ void SubMonster::Attack()
 
 void SubMonster::Target_Attack()
 {
-	if (GFireCount <20)
-	{
+	if (dwFrameTime + 200 < GetTickCount()) {
 	CObjMgr::Get_Instance()->Add_Object(SUB_MONSTER_BULLET, CAbstractFactory<CGuideBullet>::Create(this->m_tInfo.fX, this->m_tInfo.fY, Monster_AngleAdd));
-		++GFireCount;
+	dwFrameTime = GetTickCount();
 	
 	}
 }
@@ -177,19 +176,14 @@ void SubMonster::SubMonster_pattern()
 
 	case SUBMOSTER_TATE123::ATTACK:
 	{
-		
-		//for (auto iter : CObjMgr::Get_Instance()->Get_ObjListProperty(MONSTER))
-		//{
-		//	if (this->m_tInfo.fX> iter->Get_Info().fX)
-		//	{
-		//		m_tInfo.fX = iter->Get_Info().fX + m_fSpeed;
-		//			//this->m_tInfo.fX += m_fSpeed;
-		//	}
-		//	
-		//
-		//}
-
-		//if(CObjMgr::Get_Instance()->Get_ObjList(MONSTER)->Get_Info().fX)
+		m_tInfo.fX += m_fSpeed * cos(m_fAngle * PI / 180.f);
+		m_tInfo.fY -= m_fSpeed * sin(m_fAngle * PI / 180.f);
+		Target_Attack();
+		if (FrameChek > 300)
+		{
+			SubState = SUBMOSTER_TATE123::IDLE;
+			FrameChek = 0;
+		}
 
 		break;
 	}
