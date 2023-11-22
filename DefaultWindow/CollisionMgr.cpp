@@ -50,7 +50,7 @@ bool CCollisionMgr::CollisionPoint_to_Point(CObj* _tmp, CObj* _Src)
 }
 
 
-//Player가 데미지를 받았을 때
+//첫 번쨰 인자: 데미지를 받을 Obj, 2번 째 인자: 데미지를 줄 Obj 
 void CCollisionMgr::DoDamageObj_to_Obj(list<CObj*> Dst, list<CObj*> Src)
 {
 	for (auto& DstList : Dst)

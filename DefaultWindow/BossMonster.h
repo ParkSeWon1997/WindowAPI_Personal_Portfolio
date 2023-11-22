@@ -22,12 +22,9 @@ public:
 public:
 	void Motion_Change();
 	bool IsSubMonsterAlive();
-	void MoveSubMonster();
 	void CheckSpearOverrWindow();
-	void Around_To_THis();
-
-	void CreateSubMonster();
 	void CreateSpear(int _Dir,float _X, float _Y);
+	void CreateIcicle(float _X);
 
 private:
 	void Boss_pattern();

@@ -42,15 +42,15 @@ int SubMonster::Update()
 	{
 		Monster_AngleAdd = 0;
 	}
-	m_fAngle123 += 2;
-	if (m_fAngle123 == 360.f)
+	m_fRotateAngle += 2;
+	if (m_fRotateAngle == 360.f)
 	{
-		m_fAngle123 = 0;
+		m_fRotateAngle = 0;
 	}
 
 	//m_fAngle123 += 2.0f;
 	FrameChek++;
-	GFireCount++;
+	
 
 	
 
@@ -80,7 +80,7 @@ void SubMonster::Render(HDC hDC)
 	//		m_tInfo.fCY,
 	//		56,22,UnitPixel);
 	g.TranslateTransform(m_tInfo.fX, m_tInfo.fY);
-	g.RotateTransform(m_fAngle123);
+	g.RotateTransform(m_fRotateAngle);
 	g.TranslateTransform(-m_tInfo.fX, -m_tInfo.fY);
 	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"SubMonster"), (m_tInfo.fX-m_tInfo.fCX*0.5), (m_tInfo.fY-m_tInfo.fCY*0.5), 56.f, 22.f);
 
@@ -99,10 +99,10 @@ void SubMonster::Release()
 void SubMonster::Attack()
 {
 	if (dwFrameTime + 200 < GetTickCount()) {
+		if(dynamic_cast<BossMonster*>(CObjMgr::Get_Instance()->Get_ObjList(BOSS_MONSTER))->Get_HP()<100)
+		CObjMgr::Get_Instance()->Add_Object(SUB_MONSTER_BULLET, CAbstractFactory<MonsterBullet>::Create(this->m_tInfo.fX, this->m_tInfo.fY, Monster_AngleAdd,15.f));
+		else
 		CObjMgr::Get_Instance()->Add_Object(SUB_MONSTER_BULLET, CAbstractFactory<MonsterBullet>::Create(this->m_tInfo.fX, this->m_tInfo.fY, Monster_AngleAdd));
-		//if (FireCount < 10)
-		//{
-		//	++FireCount;
 		dwFrameTime = GetTickCount();
 		//}
 
@@ -115,7 +115,11 @@ void SubMonster::Attack()
 void SubMonster::Target_Attack()
 {
 	if (dwFrameTime + 100 < GetTickCount()) {
-	CObjMgr::Get_Instance()->Add_Object(SUB_MONSTER_BULLET, CAbstractFactory<CGuideBullet>::Create(this->m_tInfo.fX, this->m_tInfo.fY, Monster_AngleAdd));
+		if (GFireCount <2)
+		{
+			CObjMgr::Get_Instance()->Add_Object(SUB_MONSTER_BULLET, CAbstractFactory<CGuideBullet>::Create(this->m_tInfo.fX, this->m_tInfo.fY, Monster_AngleAdd));
+			GFireCount++;
+		}
 	dwFrameTime = GetTickCount();
 	
 	}
@@ -212,6 +216,7 @@ void SubMonster::SubMonster_pattern()
 		if (FrameChek > 300)
 		{
 			SubState = SUBMOSTER_STATE::IDLE;
+			GFireCount = 0;
 			FrameChek = 0;
 		}
 	}

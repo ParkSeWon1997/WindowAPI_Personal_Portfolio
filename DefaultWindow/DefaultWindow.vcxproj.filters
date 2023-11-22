@@ -154,6 +154,12 @@
     <Filter Include="01. Obj\11. UI\02. BossUI">
       <UniqueIdentifier>{088c53ef-cebf-45c0-bd6c-916021b4f965}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Obj\01. Bullet\03. MonsterBullet\01. SubMonBullet">
+      <UniqueIdentifier>{46a7eaa3-e9cf-43a2-a867-61541cf100b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\01. Bullet\03. MonsterBullet\02. BossMonBullet">
+      <UniqueIdentifier>{c3191566-7f5e-4ecb-a33d-831b1075390d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -267,9 +273,6 @@
     <ClInclude Include="PlayerBullet.h">
       <Filter>01. Obj\01. Bullet\02. PlayerBullet</Filter>
     </ClInclude>
-    <ClInclude Include="MonsterBullet.h">
-      <Filter>01. Obj\01. Bullet\03. MonsterBullet</Filter>
-    </ClInclude>
     <ClInclude Include="Village.h">
       <Filter>03. Scene\03. Stage</Filter>
     </ClInclude>
@@ -303,23 +306,29 @@
     <ClInclude Include="GuideBullet.h">
       <Filter>01. Obj\01. Bullet\01. GuideBullet</Filter>
     </ClInclude>
-    <ClInclude Include="MonsterIceSpear.h">
-      <Filter>01. Obj\01. Bullet\03. MonsterBullet</Filter>
-    </ClInclude>
     <ClInclude Include="Ground.h">
       <Filter>01. Obj\10. Ground</Filter>
-    </ClInclude>
-    <ClInclude Include="GroundTopo.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Wall.h">
-      <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="PlayerUI.h">
       <Filter>01. Obj\11. UI\01. PlayerUI</Filter>
     </ClInclude>
     <ClInclude Include="BossUI.h">
       <Filter>01. Obj\11. UI\02. BossUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GroundTopo.h">
+      <Filter>01. Obj\10. Ground</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall.h">
+      <Filter>01. Obj\10. Ground</Filter>
+    </ClInclude>
+    <ClInclude Include="IcicleBullet.h">
+      <Filter>01. Obj\01. Bullet\03. MonsterBullet\02. BossMonBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterIceSpear.h">
+      <Filter>01. Obj\01. Bullet\03. MonsterBullet\02. BossMonBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterBullet.h">
+      <Filter>01. Obj\01. Bullet\03. MonsterBullet\01. SubMonBullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -425,9 +434,6 @@
     <ClCompile Include="PlayerBullet.cpp">
       <Filter>01. Obj\01. Bullet\02. PlayerBullet</Filter>
     </ClCompile>
-    <ClCompile Include="MonsterBullet.cpp">
-      <Filter>01. Obj\01. Bullet\03. MonsterBullet</Filter>
-    </ClCompile>
     <ClCompile Include="Village.cpp">
       <Filter>03. Scene\03. Stage</Filter>
     </ClCompile>
@@ -455,23 +461,29 @@
     <ClCompile Include="GuideBullet.cpp">
       <Filter>01. Obj\01. Bullet\01. GuideBullet</Filter>
     </ClCompile>
-    <ClCompile Include="MonsterIceSpear.cpp">
-      <Filter>01. Obj\01. Bullet\03. MonsterBullet</Filter>
-    </ClCompile>
     <ClCompile Include="Ground.cpp">
       <Filter>01. Obj\10. Ground</Filter>
-    </ClCompile>
-    <ClCompile Include="GroundTopo.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Wall.cpp">
-      <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="PlayerUI.cpp">
       <Filter>01. Obj\11. UI\01. PlayerUI</Filter>
     </ClCompile>
     <ClCompile Include="BossUI.cpp">
       <Filter>01. Obj\11. UI\02. BossUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GroundTopo.cpp">
+      <Filter>01. Obj\10. Ground</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall.cpp">
+      <Filter>01. Obj\10. Ground</Filter>
+    </ClCompile>
+    <ClCompile Include="IcicleBullet.cpp">
+      <Filter>01. Obj\01. Bullet\03. MonsterBullet\02. BossMonBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterIceSpear.cpp">
+      <Filter>01. Obj\01. Bullet\03. MonsterBullet\02. BossMonBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterBullet.cpp">
+      <Filter>01. Obj\01. Bullet\03. MonsterBullet\01. SubMonBullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

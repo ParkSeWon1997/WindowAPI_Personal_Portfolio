@@ -11,7 +11,7 @@ Ground::~Ground()
 
 void Ground::Initialize()
 {
-	m_tInfo = {};
+
 
 
 	m_eRender = GAMEOBJECT;

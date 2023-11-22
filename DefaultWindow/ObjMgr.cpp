@@ -42,10 +42,12 @@ CObj * CObjMgr::Get_Target(OBJID eID, CObj * pObj)
 
 		float	fDiagonal = sqrt(fWidth * fWidth + fHeight * fHeight);
 
+
 		if (!pTarget || fDistance > fDiagonal)
 		{
 			pTarget = iter;
 			fDistance = fDiagonal;
+		
 		}
 	}
 
@@ -103,8 +105,10 @@ void CObjMgr::Late_Update()
 	//CCollisionMgr::Collision_RectEx(m_ObjList[MONSTER], m_ObjList[PLAYER]);
 	//CCollisionMgr::Collision_RectEx(m_ObjList[PLAYER], m_ObjList[MONSTER]);
 	//CCollisionMgr::Collision_Rect(m_ObjList[MONSTER], m_ObjList[BULLET]);
-	//CCollisionMgr::Collision_Sphere(m_ObjList[BULLET], m_ObjList[SUB_MONSTER_BULLET]);
+	CCollisionMgr::Collision_Sphere(m_ObjList[BULLET], m_ObjList[SUB_MONSTER_BULLET]);
+	//CCollisionMgr::Collision_Sphere(m_ObjList[BULLET], m_ObjList[BOSS_BULLET]);
 	CCollisionMgr::DoDamageObj_to_Obj(m_ObjList[PLAYER], m_ObjList[SUB_MONSTER_BULLET]);
+	CCollisionMgr::DoDamageObj_to_Obj(m_ObjList[PLAYER], m_ObjList[BOSS_BULLET]);
 	CCollisionMgr::DoDamageObj_to_Obj(m_ObjList[BOSS_MONSTER], m_ObjList[BULLET]);
 	CCollisionMgr::DoDamageObj_to_Obj(m_ObjList[MONSTER], m_ObjList[BULLET]);
 

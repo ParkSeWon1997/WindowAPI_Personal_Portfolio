@@ -14,7 +14,7 @@ public:
 	virtual void Release() override;
 
 public:
-	void		Set_MoveCallRight(bool _Right) { MoveCallRight = _Right; }
+
 	void		Set_RotaeImage(float _RoateAngle) { RotaeImage = _RoateAngle; }
 	void		SEt_Move_DIR(BOSSMONSTER_SPEAR_DIR _ID) { m_eMoveDir = _ID; }
 
@@ -22,8 +22,6 @@ public:
 	//void		MoveToWidth(float _X);
 	void		Move(BOSSMONSTER_SPEAR_DIR _ID);
 
-
-	bool		MoveCallRight;
 
 
 private:

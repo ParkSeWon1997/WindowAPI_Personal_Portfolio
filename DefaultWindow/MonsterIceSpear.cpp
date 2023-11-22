@@ -16,7 +16,7 @@ void MonsterIceSpear::Initialize()
 	m_tInfo.fCY = 111.f;
 
 	RotaeImage = 0.f;
-	m_fSpeed = 10.f;
+	m_fSpeed = 7.f;
 	m_fDamage = 30.f;
 	m_fHP = 1.f;
 	m_eRender = GAMEOBJECT;

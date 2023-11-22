@@ -21,6 +21,7 @@ public:
 	virtual void Release() override;
 public:
 	void SetSubState(SUBMOSTER_STATE _ID) { SubState = _ID; }
+	float Get_m_fRotateAngle() { return m_fRotateAngle; }
 	//360µµ °ø°Ý
 	void Attack();
 	void Target_Attack();
@@ -55,7 +56,7 @@ private:
 	int FireCount = 0;
 	int GFireCount = 0;
 
-	float m_fAngle123=0;
+	float m_fRotateAngle=0;
 
 private:
 	SUBMOSTER_STATE	SubState;

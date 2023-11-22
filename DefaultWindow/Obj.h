@@ -24,6 +24,8 @@ public:
 	void			Set_Dead() { m_bDead = true; }
 	void			Set_Angle(float _fAngle) { m_fAngle = _fAngle; }
 	void			Set_Target(CObj* pTarget) { m_pTarget = pTarget; }
+
+	void			Set_Speed(float _fSpeed) { m_fSpeed = _fSpeed; }
 	float			Get_Speed() { return m_fSpeed; }
 
 	float			Get_HP() { return m_fHP; }
@@ -44,6 +46,13 @@ public:
 
 	void			Set_FrameKey(TCHAR* pFrameKey) { m_pFrameKey = pFrameKey; }
 	RENDERID		Get_RenderID() { return m_eRender; }
+
+
+	//추가
+	float			Get_Target_InitX() {	return m_fTargetInitX;}
+	float			Get_Target_InitY() {	return m_fTargetInitY;}
+	void			Set_Target_InitX(float _Target_X) { m_fTargetInitX = _Target_X; }
+	void			Set_Target_InitY(float _Target_Y) { m_fTargetInitY = _Target_Y; }
 
 public:
 	virtual void	Initialize()	PURE;
@@ -72,7 +81,8 @@ protected:
 	//추가
 	float m_fHP;
 	float m_fDamage;
-
+	float m_fTargetInitX;
+	float m_fTargetInitY;
 
 
 	float		m_fSpeed;

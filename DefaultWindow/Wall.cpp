@@ -11,6 +11,7 @@ Wall::~Wall()
 
 void Wall::Initialize()
 {
+	m_eRender = GAMEOBJECT;
 }
 
 int Wall::Update()

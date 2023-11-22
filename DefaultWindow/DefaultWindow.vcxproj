@@ -161,6 +161,7 @@
     <ClInclude Include="GroundTopo.h" />
     <ClInclude Include="GuideBullet.h" />
     <ClInclude Include="Gun.h" />
+    <ClInclude Include="IcicleBullet.h" />
     <ClInclude Include="ImageCollection.h" />
     <ClInclude Include="KeyMgr.h" />
     <ClInclude Include="Line.h" />
@@ -215,6 +216,7 @@
     <ClCompile Include="GroundTopo.cpp" />
     <ClCompile Include="GuideBullet.cpp" />
     <ClCompile Include="Gun.cpp" />
+    <ClCompile Include="IcicleBullet.cpp" />
     <ClCompile Include="ImageCollection.cpp" />
     <ClCompile Include="KeyMgr.cpp" />
     <ClCompile Include="Line.cpp" />

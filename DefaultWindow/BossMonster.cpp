@@ -8,6 +8,7 @@
 #include"SubMonster.h"
 #include "AbstractFactory.h"
 #include"MonsterIceSpear.h"
+#include"IcicleBullet.h"
 
 
 BossMonster::BossMonster()
@@ -196,18 +197,6 @@ bool BossMonster::IsSubMonsterAlive()
 
 }
 
-void BossMonster::MoveSubMonster()
-{
-	for (auto& iter : CObjMgr::Get_Instance()->Get_ObjListProperty(MONSTER))
-	{
-		
-		dynamic_cast<SubMonster*>(iter)->MoveToBoss();
-		
-	}
-
-	
-}
-
 void BossMonster::CheckSpearOverrWindow()
 {
 
@@ -225,21 +214,7 @@ void BossMonster::CheckSpearOverrWindow()
 
 }
 
-void BossMonster::Around_To_THis()
-{
-	for (auto& iter : CObjMgr::Get_Instance()->Get_ObjListProperty(MONSTER))
-	{
 
-		dynamic_cast<SubMonster*>(iter)->AroundBOss();
-
-	}
-}
-
-void BossMonster::CreateSubMonster()
-{
-
-
-}
 
 void BossMonster::CreateSpear(int _Dir, float _X, float _Y)
 {
@@ -289,6 +264,14 @@ void BossMonster::CreateSpear(int _Dir, float _X, float _Y)
 	
 	
 	
+}
+
+void BossMonster::CreateIcicle(float _X)
+{
+	CObj* pIcicle = new IcicleBullet;
+	pIcicle->Set_Pos(_X,0);
+	pIcicle->Initialize();
+	CObjMgr::Get_Instance()->Add_Object(BOSS_BULLET, pIcicle);
 }
 
 void BossMonster::Boss_pattern()
@@ -353,9 +336,11 @@ void BossMonster::Boss_pattern()
 			m_tInfo.fY = WINCY * 0.3;
 
 			FrameCheck = 0;
+			
+		}
+		if (m_fHP<150) {
 			m_eBOSS_STATE = BOSS_STATE::SC_BOSS_NORMAL;
 		}
-
 	
 
 		else if (IsSubMonsterAlive())
@@ -368,9 +353,16 @@ void BossMonster::Boss_pattern()
 
 	case BOSS_STATE::SC_BOSS_NORMAL:
 	{
-		//m_eCurState = ImageSTATE::IDLE;
+		m_eCurState = ImageSTATE::IDLE;
 
-
+		if (FrameCheck>50)
+		{
+			CreateIcicle(100);
+			CreateIcicle(200);
+			CreateIcicle(300);
+			CreateIcicle(400);
+			FrameCheck = 0;
+		}
 
 
 
