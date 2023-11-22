@@ -36,7 +36,7 @@ void PlayerUI::Render(HDC hDC)
 {
 	Rectangle(hDC, m_tRect.left , m_tRect.top , m_tRect.right , m_tRect.bottom );
 	Graphics g(hDC);
-	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_HP_UI"),m_tInfo.fX, m_tInfo.fY, 148.f, 32.f);
+	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_HP_UI"),0.f, 0.f, 148.f, 32.f);
 
 		
 

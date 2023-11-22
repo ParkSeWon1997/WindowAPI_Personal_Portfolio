@@ -402,8 +402,7 @@ void CPlayer::WeaponChage()
 		}
 		else
 		{
-			int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
-			int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
+
 			CObjMgr::Get_Instance()->Get_ObjList(OBJID::GUN)->Set_Pos(m_tPosin.x, m_tPosin.y);
 			CObjMgr::Get_Instance()->Get_ObjList(OBJID::GUN)->Set_Angle(m_fAngle);
 
