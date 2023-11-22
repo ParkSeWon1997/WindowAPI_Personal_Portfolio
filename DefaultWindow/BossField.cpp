@@ -30,6 +30,7 @@ void BossField::Initialize()
 	//PngMrg::Get_Instance()->Insert_Png()
 	CObjMgr::Get_Instance()->Add_Object(BOSS_MONSTER, CAbstractFactory<BossMonster>::Create(WINCX*0.5,WINCY*0.3,0));
 	CLineMgr::Get_Instance()->Initialize();
+	CSoundMgr::Get_Instance()->PlaySound(L"2.IceBoss-sharedassets12.assets-132.wav", SOUND_BGM, g_fVolume);
 	
 }
 
@@ -40,10 +41,7 @@ void BossField::Update()
 		CSoundMgr::Get_Instance()->StopSound(SOUND_BGM);
 		CSoundMgr::Get_Instance()->PlaySound(L"dead-sharedassets2.assets-304.wav", SOUND_PLAYER_DEAD, g_fVolume);
 	}
-	else
-	{
-		CSoundMgr::Get_Instance()->PlaySound(L"2.IceBoss-sharedassets12.assets-132.wav", SOUND_BGM, g_fVolume);
-	}
+	
 	CObjMgr::Get_Instance()->Update();
 }
 
