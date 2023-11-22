@@ -106,9 +106,6 @@
     <Filter Include="02. Design\09. PngMgr\MyPng">
       <UniqueIdentifier>{2321a5e2-c142-47ae-8a57-be7f17580d6a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02. Design\10. ElapseTimeMgr">
-      <UniqueIdentifier>{905d3059-a241-4ffe-af7b-929e87350de7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="01. Obj\07. Weapon">
       <UniqueIdentifier>{f5365d5b-0e08-4a22-9064-37b930ee4197}</UniqueIdentifier>
     </Filter>
@@ -245,12 +242,6 @@
     </ClInclude>
     <ClInclude Include="MyPng.h">
       <Filter>02. Design\09. PngMgr\MyPng</Filter>
-    </ClInclude>
-    <ClInclude Include="ElapseTimeMgr.h">
-      <Filter>02. Design\10. ElapseTimeMgr</Filter>
-    </ClInclude>
-    <ClInclude Include="CTimeMgr.h">
-      <Filter>02. Design\10. ElapseTimeMgr</Filter>
     </ClInclude>
     <ClInclude Include="Gun.h">
       <Filter>01. Obj\07. Weapon\01. Gun</Filter>
@@ -403,12 +394,6 @@
     </ClCompile>
     <ClCompile Include="MyPng.cpp">
       <Filter>02. Design\09. PngMgr\MyPng</Filter>
-    </ClCompile>
-    <ClCompile Include="ElapseTimeMgr.cpp">
-      <Filter>02. Design\10. ElapseTimeMgr</Filter>
-    </ClCompile>
-    <ClCompile Include="CTimeMgr.cpp">
-      <Filter>02. Design\10. ElapseTimeMgr</Filter>
     </ClCompile>
     <ClCompile Include="Gun.cpp">
       <Filter>01. Obj\07. Weapon\01. Gun</Filter>

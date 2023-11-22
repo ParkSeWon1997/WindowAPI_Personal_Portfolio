@@ -186,34 +186,23 @@ void CPlayer::Key_Input()
 	else {
 		m_eCurState = IDLE;
 
-		if (CKeyMgr::Get_Instance()->Key_Down('A'))
-		{
-			m_eCurState = RUN;
-			m_InitSpeedX = -20.f;
-			//m_tInfo.fX -= m_fSpeed;
-		}
-		if (CKeyMgr::Get_Instance()->Key_Up('A'))
-		{
-			m_eCurState = RUN;
-			m_InitSpeedX = 0.f;
-			m_InitX = m_tInfo.fX;
-			//m_tInfo.fX -= m_fSpeed;
-		}
 		
-		if (CKeyMgr::Get_Instance()->Key_Down('D'))
+
+		if (CKeyMgr::Get_Instance()->Key_Pressing('A'))
 		{
 			m_eCurState = RUN;
-			m_InitSpeedX = +20.f;
-			//m_tInfo.fX -= m_fSpeed;
+			//m_InitSpeedX = -20.f;
+			m_tInfo.fX -= m_fSpeed;
+		}
+	
+		if (CKeyMgr::Get_Instance()->Key_Pressing('D'))
+		{
+			m_eCurState = RUN;
+			//m_InitSpeedX = +20.f;
+			m_tInfo.fX += m_fSpeed;
 		}
 
-		if (CKeyMgr::Get_Instance()->Key_Up('D'))
-		{
-			m_eCurState = RUN;
-			m_InitSpeedX = 0.f;
-			m_InitX = m_tInfo.fX;
-			//m_tInfo.fX -= m_fSpeed;
-		}
+		
 
 
 		//else if (CKeyMgr::Get_Instance()->Key_Pressing('D'))
@@ -221,20 +210,24 @@ void CPlayer::Key_Input()
 		//	m_tInfo.fX += m_fSpeed;
 		//	m_eCurState = RUN;
 		//}
-		if (CKeyMgr::Get_Instance()->Key_Up(VK_SPACE))
+		if (CKeyMgr::Get_Instance()->Key_Pressing(VK_SPACE))
 		{
-			//m_InitSpeedY = m_fGravity;
-			//mInitSpeedY = -GRAVITY * 3.0f;
-			//
-			//mInitX = mActorX;
-			//mInitY = mActorY;
+			m_InitSpeedY = -m_fGravity * 3.0f;
 
-			
+			m_InitX= m_tInfo.fX;
+			m_InitY = m_tInfo.fY;
 			m_bJump = true;
 			
 			
 			m_eCurState = JUMP;
 		}
+
+		
+	
+
+
+
+
 
 		if (CKeyMgr::Get_Instance()->Key_Down('2'))
 		{
@@ -268,22 +261,23 @@ void CPlayer::Key_Input()
 
 void CPlayer::Jump()
 {
+
+
 	if (m_bJump)
 	{
-		m_tInfo.fY -= (m_fPower * m_fAccelTime) + (9.8f * m_fAccelTime * m_fAccelTime * 0.5f);
+		//y축은 등가속 운동(가속도는 중력 가속도)
+		//y축 속도 결정
+		m_InitSpeedY = m_InitSpeedY + m_fGravity * m_t;
 
-		m_fAccelTime += 0.2f;
+		//y축 위치 결정
+		m_tInfo.fY = m_tInfo.fY + m_InitSpeedY * m_t;
 	}
-	else {
-		m_tInfo.fY -= (m_fPower * m_fAccelTime) - (9.8f * m_fAccelTime * m_fAccelTime * 0.5f);
 
-		m_fAccelTime += 0.2f;
-	}
-	//시작 위치가 현재위치 이고 속도가 10이라면 (가속도는 0)1초후에는 y의 좌표는 어디인가
-	//m_tInfo.fY -= ((0 * t * t) * 0.5f) + m_fSpeed * t;
-	//if (CLineMgr::Get_Instance()->Collision_Line(m_tInfo.fX, m_tRect.bottom))
-	//	m_bJump = false;
 
+
+	//t의 시간은 고정값으로 제곱을 해줘야함 t가 늘어난다면 점프하는 속도 증가 
+	//그리고 낙하하는 속도도 증가
+	m_t = 1.0f;
 
 }
 

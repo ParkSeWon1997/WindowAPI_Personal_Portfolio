@@ -19,6 +19,7 @@ public:
 	bool			Collision_Line(float _fX, float _fY);
 	void			Load_Line();
 
+	list<CLine*>*	Get_LineList() { return &m_LineList; }
 	void			SelectMapLine(MAPLINE _ID);
 
 public:

@@ -152,11 +152,9 @@
     <ClInclude Include="BossMonster.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="CollisionMgr.h" />
-    <ClInclude Include="CTimeMgr.h" />
     <ClInclude Include="DefalutMonster.h" />
     <ClInclude Include="DefaultWindow.h" />
     <ClInclude Include="Define.h" />
-    <ClInclude Include="ElapseTimeMgr.h" />
     <ClInclude Include="Entry.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="GroundTopo.h" />
@@ -207,10 +205,8 @@
     <ClCompile Include="BossMonster.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CollisionMgr.cpp" />
-    <ClCompile Include="CTimeMgr.cpp" />
     <ClCompile Include="DefalutMonster.cpp" />
     <ClCompile Include="DefaultWindow.cpp" />
-    <ClCompile Include="ElapseTimeMgr.cpp" />
     <ClCompile Include="Entry.cpp" />
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="GroundTopo.cpp" />
