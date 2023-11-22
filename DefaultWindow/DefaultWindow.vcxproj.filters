@@ -145,6 +145,15 @@
     <Filter Include="소스 파일\04. ImageClass">
       <UniqueIdentifier>{f358ee29-165f-4557-92ca-4bd1426b6386}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Obj\11. UI">
+      <UniqueIdentifier>{c198d084-9349-46d1-a705-e96a52fd3d35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\11. UI\01. PlayerUI">
+      <UniqueIdentifier>{922bc5cd-a52d-49ca-9f09-ac5c61b1d765}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\11. UI\02. BossUI">
+      <UniqueIdentifier>{088c53ef-cebf-45c0-bd6c-916021b4f965}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -306,6 +315,12 @@
     <ClInclude Include="Wall.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerUI.h">
+      <Filter>01. Obj\11. UI\01. PlayerUI</Filter>
+    </ClInclude>
+    <ClInclude Include="BossUI.h">
+      <Filter>01. Obj\11. UI\02. BossUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DefaultWindow.cpp">
@@ -451,6 +466,12 @@
     </ClCompile>
     <ClCompile Include="Wall.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerUI.cpp">
+      <Filter>01. Obj\11. UI\01. PlayerUI</Filter>
+    </ClCompile>
+    <ClCompile Include="BossUI.cpp">
+      <Filter>01. Obj\11. UI\02. BossUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

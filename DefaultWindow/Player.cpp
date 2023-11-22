@@ -19,6 +19,8 @@
 #include "PlayerBullet.h"
 #include "SceneMgr.h"
 
+#include"PlayerUI.h"
+
 
 CObj* CPlayer::m_Instance = nullptr;
 static float  g_fVolume = 1.0f;
@@ -45,9 +47,9 @@ void CPlayer::Initialize()
 	//m_tInfo.fCY = 64.f;
 
 	m_InitX = 100.f;
-	m_InitX = 100.f;
+	m_InitY = 500.f;
 
-	m_tInfo = { m_InitX, m_InitX, 64, 64 };
+	m_tInfo = { m_InitX, m_InitY, 64, 64 };
 
 	m_fSpeed = 5.f;
 	m_fDiagonal = 10.f;
@@ -59,6 +61,10 @@ void CPlayer::Initialize()
 	
 	m_tFrame.dwSpeed = 200;
 	m_tFrame.dwTime = GetTickCount();
+
+
+
+	CObjMgr::Get_Instance()->Add_Object(OBJID::PlAYER_UI, CAbstractFactory<PlayerUI>::Create());
 
 
 	//m_bDead = true;

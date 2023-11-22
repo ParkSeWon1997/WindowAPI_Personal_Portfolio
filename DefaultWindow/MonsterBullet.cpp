@@ -18,7 +18,7 @@ void MonsterBullet::Initialize()
 
 	m_fSpeed = 7.f;
 
-	m_fDamage = 50.f;
+	m_fDamage = 0.f;
 	m_fHP = 1.f;
 	m_eRender = GAMEOBJECT;
 }

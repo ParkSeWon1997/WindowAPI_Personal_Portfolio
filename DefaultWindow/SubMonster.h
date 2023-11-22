@@ -55,6 +55,8 @@ private:
 	int FireCount = 0;
 	int GFireCount = 0;
 
+	float m_fAngle123=0;
+
 private:
 	SUBMOSTER_TATE123	SubState;
 

@@ -59,7 +59,7 @@ void Entry::Late_Update()
 
 void Entry::Render(HDC hDC)
 {
-    Rectangle(hDC, m_tRect.left, m_tRect.top , m_tRect.right , m_tRect.bottom );
+    //Rectangle(hDC, m_tRect.left, m_tRect.top , m_tRect.right , m_tRect.bottom );
 
 
     int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();

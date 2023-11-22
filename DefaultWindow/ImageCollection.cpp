@@ -16,10 +16,17 @@ ImageCollection::ImageCollection()
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Weapon/Gun/RussianRoulette.png", L"Player_Gun_Rusiian");
 	//총알
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Weapon/Gun/Bullet/DogSkill.png", L"Player_Bullet");
+	//플레이어 Hit
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/UI/RedWarningOnHit.png", L"Player_Hit");
+	//플레이어 HP UI
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/HP/PlayerLifeBase 1-sharedassets2.assets-123.png", L"Player_HP_UI");
 
 
 	//보스몬스터 Image
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Monster/Boss/Boss_Nifl1.png", L"Boss_Monster");
+	//보스 몬스터 HP UI
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Monster/UI/BossLife.png", L"Boss_UI");
+
 	//일반 몬스터(박쥐) Image
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Monster/Default/Bat_Ice_Defalut.png", L"Defalut_Ice");
 
@@ -71,6 +78,9 @@ ImageCollection::ImageCollection()
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Monster/Boss/Bullet/Icicle9-sharedassets12.assets-102.png", L"BossMonset_Icicle");
 
 
+	//SubMonster
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Monster/Sub/IcePillar12.png", L"SubMonster");
+	
 	//SubMonster 총알
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Monster/Boss/Bullet/IceBullet.png", L"SubMonster_Bullet");
 }

@@ -5,7 +5,7 @@
 #include"MonsterBullet.h"
 #include"GuideBullet.h"
 #include"BossMonster.h"
-
+#include"PngMrg.h"
 SubMonster::SubMonster() : Monster_AngleAdd(0.f), m_fDistance(0.f)
 {
 
@@ -22,8 +22,8 @@ SubMonster::~SubMonster()
 
 void SubMonster::Initialize()
 {
-	m_tInfo.fCX = 30.f;
-	m_tInfo.fCY = 30.f;
+	m_tInfo.fCX = 56.f;
+	m_tInfo.fCY = 22.f;
 
 	m_fDistance = 100.f;
 	m_fSpeed = 2.75f;
@@ -42,6 +42,13 @@ int SubMonster::Update()
 	{
 		Monster_AngleAdd = 0;
 	}
+	m_fAngle123 += 2;
+	if (m_fAngle123 == 360.f)
+	{
+		m_fAngle123 = 0;
+	}
+
+	//m_fAngle123 += 2.0f;
 	FrameChek++;
 	GFireCount++;
 
@@ -64,13 +71,24 @@ void SubMonster::Late_Update()
 void SubMonster::Render(HDC hDC)
 {
 	Graphics g(hDC);
-	//g.DrawImage();
+	PngMrg::Get_Instance()->Get_Image(L"SubMonster");
+	//g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"SubMonster"),
+	//	Rect((m_tInfo.fX-m_tInfo.fCX*0.5),
+	//		(m_tInfo.fY-m_tInfo.fCY*0.5),
+	//		m_tInfo.fCX,m_tInfo.fCY),
+	//		m_tInfo.fCX,
+	//		m_tInfo.fCY,
+	//		56,22,UnitPixel);
+	g.TranslateTransform(m_tInfo.fX, m_tInfo.fY);
+	g.RotateTransform(m_fAngle123);
+	g.TranslateTransform(-m_tInfo.fX, -m_tInfo.fY);
+	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"SubMonster"), (m_tInfo.fX-m_tInfo.fCX*0.5), (m_tInfo.fY-m_tInfo.fCY*0.5), 56.f, 22.f);
 
-	Ellipse(hDC,
-		m_tRect.left,
-		m_tRect.top,
-		m_tRect.right,
-		m_tRect.bottom);
+	//Ellipse(hDC,
+	//	m_tRect.left,
+	//	m_tRect.top,
+	//	m_tRect.right,
+	//	m_tRect.bottom);
 }
 
 void SubMonster::Release()

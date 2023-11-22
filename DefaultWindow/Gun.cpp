@@ -41,11 +41,11 @@ void Gun::Render(HDC hDC)
 {
 	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
 	int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
-	Ellipse(hDC,
-		m_tRect.left,
-		m_tRect.top,
-		m_tRect.right,
-		m_tRect.bottom);
+	//Ellipse(hDC,
+	//	m_tRect.left,
+	//	m_tRect.top,
+	//	m_tRect.right,
+	//	m_tRect.bottom);
 	Graphics g(hDC);
 
 	Point destinationPoints[] = {

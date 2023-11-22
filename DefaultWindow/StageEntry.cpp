@@ -70,7 +70,7 @@ void StageEntry::Late_Update()
 
 void StageEntry::Render(HDC hDC)
 {
-	Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+	//Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
 	Graphics g(hDC);
 	g.DrawImage(PngMrg::Get_Instance()->Get_Image(m_pStateKey),
 		Rect((m_tInfo.fX - m_tInfo.fCX * 0.5), (m_tInfo.fY - m_tInfo.fCY * 0.5), m_tInfo.fCX, m_tInfo.fCY), m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, 132, 40, UnitPixel);
