@@ -28,7 +28,7 @@ static float  g_fVolume = 1.0f;
 
 bool testLand = false;
 CPlayer::CPlayer() : m_bJump(false), m_fPower(0.f), m_fAccelTime(0.f)
-, m_eCurState(IDLE), m_ePreState(PS_END), m_pWeaponList{}, IsGround(false)
+, m_eCurState(IDLE), m_ePreState(PS_END), m_pWeaponList{}, IsGround(false), nSoundCount(0)
 {
 	ZeroMemory(&m_tPosin, sizeof(POINT));
 	m_pMouse = CMouse::Get_Instance();
@@ -52,7 +52,7 @@ void CPlayer::Initialize()
 	m_tInfo = { m_InitX, m_InitY, 64, 64 };
 
 	m_fSpeed = 5.f;
-	m_fDiagonal = 10.f;
+	m_fDiagonal = 15.f;
 	m_fPower = 10.f;
 
 	
@@ -82,7 +82,7 @@ int CPlayer::Update()
 	Jump();
 
 	Key_Input();
-	
+	nSoundCount++;
 
 	__super::Update_Rect();
 
@@ -198,6 +198,7 @@ void CPlayer::Key_Input()
 		{
 			m_eCurState = RUN;
 			//m_InitSpeedX = -20.f;
+			CSoundMgr::Get_Instance()->PlaySound(L"step_lth1-sharedassets2.assets-325.wav", SOUND_PLAYER_WALK, g_fVolume);
 			m_tInfo.fX -= m_fSpeed;
 		}
 	
@@ -205,6 +206,7 @@ void CPlayer::Key_Input()
 		{
 			m_eCurState = RUN;
 			//m_InitSpeedX = +20.f;
+			CSoundMgr::Get_Instance()->PlaySound(L"step_lth1-sharedassets2.assets-325.wav", SOUND_PLAYER_WALK, g_fVolume);
 			m_tInfo.fX += m_fSpeed;
 		}
 
@@ -254,13 +256,16 @@ void CPlayer::Key_Input()
 			if (m_eWeaponMode == CPlayer::GUN)
 			{
 				dynamic_cast<Gun*>(CObjMgr::Get_Instance()->Get_ObjList(OBJID::GUN))->FIre(true);
-				
-				CSoundMgr::Get_Instance()->PlaySound(L"Gun-sharedassets22.assets-357.wav", SOUND_EFFECT, g_fVolume);
 
+				//CSoundMgr::Get_Instance()->PlaySound(L"Gun-sharedassets22.assets-357.wav", SOUND_EFFECT, g_fVolume);
+				//if (nSoundCount > 2) {
+				//	CSoundMgr::Get_Instance()->StopSound(SOUND_EFFECT);
+				//	nSoundCount = 0;
+				//}
 			}
 
 		}
-
+	
 	}
 
 }
@@ -343,6 +348,7 @@ void CPlayer::Motion_Change()
 			break;
 
 		case RUN:
+			
 			m_tFrame.iFrameStart = 0;
 			m_tFrame.iFrameEnd = 5;
 			m_tFrame.iMotion = 2;
@@ -391,9 +397,6 @@ void CPlayer::WeaponChage()
 		{
 			CObjMgr::Get_Instance()->Add_Object(OBJID::GUN, CAbstractFactory<Gun>::Create(this->m_tPosin.x, this->m_tPosin.y, this->m_fAngle));
 			m_pWeaponList[CPlayer::GUN] = CObjMgr::Get_Instance()->Get_ObjList(OBJID::GUN);
-			//m_pWeaponList[CPlayer::GUN] = new Gun;
-			//m_pWeaponList[CPlayer::GUN]->Set_Pos(m_tPosin.x, m_tPosin.y);
-			//m_pWeaponList[CPlayer::GUN]->Set_Angle(this->m_fAngle);
 		}
 		else
 		{
@@ -430,7 +433,7 @@ void CPlayer::Set_Posin()
 		m_fAngle *= -1;
 	}
 
-	m_tPosin.y =  LONG(m_tInfo.fY + m_fDiagonal * sin(m_fAngle * (PI / 180.f))) ;
+	m_tPosin.y =  LONG(m_tInfo.fY + m_fDiagonal * sin(m_fAngle * (PI / 180.f)))+10 ;//허리춤에 오게 +10조정
 	}
 
 }

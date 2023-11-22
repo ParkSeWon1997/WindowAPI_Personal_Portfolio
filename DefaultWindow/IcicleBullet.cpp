@@ -44,7 +44,7 @@ void IcicleBullet::Render(HDC hDC)
 	//g.RotateTransform(RotaeImage);
 	//g.TranslateTransform(-m_tInfo.fX, -m_tInfo.fY);
 	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"BossMonset_Icicle"),
-		(m_tInfo.fX - m_tInfo.fCX * 0.5), (m_tInfo.fY - m_tInfo.fCY * 0.5), 25.f, 111.f);
+		(m_tInfo.fX - m_tInfo.fCX * 0.5), (m_tInfo.fY - m_tInfo.fCY * 0.5), 27.f, 40.f);
 }
 
 void IcicleBullet::Release()

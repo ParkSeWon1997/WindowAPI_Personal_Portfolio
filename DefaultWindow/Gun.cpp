@@ -60,6 +60,9 @@ void Gun::Render(HDC hDC)
 	
 	if (dynamic_cast<CPlayer*>(CObjMgr::Get_Instance()->Get_Player())->Posin_half_Check())
 	{
+		g.TranslateTransform(m_tInfo.fX, m_tInfo.fY);
+		g.RotateTransform(m_fAngle);
+		g.TranslateTransform(-m_tInfo.fX, -m_tInfo.fY);
 		g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Gun_Rusiian"),
 			(m_tInfo.fX - m_tInfo.fCX * 0.5) + iScrollX,
 			(m_tInfo.fY - m_tInfo.fCY * 0.5) + iScrollY,
@@ -67,10 +70,12 @@ void Gun::Render(HDC hDC)
 	}
 	else
 	{
+		g.TranslateTransform(m_tInfo.fX, m_tInfo.fY);
+		g.RotateTransform(m_fAngle+180);
+		g.TranslateTransform(-m_tInfo.fX, -m_tInfo.fY);
 		g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Gun_Rusiian"), destinationPoints, 3, m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, 28.f, 20.f, UnitPixel);
 	}
-	//dynamic_cast<CPlayer*>(CObjMgr::Get_Instance()->Get_Player())->Posin_half_Check()
-	//g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Gun_Rusiian"), )
+
 }
 
 void Gun::Release()
