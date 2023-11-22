@@ -71,7 +71,7 @@ void SubMonster::Late_Update()
 void SubMonster::Render(HDC hDC)
 {
 	Graphics g(hDC);
-	PngMrg::Get_Instance()->Get_Image(L"SubMonster");
+	//PngMrg::Get_Instance()->Get_Image(L"SubMonster");
 	//g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"SubMonster"),
 	//	Rect((m_tInfo.fX-m_tInfo.fCX*0.5),
 	//		(m_tInfo.fY-m_tInfo.fCY*0.5),
@@ -114,7 +114,7 @@ void SubMonster::Attack()
 
 void SubMonster::Target_Attack()
 {
-	if (dwFrameTime + 200 < GetTickCount()) {
+	if (dwFrameTime + 500 < GetTickCount()) {
 	CObjMgr::Get_Instance()->Add_Object(SUB_MONSTER_BULLET, CAbstractFactory<CGuideBullet>::Create(this->m_tInfo.fX, this->m_tInfo.fY, Monster_AngleAdd));
 	dwFrameTime = GetTickCount();
 	
@@ -183,8 +183,8 @@ void SubMonster::SubMonster_pattern()
 	case SUBMOSTER_TATE123::IDLE:
 	{   //Move()
 		AroundBOss();
-		Attack();
-		if (FrameChek>500)
+		
+		if (FrameChek>300)
 		{
 			
 			SubState = SUBMOSTER_TATE123::ATTACK;
@@ -194,10 +194,8 @@ void SubMonster::SubMonster_pattern()
 
 	case SUBMOSTER_TATE123::ATTACK:
 	{
-		m_tInfo.fX += m_fSpeed * cos(m_fAngle * PI / 180.f);
-		m_tInfo.fY -= m_fSpeed * sin(m_fAngle * PI / 180.f);
-		Target_Attack();
-		if (FrameChek > 300)
+		Attack();
+		if (FrameChek > 200)
 		{
 			SubState = SUBMOSTER_TATE123::IDLE;
 			FrameChek = 0;
@@ -208,18 +206,28 @@ void SubMonster::SubMonster_pattern()
 	case SUBMOSTER_TATE123::TARGET_SHOT:
 	{
 		
-
+		m_tInfo.fX += m_fSpeed * cos(m_fAngle * PI / 180.f);
+		m_tInfo.fY -= m_fSpeed * sin(m_fAngle * PI / 180.f);
+		Target_Attack();
+		if (FrameChek > 300)
+		{
+			SubState = SUBMOSTER_TATE123::IDLE;
+			FrameChek = 0;
+		}
 	}
 	case SUBMOSTER_TATE123::MOVE_TO_BOSS:
 	{
 	
 
-		break;
-
 	}
 
 	case SUBMOSTER_TATE123::END:
 	{
+		if (FrameChek > 300)
+		{
+			SubState = SUBMOSTER_TATE123::IDLE;
+			FrameChek=0;
+		}
 		break;
 	}
 

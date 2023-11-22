@@ -23,8 +23,11 @@ public:
 	void Motion_Change();
 	bool IsSubMonsterAlive();
 	void MoveSubMonster();
-
+	void CheckSpearOverrWindow();
 	void Around_To_THis();
+
+
+	void CreateSpear(int _Dir);
 
 private:
 	void Boss_pattern();
@@ -42,6 +45,7 @@ private:
 
 	int					CreateSubCount = 0;
 	int					FrameCheck = 0;
+	int					CreateSpearCount = 0;
 
 	list<CObj*>			m_pSubMonsterList;
 	//CObj*				m_pSubMonster1;

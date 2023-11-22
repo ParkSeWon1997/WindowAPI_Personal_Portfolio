@@ -14,8 +14,20 @@ public:
 	virtual void Release() override;
 
 public:
+	void		Set_MoveCallRight(bool _Right) { MoveCallRight = _Right; }
+	void		Set_RotaeImage(float _RoateAngle) { RotaeImage = _RoateAngle; }
+
+
 	//void		MoveToWidth(float _X);
+	void		Move();
 
 
+	bool		MoveCallRight;
+
+
+private:
+
+	float		RotaeImage = 0;
+	 
 };
 

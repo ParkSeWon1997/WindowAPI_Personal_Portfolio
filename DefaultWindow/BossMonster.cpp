@@ -9,6 +9,7 @@
 #include "AbstractFactory.h"
 #include"MonsterIceSpear.h"
 
+
 BossMonster::BossMonster()
 {
 }
@@ -63,12 +64,7 @@ int BossMonster::Update()
 	//}
 #endif
 
-	if (CKeyMgr::Get_Instance()->Key_Down('4'))
-	{
-
-		//m_eCurState = DEAD;
-
-	}
+	FrameCheck++;
 
 
 
@@ -212,6 +208,23 @@ void BossMonster::MoveSubMonster()
 	
 }
 
+void BossMonster::CheckSpearOverrWindow()
+{
+
+	if (CObjMgr::Get_Instance()->Get_ObjList(BOSS_BULLET))
+	{
+		if (CObjMgr::Get_Instance()->Get_ObjList(BOSS_BULLET)->Get_Info().fX > WINCX ||
+			CObjMgr::Get_Instance()->Get_ObjList(BOSS_BULLET)->Get_Info().fX < 0 ||
+			CObjMgr::Get_Instance()->Get_ObjList(BOSS_BULLET)->Get_Info().fY > WINCY ||
+			CObjMgr::Get_Instance()->Get_ObjList(BOSS_BULLET)->Get_Info().fY < 0)
+		{
+			CObjMgr::Get_Instance()->Get_ObjList(BOSS_BULLET)->Set_Dead();
+		}
+
+	}
+
+}
+
 void BossMonster::Around_To_THis()
 {
 	for (auto& iter : CObjMgr::Get_Instance()->Get_ObjListProperty(MONSTER))
@@ -220,6 +233,35 @@ void BossMonster::Around_To_THis()
 		dynamic_cast<SubMonster*>(iter)->AroundBOss();
 
 	}
+}
+
+void BossMonster::CreateSpear(int _Dir)
+{
+	switch (_Dir)
+	{
+	case 1:
+		if (CreateSpearCount < 1) {
+			CObjMgr::Get_Instance()->Add_Object(BOSS_BULLET, CAbstractFactory<MonsterIceSpear>::Create(0, this->m_tInfo.fY, 0));
+			dynamic_cast<MonsterIceSpear*>(CObjMgr::Get_Instance()->Get_ObjList(BOSS_BULLET))->Set_RotaeImage(90);
+			++CreateSpearCount;
+		}
+		break;
+
+	case 2:
+		CObjMgr::Get_Instance()->Add_Object(BOSS_BULLET, CAbstractFactory<MonsterIceSpear>::Create(WINCX, 400, 0));
+		break;
+
+	case 3:
+		CObjMgr::Get_Instance()->Add_Object(BOSS_BULLET, CAbstractFactory<MonsterIceSpear>::Create(WINCX * 0.5, WINCY, 0));
+		break;
+
+	default:
+		break;
+	}
+
+	
+	
+	
 }
 
 void BossMonster::Boss_pattern()
@@ -271,20 +313,20 @@ void BossMonster::Boss_pattern()
 
 	case BossMonster::SC_EASY:
 	{
-		m_eCurState = ImageSTATE::IDLE;
-		MoveSubMonster();
-		FrameCheck++;
-		if (FrameCheck > 300)
+		m_eCurState = ImageSTATE::ATTACK;
+		CreateSpear(1);
+		//MoveSubMonster();
+		
+		if (FrameCheck > 500)
 		{
-			for (auto& iter : CObjMgr::Get_Instance()->Get_ObjListProperty(MONSTER))
-			{
-				dynamic_cast<SubMonster*>(iter)->SetSubState(SUBMOSTER_TATE123::END);
-			}
+			m_tInfo.fX = WINCX * 0.5;
+			m_tInfo.fY = WINCY * 0.3;
+
 			FrameCheck = 0;
 			m_eBossSTATE = BossMonster::SC_NORMAL;
 		}
 
-
+	
 
 		if (IsSubMonsterAlive())
 		{
