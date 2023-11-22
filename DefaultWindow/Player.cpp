@@ -62,10 +62,10 @@ void CPlayer::Initialize()
 	m_tFrame.dwSpeed = 200;
 	m_tFrame.dwTime = GetTickCount();
 
+	
 
-
-	CObjMgr::Get_Instance()->Add_Object(OBJID::PlAYER_UI, CAbstractFactory<PlayerUI>::Create());
-
+	
+	CObjMgr::Get_Instance()->Add_Object(OBJID::PlAYER_UI, CAbstractFactory<PlayerUI>::Create(100.f, 100.f, 0.f));
 
 	//m_bDead = true;
 	m_pStateKey = L"Player";
@@ -200,6 +200,7 @@ void CPlayer::Key_Input()
 			//m_InitSpeedX = -20.f;
 			CSoundMgr::Get_Instance()->PlaySound(L"step_lth1-sharedassets2.assets-325.wav", SOUND_PLAYER_WALK, g_fVolume);
 			m_tInfo.fX -= m_fSpeed;
+			
 		}
 	
 		if (CKeyMgr::Get_Instance()->Key_Pressing('D'))
@@ -368,6 +369,7 @@ void CPlayer::Motion_Change()
 			m_tFrame.iFrameStart = 0;
 			m_tFrame.iFrameEnd = 0;
 			m_tFrame.iMotion = 3;
+			
 
 			m_tFrame.dwSpeed = 100;
 			m_tFrame.dwTime = GetTickCount();

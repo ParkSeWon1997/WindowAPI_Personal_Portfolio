@@ -2,8 +2,9 @@
 #include "CollisionMgr.h"
 #include"Player.h"
 #include"Monster.h"
+#include "SoundMgr.h"
 
-
+static float g_fVolume = 1.0f;
 CCollisionMgr::CCollisionMgr()
 {
 }
@@ -61,7 +62,9 @@ void CCollisionMgr::DoDamageObj_to_Obj(list<CObj*> Dst, list<CObj*> Src)
 			{
 				if (DstList->Get_Dead() == false)
 				{
+
 					DstList->TakeDamage(SrcList->GetDamage());
+					CSoundMgr::Get_Instance()->PlaySound(L"Hit_Player-resources.assets-1729.wav", SOUND_HIT, g_fVolume);
 					if (DstList->Get_HP() <= 0)
 					{
 						DstList->Set_Dead();
