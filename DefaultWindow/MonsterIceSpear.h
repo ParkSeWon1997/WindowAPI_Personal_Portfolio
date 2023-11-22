@@ -16,17 +16,18 @@ public:
 public:
 	void		Set_MoveCallRight(bool _Right) { MoveCallRight = _Right; }
 	void		Set_RotaeImage(float _RoateAngle) { RotaeImage = _RoateAngle; }
+	void		SEt_Move_DIR(BOSSMONSTER_SPEAR_DIR _ID) { m_eMoveDir = _ID; }
 
 
 	//void		MoveToWidth(float _X);
-	void		Move();
+	void		Move(BOSSMONSTER_SPEAR_DIR _ID);
 
 
 	bool		MoveCallRight;
 
 
 private:
-
+	BOSSMONSTER_SPEAR_DIR m_eMoveDir;
 	float		RotaeImage = 0;
 	 
 };

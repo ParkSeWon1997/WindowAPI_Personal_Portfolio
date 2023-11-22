@@ -27,7 +27,7 @@ void SubMonster::Initialize()
 
 	m_fDistance = 100.f;
 	m_fSpeed = 2.75f;
-	SubState = SUBMOSTER_TATE123::IDLE;
+	SubState = SUBMOSTER_STATE::IDLE;
 	m_eRender = GAMEOBJECT;
 }
 
@@ -114,7 +114,7 @@ void SubMonster::Attack()
 
 void SubMonster::Target_Attack()
 {
-	if (dwFrameTime + 500 < GetTickCount()) {
+	if (dwFrameTime + 100 < GetTickCount()) {
 	CObjMgr::Get_Instance()->Add_Object(SUB_MONSTER_BULLET, CAbstractFactory<CGuideBullet>::Create(this->m_tInfo.fX, this->m_tInfo.fY, Monster_AngleAdd));
 	dwFrameTime = GetTickCount();
 	
@@ -180,30 +180,30 @@ void SubMonster::SubMonster_pattern()
 {
 	switch (SubState)
 	{
-	case SUBMOSTER_TATE123::IDLE:
+	case SUBMOSTER_STATE::IDLE:
 	{   //Move()
 		AroundBOss();
 		
 		if (FrameChek>300)
 		{
 			
-			SubState = SUBMOSTER_TATE123::ATTACK;
+			SubState = SUBMOSTER_STATE::ATTACK;
 			FrameChek = 0;
 		}
 	}  break;
 
-	case SUBMOSTER_TATE123::ATTACK:
+	case SUBMOSTER_STATE::ATTACK:
 	{
 		Attack();
 		if (FrameChek > 200)
 		{
-			SubState = SUBMOSTER_TATE123::IDLE;
+			SubState = SUBMOSTER_STATE::TARGET_SHOT;
 			FrameChek = 0;
 		}
 
 		break;
 	}
-	case SUBMOSTER_TATE123::TARGET_SHOT:
+	case SUBMOSTER_STATE::TARGET_SHOT:
 	{
 		
 		m_tInfo.fX += m_fSpeed * cos(m_fAngle * PI / 180.f);
@@ -211,21 +211,21 @@ void SubMonster::SubMonster_pattern()
 		Target_Attack();
 		if (FrameChek > 300)
 		{
-			SubState = SUBMOSTER_TATE123::IDLE;
+			SubState = SUBMOSTER_STATE::IDLE;
 			FrameChek = 0;
 		}
 	}
-	case SUBMOSTER_TATE123::MOVE_TO_BOSS:
+	case SUBMOSTER_STATE::MOVE_TO_BOSS:
 	{
 	
 
 	}
 
-	case SUBMOSTER_TATE123::END:
+	case SUBMOSTER_STATE::SUB_STATE_END:
 	{
 		if (FrameChek > 300)
 		{
-			SubState = SUBMOSTER_TATE123::IDLE;
+			SubState = SUBMOSTER_STATE::IDLE;
 			FrameChek=0;
 		}
 		break;

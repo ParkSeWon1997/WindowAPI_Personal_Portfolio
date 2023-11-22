@@ -51,7 +51,7 @@ void Entry::Late_Update()
    
     if (CCollisionMgr::CollisionRect_to_Rect(CObjMgr::Get_Instance()->Get_Player(), this))
     {
-        CSceneMgr::Get_Instance()->Scene_Change(SC_NORMAL);
+        CSceneMgr::Get_Instance()->Scene_Change(SC_BOSS);
 
     }
 

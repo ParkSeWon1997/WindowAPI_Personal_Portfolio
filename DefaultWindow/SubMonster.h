@@ -4,7 +4,7 @@ class SubMonster :
     public CMonster
 {
 
-	//enum SUBMOSTER_TATE {IDLE,ATTACK,TARGET_SHOT,MOVE_TO_BOSS,END };
+
 
 
 public:
@@ -20,7 +20,7 @@ public:
 	virtual void Render(HDC hDC) override;
 	virtual void Release() override;
 public:
-	void SetSubState(SUBMOSTER_TATE123 _ID) { SubState = _ID; }
+	void SetSubState(SUBMOSTER_STATE _ID) { SubState = _ID; }
 	//360µµ °ø°Ý
 	void Attack();
 	void Target_Attack();
@@ -58,7 +58,7 @@ private:
 	float m_fAngle123=0;
 
 private:
-	SUBMOSTER_TATE123	SubState;
+	SUBMOSTER_STATE	SubState;
 
 };
 

@@ -15,9 +15,9 @@ void MonsterIceSpear::Initialize()
 	m_tInfo.fCX = 25.f;
 	m_tInfo.fCY = 111.f;
 
+	RotaeImage = 0.f;
 	m_fSpeed = 10.f;
-	RotaeImage = 90.f;
-	m_fDamage = 50.f;
+	m_fDamage = 30.f;
 	m_fHP = 1.f;
 	m_eRender = GAMEOBJECT;
 }
@@ -27,7 +27,7 @@ int MonsterIceSpear::Update()
 	if (m_bDead)
 		return OBJ_DEAD;
 
-	Move();
+	Move(m_eMoveDir);
 
 	__super::Update_Rect();
 	return OBJ_NOEVENT;
@@ -51,12 +51,27 @@ void MonsterIceSpear::Release()
 {
 }
 
-void MonsterIceSpear::Move()
+void MonsterIceSpear::Move(BOSSMONSTER_SPEAR_DIR _ID)
 {
 
-	if (MoveCallRight)
+	switch (m_eMoveDir)
+	{
+	case BOSSMONSTER_SPEAR_DIR::MOVE_RIGHT:
 		m_tInfo.fX += m_fSpeed;
-	else
+		break;
+	case BOSSMONSTER_SPEAR_DIR::MOVE_LEFT:
 		m_tInfo.fX -= m_fSpeed;
+		break;
+	case BOSSMONSTER_SPEAR_DIR::MOVE_UP:
+		m_tInfo.fY -= m_fSpeed;
+		break;
+	case BOSSMONSTER_SPEAR_DIR::MOVE_DOWN:
+		m_tInfo.fY += m_fSpeed;
+		break;
+
+	default:
+		break;
+	}
+
 
 }

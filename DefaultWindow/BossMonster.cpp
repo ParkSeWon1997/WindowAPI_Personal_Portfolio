@@ -43,7 +43,7 @@ void BossMonster::Initialize()
 	m_eRender = GAMEOBJECT;
 	//m_bDead = true;
 
-	m_eBossSTATE = BossMonster::SC_CREATE_SUB;
+	m_eBOSS_STATE = BossMonster::SC_BOSS_CREATE_SUB;
 }
 
 int BossMonster::Update()
@@ -235,29 +235,56 @@ void BossMonster::Around_To_THis()
 	}
 }
 
-void BossMonster::CreateSpear(int _Dir)
+void BossMonster::CreateSubMonster()
 {
-	switch (_Dir)
-	{
-	case 1:
-		if (CreateSpearCount < 1) {
-			CObjMgr::Get_Instance()->Add_Object(BOSS_BULLET, CAbstractFactory<MonsterIceSpear>::Create(0, this->m_tInfo.fY, 0));
-			dynamic_cast<MonsterIceSpear*>(CObjMgr::Get_Instance()->Get_ObjList(BOSS_BULLET))->Set_RotaeImage(90);
-			++CreateSpearCount;
-		}
-		break;
 
-	case 2:
-		CObjMgr::Get_Instance()->Add_Object(BOSS_BULLET, CAbstractFactory<MonsterIceSpear>::Create(WINCX, 400, 0));
-		break;
 
-	case 3:
-		CObjMgr::Get_Instance()->Add_Object(BOSS_BULLET, CAbstractFactory<MonsterIceSpear>::Create(WINCX * 0.5, WINCY, 0));
-		break;
+}
 
-	default:
-		break;
+void BossMonster::CreateSpear(int _Dir, float _X, float _Y)
+{
+	if (_Dir == 1) {
+		//왼쪽에서 오른쪽으로 이동
+		CObj* RightSpear = new MonsterIceSpear;
+		RightSpear->Set_Pos(_X, _Y);
+		RightSpear->Initialize();
+		dynamic_cast<MonsterIceSpear*>(RightSpear)->Set_RotaeImage(90);
+		dynamic_cast<MonsterIceSpear*>(RightSpear)->SEt_Move_DIR(BOSSMONSTER_SPEAR_DIR::MOVE_RIGHT);
+		CObjMgr::Get_Instance()->Add_Object(BOSS_BULLET, RightSpear);
+
 	}
+	if (_Dir == 2) {
+		//오른쪽에서 왼쪽으로 이동
+		CObj* RightSpear = new MonsterIceSpear;
+		RightSpear->Set_Pos(_X, _Y);
+		RightSpear->Initialize();
+		dynamic_cast<MonsterIceSpear*>(RightSpear)->Set_RotaeImage(270);
+		dynamic_cast<MonsterIceSpear*>(RightSpear)->SEt_Move_DIR(BOSSMONSTER_SPEAR_DIR::MOVE_LEFT);
+		CObjMgr::Get_Instance()->Add_Object(BOSS_BULLET, RightSpear);
+
+
+	}
+	if (_Dir == 3) {
+		//아래에서 위로 이동
+		CObj* RightSpear = new MonsterIceSpear;
+		RightSpear->Set_Pos(_X, _Y);
+		RightSpear->Initialize();
+		dynamic_cast<MonsterIceSpear*>(RightSpear)->Set_RotaeImage(0);
+		dynamic_cast<MonsterIceSpear*>(RightSpear)->SEt_Move_DIR(BOSSMONSTER_SPEAR_DIR::MOVE_UP);
+		CObjMgr::Get_Instance()->Add_Object(BOSS_BULLET, RightSpear);
+
+	}
+	if (_Dir == 4) {
+		//위에서 아래로 이동
+		CObj* RightSpear = new MonsterIceSpear;
+		RightSpear->Set_Pos(_X, _Y);
+		RightSpear->Initialize();
+		dynamic_cast<MonsterIceSpear*>(RightSpear)->Set_RotaeImage(180);
+		dynamic_cast<MonsterIceSpear*>(RightSpear)->SEt_Move_DIR(BOSSMONSTER_SPEAR_DIR::MOVE_DOWN);
+		CObjMgr::Get_Instance()->Add_Object(BOSS_BULLET, RightSpear);
+
+	}
+
 
 	
 	
@@ -266,10 +293,10 @@ void BossMonster::CreateSpear(int _Dir)
 
 void BossMonster::Boss_pattern()
 {
-	switch (m_eBossSTATE)
+	switch (m_eBOSS_STATE)
 	{
 
-	case BossMonster::SC_CREATE_SUB:
+	case BossMonster::SC_BOSS_CREATE_SUB:
 		if (!m_bDead)
 		{
 			if (CreateSubCount < 4)
@@ -282,12 +309,12 @@ void BossMonster::Boss_pattern()
 			}
 			else
 			{
-				m_eBossSTATE = BossMonster::SC_IDLE;
+				m_eBOSS_STATE = BossMonster::SC_BOSS_IDLE;
 			}
 		}
 
 		break;
-	case BossMonster::SC_IDLE:
+	case BossMonster::SC_BOSS_IDLE:
 	{
 		m_eCurState = ImageSTATE::IDLE;
 		if (m_fHP < 200)
@@ -295,13 +322,14 @@ void BossMonster::Boss_pattern()
 			m_tInfo.fX = 200.f;
 			m_tInfo.fY = 200.f;
 
-			m_eBossSTATE = BossMonster::SC_EASY;
+			m_eBOSS_STATE = BOSS_STATE::SC_BOSS_EASY;
+			FrameCheck = 0;
 
 		}
 		else if (IsSubMonsterAlive())
 		{
 			CreateSubCount = 0;
-			m_eBossSTATE = BossMonster::SC_CREATE_SUB;
+			m_eBOSS_STATE = BossMonster::SC_BOSS_CREATE_SUB;
 		}
 
 
@@ -311,44 +339,56 @@ void BossMonster::Boss_pattern()
 
 
 
-	case BossMonster::SC_EASY:
+	case BOSS_STATE::SC_BOSS_EASY:
 	{
 		m_eCurState = ImageSTATE::ATTACK;
-		CreateSpear(1);
-		//MoveSubMonster();
-		
-		if (FrameCheck > 500)
+		if (FrameCheck > 50)
 		{
+			//m_eCurState = ImageSTATE::ATTACK;
+			CreateSpear(1,0,200);
+			CreateSpear(2,1280,300);
+			CreateSpear(3,300,800);
+			CreateSpear(4,600,0);
 			m_tInfo.fX = WINCX * 0.5;
 			m_tInfo.fY = WINCY * 0.3;
 
 			FrameCheck = 0;
-			m_eBossSTATE = BossMonster::SC_NORMAL;
+			m_eBOSS_STATE = BOSS_STATE::SC_BOSS_NORMAL;
 		}
 
 	
 
-		if (IsSubMonsterAlive())
+		else if (IsSubMonsterAlive())
 		{
 			CreateSubCount = 0;
-			m_eBossSTATE = BossMonster::SC_CREATE_SUB;
+			m_eBOSS_STATE = BossMonster::SC_BOSS_CREATE_SUB;
 		}
 		break;
 	}
 
-	case BossMonster::SC_NORMAL:
+	case BOSS_STATE::SC_BOSS_NORMAL:
 	{
-		m_eCurState = ImageSTATE::IDLE;
+		//m_eCurState = ImageSTATE::IDLE;
+
+
+
+
+
+		if (IsSubMonsterAlive())
+		{
+			CreateSubCount = 0;
+			m_eBOSS_STATE = BossMonster::SC_BOSS_CREATE_SUB;
+		}
 		break;
 
 	}
-	case BossMonster::SC_HARD:
+	case BOSS_STATE::SC_BOSS_HARD:
 	{
 		m_eCurState = ImageSTATE::IDLE;
 
 		break;
 	}
-	case BossMonster::SC_DEAD:
+	case BOSS_STATE::SC__BOSS_DEAD:
 	{
 		m_eCurState = ImageSTATE::DEAD;
 

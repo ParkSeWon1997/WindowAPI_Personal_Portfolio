@@ -4,7 +4,7 @@ class BossMonster :
     public CMonster
 {
 	enum ImageSTATE { IDLE, ATTACK, HIT, DEAD, PS_END };
-	enum BOSSSTATE {SC_CREATE_SUB,SC_IDLE,SC_EASY,SC_NORMAL,SC_HARD,SC_DEAD,SC_END};
+	enum BOSS_STATE {SC_BOSS_CREATE_SUB,SC_BOSS_IDLE,SC_BOSS_EASY,SC_BOSS_NORMAL,SC_BOSS_HARD,SC__BOSS_DEAD,SC_END};
 
 
 public:
@@ -26,8 +26,8 @@ public:
 	void CheckSpearOverrWindow();
 	void Around_To_THis();
 
-
-	void CreateSpear(int _Dir);
+	void CreateSubMonster();
+	void CreateSpear(int _Dir,float _X, float _Y);
 
 private:
 	void Boss_pattern();
@@ -41,7 +41,7 @@ private:
 	ImageSTATE			m_ePreState;
 	ImageSTATE			m_eCurState;
 private:
-	BOSSSTATE			m_eBossSTATE;
+	BOSS_STATE			m_eBOSS_STATE;
 
 	int					CreateSubCount = 0;
 	int					FrameCheck = 0;
