@@ -20,12 +20,14 @@ ImageCollection::ImageCollection()
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/UI/RedWarningOnHit.png", L"Player_Hit");
 	//플레이어 HP UI
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/HP/PlayerLifeBase 1-sharedassets2.assets-123.png", L"Player_HP_UI");
+	//플레이어 무기 창 UI
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Weapon/EquippedWeaponBase.png", L"Player_Weapon_UI");
 
 
 	//보스몬스터 Image
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Monster/Boss/Boss_Nifl1.png", L"Boss_Monster");
 	//보스 몬스터 HP UI
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Monster/UI/BossLife.png", L"Boss_UI");
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Monster/UI/BossLife_1.png", L"Boss_UI");
 
 	//일반 몬스터(박쥐) Image
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Monster/Default/Bat_Ice_Defalut.png", L"Defalut_Ice");
@@ -35,6 +37,8 @@ ImageCollection::ImageCollection()
 
 	//스테이지 입구 Image
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/World/Stele.png", L"World_Stage_Entry");
+	//던전 눈 날리는 배경
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Map/Snow.png", L"Snow");
 
 
 

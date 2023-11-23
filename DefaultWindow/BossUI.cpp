@@ -15,8 +15,8 @@ BossUI::~BossUI()
 
 void BossUI::Initialize()
 {
-	m_tInfo.fCX = 125.f;
-	m_tInfo.fCY = 16.f;
+	m_tInfo.fCX = 375.f;
+	m_tInfo.fCY = 48.f;
 
 
 	m_eRender = UI;
@@ -35,7 +35,8 @@ void BossUI::Late_Update()
 void BossUI::Render(HDC hDC)
 {
 	Graphics g(hDC);
-	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Boss_UI"), 640.f, 600.f, 125.f, 16.f);
+	Rectangle(hDC, m_tRect.left , m_tRect.top, m_tRect.right, m_tRect.bottom);
+	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Boss_UI"),(m_tInfo.fX-m_tInfo.fCX*0.5), (m_tInfo.fY - m_tInfo.fCY * 0.5), 375.f, 48.f);
 
 }
 

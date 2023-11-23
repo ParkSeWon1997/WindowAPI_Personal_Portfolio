@@ -12,6 +12,7 @@
 #include "Entry.h"
 #include "SoundMgr.h"
 #include"Player.h"
+#include"Snow.h"
 
 
 static float g_fVolume = 0.7f;
@@ -41,12 +42,13 @@ void BossField::Update()
 		CSoundMgr::Get_Instance()->StopSound(SOUND_BGM);
 		CSoundMgr::Get_Instance()->PlaySound(L"dead-sharedassets2.assets-304.wav", SOUND_PLAYER_DEAD, g_fVolume);
 	}
-	
+	//CreateSnow();
 	CObjMgr::Get_Instance()->Update();
 }
 
 void BossField::Late_Update()
 {
+	//CheckWindowOver();
 	CObjMgr::Get_Instance()->Late_Update();
 }
 
@@ -83,7 +85,30 @@ void BossField::Render(HDC hDC)
 
 void BossField::Release()
 {
+
 	CObjMgr::Get_Instance()->Delete_ID(BOSS_MONSTER);
 	CSoundMgr::Get_Instance()->StopSound(SOUND_BGM);
 
+}
+
+void BossField::CreateSnow()
+{
+	if (CObjMgr::Get_Instance()->Get_ObjListProperty(SNOW).size() < 1) {
+		CObjMgr::Get_Instance()->Add_Object(SNOW, CAbstractFactory<Snow>::Create(WINCX*0.5, 0, 0));
+	}
+}
+
+void BossField::CheckWindowOver()
+{
+	if (CObjMgr::Get_Instance()->Get_ObjList(SNOW))
+	{
+		if (CObjMgr::Get_Instance()->Get_ObjList(SNOW)->Get_Info().fX > WINCX ||
+			CObjMgr::Get_Instance()->Get_ObjList(SNOW)->Get_Info().fX < 0 ||
+			CObjMgr::Get_Instance()->Get_ObjList(SNOW)->Get_Info().fY > WINCY ||
+			CObjMgr::Get_Instance()->Get_ObjList(SNOW)->Get_Info().fY < 0)
+		{
+			CObjMgr::Get_Instance()->Get_ObjList(SNOW)->Set_Dead();
+		}
+
+	}
 }

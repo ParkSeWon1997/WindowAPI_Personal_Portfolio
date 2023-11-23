@@ -89,7 +89,7 @@ private:
 	int					DashCount;
 	bool				m_bJump;
 	WEAPONMODE			m_eWeaponMode;
-
+	
 
 	TCHAR* m_PreImage;
 	TCHAR* m_CurImage;

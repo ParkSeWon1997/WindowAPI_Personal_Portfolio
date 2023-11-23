@@ -160,6 +160,9 @@
     <Filter Include="01. Obj\01. Bullet\03. MonsterBullet\02. BossMonBullet">
       <UniqueIdentifier>{c3191566-7f5e-4ecb-a33d-831b1075390d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Obj\12. Snow">
+      <UniqueIdentifier>{f9b7479a-3b50-4a67-82fe-3cb5897558fc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -330,6 +333,12 @@
     <ClInclude Include="MonsterBullet.h">
       <Filter>01. Obj\01. Bullet\03. MonsterBullet\01. SubMonBullet</Filter>
     </ClInclude>
+    <ClInclude Include="Snow.h">
+      <Filter>01. Obj\12. Snow</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerWeaponBox.h">
+      <Filter>01. Obj\11. UI\01. PlayerUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DefaultWindow.cpp">
@@ -484,6 +493,12 @@
     </ClCompile>
     <ClCompile Include="MonsterBullet.cpp">
       <Filter>01. Obj\01. Bullet\03. MonsterBullet\01. SubMonBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Snow.cpp">
+      <Filter>01. Obj\12. Snow</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerWeaponBox.cpp">
+      <Filter>01. Obj\11. UI\01. PlayerUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

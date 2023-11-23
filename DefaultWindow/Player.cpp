@@ -20,6 +20,7 @@
 #include "SceneMgr.h"
 
 #include"PlayerUI.h"
+#include"PlayerWeaponBox.h"
 
 
 CObj* CPlayer::m_Instance = nullptr;
@@ -63,12 +64,15 @@ void CPlayer::Initialize()
 	m_tFrame.dwTime = GetTickCount();
 
 	
+	
 	CObjMgr::Get_Instance()->Add_Object(OBJID::PlAYER_UI, CAbstractFactory<PlayerUI>::Create(80.f, 50.f, 0));
+	CObjMgr::Get_Instance()->Add_Object(OBJID::PLAYER_WEAPON_BOX, CAbstractFactory<PlayerWeaponBox>::Create());
 	
 	
 
 	//m_bDead = true;
 	m_pStateKey = L"Player";
+	
 
 	m_eRender = GAMEOBJECT;
 
@@ -78,6 +82,7 @@ void CPlayer::Initialize()
 
 int CPlayer::Update()
 {
+	
 
 	Jump();
 
@@ -151,6 +156,7 @@ void CPlayer::Render(HDC hDC)
 
 
 	Image* img = PngMrg::Get_Instance()->Get_Image(m_pStateKey);
+	
 
 
 
@@ -240,6 +246,10 @@ void CPlayer::Key_Input()
 
 		if (CKeyMgr::Get_Instance()->Key_Down('2'))
 		{
+			//만약 똑같은 OBJID를 쓸려고 한다면 제일 상위 부모 클래스에서 동일한 함수가 있어야 한다 (일단 다운 캐스팅의 경우에만 확인됨) 
+			//실행도중 해당 함수를 실행하려고 할 때 동일한 OBJID에 Set_ImageKey()함수가 없으니 오류가 남 ( Get_ObjList()는 OBJID의 front()만 반환하고 있음 )
+			//Get_ObjList()의 구현부를 손 봐야 함
+			dynamic_cast<PlayerWeaponBox*>(CObjMgr::Get_Instance()->Get_ObjList(PLAYER_WEAPON_BOX))->Set_ImageKey(L"Player_Gun_Rusiian");
 			m_eWeaponMode = CPlayer::GUN;
 		}
 		if (CKeyMgr::Get_Instance()->Key_Down('1'))

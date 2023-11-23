@@ -44,11 +44,13 @@ enum OBJID	   { PLAYER,
 				SHIELD,
 				BUTTON,
 				PlAYER_UI,
+				PLAYER_WEAPON_BOX,
 				MOSTER_UI,
 				GUN,
 				SWORD,
 				WALL,
 				GROUND,
+				SNOW,
 				OBJ_END };
 enum SCENEID	{ SC_LOGO, SC_MENU, SC_EDIT, SC_VILLAGE,SC_NORMAL,SC_BOSS, SC_END };
 

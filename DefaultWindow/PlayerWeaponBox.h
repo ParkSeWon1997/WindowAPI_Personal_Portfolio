@@ -1,11 +1,12 @@
 #pragma once
 #include "Obj.h"
-class PlayerUI :
+class PlayerWeaponBox :
     public CObj
 {
 public:
-    PlayerUI();
-     ~PlayerUI();
+    PlayerWeaponBox();
+    virtual ~PlayerWeaponBox();
+
 
 
 
@@ -17,14 +18,12 @@ public:
     virtual void Render(HDC hDC);
     virtual void Release();
 
-private:
-    float m_fMaxHp;
-    float m_fCurHp;
 
-    float m_fPercent;
+    void    Set_ImageKey(TCHAR* _Key) { WeaponImagwKey = _Key; }
+
+private:
+    TCHAR* WeaponImagwKey;
 
    
-    RECT m_tInnerRect;
-
 };
 
