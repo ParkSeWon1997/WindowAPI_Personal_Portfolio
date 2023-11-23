@@ -32,6 +32,14 @@ public:
 
 		return pObj;
 	}
+	static CObj*		Create(float _fX, float _fY, float _fCX, float _fCY,float _Dumy)
+		{
+			CObj*		pObj = new T;
+			pObj->Initialize();
+			pObj->Set_Info(_fX, _fY, _fCX, _fCY);
+
+			return pObj;
+		}
 
 	static CObj*		Create(CObj* pTarget)
 	{

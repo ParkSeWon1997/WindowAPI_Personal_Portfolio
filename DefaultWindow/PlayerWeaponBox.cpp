@@ -35,7 +35,7 @@ void PlayerWeaponBox::Render(HDC hDC)
     Image* WeaponBoxImage = PngMrg::Get_Instance()->Get_Image(L"Player_Weapon_UI");
     g.DrawImage(WeaponBoxImage, (m_tInfo.fX - m_tInfo.fCX * 0.5f), (m_tInfo.fY - m_tInfo.fCY * 0.5f), m_tInfo.fCX, m_tInfo.fCY);
     if (WeaponImagwKey) {
-        g.DrawImage(WeaponImage, (int)(m_tInfo.fX- WeaponImage->GetWidth()), (int)(m_tInfo.fY- WeaponImage->GetHeight()), WeaponImage->GetWidth()*3, WeaponImage->GetHeight() * 3);
+        g.DrawImage(WeaponImage, (int)(m_tInfo.fX- WeaponImage->GetWidth()), (int)(m_tInfo.fY- WeaponImage->GetHeight())-20, WeaponImage->GetWidth()*3, WeaponImage->GetHeight() * 3);
     }
 
 

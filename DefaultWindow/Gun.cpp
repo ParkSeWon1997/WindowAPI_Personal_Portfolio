@@ -21,7 +21,7 @@ void Gun::Initialize()
 	m_tInfo.fCX = 28.f;
 	m_tInfo.fCY = 20.f;
 
-	m_eRender = UI;
+	m_eRender = GAMEOBJECT;
 }
 
 int Gun::Update()

@@ -21,6 +21,15 @@ public:
 	{
 		m_eDir = eDir;
 	}
+	void			Set_Info(float _fX,float _fY,float _fCX,float _fCY)
+	{
+		m_tInfo.fX = _fX;
+		m_tInfo.fY = _fY;
+		m_tInfo.fCX = _fCX;
+		m_tInfo.fCY = _fCY;
+
+
+	}
 	void			Set_Dead() { m_bDead = true; }
 	void			Set_Angle(float _fAngle) { m_fAngle = _fAngle; }
 	void			Set_Target(CObj* pTarget) { m_pTarget = pTarget; }
@@ -38,6 +47,7 @@ public:
 
 	RECT			Get_Rect() { return m_tRect; }
 	INFO			Get_Info() { return m_tInfo; }
+	
 	bool			Get_Dead() { return m_bDead; }
 	
 

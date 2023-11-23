@@ -16,6 +16,7 @@
 #include "CTimeMgr.h"
 #include "SoundMgr.h"
 #include"Gun.h"
+#include"Sword.h"
 #include "PlayerBullet.h"
 #include "SceneMgr.h"
 
@@ -53,7 +54,7 @@ void CPlayer::Initialize()
 	m_tInfo = { m_InitX, m_InitY, 64, 64 };
 
 	m_fSpeed = 5.f;
-	m_fDiagonal = 15.f;
+	m_fDiagonal = 20.f;
 	m_fPower = 10.f;
 
 	
@@ -251,10 +252,16 @@ void CPlayer::Key_Input()
 			//Get_ObjList()의 구현부를 손 봐야 함
 			dynamic_cast<PlayerWeaponBox*>(CObjMgr::Get_Instance()->Get_ObjList(PLAYER_WEAPON_BOX))->Set_ImageKey(L"Player_Gun_Rusiian");
 			m_eWeaponMode = CPlayer::GUN;
+			CObjMgr::Get_Instance()->Delete_ID(OBJID::SWORD);
+			m_pWeaponList[CPlayer::SWORD] = nullptr;
 		}
 		if (CKeyMgr::Get_Instance()->Key_Down('1'))
 		{
+			dynamic_cast<PlayerWeaponBox*>(CObjMgr::Get_Instance()->Get_ObjList(PLAYER_WEAPON_BOX))->Set_ImageKey(L"Player_Sword_FireDragon");
 			m_eWeaponMode = CPlayer::SWORD;
+			CObjMgr::Get_Instance()->Delete_ID(OBJID::GUN);
+			m_pWeaponList[CPlayer::GUN] = nullptr;
+
 		}
 		if (CKeyMgr::Get_Instance()->Key_Pressing('0'))
 		{
@@ -267,12 +274,10 @@ void CPlayer::Key_Input()
 			if (m_eWeaponMode == CPlayer::GUN)
 			{
 				dynamic_cast<Gun*>(CObjMgr::Get_Instance()->Get_ObjList(OBJID::GUN))->FIre(true);
-
-				//CSoundMgr::Get_Instance()->PlaySound(L"Gun-sharedassets22.assets-357.wav", SOUND_EFFECT, g_fVolume);
-				//if (nSoundCount > 2) {
-				//	CSoundMgr::Get_Instance()->StopSound(SOUND_EFFECT);
-				//	nSoundCount = 0;
-				//}
+			}
+			if (m_eWeaponMode == CPlayer::SWORD)
+			{
+				dynamic_cast<Sword*>(CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD))->AttachCollisionBox(m_tPosin.x, m_tPosin.y);
 			}
 
 		}
@@ -420,6 +425,19 @@ void CPlayer::WeaponChage()
 		}
 		break;
 	case CPlayer::SWORD:
+		if (m_pWeaponList[CPlayer::SWORD] == nullptr)
+		{
+			CObjMgr::Get_Instance()->Add_Object(OBJID::SWORD, CAbstractFactory<Sword>::Create(this->m_tPosin.x, this->m_tPosin.y-20, this->m_fAngle));
+
+			m_pWeaponList[CPlayer::SWORD] = CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD);
+		}
+		else
+		{
+
+			CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD)->Set_Pos(m_tPosin.x, m_tPosin.y - 20);
+			CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD)->Set_Angle(m_fAngle);
+
+		}
 		break;
 	}
 

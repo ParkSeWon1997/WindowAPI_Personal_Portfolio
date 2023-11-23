@@ -1,11 +1,11 @@
 #pragma once
 #include "Obj.h"
-class Gun :
+class CollisionBox :
     public CObj
 {
 public:
-    Gun();
-   virtual ~Gun();
+    CollisionBox();
+    virtual ~CollisionBox();
 public:
 
     virtual void	Initialize();
@@ -14,19 +14,16 @@ public:
     virtual void	Render(HDC hDC);
     virtual void	Release();
 
-
+    
 public:
-    void    FIre(bool _IsShot);
-    float   Get_GunDamage() { return m_fGunDamage; }
-
+    void    Set_ImageKey(TCHAR* _ImageKey) { m_ImageKey = _ImageKey; }
 
 
 private:
-    float				m_fGunDamage;
-      
+
+    TCHAR* m_ImageKey;
 
 
-    list<CObj*>         m_pBulletList;
 
 };
 

@@ -163,6 +163,9 @@
     <Filter Include="01. Obj\12. Snow">
       <UniqueIdentifier>{f9b7479a-3b50-4a67-82fe-3cb5897558fc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Obj\13. CollisionBox">
+      <UniqueIdentifier>{2247e37f-75fc-4513-b458-c94f6e8e550b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -339,6 +342,9 @@
     <ClInclude Include="PlayerWeaponBox.h">
       <Filter>01. Obj\11. UI\01. PlayerUI</Filter>
     </ClInclude>
+    <ClInclude Include="CollisionBox.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DefaultWindow.cpp">
@@ -499,6 +505,9 @@
     </ClCompile>
     <ClCompile Include="PlayerWeaponBox.cpp">
       <Filter>01. Obj\11. UI\01. PlayerUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionBox.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -14,6 +14,9 @@ ImageCollection::ImageCollection()
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/Bear1.png", L"Player");
 	//ÃÑ
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Weapon/Gun/RussianRoulette.png", L"Player_Gun_Rusiian");
+	//°Ë
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Weapon/Sword/FireDragonKiller.png", L"Player_Sword_FireDragon");
+	
 	//ÃÑ¾Ë
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Weapon/Gun/Bullet/DogSkill.png", L"Player_Bullet");
 	//ÇÃ·¹ÀÌ¾î Hit
