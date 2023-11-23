@@ -13,6 +13,7 @@ PlayerUI::~PlayerUI()
 
 void PlayerUI::Initialize()
 {
+	//m_tInfo = { 100.f,100.f,148.f,32.f };
 	m_tInfo.fCX = 148.f;
 	m_tInfo.fCY = 32.f;
 
@@ -22,8 +23,8 @@ void PlayerUI::Initialize()
 int PlayerUI::Update()
 {
 
-	__super::Update_Rect();
 
+	__super::Update_Rect();
 	return OBJ_NOEVENT;
 }
 
@@ -34,9 +35,9 @@ void PlayerUI::Late_Update()
 
 void PlayerUI::Render(HDC hDC)
 {
-	Rectangle(hDC, m_tRect.left , m_tRect.top , m_tRect.right , m_tRect.bottom );
 	Graphics g(hDC);
-	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_HP_UI"),0.f, 0.f, 148.f, 32.f);
+	Rectangle(hDC, m_tRect.left+42 , m_tRect.top , m_tRect.right , m_tRect.bottom );
+	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_HP_UI"),(m_tInfo.fX-m_tInfo.fCX*0.5), (m_tInfo.fY-m_tInfo.fCY*0.5), 148.f, 32.f);
 
 		
 

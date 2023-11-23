@@ -20,7 +20,7 @@ private:
 
     float m_fPercent;
 
-    INFO m_tInfo;
+ 
     RECT m_tInnerRect;
 
 

@@ -5,17 +5,17 @@ class PlayerUI :
 {
 public:
     PlayerUI();
-	virtual ~PlayerUI();
+     ~PlayerUI();
 
 
 
 
 public:
-    virtual void Initialize() override;
-    virtual int Update() override;
-    virtual void Late_Update() override;
-    virtual void Render(HDC hDC) override;
-    virtual void Release() override;
+    virtual void Initialize();
+    virtual int Update();
+    virtual void Late_Update();
+    virtual void Render(HDC hDC);
+    virtual void Release();
 
 private:
     float m_fMaxHp;
@@ -23,7 +23,7 @@ private:
 
     float m_fPercent;
 
-    INFO m_tInfo;
+   // INFO m_tInfo;
     RECT m_tInnerRect;
 
 };

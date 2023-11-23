@@ -63,9 +63,9 @@ void CPlayer::Initialize()
 	m_tFrame.dwTime = GetTickCount();
 
 	
-
+	CObjMgr::Get_Instance()->Add_Object(OBJID::PlAYER_UI, CAbstractFactory<PlayerUI>::Create(80.f, 50.f, 0));
 	
-	CObjMgr::Get_Instance()->Add_Object(OBJID::PlAYER_UI, CAbstractFactory<PlayerUI>::Create(100.f, 100.f, 0.f));
+	
 
 	//m_bDead = true;
 	m_pStateKey = L"Player";
@@ -398,6 +398,7 @@ void CPlayer::WeaponChage()
 		if (m_pWeaponList[CPlayer::GUN] == nullptr)
 		{
 			CObjMgr::Get_Instance()->Add_Object(OBJID::GUN, CAbstractFactory<Gun>::Create(this->m_tPosin.x, this->m_tPosin.y, this->m_fAngle));
+			
 			m_pWeaponList[CPlayer::GUN] = CObjMgr::Get_Instance()->Get_ObjList(OBJID::GUN);
 		}
 		else
