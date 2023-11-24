@@ -1,5 +1,8 @@
 #pragma once
 #include "Obj.h"
+
+class CollisionBox;
+
 class Sword :
     public CObj
 {
@@ -25,9 +28,11 @@ public:
 private:
     float				m_fSwordDamage;
     bool                IsSwing;
-
-
+    float               m_fDiagonal;
+    int                 CollisionBOxCount = 0;
     POINT               SwordEND;
+
+    CObj* CollisionBoxQue[1];
 
 };
 

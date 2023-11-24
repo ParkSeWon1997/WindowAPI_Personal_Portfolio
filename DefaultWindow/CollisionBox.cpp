@@ -20,7 +20,8 @@ int CollisionBox::Update()
 {
     if (m_bDead)
         return OBJ_DEAD;
-
+   
+   
     __super::Update_Rect();
     return OBJ_NOEVENT;
 }
@@ -33,6 +34,12 @@ void CollisionBox::Render(HDC hDC)
 {
     Graphics g(hDC);
 
+    m_fSpeed = 100.f;
+  
+   // m_tRect.left += LONG(m_fSpeed * cos(m_fAngle * (PI / 180.f)));
+   //m_tRect.top += LONG(m_fSpeed * cos(m_fAngle * (PI / 180.f)));
+   //m_tRect.right += LONG(m_fSpeed * sin(m_fAngle * (PI / 180.f)));
+   // m_tRect.bottom -= LONG(m_fSpeed * sin(m_fAngle * (PI / 180.f)));
     //Rectangle()
     Rectangle(hDC,
     	m_tRect.left,
