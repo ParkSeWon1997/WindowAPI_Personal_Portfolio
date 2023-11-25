@@ -25,19 +25,28 @@ void BossUI::Initialize()
 int BossUI::Update()
 {
 	__super::Update_Rect();
+
 	return OBJ_NOEVENT;
 }
 
 void BossUI::Late_Update()
 {
+
 }
 
 void BossUI::Render(HDC hDC)
 {
 	Graphics g(hDC);
-	Rectangle(hDC, m_tRect.left , m_tRect.top, m_tRect.right, m_tRect.bottom);
+	HBRUSH myBrush = (HBRUSH)CreateSolidBrush(RGB(255, 20, 20));
+	HBRUSH oldBrush = (HBRUSH)SelectObject(hDC, myBrush);
+
+	Rectangle(hDC, m_tRect.left+66 , m_tRect.top, m_tRect.right, m_tRect.bottom);
 	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Boss_UI"),(m_tInfo.fX-m_tInfo.fCX*0.5), (m_tInfo.fY - m_tInfo.fCY * 0.5), 375.f, 48.f);
 
+
+
+	SelectObject(hDC, oldBrush);
+	DeleteObject(myBrush);
 }
 
 void BossUI::Release()
