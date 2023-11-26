@@ -330,7 +330,8 @@ void BossMonster::Boss_pattern()
 	{
 		if (FrameCheck > 50)
 		{
-
+			m_tInfo.fX = WINCX * 0.5;
+			m_tInfo.fY = WINCY * 0.3;
 			if (CreateSpearCount < 3)
 			{
 				m_eCurState = ImageSTATE::ATTACK;
@@ -348,8 +349,7 @@ void BossMonster::Boss_pattern()
 		}
 		if (m_fHP<150) {
 			m_eBOSS_STATE = BOSS_STATE::SC_BOSS_NORMAL;
-			m_tInfo.fX = WINCX * 0.5;
-			m_tInfo.fY = WINCY * 0.3;
+		
 			CreateSpearCount = 0;
 		}
 	
