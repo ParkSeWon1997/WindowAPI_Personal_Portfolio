@@ -60,6 +60,6 @@ private:
 
 private:
 	SUBMOSTER_STATE	SubState;
-
+	CObj* m_pSubMonsterHpBar;
 };
 

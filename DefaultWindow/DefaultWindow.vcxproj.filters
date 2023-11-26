@@ -166,6 +166,9 @@
     <Filter Include="01. Obj\13. CollisionBox">
       <UniqueIdentifier>{2247e37f-75fc-4513-b458-c94f6e8e550b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Obj\11. UI\03. SubMonsterUI">
+      <UniqueIdentifier>{48500965-c15d-4415-b4df-ea5c76caf4db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -351,6 +354,9 @@
     <ClInclude Include="BossHpBar.h">
       <Filter>01. Obj\11. UI\02. BossUI</Filter>
     </ClInclude>
+    <ClInclude Include="SubMonsterHpBar.h">
+      <Filter>01. Obj\11. UI\03. SubMonsterUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DefaultWindow.cpp">
@@ -520,6 +526,9 @@
     </ClCompile>
     <ClCompile Include="BossHpBar.cpp">
       <Filter>01. Obj\11. UI\02. BossUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SubMonsterHpBar.cpp">
+      <Filter>01. Obj\11. UI\03. SubMonsterUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

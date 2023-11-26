@@ -200,6 +200,7 @@
     <ClInclude Include="StageEntry.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="SubMonster.h" />
+    <ClInclude Include="SubMonsterHpBar.h" />
     <ClInclude Include="Sword.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Tile.h" />
@@ -264,6 +265,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="SubMonster.cpp" />
+    <ClCompile Include="SubMonsterHpBar.cpp" />
     <ClCompile Include="Sword.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileMgr.cpp" />
