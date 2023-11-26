@@ -386,7 +386,7 @@ void BossMonster::Boss_pattern()
 		
 		if (m_fHP < 100) {
 			m_eBOSS_STATE = BOSS_STATE::SC_BOSS_HARD;
-			m_tInfo.fX = 800.f;
+			m_tInfo.fX = 900.f;
 			CreateSpearCount = 0;
 			CreateIcicleCount = 0;
 		}
