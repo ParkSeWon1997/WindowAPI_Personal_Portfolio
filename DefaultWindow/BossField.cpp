@@ -27,7 +27,7 @@ BossField::~BossField()
 
 void BossField::Initialize()
 {
-
+	//CObjMgr::Get_Instance()->Add_Object(PLAYER, CPlayer::Get_Instance());
 	//PngMrg::Get_Instance()->Insert_Png()
 	CObjMgr::Get_Instance()->Add_Object(BOSS_MONSTER, CAbstractFactory<BossMonster>::Create(WINCX*0.5,WINCY*0.3,0));
 	CLineMgr::Get_Instance()->Initialize();

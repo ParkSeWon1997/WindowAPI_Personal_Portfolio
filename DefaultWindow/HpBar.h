@@ -19,12 +19,13 @@ public:
 public:
 	void Set_MaxHp(float _fMaxHp) { m_fMaxHp = _fMaxHp; }
 	void Set_CurHp(float _fCurHp) { m_fCurHp = _fCurHp; }
-	void Set_Info(INFO _tInfo) { m_tInfo = _tInfo; }
+
 
 	float Get_MaxHp() { return m_fMaxHp; }
 	float Get_CurHp() { return m_fCurHp; }
-	INFO Get_Info() { return m_tInfo; }
 
+
+	void Set_fCY(float _fCY) { m_tInfo.fCY = _fCY; }
 
 protected:
 	float m_fMaxHp;
@@ -32,10 +33,9 @@ protected:
 
 	float m_fPercent;
 
-	INFO m_tInfo;
 
-	RECT m_tOuterRect;
-	RECT m_tInnerRect;
+
+
 
 
 };

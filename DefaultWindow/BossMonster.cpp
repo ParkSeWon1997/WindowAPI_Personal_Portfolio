@@ -11,6 +11,7 @@
 #include"IcicleBullet.h"
 #include"BossUI.h"
 
+
 BossMonster::BossMonster()
 {
 }
@@ -34,7 +35,7 @@ void BossMonster::Initialize()
 
 	// m_tInfo = { 700.f, 300.f, 80, 80 };
 
-	m_fHP = 300.f;
+	m_fHP = 200.f;
 
 	m_tFrame.dwSpeed = 200;
 	m_tFrame.dwTime = GetTickCount();
@@ -44,7 +45,7 @@ void BossMonster::Initialize()
 	m_eRender = GAMEOBJECT;
 	//m_bDead = true;
 
-	CObjMgr::Get_Instance()->Add_Object(OBJID::MOSTER_UI, CAbstractFactory<BossUI>::Create(WINCX*0.5,WINCY*0.9,0.f));
+	CObjMgr::Get_Instance()->Add_Object(OBJID::MOSTER_UI, CAbstractFactory<BossUI>::Create(WINCX*0.5,WINCY*0.8,0.f));
 
 	m_eBOSS_STATE = BossMonster::SC_BOSS_CREATE_SUB;
 }
@@ -59,13 +60,15 @@ int BossMonster::Update()
 
 		return OBJ_DEAD;
 	}
-	//CObjMgr::Get_Instance()->Get_Target(PLAYER,CPlayer)
-#ifdef _DEBUG
-	//if (dwFrameTime + 1000 < GetTickCount()) {
-	//	cout << "몬스터 좌표 : " << m_tInfo.fX << "\t" << m_tInfo.fY << endl;
-	//	dwFrameTime = GetTickCount();
-	//}
-#endif
+	if (dwFrameTime + 1000 < GetTickCount()) {
+
+		cout << "BOSS HP : " << m_fHP << endl;
+
+		dwFrameTime = GetTickCount();
+	}
+
+
+	dynamic_cast<BossUI*>(CObjMgr::Get_Instance()->Get_ObjList(MOSTER_UI))->Set_UI_HpBar(200.f, m_fHP);
 
 	FrameCheck++;
 
@@ -91,12 +94,7 @@ void BossMonster::Late_Update()
 
 
 #ifdef _DEBUG
-	if (dwFrameTime + 1000 < GetTickCount()) {
 
-		cout << "보스 몬스터 HP : " << m_fHP << endl;
-
-		dwFrameTime = GetTickCount();
-	}
 #endif
 }
 
@@ -138,10 +136,8 @@ void BossMonster::Release()
 {
 
 	CObjMgr::Get_Instance()->Delete_ID(MONSTER);
-	//for (int i = 0; i < m_pSubMonsterList.size(); i++)
-	//{
-	//	m_pSubMonsterList.clear();
-	//}
+	//CObjMgr::Get_Instance()->Delete_ID(MOSTER_UI);
+
 
 
 }
@@ -273,6 +269,12 @@ void BossMonster::CreateIcicle(float _X)
 	CObj* pIcicle = new IcicleBullet;
 	pIcicle->Set_Pos(_X,0);
 	pIcicle->Initialize();
+	if (m_fHP < 100)
+	{
+		pIcicle->Set_Speed(7.0f);
+	}
+	else
+		pIcicle->Set_Speed(2.0f);
 	CObjMgr::Get_Instance()->Add_Object(BOSS_BULLET, pIcicle);
 }
 
@@ -326,22 +328,29 @@ void BossMonster::Boss_pattern()
 
 	case BOSS_STATE::SC_BOSS_EASY:
 	{
-		m_eCurState = ImageSTATE::ATTACK;
 		if (FrameCheck > 50)
 		{
-			//m_eCurState = ImageSTATE::ATTACK;
-			CreateSpear(1,0,200);
-			CreateSpear(2,1280,300);
-			CreateSpear(3,300,800);
-			CreateSpear(4,600,0);
-			m_tInfo.fX = WINCX * 0.5;
-			m_tInfo.fY = WINCY * 0.3;
+
+			if (CreateSpearCount < 3)
+			{
+				m_eCurState = ImageSTATE::ATTACK;
+				CreateSpear(1, 0, 200);
+				CreateSpear(2, 1280, 600);
+				CreateSpearCount++;
+			}
+			else {
+				m_eCurState = ImageSTATE::IDLE;
+			}
+		
 
 			FrameCheck = 0;
 			
 		}
 		if (m_fHP<150) {
 			m_eBOSS_STATE = BOSS_STATE::SC_BOSS_NORMAL;
+			m_tInfo.fX = WINCX * 0.5;
+			m_tInfo.fY = WINCY * 0.3;
+			CreateSpearCount = 0;
 		}
 	
 
@@ -355,17 +364,32 @@ void BossMonster::Boss_pattern()
 
 	case BOSS_STATE::SC_BOSS_NORMAL:
 	{
-		m_eCurState = ImageSTATE::IDLE;
 
 		if (FrameCheck>50)
 		{
-			CreateIcicle(100);
-			CreateIcicle(200);
-			CreateIcicle(300);
-			CreateIcicle(400);
+			if (CreateIcicleCount < 3)
+			{
+				m_eCurState = ImageSTATE::ATTACK;
+				CreateIcicle(270);
+				CreateIcicle(540);
+				CreateIcicle(810);
+				CreateIcicle(1080);
+				CreateIcicleCount++;
+			}
+			
+			else
+			{
+				m_eCurState = ImageSTATE::IDLE;
+			}
 			FrameCheck = 0;
 		}
-
+		
+		if (m_fHP < 100) {
+			m_eBOSS_STATE = BOSS_STATE::SC_BOSS_HARD;
+			m_tInfo.fX = 800.f;
+			CreateSpearCount = 0;
+			CreateIcicleCount = 0;
+		}
 
 
 		if (IsSubMonsterAlive())
@@ -378,8 +402,43 @@ void BossMonster::Boss_pattern()
 	}
 	case BOSS_STATE::SC_BOSS_HARD:
 	{
-		m_eCurState = ImageSTATE::IDLE;
+		if (dwFrameTime + 5000 < GetTickCount()) 
+		{
 
+
+		
+				m_eCurState = ImageSTATE::ATTACK;
+				CreateSpear(1, 0, 200);
+				CreateSpear(2, 1280, 600);
+				CreateSpear(3, 300, 800);
+				CreateSpear(4, 1000, 0);
+
+				CreateIcicle(270);
+				CreateIcicle(540);
+				CreateIcicle(810);
+				CreateIcicle(1080);
+				
+			
+			
+
+			dwFrameTime = GetTickCount();
+		}
+		else
+		{
+			m_eCurState = ImageSTATE::IDLE;
+		}
+			
+	
+		if (m_fHP < 0)
+		{
+			m_eBOSS_STATE = BOSS_STATE::SC__BOSS_DEAD;
+
+		}
+		if (IsSubMonsterAlive())
+		{
+			CreateSubCount = 0;
+			m_eBOSS_STATE = BossMonster::SC_BOSS_CREATE_SUB;
+		}
 		break;
 	}
 	case BOSS_STATE::SC__BOSS_DEAD:

@@ -104,7 +104,6 @@ void SubMonster::Attack()
 		else
 		CObjMgr::Get_Instance()->Add_Object(SUB_MONSTER_BULLET, CAbstractFactory<MonsterBullet>::Create(this->m_tInfo.fX, this->m_tInfo.fY, Monster_AngleAdd));
 		dwFrameTime = GetTickCount();
-		//}
 
 
 	}

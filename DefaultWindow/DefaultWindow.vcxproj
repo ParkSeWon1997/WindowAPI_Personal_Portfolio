@@ -149,6 +149,7 @@
     <ClInclude Include="AbstractFactory.h" />
     <ClInclude Include="BmpMgr.h" />
     <ClInclude Include="BossField.h" />
+    <ClInclude Include="BossHpBar.h" />
     <ClInclude Include="BossMonster.h" />
     <ClInclude Include="BossUI.h" />
     <ClInclude Include="Bullet.h" />
@@ -162,6 +163,7 @@
     <ClInclude Include="GroundTopo.h" />
     <ClInclude Include="GuideBullet.h" />
     <ClInclude Include="Gun.h" />
+    <ClInclude Include="HpBar.h" />
     <ClInclude Include="IcicleBullet.h" />
     <ClInclude Include="ImageCollection.h" />
     <ClInclude Include="KeyMgr.h" />
@@ -208,6 +210,7 @@
   <ItemGroup>
     <ClCompile Include="BmpMgr.cpp" />
     <ClCompile Include="BossField.cpp" />
+    <ClCompile Include="BossHpBar.cpp" />
     <ClCompile Include="BossMonster.cpp" />
     <ClCompile Include="BossUI.cpp" />
     <ClCompile Include="Bullet.cpp" />
@@ -220,6 +223,7 @@
     <ClCompile Include="GroundTopo.cpp" />
     <ClCompile Include="GuideBullet.cpp" />
     <ClCompile Include="Gun.cpp" />
+    <ClCompile Include="HpBar.cpp" />
     <ClCompile Include="IcicleBullet.cpp" />
     <ClCompile Include="ImageCollection.cpp" />
     <ClCompile Include="KeyMgr.cpp" />

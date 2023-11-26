@@ -345,6 +345,12 @@
     <ClInclude Include="CollisionBox.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="HpBar.h">
+      <Filter>01. Obj\11. UI\01. PlayerUI</Filter>
+    </ClInclude>
+    <ClInclude Include="BossHpBar.h">
+      <Filter>01. Obj\11. UI\02. BossUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DefaultWindow.cpp">
@@ -508,6 +514,12 @@
     </ClCompile>
     <ClCompile Include="CollisionBox.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="HpBar.cpp">
+      <Filter>01. Obj\11. UI\01. PlayerUI</Filter>
+    </ClCompile>
+    <ClCompile Include="BossHpBar.cpp">
+      <Filter>01. Obj\11. UI\02. BossUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

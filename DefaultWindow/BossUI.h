@@ -13,16 +13,11 @@ public:
       virtual  void	Late_Update() override;
       virtual  void	Render(HDC hDC) override;
       virtual  void	Release() override;
+      void    Set_UI_HpBar(float _MaxHp, float _CurHp);
 
 private:
-    float m_fMaxHp;
-    float m_fCurHp;
 
-    float m_fPercent;
-
- 
-    RECT m_tInnerRect;
-
+    CObj* m_pBossHpBar;
 
 
 };

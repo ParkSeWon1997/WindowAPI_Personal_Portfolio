@@ -3,7 +3,7 @@
 #include "Obj.h"
 #include "Shield.h"
 
-
+class PlayerUI;
 
 
 class CPlayer : public CObj
@@ -79,10 +79,10 @@ private:
 
 
 	bool				IsGround;
-	
+
 	int					nSoundCount;
 
-
+	//CObj* PlayerUI_HpBar;
 
 
 	CObj*	m_pWeaponList[END];

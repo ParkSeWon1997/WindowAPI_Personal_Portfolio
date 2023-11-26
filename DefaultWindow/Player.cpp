@@ -64,7 +64,8 @@ void CPlayer::Initialize()
 	m_tFrame.dwSpeed = 200;
 	m_tFrame.dwTime = GetTickCount();
 
-	
+	DashCount = 2;
+
 	
 	CObjMgr::Get_Instance()->Add_Object(OBJID::PlAYER_UI, CAbstractFactory<PlayerUI>::Create(80.f, 50.f, 0));
 	CObjMgr::Get_Instance()->Add_Object(OBJID::PLAYER_WEAPON_BOX, CAbstractFactory<PlayerWeaponBox>::Create());
@@ -83,12 +84,13 @@ void CPlayer::Initialize()
 
 int CPlayer::Update()
 {
-	
 
+	dynamic_cast<PlayerUI*>(CObjMgr::Get_Instance()->Get_ObjList(PlAYER_UI))->Set_UI_HpBar(100.f, m_fHP);
 	Jump();
 
 	Key_Input();
 	nSoundCount++;
+
 
 	__super::Update_Rect();
 
@@ -107,7 +109,6 @@ void CPlayer::Late_Update()
 
 
 
-
 #ifdef _DEBUG
 	if (dwFrameTime + 1000 < GetTickCount()) {
 		cout << "플레이어 좌표 : " << m_tInfo.fX << "\t" << m_tInfo.fY << endl;
@@ -118,14 +119,7 @@ void CPlayer::Late_Update()
 
 
 
-	//if (CLineMgr::Get_Instance()->Collision_Line(m_tInfo.fX, m_tInfo.fY))
-	//{
-	//	m_bJump = false;
-	//}
-	//else
-	//{
-	//	m_bJump = true;
-	//}
+
 #endif
 }
 
@@ -185,7 +179,8 @@ void CPlayer::Render(HDC hDC)
 
 void CPlayer::Release()
 {
-
+	CObjMgr::Get_Instance()->Delete_ID(PlAYER_UI);
+	CObjMgr::Get_Instance()->Delete_ID(PLAYER_WEAPON_BOX);
 	
 
 }
@@ -193,7 +188,7 @@ void CPlayer::Release()
 void CPlayer::Key_Input()
 {
 	if (m_bDead) {
-		//dead-sharedassets2.assets-304
+	
 		m_eCurState = DEAD;
 	}
 	else {
@@ -204,7 +199,6 @@ void CPlayer::Key_Input()
 		if (CKeyMgr::Get_Instance()->Key_Pressing('A'))
 		{
 			m_eCurState = RUN;
-			//m_InitSpeedX = -20.f;
 			CSoundMgr::Get_Instance()->PlaySound(L"step_lth1-sharedassets2.assets-325.wav", SOUND_PLAYER_WALK, g_fVolume);
 			m_tInfo.fX -= m_fSpeed;
 			
@@ -213,19 +207,11 @@ void CPlayer::Key_Input()
 		if (CKeyMgr::Get_Instance()->Key_Pressing('D'))
 		{
 			m_eCurState = RUN;
-			//m_InitSpeedX = +20.f;
 			CSoundMgr::Get_Instance()->PlaySound(L"step_lth1-sharedassets2.assets-325.wav", SOUND_PLAYER_WALK, g_fVolume);
 			m_tInfo.fX += m_fSpeed;
 		}
 
 		
-
-
-		//else if (CKeyMgr::Get_Instance()->Key_Pressing('D'))
-		//{
-		//	m_tInfo.fX += m_fSpeed;
-		//	m_eCurState = RUN;
-		//}
 		if (CKeyMgr::Get_Instance()->Key_Pressing(VK_SPACE))
 		{
 			m_InitSpeedY = -m_fGravity * 3.0f;
@@ -236,6 +222,20 @@ void CPlayer::Key_Input()
 			
 			
 			m_eCurState = JUMP;
+		}
+
+		if (CKeyMgr::Get_Instance()->Key_Pressing(VK_RBUTTON))
+		{
+			if (DashCount > 0 && DashCount <= 2) {
+				m_InitSpeedY = -m_fGravity * 3.0f;
+
+				m_InitX = m_tInfo.fX;
+				m_InitY = m_tInfo.fY;
+				m_bJump = true;
+				DashCount--;
+
+				m_eCurState = JUMP;
+			}
 		}
 
 		
@@ -269,7 +269,8 @@ void CPlayer::Key_Input()
 		}
 
 
-		if (CKeyMgr::Get_Instance()->Key_Down(VK_LBUTTON))
+		//if (CKeyMgr::Get_Instance()->Key_Down(VK_LBUTTON))
+		if (CKeyMgr::Get_Instance()->Key_Down('Q'))
 		{
 			if (m_eWeaponMode == CPlayer::GUN)
 			{
@@ -403,12 +404,7 @@ void CPlayer::WeaponChage()
 	switch (m_eWeaponMode)
 	{
 	case CPlayer::GUN:
-		
-		//CObjMgr::Get_Instance()->Add_Object(OBJID::GUN, CAbstractFactory<Gun>::Create(this->m_tInfo.fX, this->m_tInfo.fY, this->m_fAngle));
-		//if (CObjMgr::Get_Instance()->Get_ObjList(OBJID::GUN)==NULL)
-		//{
-		//
-		//}
+
 
 		if (m_pWeaponList[CPlayer::GUN] == nullptr)
 		{

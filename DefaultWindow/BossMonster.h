@@ -40,9 +40,11 @@ private:
 private:
 	BOSS_STATE			m_eBOSS_STATE;
 
+
 	int					CreateSubCount = 0;
 	int					FrameCheck = 0;
 	int					CreateSpearCount = 0;
+	int					CreateIcicleCount = 0;
 
 	list<CObj*>			m_pSubMonsterList;
 	//CObj*				m_pSubMonster1;

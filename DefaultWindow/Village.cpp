@@ -35,9 +35,6 @@ void Village::Initialize()
 	CObjMgr::Get_Instance()->Add_Object(PLAYER, CPlayer::Get_Instance());
 	CObjMgr::Get_Instance()->Add_Object(ENTRY, CAbstractFactory<Entry>::Create());
 
-	//CObjMgr::Get_Instance()->Add_Object(BOSS_MONSTER, CAbstractFactory<BossMonster>::Create(100.f,300.f,0));
-	//CObjMgr::Get_Instance()->Add_Object(SHIELD, CAbstractFactory<CShield>::Create(100.f,300.f,0));
-
 
 	CLineMgr::Get_Instance()->Initialize();
 

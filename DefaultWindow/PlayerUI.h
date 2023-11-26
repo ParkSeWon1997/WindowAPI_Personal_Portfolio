@@ -1,5 +1,9 @@
 #pragma once
 #include "Obj.h"
+
+
+
+
 class PlayerUI :
     public CObj
 {
@@ -17,14 +21,15 @@ public:
     virtual void Render(HDC hDC);
     virtual void Release();
 
+    void    Set_UI_HpBar(float _MaxHp, float _CurHp);
+
+ 
+
+
+
 private:
-    float m_fMaxHp;
-    float m_fCurHp;
 
-    float m_fPercent;
-
-   
-    RECT m_tInnerRect;
+    CObj* m_pPlayerHpBar;
 
 };
 
