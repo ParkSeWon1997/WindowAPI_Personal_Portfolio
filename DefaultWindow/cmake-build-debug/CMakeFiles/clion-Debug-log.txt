@@ -1,0 +1,1 @@
+com.intellij.execution.WorkingDirectoryNotFoundException: 프로세스를 시작할 수 없습니다. 작업 디렉터리 '/Volumes/[C] Windows 11/3개월 차/포트폴리오/DefaultWindow/cmake-build-debug'이(가) 없습니다.
