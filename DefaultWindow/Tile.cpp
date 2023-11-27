@@ -41,27 +41,27 @@ void CTile::Render(HDC hDC)
 	
 
 	HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Img(m_TileKey);
-	//GdiTransparentBlt(hDC,
-	//	m_tRect.left,
-	//	m_tRect.top,
-	//	TILECX,
-	//	TILECY,
-	//	hMemDC,
-	//	TILECX * m_iXNum,
-	//	TILECY * m_iYNum,
-	//	TILECX,
-	//	TILECY,
-	//	RGB(255, 255, 255));
-
-	BitBlt(hDC,
+	GdiTransparentBlt(hDC,
 		m_tRect.left,
 		m_tRect.top,
 		TILECX,
 		TILECY,
-		hMemDC, 
-		TILECX * m_iXNum, 
-		TILECY* m_iYNum, 
-		SRCCOPY);
+		hMemDC,
+		TILECX * m_iXNum,
+		TILECY * m_iYNum,
+		TILECX,
+		TILECY,
+		RGB(255, 255, 255));
+
+	//BitBlt(hDC,
+	//	m_tRect.left,
+	//	m_tRect.top,
+	//	TILECX,
+	//	TILECY,
+	//	hMemDC, 
+	//	TILECX * m_iXNum, 
+	//	TILECY* m_iYNum, 
+	//	SRCCOPY);
 
 	
 }

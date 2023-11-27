@@ -37,7 +37,7 @@ void Village::Initialize()
 
 	CObjMgr::Get_Instance()->Add_Object(PLAYER, CPlayer::Get_Instance());
 	CObjMgr::Get_Instance()->Add_Object(ENTRY, CAbstractFactory<Entry>::Create());
-	//CTileMgr::Get_Instance()->Load_Data4();
+	CTileMgr::Get_Instance()->Load_Data4();
 
 	CLineMgr::Get_Instance()->Initialize();
 
@@ -48,6 +48,7 @@ void Village::Initialize()
 void Village::Update()
 {
 	CObjMgr::Get_Instance()->Update();
+	CTileMgr::Get_Instance()->Update();
 	CSoundMgr::Get_Instance()->PlaySound(L"0.Town-sharedassets3.assets-340.wav", SOUND_BGM, g_fVolume);
 	
 }
@@ -65,6 +66,7 @@ void Village::Late_Update()
 	}
 
 
+	CTileMgr::Get_Instance()->Late_Update();
 	CObjMgr::Get_Instance()->Late_Update();
 
 	
@@ -103,13 +105,13 @@ void Village::Render(HDC hDC)
 	
 	Graphics g(hDC);
 	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"BackLayer1"), 0 - (iScrollX * 0.05), 400 + iScrollY, 1280, 532);
-	//g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"SecondFloor3"), 0 + iScrollX, (WINCY - 400) + iScrollY, 1388, 288);
+	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"SecondFloor3"), 0 + iScrollX, (WINCY - 400) + iScrollY, 1388, 288);
 	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Tree0"), 400 , 700-122 , 104, 122);
 	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Tree1"), 600 , 400-77 , 67, 77);
 
 
 
-
+	CTileMgr::Get_Instance()->Render(hDC);
 	CObjMgr::Get_Instance()->Render(hDC);
 	CLineMgr::Get_Instance()->Render(hDC);
 
