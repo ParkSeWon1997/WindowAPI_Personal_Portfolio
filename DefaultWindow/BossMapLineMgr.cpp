@@ -31,8 +31,14 @@ void BossMapLineMgr::Initialize(void)
 		{576.f,423.f},		//가운데 중간
 		{702.f,423.f},		//가운데 중간
 
-		{576.f,317.f},
-		{702.f,317.f},
+		{576.f,317.f},		//가운데 맨위
+		{702.f,317.f},		//가운데 맨위
+
+		{953.f,536.f},		//오른쪽 맨 아래
+		{1074.f,536.f},		//오른쪽 맨 아래
+
+		{953.f,423.f},		//오른쪽 맨 위
+		{1074.f,423.f},		//오른쪽 맨 위
 	};
 
 	m_LineList.push_back(new CLine(tLinePoint[0], tLinePoint[1]));
@@ -41,6 +47,8 @@ void BossMapLineMgr::Initialize(void)
 	m_LineList.push_back(new CLine(tLinePoint[6], tLinePoint[7]));
 	m_LineList.push_back(new CLine(tLinePoint[8], tLinePoint[9]));
 	m_LineList.push_back(new CLine(tLinePoint[10], tLinePoint[11]));
+	m_LineList.push_back(new CLine(tLinePoint[12], tLinePoint[13]));
+	m_LineList.push_back(new CLine(tLinePoint[14], tLinePoint[15]));
 }
 
 void BossMapLineMgr::Render(HDC hDC)
