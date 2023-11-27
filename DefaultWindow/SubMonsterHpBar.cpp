@@ -13,26 +13,29 @@ SubMonsterHpBar::~SubMonsterHpBar()
 
 void SubMonsterHpBar::Initialize()
 {
+	m_tInfo.fCX = 20.f;
+	m_tInfo.fCY = 7.f;
     m_eRender = UI;
 }
 
 int SubMonsterHpBar::Update()
 {
-	m_tInfo.fCX = 50.f;
-	m_tInfo.fCY = 32.f;
+	
 	__super::Update_Rect();
 	return 0;
 }
 
 void SubMonsterHpBar::Late_Update()
 {
+	m_fPercent = (m_fCurHp / m_fMaxHp);
 }
 
 void SubMonsterHpBar::Render(HDC hDC)
 {
 	HBRUSH myBrush = (HBRUSH)CreateSolidBrush(RGB(255, 20, 20));
 	HBRUSH oldBrush = (HBRUSH)SelectObject(hDC, myBrush);
-	Rectangle(hDC, m_tRect.left, m_tRect.top, 52 + m_tRect.right * m_fPercent, m_tRect.bottom);
+	m_tRect.right= m_tRect.left + 20 * m_fPercent;
+	Rectangle(hDC, m_tRect.left, m_tRect.top,   m_tRect.right , m_tRect.bottom);
 
 	SelectObject(hDC, oldBrush);
 	DeleteObject(myBrush);

@@ -6,6 +6,7 @@
 #include"GuideBullet.h"
 #include"BossMonster.h"
 #include"PngMrg.h"
+#include"SubMonsterHpBar.h"
 SubMonster::SubMonster() : Monster_AngleAdd(0.f), m_fDistance(0.f), m_pSubMonsterHpBar(nullptr)
 {
 
@@ -17,16 +18,20 @@ SubMonster::SubMonster(float _X, float _Y)
 
 SubMonster::~SubMonster()
 {
-
+	Release();
 }
 
 void SubMonster::Initialize()
 {
 	m_tInfo.fCX = 56.f;
 	m_tInfo.fCY = 22.f;
-	m_fHP = 20.f;
+	m_fHP = 40.f;
 	m_fDistance = 100.f;
 	m_fSpeed = 2.75f;
+	m_pSubMonsterHpBar= new SubMonsterHpBar;
+	m_pSubMonsterHpBar->Set_Pos(m_tInfo.fX, m_tInfo.fY);
+	dynamic_cast<SubMonsterHpBar*>(m_pSubMonsterHpBar)->Set_MaxHp(m_fHP);
+	m_pSubMonsterHpBar->Initialize();
 	SubState = SUBMOSTER_STATE::IDLE;
 	m_eRender = GAMEOBJECT;
 }
@@ -48,6 +53,7 @@ int SubMonster::Update()
 		m_fRotateAngle = 0;
 	}
 
+	m_pSubMonsterHpBar->Update();
 	//m_fAngle123 += 2.0f;
 	FrameChek++;
 	
@@ -65,6 +71,9 @@ void SubMonster::Late_Update()
 
 	if (dynamic_cast<BossMonster*>(CObjMgr::Get_Instance()->Get_ObjList(BOSS_MONSTER))) {
 		SubMonster_pattern();
+		m_pSubMonsterHpBar->Set_Pos(m_tInfo.fX, m_tInfo.fY+10);
+		dynamic_cast<SubMonsterHpBar*>(m_pSubMonsterHpBar)->Set_CurHp(m_fHP);
+		m_pSubMonsterHpBar->Late_Update();
 	}
 }
 
@@ -76,13 +85,13 @@ void SubMonster::Render(HDC hDC)
 	g.RotateTransform(m_fRotateAngle);
 	g.TranslateTransform(-m_tInfo.fX, -m_tInfo.fY);
 	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"SubMonster"), (m_tInfo.fX-m_tInfo.fCX*0.5), (m_tInfo.fY-m_tInfo.fCY*0.5), 56.f, 22.f);
-
+	m_pSubMonsterHpBar->Render(hDC);
 
 }
 
 void SubMonster::Release()
 {
-
+	Safe_Delete(m_pSubMonsterHpBar);
 }
 
 void SubMonster::Attack()
