@@ -37,10 +37,10 @@ int PlayerBullet::Update()
 
 void PlayerBullet::Late_Update()
 {
-	if (CLineMgr::Get_Instance()->Collision_Line(this->m_tInfo.fX, this->m_tInfo.fY))
-	{
-		m_bDead = true;
-	}
+	//if (CLineMgr::Get_Instance()->Collision_Line(&this->m_tInfo.fX, this->m_tInfo.fY,m_tInfo.fCY))
+	//{
+		//m_bDead = true;
+	//}
 
 }
 

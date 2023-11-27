@@ -26,8 +26,6 @@ void Gun::Initialize()
 
 int Gun::Update()
 {
-	//m_tInfo.fX += m_fSpeed * cos(m_fAngle * (PI / 180.f));
-	//m_tInfo.fY += m_fSpeed * sin(m_fAngle * (PI / 180.f));
 
 	__super::Update_Rect();
 	return OBJ_NOEVENT;
@@ -39,13 +37,7 @@ void Gun::Late_Update()
 
 void Gun::Render(HDC hDC)
 {
-	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
-	int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
-	//Ellipse(hDC,
-	//	m_tRect.left,
-	//	m_tRect.top,
-	//	m_tRect.right,
-	//	m_tRect.bottom);
+	
 	Graphics g(hDC);
 
 	Point destinationPoints[] = {
@@ -64,8 +56,8 @@ void Gun::Render(HDC hDC)
 		g.RotateTransform(m_fAngle);
 		g.TranslateTransform(-m_tInfo.fX, -m_tInfo.fY);
 		g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Gun_Rusiian"),
-			(m_tInfo.fX - m_tInfo.fCX * 0.5) + iScrollX,
-			(m_tInfo.fY - m_tInfo.fCY * 0.5) + iScrollY,
+			(m_tInfo.fX - m_tInfo.fCX * 0.5) ,
+			(m_tInfo.fY - m_tInfo.fCY * 0.5) ,
 			28.f, 20.f);
 	}
 	else

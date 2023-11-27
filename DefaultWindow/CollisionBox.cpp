@@ -12,7 +12,7 @@ CollisionBox::~CollisionBox()
 
 void CollisionBox::Initialize()
 {
-
+    m_fDamage = 15.f;
     m_eRender = GAMEOBJECT;
 }
 

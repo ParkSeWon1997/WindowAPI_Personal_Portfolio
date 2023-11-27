@@ -14,6 +14,10 @@ public:
 	virtual void	Render(HDC hDC)override;
 	virtual void	Release()override;
 
+public:
+	bool Get_GroundCheck() { return GroundCheck; }
 
+private:
+	bool GroundCheck = true;
 
 };

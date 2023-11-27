@@ -41,7 +41,7 @@ int Sword::Update()
 
 void Sword::Late_Update()
 {
-	if (CollisionBOxCount > 30) {
+	if (CollisionBOxCount > 20) {
 		CollisionBoxQue[0] = nullptr;
 		CObjMgr::Get_Instance()->Delete_ID(COLLISIONBOX);
 		CollisionBOxCount = 0;
@@ -58,11 +58,11 @@ void Sword::Render(HDC hDC)
 
 
 
-	//Rectangle(hDC,
-	//	m_tRect.left,
-	//	m_tRect.top,
-	//	m_tRect.right,
-	//	m_tRect.bottom);
+	Rectangle(hDC,
+		m_tRect.left,
+		m_tRect.top,
+		m_tRect.right,
+		m_tRect.bottom);
 
 
 }

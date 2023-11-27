@@ -18,6 +18,7 @@
 #include"BossMonster.h"
 #include"Shield.h"
 #include "PlayerUI.h"
+#include"Ground.h"
 
 static float g_fVolume = 1.f;
 Village::Village()
@@ -31,6 +32,7 @@ Village::~Village()
 
 void Village::Initialize()
 {
+
 
 	CObjMgr::Get_Instance()->Add_Object(PLAYER, CPlayer::Get_Instance());
 	CObjMgr::Get_Instance()->Add_Object(ENTRY, CAbstractFactory<Entry>::Create());

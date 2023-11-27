@@ -42,66 +42,38 @@ void CLineMgr::Release()
 	m_LineList.clear();
 }
 
-bool CLineMgr::Collision_Line(float _fX, float _fY)
+bool CLineMgr::Collision_Line(float* pHeight, float& _fX, float _fCY)
 {
+
 
 
 	if (m_LineList.empty())
 		return false;
-
+	
+	
+	CLine*		pTargetLine = nullptr;
+	
 	for (auto& iter : m_LineList)
 	{
-		//플레이어의 y좌표가 라인의 좌표보다 작다면 충돌되지 않은 것으로 false를 리턴
-		if (_fY <iter->Get_Info().tLPoint.fY ) 
+		if (_fX >= iter->Get_Info().tLPoint.fX &&
+			_fX < iter->Get_Info().tRPoint.fX )
 		{
-			return false; //충돌아님
+			pTargetLine = iter;
 		}
-
-		//플레이어의 y좌표가 라인의 좌표와 같다면 충돌된 것으로 true를 리턴
-		else if(_fY == iter->Get_Info().tLPoint.fY)
-		{
-			return true;
-		}
-		
-		//if (_fX< iter->Get_Info().tLPoint.fX )
-		//{
-		//	return true;
-		//}
-		//else return false;
-		
 	}
-
-
-	return false; // 충돌 없
 	
-
-	//if (m_LineList.empty())
-	//	return false;
-	//
-	//
-	//CLine*		pTargetLine = nullptr;
-	//
-	//for (auto& iter : m_LineList)
-	//{
-	//	if (_fX >= iter->Get_Info().tLPoint.fX &&
-	//		_fX < iter->Get_Info().tRPoint.fX )
-	//	{
-	//		pTargetLine = iter;
-	//	}
-	//}
-	//
-	//if (!pTargetLine)
-	//	return false;
-	//
-	//float x1 = pTargetLine->Get_Info().tLPoint.fX;
-	//float y1 = pTargetLine->Get_Info().tLPoint.fY;
-	//
-	//float x2 = pTargetLine->Get_Info().tRPoint.fX;
-	//float y2 = pTargetLine->Get_Info().tRPoint.fY;
-	//
-	//*pHeight = ((y2 - y1) / (x2 - x1)) * (_fX - x1) + y1;
-	//
-	//return true;
+	if (!pTargetLine)
+		return false;
+	
+	float x1 = pTargetLine->Get_Info().tLPoint.fX;
+	float y1 = pTargetLine->Get_Info().tLPoint.fY;
+	
+	float x2 = pTargetLine->Get_Info().tRPoint.fX;
+	float y2 = pTargetLine->Get_Info().tRPoint.fY;
+	
+	*pHeight = (((y2 - y1) / (x2 - x1)) * (_fX - x1) + y1)- (_fCY*0.5);
+	
+	return true;
 }
 
 void CLineMgr::Load_Line()

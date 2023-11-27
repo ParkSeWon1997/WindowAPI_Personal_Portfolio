@@ -93,6 +93,7 @@ protected:
 	float m_fDamage;
 	float m_fTargetInitX;
 	float m_fTargetInitY;
+	bool  m_IsGround;
 
 
 	float		m_fSpeed;

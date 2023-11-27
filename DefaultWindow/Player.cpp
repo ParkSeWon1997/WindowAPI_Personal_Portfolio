@@ -55,7 +55,7 @@ void CPlayer::Initialize()
 
 	m_fSpeed = 5.f;
 	m_fDiagonal = 20.f;
-	m_fPower = 10.f;
+	m_fPower = 15.f;
 
 	
 	this->m_fHP = 100.f;
@@ -214,10 +214,7 @@ void CPlayer::Key_Input()
 		
 		if (CKeyMgr::Get_Instance()->Key_Pressing(VK_SPACE))
 		{
-			m_InitSpeedY = -m_fGravity * 3.0f;
 
-			m_InitX= m_tInfo.fX;
-			m_InitY = m_tInfo.fY;
 			m_bJump = true;
 			
 			
@@ -291,21 +288,29 @@ void CPlayer::Jump()
 {
 
 
+	float	fY(0.f);
+
+	bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(&fY, m_tInfo.fX,m_tInfo.fCY);
+
 	if (m_bJump)
 	{
-		//y축은 등가속 운동(가속도는 중력 가속도)
-		//y축 속도 결정
-		m_InitSpeedY = m_InitSpeedY + m_fGravity * m_t;
+		m_tInfo.fY -= (m_fPower * m_fAccelTime) - (9.8f * m_fAccelTime * m_fAccelTime * 0.5f);
 
-		//y축 위치 결정
-		m_tInfo.fY = m_tInfo.fY + m_InitSpeedY * m_t;
+		m_fAccelTime += 0.2f;
+
+		if (bLineCol && fY < m_tInfo.fY)
+		{
+			m_bJump = false;
+			m_fAccelTime = 0.f;
+			m_tInfo.fY = fY;
+		}
+
 	}
 
-
-
-	//t의 시간은 고정값으로 제곱을 해줘야함 t가 늘어난다면 점프하는 속도 증가 
-	//그리고 낙하하는 속도도 증가
-	m_t = 1.0f;
+	else if (bLineCol)
+	{
+		m_tInfo.fY = fY;
+	}
 
 }
 
@@ -423,7 +428,7 @@ void CPlayer::WeaponChage()
 	case CPlayer::SWORD:
 		if (m_pWeaponList[CPlayer::SWORD] == nullptr)
 		{
-			CObjMgr::Get_Instance()->Add_Object(OBJID::SWORD, CAbstractFactory<Sword>::Create(this->m_tPosin.x, this->m_tPosin.y-20, this->m_fAngle));
+			CObjMgr::Get_Instance()->Add_Object(OBJID::SWORD, CAbstractFactory<Sword>::Create(this->m_tPosin.x, this->m_tPosin.y-20, m_fAngle));
 
 			m_pWeaponList[CPlayer::SWORD] = CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD);
 		}
