@@ -290,8 +290,8 @@ void CPlayer::Jump()
 
 	float	fY(0.f);
 
-	bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(&fY, m_tInfo.fX,m_tInfo.fCY);
 
+	bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(&fY, m_tInfo.fX,m_tInfo.fCY);
 	if (m_bJump)
 	{
 		m_tInfo.fY -= (m_fPower * m_fAccelTime) - (9.8f * m_fAccelTime * m_fAccelTime * 0.5f);

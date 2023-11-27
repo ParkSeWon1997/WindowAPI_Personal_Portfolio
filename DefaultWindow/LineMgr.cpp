@@ -15,12 +15,12 @@ CLineMgr::~CLineMgr()
 
 void CLineMgr::Initialize(void)
 {
-	LINEPOINT		tLinePoint[4]
+	LINEPOINT		tLinePoint[6]
 	{
 		{ 0.f, 700.f },
 		{ 2000.f, 700.f },
-		{ 400.f, 400.f },
-		{ 600.f, 400.f } 
+		{ 385.f, 500.f },
+		{ 912.f, 500.f } 
 	};
 
 	m_LineList.push_back(new CLine(tLinePoint[0], tLinePoint[1]));
@@ -44,12 +44,8 @@ void CLineMgr::Release()
 
 bool CLineMgr::Collision_Line(float* pHeight, float& _fX, float _fCY)
 {
-
-
-
 	if (m_LineList.empty())
 		return false;
-	
 	
 	CLine*		pTargetLine = nullptr;
 	

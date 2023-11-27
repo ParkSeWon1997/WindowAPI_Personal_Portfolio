@@ -63,6 +63,8 @@ ImageCollection::ImageCollection()
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/SecondFloor3.png", L"SecondFloor3");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Dun/Village/SecondFloor3.bmp", L"Map_LayerFloor_Bmp");
 
+	//CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Dun/Village/SecondFloor3.bmp", L"Map_LayerFloor_Bmp");
+
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/SecondFloor_Broken0.png", L"SecondFloor_Broken0");
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/TownLayer_Day.png", L"BackLayer2");
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/BGLayer_3-sharedassets19.assets-112.png", L"BackLayer3");

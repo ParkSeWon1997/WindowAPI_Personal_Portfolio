@@ -105,10 +105,11 @@ void Village::Render(HDC hDC)
 	
 	Graphics g(hDC);
 	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"BackLayer1"), 0 - (iScrollX * 0.05), 400 + iScrollY, 1280, 532);
-	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"SecondFloor3"), 0 + iScrollX, (WINCY - 400) + iScrollY, 1388, 288);
+	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"SecondFloor3"), 0+200 , (WINCY - 300), 900, 188);
 	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Tree0"), 400 , 700-122 , 104, 122);
-	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Tree1"), 600 , 400-77 , 67, 77);
+	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Tree1"), 600 , 500-77 , 67, 77);
 
+	
 
 
 	CTileMgr::Get_Instance()->Render(hDC);
