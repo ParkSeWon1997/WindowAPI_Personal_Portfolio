@@ -60,12 +60,12 @@ int BossMonster::Update()
 
 		return OBJ_DEAD;
 	}
-	if (dwFrameTime + 1000 < GetTickCount()) {
-
-		cout << "BOSS HP : " << m_fHP << endl;
-
-		dwFrameTime = GetTickCount();
-	}
+	//if (dwFrameTime + 1000 < GetTickCount()) {
+	//
+	//	cout << "BOSS HP : " << m_fHP << endl;
+	//
+	//	dwFrameTime = GetTickCount();
+	//}
 
 
 	dynamic_cast<BossUI*>(CObjMgr::Get_Instance()->Get_ObjList(MOSTER_UI))->Set_UI_HpBar(200.f, m_fHP);
@@ -402,11 +402,9 @@ void BossMonster::Boss_pattern()
 	}
 	case BOSS_STATE::SC_BOSS_HARD:
 	{
-		if (dwFrameTime + 5000 < GetTickCount()) 
+		if (dwFrameTime + 3000 < GetTickCount()) 
 		{
 
-
-		
 				m_eCurState = ImageSTATE::ATTACK;
 				CreateSpear(1, 0, 200);
 				CreateSpear(2, 1280, 600);
@@ -417,9 +415,7 @@ void BossMonster::Boss_pattern()
 				CreateIcicle(540);
 				CreateIcicle(810);
 				CreateIcicle(1080);
-				
-			
-			
+
 
 			dwFrameTime = GetTickCount();
 		}

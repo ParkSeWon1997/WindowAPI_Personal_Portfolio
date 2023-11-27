@@ -96,17 +96,21 @@ void SubMonster::Release()
 
 void SubMonster::Attack()
 {
-	if (dwFrameTime + 200 < GetTickCount()) {
-		if(dynamic_cast<BossMonster*>(CObjMgr::Get_Instance()->Get_ObjList(BOSS_MONSTER))->Get_HP()<100)
-		CObjMgr::Get_Instance()->Add_Object(SUB_MONSTER_BULLET, CAbstractFactory<MonsterBullet>::Create(this->m_tInfo.fX, this->m_tInfo.fY, Monster_AngleAdd,15.f));
-		else
-		CObjMgr::Get_Instance()->Add_Object(SUB_MONSTER_BULLET, CAbstractFactory<MonsterBullet>::Create(this->m_tInfo.fX, this->m_tInfo.fY, Monster_AngleAdd));
-		dwFrameTime = GetTickCount();
-
+	if (dynamic_cast<BossMonster*>(CObjMgr::Get_Instance()->Get_ObjList(BOSS_MONSTER))->Get_HP() < 100) {
+		if (dwFrameTime + 100 < GetTickCount()) {
+			CObjMgr::Get_Instance()->Add_Object(SUB_MONSTER_BULLET, CAbstractFactory<MonsterBullet>::Create(this->m_tInfo.fX, this->m_tInfo.fY, Monster_AngleAdd, 15.f));
+			dwFrameTime = GetTickCount();
+		}
+		
 
 	}
-
-
+	else {
+		if (dwFrameTime + 200 < GetTickCount()) {
+			CObjMgr::Get_Instance()->Add_Object(SUB_MONSTER_BULLET, CAbstractFactory<MonsterBullet>::Create(this->m_tInfo.fX, this->m_tInfo.fY, Monster_AngleAdd));
+			dwFrameTime = GetTickCount();
+		}
+	}
+	
 }
 
 void SubMonster::Target_Attack()

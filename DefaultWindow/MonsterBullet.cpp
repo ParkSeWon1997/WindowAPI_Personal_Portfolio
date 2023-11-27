@@ -16,7 +16,7 @@ void MonsterBullet::Initialize()
 	m_tInfo.fCX = 18.f;
 	m_tInfo.fCY = 36.f;
 
-	m_fSpeed = 1.f;
+	m_fSpeed = 8.f;
 
 	m_fDamage = 1.f;
 	m_fHP = 1.f;

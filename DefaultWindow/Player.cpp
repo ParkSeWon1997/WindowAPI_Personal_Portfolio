@@ -1,25 +1,25 @@
 #include "stdafx.h"
 #include "Player.h"
-#include "Bullet.h"
 #include "AbstractFactory.h"
-#include "ScrewBullet.h"
+#include"Mouse.h"
+//Mnager
 #include "ObjMgr.h"
-#include "GuideBullet.h"
 #include "LineMgr.h"
 #include "KeyMgr.h"
 #include "ScrollMgr.h"
 #include "BmpMgr.h"
 #include"PngMrg.h"
-#include"AnimSprite.h"
-#include"ElapseTimeMgr.h"
-#include"Mouse.h"
-#include "CTimeMgr.h"
 #include "SoundMgr.h"
+#include "SceneMgr.h"
+
+//weapon
 #include"Gun.h"
 #include"Sword.h"
 #include "PlayerBullet.h"
-#include "SceneMgr.h"
-
+#include "ScrewBullet.h"
+#include "GuideBullet.h"
+#include "Bullet.h"
+//UI
 #include"PlayerUI.h"
 #include"PlayerWeaponBox.h"
 
