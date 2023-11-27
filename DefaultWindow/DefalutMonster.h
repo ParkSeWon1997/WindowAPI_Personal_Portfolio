@@ -22,6 +22,12 @@ public:
 	void Motion_Change();
 	void Default_Pattern();
 
+	void Move();
+	CObj* Fire(DIRECTION _eDir);
+
+
+private:
+	int FrameCheck = 0;
 
 	 ImageSTATE			m_ePreState;
 	 ImageSTATE			m_eCurState;

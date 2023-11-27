@@ -178,6 +178,9 @@
     <Filter Include="02. Design\03. LineMgr\03. BossMapLineMgr">
       <UniqueIdentifier>{c78a9bcf-dc74-4675-ac9e-76cb8012e097}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Obj\01. Bullet\03. MonsterBullet\03. DefalutMonsterBullet">
+      <UniqueIdentifier>{abb3a2fa-2471-49ed-b3b3-24a3683e932a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -372,6 +375,9 @@
     <ClInclude Include="BossMapLineMgr.h">
       <Filter>02. Design\03. LineMgr\03. BossMapLineMgr</Filter>
     </ClInclude>
+    <ClInclude Include="AroundBullet.h">
+      <Filter>01. Obj\01. Bullet\03. MonsterBullet\03. DefalutMonsterBullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DefaultWindow.cpp">
@@ -550,6 +556,9 @@
     </ClCompile>
     <ClCompile Include="BossMapLineMgr.cpp">
       <Filter>02. Design\03. LineMgr\03. BossMapLineMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="AroundBullet.cpp">
+      <Filter>01. Obj\01. Bullet\03. MonsterBullet\03. DefalutMonsterBullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

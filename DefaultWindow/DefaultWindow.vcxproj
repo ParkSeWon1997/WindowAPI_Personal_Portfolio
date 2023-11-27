@@ -147,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractFactory.h" />
+    <ClInclude Include="AroundBullet.h" />
     <ClInclude Include="BmpMgr.h" />
     <ClInclude Include="BossField.h" />
     <ClInclude Include="BossHpBar.h" />
@@ -211,6 +212,7 @@
     <ClInclude Include="Wall.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AroundBullet.cpp" />
     <ClCompile Include="BmpMgr.cpp" />
     <ClCompile Include="BossField.cpp" />
     <ClCompile Include="BossHpBar.cpp" />

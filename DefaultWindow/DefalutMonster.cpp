@@ -3,8 +3,8 @@
 #include"PngMrg.h"
 #include "ScrollMgr.h"
 #include "KeyMgr.h"
-
-
+#include"AroundBullet.h"
+#include"ObjMgr.h"
 
 DefalutMonster::DefalutMonster()
 {
@@ -29,8 +29,8 @@ void DefalutMonster::Initialize()
     m_tInfo = { 600.f,100.f,64.f,40.f };
 
    
-
-
+	m_fSpeed = 3.f;
+	m_fHP = 20.f;
 
 	m_tFrame.dwSpeed = 200;
 	m_tFrame.dwTime = GetTickCount();
@@ -45,7 +45,7 @@ int DefalutMonster::Update()
         return OBJ_DEAD;
 
 
-
+	FrameCheck++;
 
 
 
@@ -141,14 +141,57 @@ void DefalutMonster::Default_Pattern()
 	}
 	else {
 		m_eCurState = IDLE;
+		Move();
 
-		if (CKeyMgr::Get_Instance()->Key_Pressing('D'))
-		{
+		if (FrameCheck>50) {
 
-			m_eCurState = ATTACK;
-
+			CObjMgr::Get_Instance()->Add_Object(OBJID::SUB_MONSTER_BULLET, Fire(DIR_LEFT));
+			CObjMgr::Get_Instance()->Add_Object(OBJID::SUB_MONSTER_BULLET, Fire(DIR_RIGHT));
+			CObjMgr::Get_Instance()->Add_Object(OBJID::SUB_MONSTER_BULLET, Fire(DIR_UP));
+			CObjMgr::Get_Instance()->Add_Object(OBJID::SUB_MONSTER_BULLET, Fire(DIR_DOWN));
+			CObjMgr::Get_Instance()->Add_Object(OBJID::SUB_MONSTER_BULLET, Fire(DIR_LU));
+			CObjMgr::Get_Instance()->Add_Object(OBJID::SUB_MONSTER_BULLET, Fire(DIR_RU));
+			CObjMgr::Get_Instance()->Add_Object(OBJID::SUB_MONSTER_BULLET, Fire(DIR_LD));
+			CObjMgr::Get_Instance()->Add_Object(OBJID::SUB_MONSTER_BULLET, Fire(DIR_RD));
+			
+			FrameCheck = 0;
+			
 		}
 
 
+		
+
+
 	}
+}
+
+void DefalutMonster::Move()
+{
+	
+	if (m_tInfo.fX >= WINCX-100)
+	{
+		m_tInfo.fX -= m_fSpeed;
+	}
+	else
+	{
+		m_tInfo.fX += m_fSpeed;
+	}
+	//else if (m_tInfo.fX <= 0)
+	//{
+	//	m_tInfo.fX += m_fSpeed;
+	//}
+
+	
+}
+
+CObj* DefalutMonster::Fire(DIRECTION _eDir)
+{
+	CObj* pBullet = new AroundBullet;
+
+	pBullet->Initialize();
+	pBullet->Set_Pos(m_tInfo.fX, m_tInfo.fY);
+	pBullet->Set_Direction(_eDir);
+
+	return pBullet;
+
 }
