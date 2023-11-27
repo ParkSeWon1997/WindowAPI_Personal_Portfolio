@@ -8,6 +8,7 @@ ImageCollection::ImageCollection()
 	//던전 백그라운드 이미지
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Dun/World/BossMap/Tile/BGLayer_0-sharedassets10.assets-1031.bmp", L"MapBack");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Dun/World/BossMap/Tile/BGLayer_1 #2319581.bmp", L"Map_Layer_Bmp");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Dun/World/BossMap/Tile/Ice_H_Type.bmp", L"Tile1");
 
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/World/BossMap/Tile/BGLayer_1 #2319581.png", L"Map_Layer");
 	//플레이어 Image

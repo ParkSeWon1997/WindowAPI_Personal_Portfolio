@@ -16,10 +16,18 @@ public:
 	void	Release();
 
 
-	void		Picking(POINT _ptMouse, int _iDrawID, int _iOption);
+	/*void		Picking(POINT _ptMouse, int _iDrawID, int _iOption);*/
+	void		Picking(float _x, float _y, int _iDrawID, int _iOption);
 	void		Save_Data();
+	void		Save_Data2();
+	void		Save_Data3();
+	void		Save_Data4();
+	void		Save_Data5();
 	void		Load_Data();
-
+	void		Load_Data2();
+	void		Load_Data3();
+	void		Load_Data4();
+	void		Load_Data5();
 public:
 	static	CTileMgr*		Get_Instance()
 	{

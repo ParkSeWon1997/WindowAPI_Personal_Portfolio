@@ -29,7 +29,7 @@ void CMainGame::Initialize(void)
 	m_DC = GetDC(g_hWnd);
 
 	
-	CSceneMgr::Get_Instance()->Scene_Change(SC_LOGO);
+	CSceneMgr::Get_Instance()->Scene_Change(SC_EDIT);
 	CMouse::Get_Instance()->Initialize();
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Back.bmp", L"Back");
 

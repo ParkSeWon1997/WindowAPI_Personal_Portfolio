@@ -15,7 +15,9 @@ public:
 
 private:
 	void		Key_Input();
-
+private:
+	int Image_NextX;
+	int Image_NextY;
 
 };
 
