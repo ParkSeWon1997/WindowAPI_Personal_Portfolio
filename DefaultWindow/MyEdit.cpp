@@ -38,7 +38,7 @@ void CMyEdit::Render(HDC hDC)
 
 	CTileMgr::Get_Instance()->Render(hDC);
 
-	HDC		hMemDC123 = CBmpMgr::Get_Instance()->Find_Img(L"Tile1");
+	HDC		hMemDC123 = CBmpMgr::Get_Instance()->Find_Img(L"AllMap_tile");
 	BitBlt(hDC, 700, 100, TILECX, TILECY, hMemDC123, TILECX* Image_NextX, TILECY* Image_NextY, SRCCOPY);
 
 
@@ -51,21 +51,21 @@ void CMyEdit::Release()
 
 void CMyEdit::Key_Input()
 {
-	if (CKeyMgr::Get_Instance()->Key_Pressing(VK_LEFT)) {
+	if (CKeyMgr::Get_Instance()->Key_Down(VK_LEFT)) {
 		CScrollMgr::Get_Instance()->Set_ScrollX(5.f);
 		Image_NextX--;
 	}
-	if (CKeyMgr::Get_Instance()->Key_Pressing(VK_RIGHT)) {
+	if (CKeyMgr::Get_Instance()->Key_Down(VK_RIGHT)) {
 		CScrollMgr::Get_Instance()->Set_ScrollX(-5.f);
 		Image_NextX++;
 	}
 
-	if (CKeyMgr::Get_Instance()->Key_Pressing(VK_UP)) {
+	if (CKeyMgr::Get_Instance()->Key_Down(VK_UP)) {
 		CScrollMgr::Get_Instance()->Set_ScrollY(5.f);
 		Image_NextY--;
 	}
 
-	if (CKeyMgr::Get_Instance()->Key_Pressing(VK_DOWN)) {
+	if (CKeyMgr::Get_Instance()->Key_Down(VK_DOWN)) {
 		CScrollMgr::Get_Instance()->Set_ScrollY(-5.f);
 		Image_NextY++;
 	}
@@ -83,12 +83,43 @@ void CMyEdit::Key_Input()
 		CTileMgr::Get_Instance()->Save_Data();
 		return;
 	}
+	if (CKeyMgr::Get_Instance()->Key_Down('1'))
+	{
+		CTileMgr::Get_Instance()->Save_Data2();
+		return;
+	}
+	if (CKeyMgr::Get_Instance()->Key_Down('2'))
+	{
+		CTileMgr::Get_Instance()->Save_Data3();
+		return;
+	}
+	if (CKeyMgr::Get_Instance()->Key_Down('3'))
+	{
+		CTileMgr::Get_Instance()->Save_Data4();
+		return;
+	}
 
 	if (CKeyMgr::Get_Instance()->Key_Down('A'))
 	{
 		CTileMgr::Get_Instance()->Load_Data();
 		return;
 	}
+	if (CKeyMgr::Get_Instance()->Key_Down(VK_F1))
+	{
+		CTileMgr::Get_Instance()->Load_Data2();
+		return;
+	}
+	if (CKeyMgr::Get_Instance()->Key_Down(VK_F2))
+	{
+		CTileMgr::Get_Instance()->Load_Data3();
+		return;
+	}
+	if (CKeyMgr::Get_Instance()->Key_Down(VK_F3))
+	{
+		CTileMgr::Get_Instance()->Load_Data4();
+		return;
+	}
+
 
 }
 

@@ -19,7 +19,7 @@ void CTile::Initialize()
 {
 	m_tInfo.fCX = TILECX;
 	m_tInfo.fCY = TILECY;
-	m_TileKey = L"Tile1";
+	m_TileKey = L"AllMap_tile";
 	m_eRender = BACKGROUND;
 }
 
@@ -41,10 +41,27 @@ void CTile::Render(HDC hDC)
 	
 
 	HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Img(m_TileKey);
+	//GdiTransparentBlt(hDC,
+	//	m_tRect.left,
+	//	m_tRect.top,
+	//	TILECX,
+	//	TILECY,
+	//	hMemDC,
+	//	TILECX * m_iXNum,
+	//	TILECY * m_iYNum,
+	//	TILECX,
+	//	TILECY,
+	//	RGB(255, 255, 255));
+
 	BitBlt(hDC,
 		m_tRect.left,
 		m_tRect.top,
-		TILECX, TILECY, hMemDC, TILECX * m_iXNum, TILECY* m_iYNum, SRCCOPY);
+		TILECX,
+		TILECY,
+		hMemDC, 
+		TILECX * m_iXNum, 
+		TILECY* m_iYNum, 
+		SRCCOPY);
 
 	
 }

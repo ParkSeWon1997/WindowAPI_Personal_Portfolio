@@ -45,7 +45,7 @@ void BossMonster::Initialize()
 	m_eRender = GAMEOBJECT;
 	//m_bDead = true;
 
-	CObjMgr::Get_Instance()->Add_Object(OBJID::MOSTER_UI, CAbstractFactory<BossUI>::Create(WINCX*0.5,WINCY*0.8,0.f));
+	CObjMgr::Get_Instance()->Add_Object(OBJID::MOSTER_UI, CAbstractFactory<BossUI>::Create(WINCX*0.5,WINCY*0.9,0.f));
 
 	m_eBOSS_STATE = BossMonster::SC_BOSS_CREATE_SUB;
 }

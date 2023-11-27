@@ -14,8 +14,8 @@
 #define			TILEX		30
 #define			TILEY		20
 
-#define			TILECX		16
-#define			TILECY		16
+#define			TILECX		32
+#define			TILECY		32
 		
 #define			MyTILECX	16
 #define			MyTILECY	16

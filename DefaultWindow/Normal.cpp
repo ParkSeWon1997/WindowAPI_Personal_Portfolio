@@ -14,6 +14,7 @@
 #include "CollisionMgr.h"
 #include "SceneMgr.h"
 #include "KeyMgr.h"
+#include "TileMgr.h"
 
 
 static float g_fVolume = 0.7f;
@@ -36,15 +37,15 @@ void Normal::Initialize()
 	CSoundMgr::Get_Instance()->PlaySound(L"2.IceField-sharedassets10.assets-124.wav", SOUND_BGM, g_fVolume);
 
 	CLineMgr::Get_Instance()->Initialize();
-
+	//CTileMgr::Get_Instance()->Load_Data2();
 }
 
 void Normal::Update()
 {
-	if (CKeyMgr::Get_Instance()->Key_Pressing('0'))
-	{
-		CSceneMgr::Get_Instance()->Scene_Change(SC_BOSS);
-	}
+	//if (CKeyMgr::Get_Instance()->Key_Pressing('0'))
+	//{
+	//	CSceneMgr::Get_Instance()->Scene_Change(SC_BOSS);
+	//}
 
 	CObjMgr::Get_Instance()->Update();
 }
@@ -88,6 +89,7 @@ void Normal::Render(HDC hDC)
 
 	CObjMgr::Get_Instance()->Render(hDC);
 	CLineMgr::Get_Instance()->Render(hDC);
+	//CTileMgr::Get_Instance()->Render(hDC);
 }
 
 void Normal::Release()

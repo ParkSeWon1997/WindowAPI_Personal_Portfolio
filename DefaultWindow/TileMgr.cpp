@@ -50,10 +50,7 @@ void CTileMgr::Render(HDC hDC)
 	
 	for (auto& iter : m_vecTile)
 	{
-		
-		
 			iter->Render(hDC);
-		
 	}
 
 }

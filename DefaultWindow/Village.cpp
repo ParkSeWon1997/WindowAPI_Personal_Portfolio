@@ -19,6 +19,7 @@
 #include"Shield.h"
 #include "PlayerUI.h"
 #include"Ground.h"
+#include "TileMgr.h"
 
 static float g_fVolume = 1.f;
 Village::Village()
@@ -36,7 +37,7 @@ void Village::Initialize()
 
 	CObjMgr::Get_Instance()->Add_Object(PLAYER, CPlayer::Get_Instance());
 	CObjMgr::Get_Instance()->Add_Object(ENTRY, CAbstractFactory<Entry>::Create());
-
+	//CTileMgr::Get_Instance()->Load_Data4();
 
 	CLineMgr::Get_Instance()->Initialize();
 
@@ -53,6 +54,17 @@ void Village::Update()
 
 void Village::Late_Update()
 {
+
+
+
+
+	if (CCollisionMgr::CollisionRect_to_Rect(CObjMgr::Get_Instance()->Get_Player(), CObjMgr::Get_Instance()->Get_ObjList(ENTRY)))
+	{
+		CSceneMgr::Get_Instance()->Scene_Change(SC_NORMAL);
+
+	}
+
+
 	CObjMgr::Get_Instance()->Late_Update();
 
 	
@@ -72,19 +84,17 @@ void Village::Render(HDC hDC)
 	//HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Img(L"TownBGbmp");
 	//
 	//
-	//GdiTransparentBlt(hDC,
-	//	100,
-	//	100,
-	//	1280,
-	//	800,
-	//	hMemDC,
-	//	0,
-	//	0,
-	//	1280,
-	//	532,
-	//	RGB(255, 255, 255));
-
-
+	GdiTransparentBlt(hDC,
+		0,
+		0,
+		1280,
+		800,
+		hGroundDC,
+		0,
+		0,
+		1280,
+		800,
+		RGB(255, 255, 255));
 
 
 
@@ -93,12 +103,12 @@ void Village::Render(HDC hDC)
 	
 	Graphics g(hDC);
 	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"BackLayer1"), 0 - (iScrollX * 0.05), 400 + iScrollY, 1280, 532);
-	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"SecondFloor3"), 0 + iScrollX, (WINCY - 400) + iScrollY, 1388, 288);
+	//g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"SecondFloor3"), 0 + iScrollX, (WINCY - 400) + iScrollY, 1388, 288);
 	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Tree0"), 400 , 700-122 , 104, 122);
 	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Tree1"), 600 , 400-77 , 67, 77);
 
 
-	//CTileMgr::Get_Instance()->Render(hDC);
+
 
 	CObjMgr::Get_Instance()->Render(hDC);
 	CLineMgr::Get_Instance()->Render(hDC);
