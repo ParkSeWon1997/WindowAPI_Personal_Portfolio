@@ -1,81 +1,91 @@
 #include "stdafx.h"
-#include "LineMgr.h"
+#include "BossMapLineMgr.h"
 
 
-CLineMgr*	CLineMgr::m_pInstance = nullptr;
-
-CLineMgr::CLineMgr()
+BossMapLineMgr* BossMapLineMgr::m_pInstance = nullptr;
+BossMapLineMgr::BossMapLineMgr()
 {
 }
 
-CLineMgr::~CLineMgr()
+BossMapLineMgr::~BossMapLineMgr()
 {
 	Release();
 }
 
-void CLineMgr::Initialize(void)
+void BossMapLineMgr::Initialize(void)
 {
-	LINEPOINT		tLinePoint[6]
+	LINEPOINT		tLinePoint[18]
 	{
-		{ 0.f, 700.f },
-		{ 2000.f, 700.f },
-		{220.f,667.f},
-		{ 385.f, 500.f },
-		{ 912.f, 500.f },
-		{ 1080.f, 667.f },
+		{ 0.f, 670.f },	  //바닥
+		{ 2000.f, 670.f },// 바닥
+
+		{225.f,536.f},		//왼쪽 맨 아래
+		{ 349.f, 536.f },	//왼쪽 맨 아래
+
+		{ 225.f, 423.f },	//왼쪽 맨 위
+		{ 349.f, 423.f },	//왼쪽 맨 위
+
+		{576.f,536.f},		//가운데 맨 아래
+		{702.f,536.f},		//가운데 맨 아래
+
+		{576.f,423.f},		//가운데 중간
+		{702.f,423.f},		//가운데 중간
+
+		{576.f,317.f},
+		{702.f,317.f},
 	};
 
 	m_LineList.push_back(new CLine(tLinePoint[0], tLinePoint[1]));
 	m_LineList.push_back(new CLine(tLinePoint[2], tLinePoint[3]));
-	m_LineList.push_back(new CLine(tLinePoint[3], tLinePoint[4]));
 	m_LineList.push_back(new CLine(tLinePoint[4], tLinePoint[5]));
-
-	//Load_Line();
+	m_LineList.push_back(new CLine(tLinePoint[6], tLinePoint[7]));
+	m_LineList.push_back(new CLine(tLinePoint[8], tLinePoint[9]));
+	m_LineList.push_back(new CLine(tLinePoint[10], tLinePoint[11]));
 }
 
-void CLineMgr::Render(HDC hDC)
+void BossMapLineMgr::Render(HDC hDC)
 {
 	for (auto& iter : m_LineList)
 		iter->Render(hDC);
 }
 
-void CLineMgr::Release()
+void BossMapLineMgr::Release()
 {
 	for_each(m_LineList.begin(), m_LineList.end(), CDeleteObj());
 	m_LineList.clear();
 }
 
-bool CLineMgr::Collision_Line(float* pHeight, float& _fX, float _fCY)
+bool BossMapLineMgr::Collision_Line(float* pHeight, float& _fX, float _fCY)
 {
 	if (m_LineList.empty())
 		return false;
-	
-	CLine*		pTargetLine = nullptr;
-	
+
+	CLine* pTargetLine = nullptr;
+
 	for (auto& iter : m_LineList)
 	{
 		if (_fX >= iter->Get_Info().tLPoint.fX &&
-			_fX < iter->Get_Info().tRPoint.fX )
+			_fX < iter->Get_Info().tRPoint.fX)
 		{
 			pTargetLine = iter;
 		}
 	}
-	
+
 	if (!pTargetLine)
 		return false;
-	
+
 	float x1 = pTargetLine->Get_Info().tLPoint.fX;
 	float y1 = pTargetLine->Get_Info().tLPoint.fY;
-	
+
 	float x2 = pTargetLine->Get_Info().tRPoint.fX;
 	float y2 = pTargetLine->Get_Info().tRPoint.fY;
-	
-	*pHeight = (((y2 - y1) / (x2 - x1)) * (_fX - x1) + y1)- (_fCY*0.5);
-	
+
+	*pHeight = (((y2 - y1) / (x2 - x1)) * (_fX - x1) + y1) - (_fCY * 0.5);
+
 	return true;
 }
 
-void CLineMgr::Load_Line()
+void BossMapLineMgr::Load_Line()
 {
 	// CreateFile: API 파일 개방함수
 	HANDLE	hFile = CreateFile(L"../Data/Line.dat",		// 파일 경로와 이름을 명시
@@ -110,9 +120,6 @@ void CLineMgr::Load_Line()
 	MessageBox(g_hWnd, _T("Load 완료"), L"성공", MB_OK);
 }
 
-void CLineMgr::SelectMapLine(MAPLINE _ID)
+void BossMapLineMgr::SelectMapLine(MAPLINE _ID)
 {
-
-
-
 }

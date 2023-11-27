@@ -22,6 +22,8 @@
 //UI
 #include"PlayerUI.h"
 #include"PlayerWeaponBox.h"
+#include "EasyMapLindeMgr.h"
+#include "BossMapLineMgr.h"
 
 
 CObj* CPlayer::m_Instance = nullptr;
@@ -30,7 +32,7 @@ static float  g_fVolume = 1.0f;
 
 bool testLand = false;
 CPlayer::CPlayer() : m_bJump(false), m_fPower(0.f), m_fAccelTime(0.f)
-, m_eCurState(IDLE), m_ePreState(PS_END), m_pWeaponList{}, IsGround(false), nSoundCount(0)
+, m_eCurState(IDLE), m_ePreState(PS_END), m_pWeaponList{}, IsGround(false), nSoundCount(0), LineSC(SC_END)
 {
 	ZeroMemory(&m_tPosin, sizeof(POINT));
 	m_pMouse = CMouse::Get_Instance();
@@ -57,24 +59,24 @@ void CPlayer::Initialize()
 	m_fDiagonal = 20.f;
 	m_fPower = 15.f;
 
-	
+
 	this->m_fHP = 100.f;
 	this->m_fDamage = 10.f;
-	
+
 	m_tFrame.dwSpeed = 200;
 	m_tFrame.dwTime = GetTickCount();
 
 	DashCount = 2;
 
-	
+
 	CObjMgr::Get_Instance()->Add_Object(OBJID::PlAYER_UI, CAbstractFactory<PlayerUI>::Create(80.f, 50.f, 0));
 	CObjMgr::Get_Instance()->Add_Object(OBJID::PLAYER_WEAPON_BOX, CAbstractFactory<PlayerWeaponBox>::Create());
-	
-	
+
+
 
 	//m_bDead = true;
 	m_pStateKey = L"Player";
-	
+
 
 	m_eRender = GAMEOBJECT;
 
@@ -99,7 +101,7 @@ int CPlayer::Update()
 
 void CPlayer::Late_Update()
 {
-	
+
 	Set_Posin();
 	//Offset();
 	Move_Frame();
@@ -125,7 +127,7 @@ void CPlayer::Late_Update()
 
 void CPlayer::Render(HDC hDC)
 {
-	
+
 
 
 
@@ -151,7 +153,7 @@ void CPlayer::Render(HDC hDC)
 
 
 	Image* img = PngMrg::Get_Instance()->Get_Image(m_pStateKey);
-	
+
 
 
 
@@ -171,7 +173,7 @@ void CPlayer::Render(HDC hDC)
 	}
 
 
-	
+
 
 
 
@@ -181,29 +183,29 @@ void CPlayer::Release()
 {
 	CObjMgr::Get_Instance()->Delete_ID(PlAYER_UI);
 	CObjMgr::Get_Instance()->Delete_ID(PLAYER_WEAPON_BOX);
-	
+
 
 }
 
 void CPlayer::Key_Input()
 {
 	if (m_bDead) {
-	
+
 		m_eCurState = DEAD;
 	}
 	else {
 		m_eCurState = IDLE;
 
-		
+
 
 		if (CKeyMgr::Get_Instance()->Key_Pressing('A'))
 		{
 			m_eCurState = RUN;
 			CSoundMgr::Get_Instance()->PlaySound(L"step_lth1-sharedassets2.assets-325.wav", SOUND_PLAYER_WALK, g_fVolume);
 			m_tInfo.fX -= m_fSpeed;
-			
+
 		}
-	
+
 		if (CKeyMgr::Get_Instance()->Key_Pressing('D'))
 		{
 			m_eCurState = RUN;
@@ -211,13 +213,13 @@ void CPlayer::Key_Input()
 			m_tInfo.fX += m_fSpeed;
 		}
 
-		
+
 		if (CKeyMgr::Get_Instance()->Key_Pressing(VK_SPACE))
 		{
 
 			m_bJump = true;
-			
-			
+
+
 			m_eCurState = JUMP;
 		}
 
@@ -235,8 +237,8 @@ void CPlayer::Key_Input()
 			}
 		}
 
-		
-	
+
+
 
 
 
@@ -279,7 +281,7 @@ void CPlayer::Key_Input()
 			}
 
 		}
-	
+
 	}
 
 }
@@ -289,28 +291,102 @@ void CPlayer::Jump()
 
 
 	float	fY(0.f);
-
-
-	bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(&fY, m_tInfo.fX,m_tInfo.fCY);
-	if (m_bJump)
+	switch (LineSC)
 	{
-		m_tInfo.fY -= (m_fPower * m_fAccelTime) - (9.8f * m_fAccelTime * m_fAccelTime * 0.5f);
 
-		m_fAccelTime += 0.2f;
-
-		if (bLineCol && fY < m_tInfo.fY)
+	case SCENEID::SC_VILLAGE:
+	{
+		bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(&fY, m_tInfo.fX, m_tInfo.fCY);
+		if (m_bJump)
 		{
-			m_bJump = false;
-			m_fAccelTime = 0.f;
+			m_tInfo.fY -= (m_fPower * m_fAccelTime) - (9.8f * m_fAccelTime * m_fAccelTime * 0.5f);
+
+			m_fAccelTime += 0.2f;
+
+			if (bLineCol && fY < m_tInfo.fY)
+			{
+				m_bJump = false;
+				m_fAccelTime = 0.f;
+				m_tInfo.fY = fY;
+			}
+
+		}
+		else if (bLineCol)
+		{
 			m_tInfo.fY = fY;
 		}
 
+
+		break;
+	}
+	case SCENEID::SC_NORMAL:
+	{
+		bool bEasyLineCol = EasyMapLindeMgr::Get_Instance()->Collision_Line(&fY, m_tInfo.fX, m_tInfo.fCY);
+		if (m_bJump)
+		{
+			m_tInfo.fY -= (m_fPower * m_fAccelTime) - (9.8f * m_fAccelTime * m_fAccelTime * 0.5f);
+
+			m_fAccelTime += 0.2f;
+
+			if (bEasyLineCol && fY < m_tInfo.fY)
+			{
+				m_bJump = false;
+				m_fAccelTime = 0.f;
+				m_tInfo.fY = fY;
+			}
+
+		}
+		else if (bEasyLineCol)
+		{
+			m_tInfo.fY = fY;
+		}
+
+
+		break;
 	}
 
-	else if (bLineCol)
+	case SCENEID::SC_BOSS:
 	{
-		m_tInfo.fY = fY;
+		bool bBossLineCol = BossMapLineMgr::Get_Instance()->Collision_Line(&fY, m_tInfo.fX, m_tInfo.fCY);
+		if (m_bJump)
+		{
+			m_tInfo.fY -= (m_fPower * m_fAccelTime) - (9.8f * m_fAccelTime * m_fAccelTime * 0.5f);
+
+			m_fAccelTime += 0.2f;
+
+			if (bBossLineCol && fY < m_tInfo.fY)
+			{
+				m_bJump = false;
+				m_fAccelTime = 0.f;
+				m_tInfo.fY = fY;
+			}
+
+		}
+
+		else if (bBossLineCol)
+		{
+			m_tInfo.fY = fY;
+		}
+
+
+
+		break;
 	}
+	}
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
 
 }
 
@@ -370,7 +446,7 @@ void CPlayer::Motion_Change()
 			break;
 
 		case RUN:
-			
+
 			m_tFrame.iFrameStart = 0;
 			m_tFrame.iFrameEnd = 5;
 			m_tFrame.iMotion = 2;
@@ -390,7 +466,7 @@ void CPlayer::Motion_Change()
 			m_tFrame.iFrameStart = 0;
 			m_tFrame.iFrameEnd = 0;
 			m_tFrame.iMotion = 3;
-			
+
 
 			m_tFrame.dwSpeed = 100;
 			m_tFrame.dwTime = GetTickCount();
@@ -414,7 +490,7 @@ void CPlayer::WeaponChage()
 		if (m_pWeaponList[CPlayer::GUN] == nullptr)
 		{
 			CObjMgr::Get_Instance()->Add_Object(OBJID::GUN, CAbstractFactory<Gun>::Create(this->m_tPosin.x, this->m_tPosin.y, this->m_fAngle));
-			
+
 			m_pWeaponList[CPlayer::GUN] = CObjMgr::Get_Instance()->Get_ObjList(OBJID::GUN);
 		}
 		else
@@ -428,7 +504,7 @@ void CPlayer::WeaponChage()
 	case CPlayer::SWORD:
 		if (m_pWeaponList[CPlayer::SWORD] == nullptr)
 		{
-			CObjMgr::Get_Instance()->Add_Object(OBJID::SWORD, CAbstractFactory<Sword>::Create(this->m_tPosin.x, this->m_tPosin.y-20, m_fAngle));
+			CObjMgr::Get_Instance()->Add_Object(OBJID::SWORD, CAbstractFactory<Sword>::Create(this->m_tPosin.x, this->m_tPosin.y - 20, m_fAngle));
 
 			m_pWeaponList[CPlayer::SWORD] = CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD);
 		}
@@ -449,22 +525,22 @@ void CPlayer::Set_Posin()
 	if (!m_bDead)
 	{
 
-	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
-	int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
-	float m_pMouse_X = (m_pMouse->Get_Info().fX - m_tInfo.fX) + iScrollX;
-	float m_pMouse_Y = (m_pMouse->Get_Info().fY - m_tInfo.fY) + iScrollY;
-	float m_pMouse_R = (float)sqrt(m_pMouse_X * m_pMouse_X + m_pMouse_Y * m_pMouse_Y);
+		int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
+		int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
+		float m_pMouse_X = (m_pMouse->Get_Info().fX - m_tInfo.fX) + iScrollX;
+		float m_pMouse_Y = (m_pMouse->Get_Info().fY - m_tInfo.fY) + iScrollY;
+		float m_pMouse_R = (float)sqrt(m_pMouse_X * m_pMouse_X + m_pMouse_Y * m_pMouse_Y);
 
-	m_fAngle = (float)acos(m_pMouse_X / m_pMouse_R) * 180 / PI;
+		m_fAngle = (float)acos(m_pMouse_X / m_pMouse_R) * 180 / PI;
 
-	m_tPosin.x = LONG(m_tInfo.fX + m_fDiagonal * cos(m_fAngle * (PI / 180.f)));
+		m_tPosin.x = LONG(m_tInfo.fX + m_fDiagonal * cos(m_fAngle * (PI / 180.f)));
 
-	if (m_pMouse_Y < 0)
-	{
-		m_fAngle *= -1;
-	}
+		if (m_pMouse_Y < 0)
+		{
+			m_fAngle *= -1;
+		}
 
-	m_tPosin.y =  LONG(m_tInfo.fY + m_fDiagonal * sin(m_fAngle * (PI / 180.f)))+10 ;//허리춤에 오게 +10조정
+		m_tPosin.y = LONG(m_tInfo.fY + m_fDiagonal * sin(m_fAngle * (PI / 180.f))) + 10;//허리춤에 오게 +10조정
 	}
 
 }

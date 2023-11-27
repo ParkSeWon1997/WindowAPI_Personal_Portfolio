@@ -169,6 +169,15 @@
     <Filter Include="01. Obj\11. UI\03. SubMonsterUI">
       <UniqueIdentifier>{48500965-c15d-4415-b4df-ea5c76caf4db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02. Design\03. LineMgr\01. Villiage">
+      <UniqueIdentifier>{c9adb9d0-61a8-4c66-ae70-0be913fb076f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Design\03. LineMgr\02. EasyMap">
+      <UniqueIdentifier>{c8fcdb31-ebaf-42ba-a279-9ce3cc4fc8db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Design\03. LineMgr\03. BossMapLineMgr">
+      <UniqueIdentifier>{c78a9bcf-dc74-4675-ac9e-76cb8012e097}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -218,9 +227,6 @@
     </ClInclude>
     <ClInclude Include="Line.h">
       <Filter>02. Design\03. LineMgr\Line</Filter>
-    </ClInclude>
-    <ClInclude Include="LineMgr.h">
-      <Filter>02. Design\03. LineMgr</Filter>
     </ClInclude>
     <ClInclude Include="KeyMgr.h">
       <Filter>02. Design\04. KeyMgr</Filter>
@@ -357,6 +363,15 @@
     <ClInclude Include="SubMonsterHpBar.h">
       <Filter>01. Obj\11. UI\03. SubMonsterUI</Filter>
     </ClInclude>
+    <ClInclude Include="LineMgr.h">
+      <Filter>02. Design\03. LineMgr\01. Villiage</Filter>
+    </ClInclude>
+    <ClInclude Include="EasyMapLindeMgr.h">
+      <Filter>02. Design\03. LineMgr\02. EasyMap</Filter>
+    </ClInclude>
+    <ClInclude Include="BossMapLineMgr.h">
+      <Filter>02. Design\03. LineMgr\03. BossMapLineMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DefaultWindow.cpp">
@@ -394,9 +409,6 @@
     </ClCompile>
     <ClCompile Include="Line.cpp">
       <Filter>02. Design\03. LineMgr\Line</Filter>
-    </ClCompile>
-    <ClCompile Include="LineMgr.cpp">
-      <Filter>02. Design\03. LineMgr</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>소스 파일</Filter>
@@ -529,6 +541,15 @@
     </ClCompile>
     <ClCompile Include="SubMonsterHpBar.cpp">
       <Filter>01. Obj\11. UI\03. SubMonsterUI</Filter>
+    </ClCompile>
+    <ClCompile Include="LineMgr.cpp">
+      <Filter>02. Design\03. LineMgr\01. Villiage</Filter>
+    </ClCompile>
+    <ClCompile Include="EasyMapLindeMgr.cpp">
+      <Filter>02. Design\03. LineMgr\02. EasyMap</Filter>
+    </ClCompile>
+    <ClCompile Include="BossMapLineMgr.cpp">
+      <Filter>02. Design\03. LineMgr\03. BossMapLineMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

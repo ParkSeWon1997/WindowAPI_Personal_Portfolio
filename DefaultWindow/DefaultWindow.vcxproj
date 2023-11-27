@@ -150,6 +150,7 @@
     <ClInclude Include="BmpMgr.h" />
     <ClInclude Include="BossField.h" />
     <ClInclude Include="BossHpBar.h" />
+    <ClInclude Include="BossMapLineMgr.h" />
     <ClInclude Include="BossMonster.h" />
     <ClInclude Include="BossUI.h" />
     <ClInclude Include="Bullet.h" />
@@ -158,6 +159,7 @@
     <ClInclude Include="DefalutMonster.h" />
     <ClInclude Include="DefaultWindow.h" />
     <ClInclude Include="Define.h" />
+    <ClInclude Include="EasyMapLindeMgr.h" />
     <ClInclude Include="Entry.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="GroundTopo.h" />
@@ -212,6 +214,7 @@
     <ClCompile Include="BmpMgr.cpp" />
     <ClCompile Include="BossField.cpp" />
     <ClCompile Include="BossHpBar.cpp" />
+    <ClCompile Include="BossMapLineMgr.cpp" />
     <ClCompile Include="BossMonster.cpp" />
     <ClCompile Include="BossUI.cpp" />
     <ClCompile Include="Bullet.cpp" />
@@ -219,6 +222,7 @@
     <ClCompile Include="CollisionMgr.cpp" />
     <ClCompile Include="DefalutMonster.cpp" />
     <ClCompile Include="DefaultWindow.cpp" />
+    <ClCompile Include="EasyMapLindeMgr.cpp" />
     <ClCompile Include="Entry.cpp" />
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="GroundTopo.cpp" />

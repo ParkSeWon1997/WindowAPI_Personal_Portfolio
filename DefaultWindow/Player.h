@@ -36,7 +36,7 @@ public:
 	virtual void	Release() override;
 
 
-
+	void		Set_SC_ID(SCENEID _SC_ID) { LineSC = _SC_ID; }
 
 public:
 	void		Set_Posin(POINT _Posin) { m_tPosin = _Posin; }
@@ -83,7 +83,7 @@ private:
 	int					nSoundCount;
 
 	//CObj* PlayerUI_HpBar;
-
+	SCENEID				LineSC;
 
 	CObj*	m_pWeaponList[END];
 	int					DashCount;

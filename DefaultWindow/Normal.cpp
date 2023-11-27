@@ -16,6 +16,8 @@
 #include "KeyMgr.h"
 #include "TileMgr.h"
 
+#include"EasyMapLindeMgr.h"
+
 
 static float g_fVolume = 0.7f;
 Normal::Normal()
@@ -31,12 +33,12 @@ Normal::~Normal()
 
 void Normal::Initialize()
 {
-
+	dynamic_cast<CPlayer*>(CPlayer::Get_Instance())->Set_SC_ID(SCENEID::SC_NORMAL);
 	CObjMgr::Get_Instance()->Add_Object(STAGE_ENTRY, CAbstractFactory<StageEntry>::Create(0.f,600.f,0));
 	CObjMgr::Get_Instance()->Add_Object(STAGE_ENTRY, CAbstractFactory<StageEntry>::Create(100.f, 200.f, 0));
 	CSoundMgr::Get_Instance()->PlaySound(L"2.IceField-sharedassets10.assets-124.wav", SOUND_BGM, g_fVolume);
 
-	CLineMgr::Get_Instance()->Initialize();
+	EasyMapLindeMgr::Get_Instance()->Initialize();
 	CTileMgr::Get_Instance()->Load_Data2();
 }
 
@@ -91,7 +93,7 @@ void Normal::Render(HDC hDC)
 
 	CTileMgr::Get_Instance()->Render(hDC);
 	CObjMgr::Get_Instance()->Render(hDC);
-	CLineMgr::Get_Instance()->Render(hDC);
+	EasyMapLindeMgr::Get_Instance()->Render(hDC);
 }
 
 void Normal::Release()

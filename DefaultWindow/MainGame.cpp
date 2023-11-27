@@ -13,6 +13,8 @@
 #include "PngMrg.h"
 #include "SoundMgr.h"
 #include"ImageCollection.h"
+#include"EasyMapLindeMgr.h"
+#include"BossMapLineMgr.h"
 CMainGame::CMainGame() 
 	: m_iFPS(0), m_dwTime(GetTickCount())
 {
@@ -126,6 +128,8 @@ void CMainGame::Release(void)
 	CScrollMgr::Destroy_Instance();
 	CKeyMgr::Destroy_Instance();
 	CLineMgr::Destroy_Instance();
+	EasyMapLindeMgr::Destroy_Instance();
+	BossMapLineMgr::Destroy_Instance();
 	CSceneMgr::Destroy_Instance();
 	CObjMgr::Destroy_Instance();
 	CMouse::Destroy_Instance();

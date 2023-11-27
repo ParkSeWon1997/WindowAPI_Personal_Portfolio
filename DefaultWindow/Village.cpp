@@ -36,10 +36,11 @@ void Village::Initialize()
 
 
 	CObjMgr::Get_Instance()->Add_Object(PLAYER, CPlayer::Get_Instance());
+	dynamic_cast<CPlayer*>(CPlayer::Get_Instance())->Set_SC_ID(SCENEID::SC_VILLAGE);
 	CObjMgr::Get_Instance()->Add_Object(ENTRY, CAbstractFactory<Entry>::Create());
 	CTileMgr::Get_Instance()->Load_Data4();
 
-	CLineMgr::Get_Instance()->Initialize();
+	//CLineMgr::Get_Instance()->Initialize();
 
 	
 
@@ -85,6 +86,8 @@ void Village::Render(HDC hDC)
 	BitBlt(hDC, 0, 0, 1920, 1280, hGroundDC, 0, 0, SRCCOPY);
 	//HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Img(L"TownBGbmp");
 	//
+//HDC		NewhGroundDC = CBmpMgr::Get_Instance()->Find_Img(L"NewTownBGbmp");
+//BitBlt(hDC, 0, 0, 1920, 1280, NewhGroundDC, 0, 0, SRCCOPY);
 	//
 	GdiTransparentBlt(hDC,
 		0,
@@ -104,7 +107,7 @@ void Village::Render(HDC hDC)
 
 	
 	Graphics g(hDC);
-	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"BackLayer1"), 0 - (iScrollX * 0.05), 400 + iScrollY, 1280, 532);
+	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"BackLayer1"), 0 , 400 , 1280, 532);
 	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"SecondFloor3"), 0+200 , (WINCY - 300), 900, 188);
 	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Tree0"), 400 , 700-122 , 104, 122);
 	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Tree1"), 600 , 500-77 , 67, 77);

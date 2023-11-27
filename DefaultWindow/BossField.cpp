@@ -14,7 +14,7 @@
 #include"Player.h"
 #include"Snow.h"
 #include "TileMgr.h"
-
+#include"BossMapLineMgr.h"
 
 static float g_fVolume = 0.7f;
 BossField::BossField()
@@ -28,10 +28,12 @@ BossField::~BossField()
 
 void BossField::Initialize()
 {
+
+	dynamic_cast<CPlayer*>(CPlayer::Get_Instance())->Set_SC_ID(SCENEID::SC_BOSS);
 	//CObjMgr::Get_Instance()->Add_Object(PLAYER, CPlayer::Get_Instance());
 	//PngMrg::Get_Instance()->Insert_Png()
 	CObjMgr::Get_Instance()->Add_Object(BOSS_MONSTER, CAbstractFactory<BossMonster>::Create(WINCX*0.5,WINCY*0.3,0));
-	CLineMgr::Get_Instance()->Initialize();
+	BossMapLineMgr::Get_Instance()->Initialize();
 	CSoundMgr::Get_Instance()->PlaySound(L"2.IceBoss-sharedassets12.assets-132.wav", SOUND_BGM, g_fVolume);
 	//CTileMgr::Get_Instance()->Load_Data();
 
@@ -85,7 +87,7 @@ void BossField::Render(HDC hDC)
 
 	CObjMgr::Get_Instance()->Render(hDC);
 
-	CLineMgr::Get_Instance()->Render(hDC);
+	BossMapLineMgr::Get_Instance()->Render(hDC);
 }
 
 void BossField::Release()
