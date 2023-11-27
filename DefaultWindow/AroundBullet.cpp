@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "AroundBullet.h"
+#include "PngMrg.h"
 
 AroundBullet::AroundBullet()
 {
@@ -75,11 +76,20 @@ void AroundBullet::Late_Update()
 
 void AroundBullet::Render(HDC hDC)
 {
-	Ellipse(hDC,
-		m_tRect.left,
-		m_tRect.top,
-		m_tRect.right,
-		m_tRect.bottom);
+
+	Graphics g(hDC);
+	//g.TranslateTransform(m_tInfo.fX, m_tInfo.fY);
+	//g.RotateTransform(m_fAngle + 10);
+	//g.TranslateTransform(-m_tInfo.fX, -m_tInfo.fY);
+
+
+	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"SubMonster_Bullet"),
+		(m_tInfo.fX - m_tInfo.fCX * 0.5), (m_tInfo.fY - m_tInfo.fCY * 0.5), 10.f, 20.f);
+	//Ellipse(hDC,
+	//	m_tRect.left,
+	//	m_tRect.top,d
+	//	m_tRect.right,
+	//	m_tRect.bottom);
 }
 
 void AroundBullet::Release()
