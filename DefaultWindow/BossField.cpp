@@ -33,7 +33,8 @@ void BossField::Initialize()
 	CObjMgr::Get_Instance()->Add_Object(BOSS_MONSTER, CAbstractFactory<BossMonster>::Create(WINCX*0.5,WINCY*0.3,0));
 	CLineMgr::Get_Instance()->Initialize();
 	CSoundMgr::Get_Instance()->PlaySound(L"2.IceBoss-sharedassets12.assets-132.wav", SOUND_BGM, g_fVolume);
-	CTileMgr::Get_Instance()->Load_Data();
+	//CTileMgr::Get_Instance()->Load_Data();
+
 	
 }
 
@@ -46,14 +47,14 @@ void BossField::Update()
 	}
 	//CreateSnow();
 	CObjMgr::Get_Instance()->Update();
-	CTileMgr::Get_Instance()->Update();
+	//CTileMgr::Get_Instance()->Update();
 }
 
 void BossField::Late_Update()
 {
 	//CheckWindowOver();
 	CObjMgr::Get_Instance()->Late_Update();
-	CTileMgr::Get_Instance()->Late_Update();
+	//CTileMgr::Get_Instance()->Late_Update();
 }
 
 void BossField::Render(HDC hDC)
@@ -67,7 +68,7 @@ void BossField::Render(HDC hDC)
 	Graphics g(hDC);
 	//g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Map_Layer"), 0, 0, 1280, 800);
 
-	HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Img(L"Map_Layer_Bmp");
+	HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Img(L"NewMap_Layer_Bmp");
 
 	GdiTransparentBlt(hDC,
 		0,
@@ -80,7 +81,7 @@ void BossField::Render(HDC hDC)
 		1280,
 		800,
 		RGB(255, 255, 255));
-	CTileMgr::Get_Instance()->Render(hDC);
+	//CTileMgr::Get_Instance()->Render(hDC);
 
 	CObjMgr::Get_Instance()->Render(hDC);
 
