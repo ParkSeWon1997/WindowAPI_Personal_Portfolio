@@ -46,14 +46,14 @@ void BossField::Update()
 	}
 	//CreateSnow();
 	CObjMgr::Get_Instance()->Update();
-	//CTileMgr::Get_Instance()->Update();
+	CTileMgr::Get_Instance()->Update();
 }
 
 void BossField::Late_Update()
 {
 	//CheckWindowOver();
 	CObjMgr::Get_Instance()->Late_Update();
-	//CTileMgr::Get_Instance()->Late_Update();
+	CTileMgr::Get_Instance()->Late_Update();
 }
 
 void BossField::Render(HDC hDC)

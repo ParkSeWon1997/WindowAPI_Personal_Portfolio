@@ -37,7 +37,7 @@ void Normal::Initialize()
 	CSoundMgr::Get_Instance()->PlaySound(L"2.IceField-sharedassets10.assets-124.wav", SOUND_BGM, g_fVolume);
 
 	CLineMgr::Get_Instance()->Initialize();
-	//CTileMgr::Get_Instance()->Load_Data2();
+	CTileMgr::Get_Instance()->Load_Data2();
 }
 
 void Normal::Update()
@@ -48,11 +48,13 @@ void Normal::Update()
 	//}
 
 	CObjMgr::Get_Instance()->Update();
+	CTileMgr::Get_Instance()->Update();
 }
 
 void Normal::Late_Update()
 {
 	CObjMgr::Get_Instance()->Late_Update();
+	CTileMgr::Get_Instance()->Late_Update();
 
 
 }
@@ -87,9 +89,9 @@ void Normal::Render(HDC hDC)
 		RGB(255, 255, 255));
 
 
+	CTileMgr::Get_Instance()->Render(hDC);
 	CObjMgr::Get_Instance()->Render(hDC);
 	CLineMgr::Get_Instance()->Render(hDC);
-	//CTileMgr::Get_Instance()->Render(hDC);
 }
 
 void Normal::Release()
