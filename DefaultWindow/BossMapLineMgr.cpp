@@ -54,8 +54,8 @@ void BossMapLineMgr::Initialize(void)
 
 void BossMapLineMgr::Render(HDC hDC)
 {
-	for (auto& iter : m_LineList)
-		iter->Render(hDC);
+	//for (auto& iter : m_LineList)
+	//	iter->Render(hDC);
 }
 
 void BossMapLineMgr::Release()

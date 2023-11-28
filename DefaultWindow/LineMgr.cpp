@@ -36,8 +36,8 @@ void CLineMgr::Initialize(void)
 
 void CLineMgr::Render(HDC hDC)
 {
-	for (auto& iter : m_LineList)
-		iter->Render(hDC);
+	//for (auto& iter : m_LineList)
+	//	iter->Render(hDC);
 }
 
 void CLineMgr::Release()
