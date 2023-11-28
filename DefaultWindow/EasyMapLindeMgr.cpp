@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "EasyMapLindeMgr.h"
+#include "Player.h"
 
 
 EasyMapLindeMgr* EasyMapLindeMgr::m_pInstance = nullptr;
@@ -15,20 +16,25 @@ EasyMapLindeMgr::~EasyMapLindeMgr()
 
 void EasyMapLindeMgr::Initialize(void)
 {
-	LINEPOINT		tLinePoint[6]
+	LINEPOINT		tLinePoint[9]
 	{
-		{ 0.f, 700.f },
-		{ 2000.f, 700.f },
-		{220.f,667.f},
-		{ 385.f, 500.f },
-		{ 912.f, 500.f },
-		{ 1080.f, 667.f },
+		{ 0.f, 280.f },
+		{ 320.f, 280.f },
+		{320.f,445.f},
+		{ 1088.f, 445.f },
+		{ 1088.f, 360.f },
+		{ 1300.f, 360.f },
+
+		{ 875.f, 240.f },
+		{ 1000.f, 240.f },
 	};
 
 	m_LineList.push_back(new CLine(tLinePoint[0], tLinePoint[1]));
-	//m_LineList.push_back(new CLine(tLinePoint[2], tLinePoint[3]));
-	//m_LineList.push_back(new CLine(tLinePoint[3], tLinePoint[4]));
-	//m_LineList.push_back(new CLine(tLinePoint[4], tLinePoint[5]));
+	m_LineList.push_back(new CLine(tLinePoint[1], tLinePoint[2]));
+	m_LineList.push_back(new CLine(tLinePoint[2], tLinePoint[3]));
+	m_LineList.push_back(new CLine(tLinePoint[3], tLinePoint[4]));
+	m_LineList.push_back(new CLine(tLinePoint[4], tLinePoint[5]));
+	m_LineList.push_back(new CLine(tLinePoint[6], tLinePoint[7]));
 }
 
 void EasyMapLindeMgr::Render(HDC hDC)
@@ -55,7 +61,19 @@ bool EasyMapLindeMgr::Collision_Line(float* pHeight, float& _fX, float _fCY)
 		if (_fX >= iter->Get_Info().tLPoint.fX &&
 			_fX < iter->Get_Info().tRPoint.fX)
 		{
-			pTargetLine = iter;
+			if (pTargetLine != nullptr)
+			{
+				if (max(pTargetLine->Get_Info().tLPoint.fY, pTargetLine->Get_Info().tRPoint.fY) > max(iter->Get_Info().tLPoint.fY, iter->Get_Info().tRPoint.fY)
+					&& iter->Get_Info().tLPoint.fY > CPlayer::Get_Instance()->Get_Info().fY)
+				{
+					pTargetLine = iter;
+					//m_pTargetLine = iter;
+				}
+			}
+			else {
+				pTargetLine = iter;
+				//m_pTargetLine = iter;
+			}
 		}
 	}
 
@@ -68,7 +86,7 @@ bool EasyMapLindeMgr::Collision_Line(float* pHeight, float& _fX, float _fCY)
 	float x2 = pTargetLine->Get_Info().tRPoint.fX;
 	float y2 = pTargetLine->Get_Info().tRPoint.fY;
 
-	*pHeight = (((y2 - y1) / (x2 - x1)) * (_fX - x1) + y1) - (_fCY * 0.5);
+	*pHeight = ((y2 - y1) / (x2 - x1)) * (_fX - x1) + y1;
 
 	return true;
 }

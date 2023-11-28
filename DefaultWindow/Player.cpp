@@ -61,7 +61,7 @@ void CPlayer::Initialize()
 	m_fPower = 17.f;
 
 
-	this->m_fHP = 1.f;
+	this->m_fHP = 100.f;
 	this->m_fDamage = 10.f;
 	m_bDead = false;
 	m_tFrame.dwSpeed = 200;
@@ -354,19 +354,32 @@ void CPlayer::Jump()
 
 			m_fAccelTime += 0.2f;
 
-			if (bEasyLineCol && fY < m_tInfo.fY)
+
+			if (bEasyLineCol && fY < m_tInfo.fY + m_tInfo.fCY / 2 && fY > m_tInfo.fY)
 			{
 				m_bJump = false;
 				m_fAccelTime = 0.f;
-				m_tInfo.fY = fY;
+
+				m_tInfo.fY = fY - m_tInfo.fCY / 2;
+
 			}
 
 		}
-		else if (bEasyLineCol)
-		{
-			m_tInfo.fY = fY;
-		}
 
+		else if (fY > m_tInfo.fY + m_tInfo.fCY / 2 || !bEasyLineCol)
+		{
+			m_bJump = false;
+			m_fAccelTime = 0.f;
+		}
+		else if (fY < m_tInfo.fY + m_tInfo.fCY / 2 && fY > m_tInfo.fY)
+		{
+			m_bJump = false;
+			m_tInfo.fY = fY - m_tInfo.fCY / 2;
+		}
+		if (!m_bJump)
+		{
+			m_tInfo.fY = fY - m_tInfo.fCY / 2;
+		}
 
 		break;
 	}

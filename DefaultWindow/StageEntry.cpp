@@ -33,7 +33,7 @@ void StageEntry::Initialize()
 
 	m_tInfo.fCX = 40.f;
 	m_tInfo.fCY = 132.f;
-
+	//m_fAngle
 	m_pStateKey = L"World_Stage_Entry";
 
 	m_tFrame.iFrameStart = 0;
@@ -82,7 +82,7 @@ void StageEntry::Render(HDC hDC)
 	//Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
 	Graphics g(hDC);
 	g.TranslateTransform(m_tInfo.fX, m_tInfo.fY);
-	g.RotateTransform(90);
+	g.RotateTransform(m_fAngle);
 	g.TranslateTransform(-m_tInfo.fX, -m_tInfo.fY);
 	g.DrawImage(PngMrg::Get_Instance()->Get_Image(m_pStateKey),
 		Rect((m_tInfo.fX - 132.f * 0.5), 
