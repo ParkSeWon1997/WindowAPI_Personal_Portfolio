@@ -288,9 +288,41 @@ void CPlayer::Key_Input()
 
 void CPlayer::Jump()
 {
-
-
-
+	
+		//float   fY(0.f);
+		//bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(&fY, m_tInfo.fX,0,0);
+		//
+		//if (m_bJump)
+		//{
+		//	float fTemp = m_fPower - m_fAccelTime;
+		//	if (fTemp < 0 )//&& !m_bFall)
+		//	{
+		//		//m_bFall = true;
+		//		//m_iJumpCount = max(m_iJumpCount, 1);
+		//	}
+		//	m_fAccelTime += 0.2f;
+		//
+		//	if (bLineCol && fY < m_tInfo.fY + m_tInfo.fCY / 2 && fY > m_tInfo.fY )//&& m_bFall)
+		//	{
+		//		//OnGround();
+		//		m_tInfo.fY = fY - m_tInfo.fCY / 2;
+		//	}
+		//}
+		// 지형을 넘어가서 떨어질 경우
+		//else if (fY > m_tInfo.fY + m_tInfo.fCY / 2 || !bLineCol)
+		//{
+		//	//m_bFall = true;
+		//	m_bJump = false;
+		//	//m_bOnGround = false;
+		//	//m_iJumpCount = max(m_iJumpCount, 1);
+		//	m_fAccelTime += 0.5f;
+		//}
+		//else if (fY < m_tInfo.fY + m_tInfo.fCY / 2 && fY > m_tInfo.fY)
+		//{
+		//	//OnGround();
+		//	m_tInfo.fY = fY - m_tInfo.fCY / 2;
+		//}
+	
 
 	float	fY(0.f);
 	switch (LineSC)
@@ -298,34 +330,27 @@ void CPlayer::Jump()
 
 	case SCENEID::SC_VILLAGE:
 	{
-
-
-
-		bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(&fY, m_tInfo.fX, m_tInfo.fY,m_tInfo.fCY);
+		bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(&fY, m_tInfo.fX, m_tInfo.fY, m_tInfo.fCY);
 		if (m_bJump)
 		{
 			m_tInfo.fY -= (m_fPower * m_fAccelTime) - (9.8f * m_fAccelTime * m_fAccelTime * 0.5f);
-		
+
 			m_fAccelTime += 0.2f;
-		
-			if (bLineCol && fY < m_tInfo.fY)
+
+
+			if (bLineCol && fY < m_tInfo.fY + m_tInfo.fCY / 2 && fY > m_tInfo.fY)
 			{
 				m_bJump = false;
 				m_fAccelTime = 0.f;
-				m_tInfo.fY = fY;
-			}
-		
-		}
-		else if (bLineCol)
-		{
-			//if(m_bJump)
-			m_tInfo.fY = fY;
-		}
-		else {
-			m_tInfo.fY += m_fSpeed;
 
-			
+				//m_tInfo.fY = fY - m_tInfo.fCY / 2;
+				m_tInfo.fY = fY;
+
+
+			}
+
 		}
+
 
 
 		break;
@@ -368,42 +393,22 @@ void CPlayer::Jump()
 			m_fAccelTime += 0.2f;
 
 
-			if (bBossLineCol && fY < m_tInfo.fY)
+			if (bBossLineCol && fY < m_tInfo.fY + m_tInfo.fCY / 2 && fY > m_tInfo.fY)
 			{
 				m_bJump = false;
 				m_fAccelTime = 0.f;
-				if (NowLine->Get_Info().tLPoint.fY > m_tInfo.fY) {
-					m_tInfo.fY = fY;
+				
+				m_tInfo.fY = fY -m_tInfo.fCY / 2;
+					//m_tInfo.fY = fY;
 
-				}
+				
 			}
 		
 		}
 
-		else if (bBossLineCol)
-		{
-			//if (!m_bJump)
-			m_tRect.bottom= NowLine->Get_Info().tLPoint.fY;
-			//m_tInfo.fY = fY;
-
-		}
-	
 		break;
 	}
 	}
-
-
-
-
-
-
-	
-
-
-
-
-
-
 
 
 }

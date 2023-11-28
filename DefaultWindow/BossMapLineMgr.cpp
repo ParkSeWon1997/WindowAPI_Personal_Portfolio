@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "BossMapLineMgr.h"
+#include "Player.h"
 
 
 BossMapLineMgr* BossMapLineMgr::m_pInstance = nullptr;
@@ -65,38 +66,40 @@ void BossMapLineMgr::Release()
 
 bool BossMapLineMgr::Collision_Line(float* pHeight, float& _fX,float _fY, float _fCY)
 {
-	if (m_LineList.empty())
-		return false;
+		if (m_LineList.empty())
+			return false;
 
-	CLine* pTargetLine = nullptr;
+		CLine* pTargetLine = nullptr;
 
-	for (auto& iter : m_LineList)
-	{
-		if (_fX >= iter->Get_Info().tLPoint.fX &&_fX < iter->Get_Info().tRPoint.fX )
-			//|| _fY<=iter->Get_Info().tLPoint.fY || _fY >= iter->Get_Info().tRPoint.fY)
+		for (auto& iter : m_LineList)
 		{
-			pTargetLine = iter;
-			if (pTargetLine->Get_Info().tLPoint.fY <= _fY || pTargetLine->Get_Info().tRPoint.fY > _fY) {
-				m_pTargetLine = iter;
-				
+			if (_fX >= iter->Get_Info().tLPoint.fX &&
+				_fX < iter->Get_Info().tRPoint.fX)
+			{
+				if (pTargetLine != nullptr)
+				{
+					if (max(pTargetLine->Get_Info().tLPoint.fY, pTargetLine->Get_Info().tRPoint.fY)> max(iter->Get_Info().tLPoint.fY, iter->Get_Info().tRPoint.fY)
+						&& iter->Get_Info().tLPoint.fY > CPlayer::Get_Instance()->Get_Info().fY)
+					{
+						pTargetLine = iter;
+					}
+				}
+				else pTargetLine = iter;
 			}
-				
 		}
-		
-	}
 
-	if (!pTargetLine)
-		return false;
+		if (!pTargetLine)
+			return false;
 
-	float x1 = pTargetLine->Get_Info().tLPoint.fX;
-	float y1 = pTargetLine->Get_Info().tLPoint.fY;
+		float x1 = pTargetLine->Get_Info().tLPoint.fX;
+		float y1 = pTargetLine->Get_Info().tLPoint.fY;
 
-	float x2 = pTargetLine->Get_Info().tRPoint.fX;
-	float y2 = pTargetLine->Get_Info().tRPoint.fY;
+		float x2 = pTargetLine->Get_Info().tRPoint.fX;
+		float y2 = pTargetLine->Get_Info().tRPoint.fY;
 
-	*pHeight = (((y2 - y1) / (x2 - x1)) * (_fX - x1) + y1) - (_fCY * 0.5);
+		*pHeight = ((y2 - y1) / (x2 - x1)) * (_fX - x1) + y1;
 
-	return true;
+		return true;
 }
 
 void BossMapLineMgr::Load_Line()
