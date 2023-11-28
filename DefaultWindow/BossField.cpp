@@ -87,8 +87,8 @@ void BossField::Render(HDC hDC)
 		RGB(255, 255, 255));
 	//CTileMgr::Get_Instance()->Render(hDC);
 
-	CPlayer::Get_Instance()->Render(hDC);
 	CObjMgr::Get_Instance()->Render(hDC);
+	CPlayer::Get_Instance()->Render(hDC);
 
 	BossMapLineMgr::Get_Instance()->Render(hDC);
 }
@@ -97,6 +97,17 @@ void BossField::Release()
 {
 
 	CObjMgr::Get_Instance()->Delete_ID(BOSS_MONSTER);
+	CObjMgr::Get_Instance()->Delete_ID(BULLET);
+	CObjMgr::Get_Instance()->Delete_ID(SUB_MONSTER_BULLET);
+	CObjMgr::Get_Instance()->Delete_ID(MONSTER);
+	CObjMgr::Get_Instance()->Delete_ID(BOSS_BULLET);
+	CObjMgr::Get_Instance()->Delete_ID(BUTTON);
+	CObjMgr::Get_Instance()->Delete_ID(PlAYER_UI);
+	CObjMgr::Get_Instance()->Delete_ID(PLAYER_WEAPON_BOX);
+	CObjMgr::Get_Instance()->Delete_ID(MOSTER_UI);
+	CObjMgr::Get_Instance()->Delete_ID(GUN);
+	CObjMgr::Get_Instance()->Delete_ID(SWORD);
+	CObjMgr::Get_Instance()->Delete_ID(COLLISIONBOX);
 	CSoundMgr::Get_Instance()->StopSound(SOUND_BGM);
 
 }

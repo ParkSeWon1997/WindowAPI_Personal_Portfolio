@@ -115,8 +115,8 @@ void Village::Render(HDC hDC)
 
 
 	CTileMgr::Get_Instance()->Render(hDC);
-	CPlayer::Get_Instance()->Render(hDC);
 	CObjMgr::Get_Instance()->Render(hDC);
+	CPlayer::Get_Instance()->Render(hDC);
 	CLineMgr::Get_Instance()->Render(hDC);
 
 }

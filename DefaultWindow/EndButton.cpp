@@ -3,6 +3,7 @@
 #include "KeyMgr.h"
 #include "SceneMgr.h"
 #include "PngMrg.h"
+#include"ObjMgr.h"
 
 EndButton::EndButton() : m_iDrawID(0)
 {

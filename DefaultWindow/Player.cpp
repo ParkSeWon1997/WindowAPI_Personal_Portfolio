@@ -24,6 +24,7 @@
 #include"PlayerWeaponBox.h"
 #include "EasyMapLindeMgr.h"
 #include "BossMapLineMgr.h"
+#include "EndButton.h"
 
 
 CObj* CPlayer::m_Instance = nullptr;
@@ -171,7 +172,16 @@ void CPlayer::Render(HDC hDC)
 		g.DrawImage(img, destinationPoints, 3, m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, 64, 64, UnitPixel);
 
 	}
-
+	if (m_bDead)
+	{
+		g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Fail_Ending"), 0, 0, 1280, 800);
+		if (!CObjMgr::Get_Instance()->Get_ObjList(BUTTON))
+		{
+			CObj* pObj = CAbstractFactory<EndButton>::Create(WINCX * 0.5, 400.f, 0.f);
+			pObj->Set_FrameKey(L"EndButton");
+			CObjMgr::Get_Instance()->Add_Object(BUTTON, pObj);
+		}
+	}
 
 
 

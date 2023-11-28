@@ -50,13 +50,15 @@ void Normal::Update()
 	//{
 	//	CSceneMgr::Get_Instance()->Scene_Change(SC_BOSS);
 	//}
-
+	CPlayer::Get_Instance()->Update();
 	CObjMgr::Get_Instance()->Update();
 	CTileMgr::Get_Instance()->Update();
 }
 
 void Normal::Late_Update()
 {
+	CPlayer::Get_Instance()->Late_Update();
+
 	CObjMgr::Get_Instance()->Late_Update();
 	CTileMgr::Get_Instance()->Late_Update();
 
@@ -95,6 +97,7 @@ void Normal::Render(HDC hDC)
 
 	CTileMgr::Get_Instance()->Render(hDC);
 	CObjMgr::Get_Instance()->Render(hDC);
+	CPlayer::Get_Instance()->Render(hDC);
 	EasyMapLindeMgr::Get_Instance()->Render(hDC);
 }
 
