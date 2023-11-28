@@ -36,7 +36,7 @@ CPlayer::CPlayer() : m_bJump(false), m_fPower(0.f), m_fAccelTime(0.f)
 {
 	ZeroMemory(&m_tPosin, sizeof(POINT));
 	m_pMouse = CMouse::Get_Instance();
-	Initialize();
+	//Initialize();
 }
 
 CPlayer::~CPlayer()
@@ -68,10 +68,10 @@ void CPlayer::Initialize()
 
 	DashCount = 2;
 
-
-	CObjMgr::Get_Instance()->Add_Object(OBJID::PlAYER_UI, CAbstractFactory<PlayerUI>::Create(80.f, 50.f, 0));
-	CObjMgr::Get_Instance()->Add_Object(OBJID::PLAYER_WEAPON_BOX, CAbstractFactory<PlayerWeaponBox>::Create());
-
+	if (!CObjMgr::Get_Instance()->Get_ObjList(PlAYER_UI) && !CObjMgr::Get_Instance()->Get_ObjList(PLAYER_WEAPON_BOX)) {
+		CObjMgr::Get_Instance()->Add_Object(OBJID::PlAYER_UI, CAbstractFactory<PlayerUI>::Create(80.f, 50.f, 0));
+		CObjMgr::Get_Instance()->Add_Object(OBJID::PLAYER_WEAPON_BOX, CAbstractFactory<PlayerWeaponBox>::Create());
+	}
 	m_bJump = true;
 
 	//m_bDead = true;

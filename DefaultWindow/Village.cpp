@@ -37,6 +37,7 @@ void Village::Initialize()
 	//if (m_pCPlayer==nullptr) {
 	//	CObjMgr::Get_Instance()->Add_Object(PLAYER, m_pCPlayer);
 	//}
+	CPlayer::Get_Instance()->Initialize();
 	dynamic_cast<CPlayer*>(CPlayer::Get_Instance())->Set_SC_ID(SCENEID::SC_VILLAGE);
 	CObjMgr::Get_Instance()->Add_Object(ENTRY, CAbstractFactory<Entry>::Create());
 	//CTileMgr::Get_Instance()->Load_Data4();

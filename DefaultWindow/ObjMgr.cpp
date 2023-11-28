@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ObjMgr.h"
 #include "CollisionMgr.h"
-
+#include"Player.h"
 CObjMgr*	CObjMgr::m_pInstance = nullptr;
 
 CObjMgr::CObjMgr()
@@ -108,8 +108,8 @@ void CObjMgr::Late_Update()
 	CCollisionMgr::Collision_Sphere(m_ObjList[COLLISIONBOX], m_ObjList[SUB_MONSTER_BULLET]);
 	CCollisionMgr::Collision_Sphere(m_ObjList[BULLET], m_ObjList[SUB_MONSTER_BULLET]);
 	//CCollisionMgr::Collision_Sphere(m_ObjList[BULLET], m_ObjList[BOSS_BULLET]);
-	CCollisionMgr::DoDamageObj_to_Obj(m_ObjList[PLAYER], m_ObjList[SUB_MONSTER_BULLET]);
-	CCollisionMgr::DoDamageObj_to_Obj(m_ObjList[PLAYER], m_ObjList[BOSS_BULLET]);
+	CCollisionMgr::DoDamageObj_to_Obj(CPlayer::Get_Instance(), m_ObjList[SUB_MONSTER_BULLET]);
+	CCollisionMgr::DoDamageObj_to_Obj(CPlayer::Get_Instance(), m_ObjList[BOSS_BULLET]);
 	CCollisionMgr::DoDamageObj_to_Obj(m_ObjList[BOSS_MONSTER], m_ObjList[BULLET]);
 	CCollisionMgr::DoDamageObj_to_Obj(m_ObjList[BOSS_MONSTER], m_ObjList[COLLISIONBOX]);
 	//CCollisionMgr::DoDamageObj_to_Obj(m_ObjList[BOSS_MONSTER], m_ObjList[BULLET]);

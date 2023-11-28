@@ -76,9 +76,26 @@ void CCollisionMgr::DoDamageObj_to_Obj(list<CObj*> Dst, list<CObj*> Src)
 	}
 }
 
-void CCollisionMgr::DoDamageObj_to_Obj(CObj*, list<CObj*> Src)
+void CCollisionMgr::DoDamageObj_to_Obj(CObj* _Player, list<CObj*> Src)
 {
+		for (auto& SrcList : Src)
+		{
+			if (Check_Sphere(_Player, SrcList))
+			{
+				if (_Player->Get_Dead() == false)
+				{
 
+					_Player->TakeDamage(SrcList->GetDamage());
+					CSoundMgr::Get_Instance()->PlaySound(L"Hit_Player-resources.assets-1729.wav", SOUND_HIT, g_fVolume);
+					if (_Player->Get_HP() <= 0)
+					{
+						_Player->Set_Dead();
+					}
+					SrcList->Set_Dead();
+				}
+			}
+		}
+	
 }
 
 void CCollisionMgr::Collision_RectEx(list<CObj*> DstList, list<CObj*> SrcList)
