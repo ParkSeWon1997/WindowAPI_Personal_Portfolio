@@ -31,7 +31,7 @@ private:
 
 
 
-
+	CObj* m_pEndBotton;
 
 
 private:

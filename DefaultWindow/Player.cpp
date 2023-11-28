@@ -421,27 +421,40 @@ void CPlayer::Jump()
 
 void CPlayer::Offset()
 {
-	int		iOffSetMinX = 100;
-	int		iOffSetMaxX = 1280;
 
-	int		iOffSetMinY = 100;
-	int		iOffSetMaxY = 800;
 
+	int		iOffSet = WINCX >> 1;
+	
 	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
-
-	if (iOffSetMinX > m_tInfo.fX + iScrollX)
+	
+	if (iOffSet > m_tInfo.fX + iScrollX)
 		CScrollMgr::Get_Instance()->Set_ScrollX(m_fSpeed);
-
-	if (iOffSetMaxX < m_tInfo.fX + iScrollX)
+	
+	if (iOffSet < m_tInfo.fX + iScrollX)
 		CScrollMgr::Get_Instance()->Set_ScrollX(-m_fSpeed);
 
-	int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
 
-	if (iOffSetMinY > m_tInfo.fY + iScrollY)
-		CScrollMgr::Get_Instance()->Set_ScrollY(m_fSpeed);
-
-	if (iOffSetMaxY < m_tInfo.fY + iScrollY)
-		CScrollMgr::Get_Instance()->Set_ScrollY(-m_fSpeed);
+	//int		iOffSetMinX = 100;
+	//int		iOffSetMaxX = 1280;
+	//
+	//int		iOffSetMinY = 100;
+	//int		iOffSetMaxY = 800;
+	//
+	//int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
+	//
+	//if (iOffSetMinX > m_tInfo.fX + iScrollX)
+	//	CScrollMgr::Get_Instance()->Set_ScrollX(m_fSpeed);
+	//
+	//if (iOffSetMaxX < m_tInfo.fX + iScrollX)
+	//	CScrollMgr::Get_Instance()->Set_ScrollX(-m_fSpeed);
+	//
+	//int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
+	//
+	//if (iOffSetMinY > m_tInfo.fY + iScrollY)
+	//	CScrollMgr::Get_Instance()->Set_ScrollY(m_fSpeed);
+	//
+	//if (iOffSetMaxY < m_tInfo.fY + iScrollY)
+	//	CScrollMgr::Get_Instance()->Set_ScrollY(-m_fSpeed);
 }
 
 void CPlayer::Motion_Change()

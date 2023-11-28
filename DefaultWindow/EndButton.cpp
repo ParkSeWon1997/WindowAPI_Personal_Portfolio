@@ -16,8 +16,8 @@ EndButton::~EndButton()
 
 void EndButton::Initialize()
 {
-    m_tInfo.fCX = 94.f;
-    m_tInfo.fCY = 19.f;
+    m_tInfo.fCX = 282.f;
+    m_tInfo.fCY = 114.f;
 
     m_eRender = UI;
 }

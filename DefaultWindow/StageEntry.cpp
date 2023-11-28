@@ -13,7 +13,7 @@
 static float  g_fVolume = 1.0f;
 
 
-StageEntry::StageEntry()
+StageEntry::StageEntry():m_bOpenCondition(false), IsOpenCondition(false)
 {
 }
 
@@ -31,8 +31,8 @@ StageEntry::~StageEntry()
 void StageEntry::Initialize()
 {
 
-	m_tInfo.fCX = 132.f;
-	m_tInfo.fCY = 40.f;
+	m_tInfo.fCX = 40.f;
+	m_tInfo.fCY = 132.f;
 
 	m_pStateKey = L"World_Stage_Entry";
 
@@ -58,6 +58,15 @@ int StageEntry::Update()
 void StageEntry::Late_Update()
 {
 	Move_Frame();
+	EntryOpen();
+	EntryClose();
+	if (IsOpenCondition) {
+		if (CCollisionMgr::Check_Sphere(CPlayer::Get_Instance(), this))
+		{
+			CSceneMgr::Get_Instance()->Scene_Change(SC_BOSS);
+
+		}
+	}
 	
 	//if (CCollisionMgr::CollisionRect_to_Rect(CObjMgr::Get_Instance()->Get_Player(), this))
 	//{
@@ -72,8 +81,16 @@ void StageEntry::Render(HDC hDC)
 {
 	//Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
 	Graphics g(hDC);
+	g.TranslateTransform(m_tInfo.fX, m_tInfo.fY);
+	g.RotateTransform(90);
+	g.TranslateTransform(-m_tInfo.fX, -m_tInfo.fY);
 	g.DrawImage(PngMrg::Get_Instance()->Get_Image(m_pStateKey),
-		Rect((m_tInfo.fX - m_tInfo.fCX * 0.5), (m_tInfo.fY - m_tInfo.fCY * 0.5), m_tInfo.fCX, m_tInfo.fCY), m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, 132, 40, UnitPixel);
+		Rect((m_tInfo.fX - 132.f * 0.5), 
+			(m_tInfo.fY - 40.f * 0.5),
+				132.f, 40.f),
+				132.f * m_tFrame.iFrameStart, 
+				40.f * m_tFrame.iMotion,
+				132, 40, UnitPixel);
 
 
 }
@@ -84,7 +101,14 @@ void StageEntry::Release()
 
 void StageEntry::EntryOpen()
 {
-
+	if (m_bOpenCondition)
+	{
+		m_eCurState = STAGESTATE::OPEN;
+		if (m_tFrame.iFrameStart == 7) {
+			m_eCurState = END;
+			m_bOpenCondition = false;
+		}
+	}
 
 
 	
@@ -92,6 +116,17 @@ void StageEntry::EntryOpen()
 
 void StageEntry::EntryClose()
 {
+	if (m_bCloseCondition)
+	{
+		//CPlayer::Get_Instance().SEt
+		m_eCurState = STAGESTATE::CLOSE;
+		if (m_tFrame.iFrameStart == 7) {
+			m_eCurState = IDLE;
+			m_bCloseCondition = false;
+		}
+
+
+	}
 }
 
 void StageEntry::Motion_Change()

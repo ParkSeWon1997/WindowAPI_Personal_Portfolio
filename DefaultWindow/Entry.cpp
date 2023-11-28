@@ -20,7 +20,7 @@ void Entry::Initialize()
 
    // m_tInfo.fCX = 240.f;
    // m_tInfo.fCY = 170.f;
-    m_tInfo = { WINCX*0.5,WINCY-200,240.f,170.f };
+    m_tInfo = { WINCX*0.8,WINCY-200,240.f,170.f };
    
 
 

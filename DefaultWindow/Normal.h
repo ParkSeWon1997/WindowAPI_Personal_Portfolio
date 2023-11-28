@@ -19,6 +19,10 @@ public:
 	virtual void Release() override;
 
 private:
+	bool	m_bOpenDoor = false;
+
+	int m_iCloseCheckCount = 0;
+	int	m_iOpenCheckCount = 0;
 	CObj* m_pEndBotton;
 };
 

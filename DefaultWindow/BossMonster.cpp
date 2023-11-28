@@ -10,9 +10,10 @@
 #include"MonsterIceSpear.h"
 #include"IcicleBullet.h"
 #include"BossUI.h"
+#include "EndButton.h"
 
 
-BossMonster::BossMonster()
+BossMonster::BossMonster():m_pEndBotton(nullptr)
 {
 }
 
@@ -35,7 +36,7 @@ void BossMonster::Initialize()
 
 	// m_tInfo = { 700.f, 300.f, 80, 80 };
 
-	m_fHP = 200.f;
+	m_fHP = 1.f;
 
 	m_tFrame.dwSpeed = 200;
 	m_tFrame.dwTime = GetTickCount();
@@ -46,19 +47,24 @@ void BossMonster::Initialize()
 	//m_bDead = true;
 
 	CObjMgr::Get_Instance()->Add_Object(OBJID::MOSTER_UI, CAbstractFactory<BossUI>::Create(WINCX*0.5,WINCY*0.9,0.f));
-
 	m_eBOSS_STATE = BossMonster::SC_BOSS_CREATE_SUB;
 }
 
 int BossMonster::Update()
 {
 	if (m_bDead) {
+		//m_eBOSS_STATE = BOSS_STATE::SC__BOSS_DEAD;
 		for (size_t i = 0; i < m_pSubMonsterList.size(); i++)
 		{
 			m_pSubMonsterList.clear();
-		}
 
+		}
+	
 		return OBJ_DEAD;
+	}
+	else {
+	dynamic_cast<BossUI*>(CObjMgr::Get_Instance()->Get_ObjList(MOSTER_UI))->Set_UI_HpBar(200.f, m_fHP);
+
 	}
 	//if (dwFrameTime + 1000 < GetTickCount()) {
 	//
@@ -68,7 +74,6 @@ int BossMonster::Update()
 	//}
 
 
-	dynamic_cast<BossUI*>(CObjMgr::Get_Instance()->Get_ObjList(MOSTER_UI))->Set_UI_HpBar(200.f, m_fHP);
 
 	FrameCheck++;
 
@@ -83,6 +88,9 @@ int BossMonster::Update()
 
 void BossMonster::Late_Update()
 {
+	if (m_bDead) {
+		m_pEndBotton->Late_Update();
+	}
 
 
 	Move_Frame();
@@ -129,11 +137,12 @@ void BossMonster::Render(HDC hDC)
 
 	}
 
-
+	
 }
 
 void BossMonster::Release()
 {
+
 
 	CObjMgr::Get_Instance()->Delete_ID(MONSTER);
 	CObjMgr::Get_Instance()->Delete_ID(MOSTER_UI);

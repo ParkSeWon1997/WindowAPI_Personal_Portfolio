@@ -88,20 +88,20 @@ void Village::Render(HDC hDC)
 
 	HDC		hGroundDC = CBmpMgr::Get_Instance()->Find_Img(L"Ground");
 	BitBlt(hDC, 0, 0, 1920, 1280, hGroundDC, 0, 0, SRCCOPY);
-	HDC		NewhGroundDC = CBmpMgr::Get_Instance()->Find_Img(L"NewTownBGbmp");
-	BitBlt(hDC, 50+ iScrollX, 175+ iScrollY, 1200, 732, NewhGroundDC, 0, 0, SRCCOPY);
-
-	GdiTransparentBlt(hDC,
-		0,
-		0,
-		1280,
-		800,
-		NewhGroundDC,
-		0,
-		0,
-		1280,
-		800,
-		RGB(255, 255, 255));
+	//HDC		NewhGroundDC = CBmpMgr::Get_Instance()->Find_Img(L"NewTownBGbmp");
+	//BitBlt(hDC, 0 , 175+ iScrollY, 1280, 732, NewhGroundDC, 0, 0, SRCCOPY);
+	//
+	//GdiTransparentBlt(hDC,
+	//	0,
+	//	0,
+	//	1280,
+	//	800,
+	//	NewhGroundDC,
+	//	0,
+	//	0,
+	//	1280,
+	//	800,
+	//	RGB(0, 0, 0));
 	
 
 	

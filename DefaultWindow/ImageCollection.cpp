@@ -8,9 +8,14 @@ ImageCollection::ImageCollection()
 	//던전 백그라운드 이미지
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Dun/World/BossMap/Tile/BGLayer_0-sharedassets10.assets-1031.bmp", L"MapBack");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Dun/World/BossMap/Tile/NewBackLayer.bmp", L"NewBackLayer");
-
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Dun/World/BossMap/Tile/BGLayer_1 #2319581.bmp", L"Map_Layer_Bmp");
+
+
+
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Dun/World/BossMap/Tile/NewBGLayer.bmp", L"NewMap_Layer_Bmp");
+
+
+
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Dun/World/BossMap/Tile/Map.bmp", L"AllMap_tile");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Dun/Village/sactx-0-2048x2048-Uncompressed-Atlas_Backgrounds-15187a57.bmp", L"Village_Tile");
 
@@ -51,7 +56,7 @@ ImageCollection::ImageCollection()
 
 
 	//마을 백그라운드 이미지
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/TownSky_Xmas.bmp", L"Ground");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/1_0_1_TownSky_Xmas.bmp", L"Ground");
 
 	//마을 Image
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Village/TownBG_Day.png", L"BackLayer1");

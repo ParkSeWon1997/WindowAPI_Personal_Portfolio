@@ -21,5 +21,6 @@ protected:
 
 protected:
 	FRAME		m_tFrame;
+	ULONGLONG		dwFrameTime = GetTickCount64();
 };
 

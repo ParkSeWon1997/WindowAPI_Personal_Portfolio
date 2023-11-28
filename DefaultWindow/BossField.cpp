@@ -37,7 +37,7 @@ void BossField::Initialize()
 	BossMapLineMgr::Get_Instance()->Initialize();
 	CSoundMgr::Get_Instance()->PlaySound(L"2.IceBoss-sharedassets12.assets-132.wav", SOUND_BGM, g_fVolume);
 	//CTileMgr::Get_Instance()->Load_Data();
-	m_pEndBotton = CAbstractFactory<EndButton>::Create(1116, 700.f, 0.f);
+	m_pEndBotton = CAbstractFactory<EndButton>::Create(1120, 700.f, 0.f);
 	m_pEndBotton->Set_FrameKey(L"EndButton");
 	
 }
@@ -57,7 +57,7 @@ void BossField::Late_Update()
 	//CheckWindowOver();
 	CPlayer::Get_Instance()->Late_Update();
 	CObjMgr::Get_Instance()->Late_Update();
-	if (CPlayer::Get_Instance()->Get_Dead())
+	if (CPlayer::Get_Instance()->Get_Dead()|| !CObjMgr::Get_Instance()->Get_ObjList(BOSS_MONSTER))
 	{
 		m_pEndBotton->Late_Update();
 	}
@@ -95,9 +95,17 @@ void BossField::Render(HDC hDC)
 	if (CPlayer::Get_Instance()->Get_Dead())
 	{
 		g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Fail_Ending"), 0, 0, 1280, 800);
+
 		m_pEndBotton->Render(hDC);
 		
 	}
+	if (!CObjMgr::Get_Instance()->Get_ObjList(BOSS_MONSTER))
+	{
+		g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Success_Ending"), 0, 0, 1280, 800);
+
+		m_pEndBotton->Render(hDC);
+	}
+	
 
 	BossMapLineMgr::Get_Instance()->Render(hDC);
 }
