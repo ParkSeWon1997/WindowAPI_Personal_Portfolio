@@ -17,7 +17,7 @@ void CLineMgr::Initialize(void)
 {
 	LINEPOINT		tLinePoint[6]
 	{
-		{ 0.f, 700.f },
+		{ 100.f, 700.f },
 		{ 2000.f, 700.f },
 		{220.f,667.f},
 		{ 385.f, 500.f },
@@ -45,7 +45,7 @@ void CLineMgr::Release()
 	m_LineList.clear();
 }
 
-bool CLineMgr::Collision_Line(float* pHeight, float& _fX, float _fCY)
+bool CLineMgr::Collision_Line(float* pHeight, float& _fX,float _fY, float _fCY)
 {
 	if (m_LineList.empty())
 		return false;
@@ -55,13 +55,18 @@ bool CLineMgr::Collision_Line(float* pHeight, float& _fX, float _fCY)
 	for (auto& iter : m_LineList)
 	{
 		if (_fX >= iter->Get_Info().tLPoint.fX &&
-			_fX < iter->Get_Info().tRPoint.fX )
+			_fX < iter->Get_Info().tRPoint.fX 
+			|| _fY <= iter->Get_Info().tLPoint.fY && _fY > iter->Get_Info().tRPoint.fY)
 		{
+			
 			pTargetLine = iter;
+			//if (pTargetLine->Get_Info().tLPoint.fY <=_fY&& pTargetLine->Get_Info().tRPoint.fY>_fY)
+				break;
 		}
+
 	}
 	
-	if (!pTargetLine)
+	if (!pTargetLine)//|| pTargetLine->Get_Info().tLPoint.fX>= _fX)
 		return false;
 	
 	float x1 = pTargetLine->Get_Info().tLPoint.fX;

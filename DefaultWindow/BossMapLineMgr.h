@@ -18,9 +18,9 @@ public:
 	void			Render(HDC hDC);
 	void			Release();
 
-	bool			Collision_Line(float* pHeight, float& _fX, float _fCY);
+	bool			Collision_Line(float* pHeight, float& _fX, float _fY,float _fCY);
 	void			Load_Line();
-
+	CLine*			Get_TargetLine() { return m_pTargetLine; }
 	list<CLine*>* Get_LineList() { return &m_LineList; }
 	void			SelectMapLine(MAPLINE _ID);
 
@@ -45,7 +45,7 @@ public:
 private:
 	list<CLine*>		m_LineList;
 	static BossMapLineMgr* m_pInstance;
-
+	CLine *		m_pTargetLine = nullptr;
 
 
 

@@ -57,7 +57,7 @@ void CPlayer::Initialize()
 
 	m_fSpeed = 5.f;
 	m_fDiagonal = 20.f;
-	m_fPower = 15.f;
+	m_fPower = 17.f;
 
 
 	this->m_fHP = 100.f;
@@ -134,7 +134,7 @@ void CPlayer::Render(HDC hDC)
 	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
 	int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
 
-	//Rectangle(hDC, m_tRect.left + iScrollX, m_tRect.top + iScrollY, m_tRect.right + iScrollX, m_tRect.bottom + iScrollY);
+	Rectangle(hDC, m_tRect.left + iScrollX, m_tRect.top + iScrollY, m_tRect.right + iScrollX, m_tRect.bottom + iScrollY);
 	//MoveToEx(hDC, (int)m_tInfo.fX + iScrollX, (int)m_tInfo.fY + iScrollY, nullptr);
 	//LineTo(hDC, m_tPosin.x + iScrollX, m_tPosin.y + iScrollY);
 
@@ -290,30 +290,41 @@ void CPlayer::Jump()
 {
 
 
+
+
 	float	fY(0.f);
 	switch (LineSC)
 	{
 
 	case SCENEID::SC_VILLAGE:
 	{
-		bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(&fY, m_tInfo.fX, m_tInfo.fCY);
+
+
+
+		bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(&fY, m_tInfo.fX, m_tInfo.fY,m_tInfo.fCY);
 		if (m_bJump)
 		{
 			m_tInfo.fY -= (m_fPower * m_fAccelTime) - (9.8f * m_fAccelTime * m_fAccelTime * 0.5f);
-
+		
 			m_fAccelTime += 0.2f;
-
+		
 			if (bLineCol && fY < m_tInfo.fY)
 			{
 				m_bJump = false;
 				m_fAccelTime = 0.f;
 				m_tInfo.fY = fY;
 			}
-
+		
 		}
 		else if (bLineCol)
 		{
+			//if(m_bJump)
 			m_tInfo.fY = fY;
+		}
+		else {
+			m_tInfo.fY += m_fSpeed;
+
+			
 		}
 
 
@@ -347,29 +358,36 @@ void CPlayer::Jump()
 
 	case SCENEID::SC_BOSS:
 	{
-		bool bBossLineCol = BossMapLineMgr::Get_Instance()->Collision_Line(&fY, m_tInfo.fX, m_tInfo.fCY);
+		bool bBossLineCol = BossMapLineMgr::Get_Instance()->Collision_Line(&fY, m_tInfo.fX, m_tInfo.fY,m_tInfo.fCY);
+		auto NowLine = BossMapLineMgr::Get_Instance()->Get_TargetLine();
+		auto iterLine = BossMapLineMgr::Get_Instance()->Get_LineList();
 		if (m_bJump)
 		{
 			m_tInfo.fY -= (m_fPower * m_fAccelTime) - (9.8f * m_fAccelTime * m_fAccelTime * 0.5f);
 
 			m_fAccelTime += 0.2f;
 
+
 			if (bBossLineCol && fY < m_tInfo.fY)
 			{
 				m_bJump = false;
 				m_fAccelTime = 0.f;
-				m_tInfo.fY = fY;
-			}
+				if (NowLine->Get_Info().tLPoint.fY > m_tInfo.fY) {
+					m_tInfo.fY = fY;
 
+				}
+			}
+		
 		}
 
 		else if (bBossLineCol)
 		{
-			m_tInfo.fY = fY;
+			//if (!m_bJump)
+			m_tRect.bottom= NowLine->Get_Info().tLPoint.fY;
+			//m_tInfo.fY = fY;
+
 		}
-
-
-
+	
 		break;
 	}
 	}

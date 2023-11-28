@@ -63,7 +63,7 @@ void BossMapLineMgr::Release()
 	m_LineList.clear();
 }
 
-bool BossMapLineMgr::Collision_Line(float* pHeight, float& _fX, float _fCY)
+bool BossMapLineMgr::Collision_Line(float* pHeight, float& _fX,float _fY, float _fCY)
 {
 	if (m_LineList.empty())
 		return false;
@@ -72,11 +72,17 @@ bool BossMapLineMgr::Collision_Line(float* pHeight, float& _fX, float _fCY)
 
 	for (auto& iter : m_LineList)
 	{
-		if (_fX >= iter->Get_Info().tLPoint.fX &&
-			_fX < iter->Get_Info().tRPoint.fX)
+		if (_fX >= iter->Get_Info().tLPoint.fX &&_fX < iter->Get_Info().tRPoint.fX )
+			//|| _fY<=iter->Get_Info().tLPoint.fY || _fY >= iter->Get_Info().tRPoint.fY)
 		{
 			pTargetLine = iter;
+			if (pTargetLine->Get_Info().tLPoint.fY <= _fY || pTargetLine->Get_Info().tRPoint.fY > _fY) {
+				m_pTargetLine = iter;
+				
+			}
+				
 		}
+		
 	}
 
 	if (!pTargetLine)

@@ -40,7 +40,7 @@ void Village::Initialize()
 	CObjMgr::Get_Instance()->Add_Object(ENTRY, CAbstractFactory<Entry>::Create());
 	CTileMgr::Get_Instance()->Load_Data4();
 
-	//CLineMgr::Get_Instance()->Initialize();
+	CLineMgr::Get_Instance()->Initialize();
 
 	
 

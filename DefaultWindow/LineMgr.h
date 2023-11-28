@@ -16,7 +16,7 @@ public:
 	void			Render(HDC hDC);
 	void			Release();
 
-	bool			Collision_Line(float* pHeight, float& _fX,float _fCY);
+	bool			Collision_Line(float* pHeight, float& _fX, float _fY,float _fCY);
 	void			Load_Line();
 
 	list<CLine*>*	Get_LineList() { return &m_LineList; }
