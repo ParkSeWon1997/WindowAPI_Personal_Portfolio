@@ -82,9 +82,13 @@ bool BossMapLineMgr::Collision_Line(float* pHeight, float& _fX,float _fY, float 
 						&& iter->Get_Info().tLPoint.fY > CPlayer::Get_Instance()->Get_Info().fY)
 					{
 						pTargetLine = iter;
+						m_pTargetLine= iter;
 					}
 				}
-				else pTargetLine = iter;
+				else {
+					pTargetLine = iter;
+					m_pTargetLine = iter;
+				}
 			}
 		}
 

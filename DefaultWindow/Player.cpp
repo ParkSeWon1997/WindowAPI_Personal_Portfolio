@@ -72,7 +72,7 @@ void CPlayer::Initialize()
 	CObjMgr::Get_Instance()->Add_Object(OBJID::PlAYER_UI, CAbstractFactory<PlayerUI>::Create(80.f, 50.f, 0));
 	CObjMgr::Get_Instance()->Add_Object(OBJID::PLAYER_WEAPON_BOX, CAbstractFactory<PlayerWeaponBox>::Create());
 
-
+	m_bJump = true;
 
 	//m_bDead = true;
 	m_pStateKey = L"Player";
@@ -343,8 +343,8 @@ void CPlayer::Jump()
 				m_bJump = false;
 				m_fAccelTime = 0.f;
 
-				//m_tInfo.fY = fY - m_tInfo.fCY / 2;
-				m_tInfo.fY = fY;
+				m_tInfo.fY = fY - m_tInfo.fCY / 2;
+				//m_tInfo.fY = fY;
 
 
 			}
@@ -398,13 +398,42 @@ void CPlayer::Jump()
 				m_bJump = false;
 				m_fAccelTime = 0.f;
 				
-				m_tInfo.fY = fY -m_tInfo.fCY / 2;
+				m_tInfo.fY = fY - m_tInfo.fCY /2;
 					//m_tInfo.fY = fY;
 
 				
 			}
 		
 		}
+		
+		else if (fY > m_tInfo.fY + m_tInfo.fCY / 2 || !bBossLineCol)
+		{
+			//m_bFall = true;
+			m_bJump = false;
+			//m_bOnGround = false;
+			//m_iJumpCount = max(m_iJumpCount, 1);
+			m_fAccelTime = 0.f;
+		}
+		else if (fY < m_tInfo.fY + m_tInfo.fCY / 2 && fY > m_tInfo.fY)
+		{
+			//OnGround();
+			m_bJump = false;
+			m_tInfo.fY = fY - m_tInfo.fCY / 2;
+		}
+		if (!m_bJump)
+		{
+			m_tInfo.fY = fY - m_tInfo.fCY / 2;
+		}
+		
+		//양쪽 x끝에 닿으면 플레이어 낙하
+		//else if (NowLine->Get_Info().tLPoint.fX<=m_tInfo.fX&&NowLine->Get_Info().tRPoint.fX>m_tInfo.fX)
+		//{
+		//	m_bJump = false;
+		//	m_tInfo.fY -= (m_fPower * m_fAccelTime) - (9.8f * m_fAccelTime * m_fAccelTime * 0.5f);
+		//
+		//	m_fAccelTime += 0.2f;
+		//}
+		
 
 		break;
 	}
