@@ -26,6 +26,9 @@ void Sword::Initialize()
 	m_tInfo.fCX = 26.f;
 	m_tInfo.fCY = 60.f;
 	m_fDiagonal = 60.f;
+	//m_fAngle = 45.f;
+
+	m_RotateAngle = 45.f;
 
 	m_eRender = GAMEOBJECT;
 }
@@ -51,18 +54,20 @@ void Sword::Late_Update()
 void Sword::Render(HDC hDC)
 {
 	Graphics g(hDC);
-
+	g.TranslateTransform(m_tInfo.fX, m_tInfo.fY);
+	g.RotateTransform(m_RotateAngle);
+	g.TranslateTransform(-m_tInfo.fX, -m_tInfo.fY);
 
 
 	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Sword_FireDragon"), (m_tInfo.fX - m_tInfo.fCX * 0.5), (m_tInfo.fY - m_tInfo.fCY * 0.5), m_tInfo.fCX, m_tInfo.fCY);
 
 
 
-	//Rectangle(hDC,
-	//	m_tRect.left,
-	//	m_tRect.top,
-	//	m_tRect.right,
-	//	m_tRect.bottom);
+	Rectangle(hDC,
+		m_tRect.left,
+		m_tRect.top,
+		m_tRect.right,
+		m_tRect.bottom);
 
 
 }

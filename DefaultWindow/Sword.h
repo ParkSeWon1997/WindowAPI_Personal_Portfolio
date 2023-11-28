@@ -26,6 +26,7 @@ public:
     void    SwordEndPoint();
 
 private:
+    float               m_RotateAngle;
     float				m_fSwordDamage;
     bool                IsSwing;
     float               m_fDiagonal;
