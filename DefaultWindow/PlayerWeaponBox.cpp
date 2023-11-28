@@ -15,7 +15,7 @@ void PlayerWeaponBox::Initialize()
     m_tInfo = { WINCX - 100,WINCY - 100,170.f,120.f };
 
     WeaponImagwKey = nullptr;
-    m_eRender = UI;
+    m_eRender = GAMEOBJECT;
 }
 
 int PlayerWeaponBox::Update()

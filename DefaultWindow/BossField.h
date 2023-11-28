@@ -1,5 +1,8 @@
 #pragma once
 #include "Scene.h"
+
+
+class CObj;
 class BossField :
     public CScene
 {
@@ -19,5 +22,8 @@ public:
 
 	void	CreateSnow();
 	void	CheckWindowOver();
+
+private:
+	CObj* m_pEndBotton;
 };
 

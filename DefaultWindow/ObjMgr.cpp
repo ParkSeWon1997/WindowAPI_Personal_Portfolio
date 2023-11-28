@@ -126,20 +126,31 @@ void CObjMgr::Late_Update()
 
 void CObjMgr::Render(HDC hDC)
 {
-	for (size_t i = 0; i < RENDER_END; ++i)
-	{
-		m_RenderSort[i].sort([](CObj* pDst, CObj* pSrc)->bool {
-		
-			return pDst->Get_Info().fY < pSrc->Get_Info().fY;
-		});
 
-		for (auto& iter : m_RenderSort[i])
+	for (size_t i = 0; i < OBJ_END; ++i)
+	{
+		for (auto& iter : m_ObjList[i])
 		{
 			iter->Render(hDC);
 		}
-
-		m_RenderSort[i].clear();
 	}
+
+
+
+	//for (size_t i = 0; i < RENDER_END; ++i)
+	//{
+	//	m_RenderSort[i].sort([](CObj* pDst, CObj* pSrc)->bool {
+	//	
+	//		return pDst->Get_Info().fY < pSrc->Get_Info().fY;
+	//	});
+	//
+	//	for (auto& iter : m_RenderSort[i])
+	//	{
+	//		iter->Render(hDC);
+	//	}
+	//
+	//	m_RenderSort[i].clear();
+	//}
 }
 
 void CObjMgr::Release()

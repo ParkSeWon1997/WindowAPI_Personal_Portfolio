@@ -24,7 +24,7 @@
 #include"PlayerWeaponBox.h"
 #include "EasyMapLindeMgr.h"
 #include "BossMapLineMgr.h"
-#include "EndButton.h"
+
 
 
 CObj* CPlayer::m_Instance = nullptr;
@@ -61,9 +61,9 @@ void CPlayer::Initialize()
 	m_fPower = 17.f;
 
 
-	this->m_fHP = 100.f;
+	this->m_fHP = 1.f;
 	this->m_fDamage = 10.f;
-
+	m_bDead = false;
 	m_tFrame.dwSpeed = 200;
 	m_tFrame.dwTime = GetTickCount();
 
@@ -87,7 +87,11 @@ void CPlayer::Initialize()
 
 int CPlayer::Update()
 {
-
+	if (m_bDead)
+	{
+		CSoundMgr::Get_Instance()->StopSound(SOUND_BGM);
+		CSoundMgr::Get_Instance()->PlaySound(L"dead-sharedassets2.assets-304.wav", SOUND_PLAYER_DEAD, g_fVolume);
+	}
 	dynamic_cast<PlayerUI*>(CObjMgr::Get_Instance()->Get_ObjList(PlAYER_UI))->Set_UI_HpBar(100.f, m_fHP);
 	Jump();
 
@@ -135,7 +139,7 @@ void CPlayer::Render(HDC hDC)
 	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
 	int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
 
-	Rectangle(hDC, m_tRect.left + iScrollX, m_tRect.top + iScrollY, m_tRect.right + iScrollX, m_tRect.bottom + iScrollY);
+	//Rectangle(hDC, m_tRect.left + iScrollX, m_tRect.top + iScrollY, m_tRect.right + iScrollX, m_tRect.bottom + iScrollY);
 	//MoveToEx(hDC, (int)m_tInfo.fX + iScrollX, (int)m_tInfo.fY + iScrollY, nullptr);
 	//LineTo(hDC, m_tPosin.x + iScrollX, m_tPosin.y + iScrollY);
 
@@ -172,16 +176,7 @@ void CPlayer::Render(HDC hDC)
 		g.DrawImage(img, destinationPoints, 3, m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, 64, 64, UnitPixel);
 
 	}
-	if (m_bDead)
-	{
-		g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Fail_Ending"), 0, 0, 1280, 800);
-		if (!CObjMgr::Get_Instance()->Get_ObjList(BUTTON))
-		{
-			CObj* pObj = CAbstractFactory<EndButton>::Create(WINCX * 0.5, 400.f, 0.f);
-			pObj->Set_FrameKey(L"EndButton");
-			CObjMgr::Get_Instance()->Add_Object(BUTTON, pObj);
-		}
-	}
+
 
 
 

@@ -19,6 +19,7 @@ void CShield::Initialize()
 
 	m_fSpeed = 3.f;
 	m_fDistance = 100.f;
+	m_eRender = GAMEOBJECT;
 }
 
 int CShield::Update()

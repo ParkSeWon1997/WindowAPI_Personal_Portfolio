@@ -17,10 +17,11 @@
 #include "TileMgr.h"
 
 #include"EasyMapLindeMgr.h"
+#include "EndButton.h"
 
 
 static float g_fVolume = 0.7f;
-Normal::Normal()
+Normal::Normal():m_pEndBotton(nullptr)
 {
 }
 
@@ -41,11 +42,14 @@ void Normal::Initialize()
 	CSoundMgr::Get_Instance()->PlaySound(L"2.IceField-sharedassets10.assets-124.wav", SOUND_BGM, g_fVolume);
 
 	EasyMapLindeMgr::Get_Instance()->Initialize();
+	m_pEndBotton = CAbstractFactory<EndButton>::Create(1116, 700.f, 0.f);
+	m_pEndBotton->Set_FrameKey(L"EndButton");
 	CTileMgr::Get_Instance()->Load_Data2();
 }
 
 void Normal::Update()
 {
+	m_pEndBotton->Update();
 	//if (CKeyMgr::Get_Instance()->Key_Pressing('0'))
 	//{
 	//	CSceneMgr::Get_Instance()->Scene_Change(SC_BOSS);
@@ -62,7 +66,10 @@ void Normal::Late_Update()
 	CObjMgr::Get_Instance()->Late_Update();
 	CTileMgr::Get_Instance()->Late_Update();
 
-
+	if (CPlayer::Get_Instance()->Get_Dead())
+	{
+		m_pEndBotton->Late_Update();
+	}
 }
 
 void Normal::Render(HDC hDC)
@@ -98,12 +105,27 @@ void Normal::Render(HDC hDC)
 	CTileMgr::Get_Instance()->Render(hDC);
 	CObjMgr::Get_Instance()->Render(hDC);
 	CPlayer::Get_Instance()->Render(hDC);
+	if (CPlayer::Get_Instance()->Get_Dead())
+	{
+		g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Fail_Ending"), 0, 0, 1280, 800);
+		m_pEndBotton->Render(hDC);
+
+	}
 	EasyMapLindeMgr::Get_Instance()->Render(hDC);
 }
 
 void Normal::Release()
 {
-	
+	CTileMgr::Destroy_Instance();
+	Safe_Delete(m_pEndBotton);
+	CObjMgr::Get_Instance()->Delete_ID(BOSS_MONSTER);
+	CObjMgr::Get_Instance()->Delete_ID(BULLET);
+	CObjMgr::Get_Instance()->Delete_ID(SUB_MONSTER_BULLET);
+	CObjMgr::Get_Instance()->Delete_ID(MONSTER);
+	CObjMgr::Get_Instance()->Delete_ID(BOSS_BULLET);
+	CObjMgr::Get_Instance()->Delete_ID(BUTTON);
+	CObjMgr::Get_Instance()->Delete_ID(MOSTER_UI);
+	CObjMgr::Get_Instance()->Delete_ID(COLLISIONBOX);
 	CObjMgr::Get_Instance()->Delete_ID(MONSTER);
 	CObjMgr::Get_Instance()->Delete_ID(STAGE_ENTRY);
 	CSoundMgr::Get_Instance()->StopSound(SOUND_BGM);

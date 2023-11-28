@@ -15,9 +15,10 @@
 #include"Snow.h"
 #include "TileMgr.h"
 #include"BossMapLineMgr.h"
+#include "EndButton.h"
 
 static float g_fVolume = 0.7f;
-BossField::BossField()
+BossField::BossField():m_pEndBotton(nullptr)
 {
 }
 
@@ -36,18 +37,16 @@ void BossField::Initialize()
 	BossMapLineMgr::Get_Instance()->Initialize();
 	CSoundMgr::Get_Instance()->PlaySound(L"2.IceBoss-sharedassets12.assets-132.wav", SOUND_BGM, g_fVolume);
 	//CTileMgr::Get_Instance()->Load_Data();
-
+	m_pEndBotton = CAbstractFactory<EndButton>::Create(1116, 700.f, 0.f);
+	m_pEndBotton->Set_FrameKey(L"EndButton");
 	
 }
 
 void BossField::Update()
 {
+	m_pEndBotton->Update();
 	CPlayer::Get_Instance()->Update();
-	if (CPlayer::Get_Instance()->Get_Dead())
-	{
-		CSoundMgr::Get_Instance()->StopSound(SOUND_BGM);
-		CSoundMgr::Get_Instance()->PlaySound(L"dead-sharedassets2.assets-304.wav", SOUND_PLAYER_DEAD, g_fVolume);
-	}
+
 	//CreateSnow();
 	CObjMgr::Get_Instance()->Update();
 	//CTileMgr::Get_Instance()->Update();
@@ -58,6 +57,10 @@ void BossField::Late_Update()
 	//CheckWindowOver();
 	CPlayer::Get_Instance()->Late_Update();
 	CObjMgr::Get_Instance()->Late_Update();
+	if (CPlayer::Get_Instance()->Get_Dead())
+	{
+		m_pEndBotton->Late_Update();
+	}
 	//CTileMgr::Get_Instance()->Late_Update();
 }
 
@@ -87,8 +90,14 @@ void BossField::Render(HDC hDC)
 		RGB(255, 255, 255));
 	//CTileMgr::Get_Instance()->Render(hDC);
 
-	CObjMgr::Get_Instance()->Render(hDC);
 	CPlayer::Get_Instance()->Render(hDC);
+	CObjMgr::Get_Instance()->Render(hDC);
+	if (CPlayer::Get_Instance()->Get_Dead())
+	{
+		g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Fail_Ending"), 0, 0, 1280, 800);
+		m_pEndBotton->Render(hDC);
+		
+	}
 
 	BossMapLineMgr::Get_Instance()->Render(hDC);
 }
@@ -96,17 +105,14 @@ void BossField::Render(HDC hDC)
 void BossField::Release()
 {
 
+	Safe_Delete(m_pEndBotton);
 	CObjMgr::Get_Instance()->Delete_ID(BOSS_MONSTER);
 	CObjMgr::Get_Instance()->Delete_ID(BULLET);
 	CObjMgr::Get_Instance()->Delete_ID(SUB_MONSTER_BULLET);
 	CObjMgr::Get_Instance()->Delete_ID(MONSTER);
 	CObjMgr::Get_Instance()->Delete_ID(BOSS_BULLET);
 	CObjMgr::Get_Instance()->Delete_ID(BUTTON);
-	CObjMgr::Get_Instance()->Delete_ID(PlAYER_UI);
-	CObjMgr::Get_Instance()->Delete_ID(PLAYER_WEAPON_BOX);
 	CObjMgr::Get_Instance()->Delete_ID(MOSTER_UI);
-	CObjMgr::Get_Instance()->Delete_ID(GUN);
-	CObjMgr::Get_Instance()->Delete_ID(SWORD);
 	CObjMgr::Get_Instance()->Delete_ID(COLLISIONBOX);
 	CSoundMgr::Get_Instance()->StopSound(SOUND_BGM);
 

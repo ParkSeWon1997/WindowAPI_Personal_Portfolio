@@ -1,5 +1,7 @@
 #pragma once
 #include "Scene.h"
+
+class CObj;
 class Normal :
     public CScene
 {
@@ -16,5 +18,7 @@ public:
 	virtual void Render(HDC hDC) override;
 	virtual void Release() override;
 
+private:
+	CObj* m_pEndBotton;
 };
 

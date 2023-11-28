@@ -23,6 +23,7 @@ void CScrewBullet::Initialize()
 	m_fRotSpeed = 30.f;
 	m_fDistance = 20.f;
 
+	m_eRender = GAMEOBJECT;
 	m_bStart = true;
 }
 
