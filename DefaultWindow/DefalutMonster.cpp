@@ -5,6 +5,8 @@
 #include "KeyMgr.h"
 #include"AroundBullet.h"
 #include"ObjMgr.h"
+#include "AbstractFactory.h"
+#include "HpPotion.h"
 
 DefalutMonster::DefalutMonster()
 {
@@ -41,8 +43,10 @@ void DefalutMonster::Initialize()
 
 int DefalutMonster::Update()
 {
-    if (m_bDead)
+	if (m_bDead) {
+		CObjMgr::Get_Instance()->Add_Object(ITEM_HP, CAbstractFactory<HpPotion>::Create(333.f, 333.f, 0));
         return OBJ_DEAD;
+	}
 
 
 	FrameCheck++;
@@ -82,7 +86,12 @@ void DefalutMonster::Render(HDC hDC)
     Graphics g(hDC);
 	Image* img = PngMrg::Get_Instance()->Get_Image(m_pStateKey);
 	if (Turn_By_Player()) {
-		g.DrawImage(img, Rect((m_tInfo.fX - m_tInfo.fCX * 0.5) + iScrollX, (m_tInfo.fY - m_tInfo.fCY * 0.5) + iScrollY, m_tInfo.fCX, m_tInfo.fCY), m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, 64, 40, UnitPixel);
+		g.DrawImage(img, Rect((m_tInfo.fX - m_tInfo.fCX * 0.5) + iScrollX, 
+			(m_tInfo.fY - m_tInfo.fCY * 0.5) + iScrollY, 
+			m_tInfo.fCX, m_tInfo.fCY),
+			m_tInfo.fCX * m_tFrame.iFrameStart,
+			m_tInfo.fCY * m_tFrame.iMotion, 
+			64, 40, UnitPixel);
 	}
 	else {
 		g.DrawImage(img, destinationPoints, 3, m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, 64, 40, UnitPixel);
@@ -138,10 +147,11 @@ void DefalutMonster::Default_Pattern()
 {
 	if (m_bDead) {
 		m_eCurState = DEAD;
+		
 	}
 	else {
 		m_eCurState = IDLE;
-		Move();
+		//Move();
 
 		if (FrameCheck>50) {
 

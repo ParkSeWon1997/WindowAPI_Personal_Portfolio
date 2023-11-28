@@ -39,6 +39,7 @@ public:
 
 	float			Get_HP() { return m_fHP; }
 	void			Set_HP(float _HP) { m_fHP = _HP; }
+	void			Add_HP(float _HP) { m_fHP += _HP; }
 	void			TakeDamage(float _Damage) { m_fHP -= _Damage; }
 
 	float			GetDamage() { return m_fDamage; }

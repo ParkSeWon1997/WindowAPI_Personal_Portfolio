@@ -20,6 +20,7 @@
 #include "PlayerUI.h"
 #include"Ground.h"
 #include "TileMgr.h"
+#include "HpPotion.h"
 
 static float g_fVolume = 1.f;
 Village::Village()
@@ -40,6 +41,7 @@ void Village::Initialize()
 	CPlayer::Get_Instance()->Initialize();
 	dynamic_cast<CPlayer*>(CPlayer::Get_Instance())->Set_SC_ID(SCENEID::SC_VILLAGE);
 	CObjMgr::Get_Instance()->Add_Object(ENTRY, CAbstractFactory<Entry>::Create());
+	
 	//CTileMgr::Get_Instance()->Load_Data4();
 
 	CLineMgr::Get_Instance()->Initialize();

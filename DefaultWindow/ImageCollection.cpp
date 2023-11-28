@@ -113,6 +113,11 @@ ImageCollection::ImageCollection()
 
 	//EndButton
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/GameEnd/EndButton.png", L"EndButton");
+
+
+	//Item
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/Hp/AED_Motion.png", L"Item_HP");
+
 }
 
 ImageCollection::~ImageCollection()

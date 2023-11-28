@@ -18,6 +18,7 @@
 
 #include"EasyMapLindeMgr.h"
 #include "EndButton.h"
+#include "HpPotion.h"
 
 
 static float g_fVolume = 0.7f;
@@ -37,6 +38,8 @@ void Normal::Initialize()
 	dynamic_cast<CPlayer*>(CPlayer::Get_Instance())->Set_SC_ID(SCENEID::SC_NORMAL);
 	CObjMgr::Get_Instance()->Add_Object(STAGE_ENTRY, CAbstractFactory<StageEntry>::Create(15.f,214.f,90));
 	CObjMgr::Get_Instance()->Add_Object(STAGE_ENTRY, CAbstractFactory<StageEntry>::Create(934.f, 134.f, 0));
+	//¾ÆÀÌÅÛ
+	//CObjMgr::Get_Instance()->Add_Object(ITEM_HP, CAbstractFactory<HpPotion>::Create(333.f, 333.f, 0));
 	CObjMgr::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<DefalutMonster>::Create(100.f, 200.f, 0));
 
 	CSoundMgr::Get_Instance()->PlaySound(L"2.IceField-sharedassets10.assets-124.wav", SOUND_BGM, g_fVolume);

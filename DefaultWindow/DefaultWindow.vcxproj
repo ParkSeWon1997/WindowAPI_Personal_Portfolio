@@ -169,6 +169,7 @@
     <ClInclude Include="GuideBullet.h" />
     <ClInclude Include="Gun.h" />
     <ClInclude Include="HpBar.h" />
+    <ClInclude Include="HpPotion.h" />
     <ClInclude Include="IcicleBullet.h" />
     <ClInclude Include="ImageCollection.h" />
     <ClInclude Include="KeyMgr.h" />
@@ -235,6 +236,7 @@
     <ClCompile Include="GuideBullet.cpp" />
     <ClCompile Include="Gun.cpp" />
     <ClCompile Include="HpBar.cpp" />
+    <ClCompile Include="HpPotion.cpp" />
     <ClCompile Include="IcicleBullet.cpp" />
     <ClCompile Include="ImageCollection.cpp" />
     <ClCompile Include="KeyMgr.cpp" />

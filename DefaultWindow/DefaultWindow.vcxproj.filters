@@ -190,6 +190,9 @@
     <Filter Include="01. Obj\05. Button\02. EndButton">
       <UniqueIdentifier>{1eca6bff-d022-4e9a-b56c-3653e38a75e5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Obj\14. Item">
+      <UniqueIdentifier>{7d636bc7-53f4-4d81-a055-d30c13945820}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -393,6 +396,9 @@
     <ClInclude Include="EndButton.h">
       <Filter>01. Obj\05. Button\02. EndButton</Filter>
     </ClInclude>
+    <ClInclude Include="HpPotion.h">
+      <Filter>01. Obj\14. Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DefaultWindow.cpp">
@@ -580,6 +586,9 @@
     </ClCompile>
     <ClCompile Include="EndButton.cpp">
       <Filter>01. Obj\05. Button\02. EndButton</Filter>
+    </ClCompile>
+    <ClCompile Include="HpPotion.cpp">
+      <Filter>01. Obj\14. Item</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
