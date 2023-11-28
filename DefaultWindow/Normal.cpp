@@ -36,7 +36,7 @@ void Normal::Initialize()
 {
 	dynamic_cast<CPlayer*>(CPlayer::Get_Instance())->Set_SC_ID(SCENEID::SC_NORMAL);
 	CObjMgr::Get_Instance()->Add_Object(STAGE_ENTRY, CAbstractFactory<StageEntry>::Create(15.f,630.f,0));
-	//CObjMgr::Get_Instance()->Add_Object(STAGE_ENTRY, CAbstractFactory<StageEntry>::Create(100.f, 300.f, 0));
+	CObjMgr::Get_Instance()->Add_Object(STAGE_ENTRY, CAbstractFactory<StageEntry>::Create(100.f, 300.f, 0));
 	CObjMgr::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<DefalutMonster>::Create(100.f, 200.f, 0));
 
 	CSoundMgr::Get_Instance()->PlaySound(L"2.IceField-sharedassets10.assets-124.wav", SOUND_BGM, g_fVolume);
@@ -44,7 +44,7 @@ void Normal::Initialize()
 	EasyMapLindeMgr::Get_Instance()->Initialize();
 	m_pEndBotton = CAbstractFactory<EndButton>::Create(1116, 700.f, 0.f);
 	m_pEndBotton->Set_FrameKey(L"EndButton");
-	CTileMgr::Get_Instance()->Load_Data2();
+	//CTileMgr::Get_Instance()->Load_Data2();
 }
 
 void Normal::Update()
@@ -66,7 +66,11 @@ void Normal::Late_Update()
 		m_iOpenCheckCount++;
 		if (m_iOpenCheckCount>100) {
 			m_bOpenDoor = true;
-			dynamic_cast<StageEntry*>(CObjMgr::Get_Instance()->Get_ObjList(STAGE_ENTRY))->SetOpenCondition(m_bOpenDoor);
+			for (auto& iter : CObjMgr::Get_Instance()->Get_ObjListProperty(STAGE_ENTRY))
+			{
+				dynamic_cast<StageEntry*>(iter)->SetOpenCondition(m_bOpenDoor);
+			}
+			//dynamic_cast<StageEntry*>(CObjMgr::Get_Instance()->Get_ObjListProperty(STAGE_ENTRY))->SetOpenCondition(m_bOpenDoor);
 			m_bOpenDoor = false;
 			m_iOpenCheckCount = -1000;
 			//dynamic_cast<StageEntry*>(CObjMgr::Get_Instance()->Get_ObjList(STAGE_ENTRY))->SetOpenCondition(true);
@@ -79,8 +83,10 @@ void Normal::Late_Update()
 		m_iCloseCheckCount++;
 		if (m_iCloseCheckCount>50)
 		{
-			dynamic_cast<StageEntry*>(CObjMgr::Get_Instance()->Get_ObjList(STAGE_ENTRY))->SetcloseCondition(false);
-
+			for (auto& iter : CObjMgr::Get_Instance()->Get_ObjListProperty(STAGE_ENTRY))
+			{
+				dynamic_cast<StageEntry*>(iter)->SetcloseCondition(false);
+			}
 		}
 	}
 	CPlayer::Get_Instance()->Late_Update();
@@ -124,7 +130,7 @@ void Normal::Render(HDC hDC)
 		RGB(255, 255, 255));
 
 
-	CTileMgr::Get_Instance()->Render(hDC);
+	//CTileMgr::Get_Instance()->Render(hDC);
 	CObjMgr::Get_Instance()->Render(hDC);
 	CPlayer::Get_Instance()->Render(hDC);
 	if (CPlayer::Get_Instance()->Get_Dead())

@@ -153,7 +153,7 @@ void StageEntry::Motion_Change()
 			m_tFrame.iFrameEnd = 7;
 			m_tFrame.iMotion = 2;
 
-			m_tFrame.dwSpeed = 100;
+			m_tFrame.dwSpeed = 200;
 			m_tFrame.dwTime = GetTickCount();
 
 			break;
