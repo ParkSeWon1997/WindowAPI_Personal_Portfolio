@@ -266,6 +266,10 @@ void CPlayer::Key_Input()
 		{
 			CSceneMgr::Get_Instance()->Scene_Change(SC_BOSS);
 		}
+		if (CKeyMgr::Get_Instance()->Key_Pressing('9'))
+		{
+			CSceneMgr::Get_Instance()->Scene_Change(SC_VILLAGE);
+		}
 
 
 		//if (CKeyMgr::Get_Instance()->Key_Down(VK_LBUTTON))

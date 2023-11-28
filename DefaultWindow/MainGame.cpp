@@ -131,11 +131,12 @@ void CMainGame::Release(void)
 	EasyMapLindeMgr::Destroy_Instance();
 	BossMapLineMgr::Destroy_Instance();
 	CSceneMgr::Destroy_Instance();
-	CObjMgr::Destroy_Instance();
 	CMouse::Destroy_Instance();
 	CBmpMgr::Destroy_Instance();
 	PngMrg::Destroy_Instance();
 	CSoundMgr::Destroy_Instance();
+	CObjMgr::Destroy_Instance();
+	CPlayer::Destroy_Instance();
 
 	ReleaseDC(g_hWnd, m_DC);
 }
