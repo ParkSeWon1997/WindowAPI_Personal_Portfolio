@@ -16,6 +16,7 @@ public:
 
 	//첫 번쨰 인자: 데미지를 받을 Obj, 2번 째 인자: 데미지를 줄 Obj 
 	static void DoDamageObj_to_Obj(list<CObj*> Dst, list<CObj*> Src);
+	static void DoDamageObj_to_Obj(CObj* _Player, list<CObj*> Src);
 
 
 

@@ -24,6 +24,7 @@
 static float g_fVolume = 1.f;
 Village::Village()
 {
+	//m_pCPlayer = CPlayer::Get_Instance();
 }
 
 Village::~Village()
@@ -33,9 +34,9 @@ Village::~Village()
 
 void Village::Initialize()
 {
-
-		CObjMgr::Get_Instance()->Add_Object(PLAYER, CPlayer::Get_Instance());
-
+	//if (m_pCPlayer==nullptr) {
+	//	CObjMgr::Get_Instance()->Add_Object(PLAYER, m_pCPlayer);
+	//}
 	dynamic_cast<CPlayer*>(CPlayer::Get_Instance())->Set_SC_ID(SCENEID::SC_VILLAGE);
 	CObjMgr::Get_Instance()->Add_Object(ENTRY, CAbstractFactory<Entry>::Create());
 	//CTileMgr::Get_Instance()->Load_Data4();
@@ -48,6 +49,7 @@ void Village::Initialize()
 
 void Village::Update()
 {
+	CPlayer::Get_Instance()->Update();
 	CObjMgr::Get_Instance()->Update();
 	CTileMgr::Get_Instance()->Update();
 	CSoundMgr::Get_Instance()->PlaySound(L"0.Town-sharedassets3.assets-340.wav", SOUND_BGM, g_fVolume);
@@ -68,6 +70,7 @@ void Village::Late_Update()
 
 
 	CTileMgr::Get_Instance()->Late_Update();
+	CPlayer::Get_Instance()->Late_Update();
 	CObjMgr::Get_Instance()->Late_Update();
 
 	
@@ -111,6 +114,7 @@ void Village::Render(HDC hDC)
 
 
 	CTileMgr::Get_Instance()->Render(hDC);
+	CPlayer::Get_Instance()->Render(hDC);
 	CObjMgr::Get_Instance()->Render(hDC);
 	CLineMgr::Get_Instance()->Render(hDC);
 

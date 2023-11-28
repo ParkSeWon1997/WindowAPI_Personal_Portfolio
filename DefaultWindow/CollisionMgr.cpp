@@ -76,6 +76,11 @@ void CCollisionMgr::DoDamageObj_to_Obj(list<CObj*> Dst, list<CObj*> Src)
 	}
 }
 
+void CCollisionMgr::DoDamageObj_to_Obj(CObj*, list<CObj*> Src)
+{
+
+}
+
 void CCollisionMgr::Collision_RectEx(list<CObj*> DstList, list<CObj*> SrcList)
 {
 	float fX = 0.f, fY = 0.f;

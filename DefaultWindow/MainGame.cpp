@@ -135,8 +135,8 @@ void CMainGame::Release(void)
 	CBmpMgr::Destroy_Instance();
 	PngMrg::Destroy_Instance();
 	CSoundMgr::Destroy_Instance();
-	CObjMgr::Destroy_Instance();
 	CPlayer::Destroy_Instance();
+	CObjMgr::Destroy_Instance();
 
 	ReleaseDC(g_hWnd, m_DC);
 }

@@ -48,6 +48,8 @@ public:
 
 
 	void		Set_SC_ID(SCENEID _SC_ID) { LineSC = _SC_ID; }
+public:
+	CObj* Get_Player() { return this; }
 
 public:
 	void		Set_Posin(POINT _Posin) { m_tPosin = _Posin; }

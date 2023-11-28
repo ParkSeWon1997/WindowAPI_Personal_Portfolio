@@ -1,5 +1,7 @@
 #pragma once
 #include "Scene.h"
+
+class CObj;
 class Village :
     public CScene
 {
@@ -15,6 +17,8 @@ public:
 	virtual void Release() override;
 
 
+private:
+	CObj* m_pCPlayer;
 
 };
 

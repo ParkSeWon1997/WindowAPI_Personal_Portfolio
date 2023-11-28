@@ -2,7 +2,7 @@
 #include "GuideBullet.h"
 #include "ObjMgr.h"
 #include "PngMrg.h"
-
+#include"Player.h"
 
 CGuideBullet::CGuideBullet()
 {

@@ -42,6 +42,7 @@ void BossField::Initialize()
 
 void BossField::Update()
 {
+	CPlayer::Get_Instance()->Update();
 	if (CPlayer::Get_Instance()->Get_Dead())
 	{
 		CSoundMgr::Get_Instance()->StopSound(SOUND_BGM);
@@ -55,6 +56,7 @@ void BossField::Update()
 void BossField::Late_Update()
 {
 	//CheckWindowOver();
+	CPlayer::Get_Instance()->Late_Update();
 	CObjMgr::Get_Instance()->Late_Update();
 	//CTileMgr::Get_Instance()->Late_Update();
 }
@@ -85,6 +87,7 @@ void BossField::Render(HDC hDC)
 		RGB(255, 255, 255));
 	//CTileMgr::Get_Instance()->Render(hDC);
 
+	CPlayer::Get_Instance()->Render(hDC);
 	CObjMgr::Get_Instance()->Render(hDC);
 
 	BossMapLineMgr::Get_Instance()->Render(hDC);
