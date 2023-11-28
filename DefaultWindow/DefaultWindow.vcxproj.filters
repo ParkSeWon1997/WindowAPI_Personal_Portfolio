@@ -181,6 +181,15 @@
     <Filter Include="01. Obj\01. Bullet\03. MonsterBullet\03. DefalutMonsterBullet">
       <UniqueIdentifier>{abb3a2fa-2471-49ed-b3b3-24a3683e932a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03. Scene\04. GameEnd">
+      <UniqueIdentifier>{e4eaba4d-b54c-4045-a010-8b3323620fbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\05. Button\01. MenuButton">
+      <UniqueIdentifier>{ccf70a88-cf95-4080-a725-a0ab765d49f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\05. Button\02. EndButton">
+      <UniqueIdentifier>{1eca6bff-d022-4e9a-b56c-3653e38a75e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -254,9 +263,6 @@
     </ClInclude>
     <ClInclude Include="MyMenu.h">
       <Filter>03. Scene\01. Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="MyButton.h">
-      <Filter>01. Obj\05. Button</Filter>
     </ClInclude>
     <ClInclude Include="Stage.h">
       <Filter>03. Scene\03. Stage</Filter>
@@ -378,6 +384,15 @@
     <ClInclude Include="AroundBullet.h">
       <Filter>01. Obj\01. Bullet\03. MonsterBullet\03. DefalutMonsterBullet</Filter>
     </ClInclude>
+    <ClInclude Include="GameEnd.h">
+      <Filter>03. Scene\04. GameEnd</Filter>
+    </ClInclude>
+    <ClInclude Include="MyButton.h">
+      <Filter>01. Obj\05. Button\01. MenuButton</Filter>
+    </ClInclude>
+    <ClInclude Include="EndButton.h">
+      <Filter>01. Obj\05. Button\02. EndButton</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DefaultWindow.cpp">
@@ -442,9 +457,6 @@
     </ClCompile>
     <ClCompile Include="MyMenu.cpp">
       <Filter>03. Scene\01. Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="MyButton.cpp">
-      <Filter>01. Obj\05. Button</Filter>
     </ClCompile>
     <ClCompile Include="Stage.cpp">
       <Filter>03. Scene\03. Stage</Filter>
@@ -559,6 +571,15 @@
     </ClCompile>
     <ClCompile Include="AroundBullet.cpp">
       <Filter>01. Obj\01. Bullet\03. MonsterBullet\03. DefalutMonsterBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEnd.cpp">
+      <Filter>03. Scene\04. GameEnd</Filter>
+    </ClCompile>
+    <ClCompile Include="MyButton.cpp">
+      <Filter>01. Obj\05. Button\01. MenuButton</Filter>
+    </ClCompile>
+    <ClCompile Include="EndButton.cpp">
+      <Filter>01. Obj\05. Button\02. EndButton</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

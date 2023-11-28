@@ -22,7 +22,18 @@ public:
 
 		return m_Instance;
 	}
+
+
+	static void Destroy_Instance()
+	{
+		if (m_Instance)
+		{
+			delete m_Instance;
+			m_Instance = nullptr;
+		}
+	}
 private:
+
 	static CObj* m_Instance;
 
 

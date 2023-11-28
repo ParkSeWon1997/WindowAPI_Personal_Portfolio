@@ -161,7 +161,9 @@
     <ClInclude Include="DefaultWindow.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="EasyMapLindeMgr.h" />
+    <ClInclude Include="EndButton.h" />
     <ClInclude Include="Entry.h" />
+    <ClInclude Include="GameEnd.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="GroundTopo.h" />
     <ClInclude Include="GuideBullet.h" />
@@ -225,7 +227,9 @@
     <ClCompile Include="DefalutMonster.cpp" />
     <ClCompile Include="DefaultWindow.cpp" />
     <ClCompile Include="EasyMapLindeMgr.cpp" />
+    <ClCompile Include="EndButton.cpp" />
     <ClCompile Include="Entry.cpp" />
+    <ClCompile Include="GameEnd.cpp" />
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="GroundTopo.cpp" />
     <ClCompile Include="GuideBullet.cpp" />

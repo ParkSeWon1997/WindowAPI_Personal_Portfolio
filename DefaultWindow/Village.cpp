@@ -34,11 +34,10 @@ Village::~Village()
 void Village::Initialize()
 {
 
-
 	CObjMgr::Get_Instance()->Add_Object(PLAYER, CPlayer::Get_Instance());
 	dynamic_cast<CPlayer*>(CPlayer::Get_Instance())->Set_SC_ID(SCENEID::SC_VILLAGE);
 	CObjMgr::Get_Instance()->Add_Object(ENTRY, CAbstractFactory<Entry>::Create());
-	CTileMgr::Get_Instance()->Load_Data4();
+	//CTileMgr::Get_Instance()->Load_Data4();
 
 	CLineMgr::Get_Instance()->Initialize();
 
@@ -79,38 +78,33 @@ void Village::Late_Update()
 
 void Village::Render(HDC hDC)
 {
-	HDC		hGroundDC = CBmpMgr::Get_Instance()->Find_Img(L"Ground");
-	//
 	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
 	int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
+
+	HDC		hGroundDC = CBmpMgr::Get_Instance()->Find_Img(L"Ground");
 	BitBlt(hDC, 0, 0, 1920, 1280, hGroundDC, 0, 0, SRCCOPY);
-	//HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Img(L"TownBGbmp");
-	//
-//HDC		NewhGroundDC = CBmpMgr::Get_Instance()->Find_Img(L"NewTownBGbmp");
-//BitBlt(hDC, 0, 0, 1920, 1280, NewhGroundDC, 0, 0, SRCCOPY);
-	//
+	HDC		NewhGroundDC = CBmpMgr::Get_Instance()->Find_Img(L"NewTownBGbmp");
+	BitBlt(hDC, 50+ iScrollX, 175+ iScrollY, 1200, 732, NewhGroundDC, 0, 0, SRCCOPY);
+
 	GdiTransparentBlt(hDC,
 		0,
 		0,
 		1280,
 		800,
-		hGroundDC,
+		NewhGroundDC,
 		0,
 		0,
 		1280,
 		800,
 		RGB(255, 255, 255));
-
-
-
-
+	
 
 	
 	Graphics g(hDC);
-	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"BackLayer1"), 0 , 400 , 1280, 532);
-	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"SecondFloor3"), 0+200 , (WINCY - 300), 900, 188);
-	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Tree0"), 400 , 700-122 , 104, 122);
-	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Tree1"), 600 , 500-77 , 67, 77);
+	//g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"BackLayer1"), 0 , 400 , 1280, 532);
+	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"SecondFloor3"), 0+200+ iScrollX, (WINCY - 300) + iScrollY, 900, 188);
+	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Tree0"), 400+ iScrollX, 700-122+ iScrollY, 104, 122);
+	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Tree1"), 600+ iScrollX, 500-77+ iScrollY, 67, 77);
 
 	
 
@@ -127,6 +121,7 @@ void Village::Release()
 
 	CLineMgr::Get_Instance()->Destroy_Instance();
 	CObjMgr::Get_Instance()->Delete_ID(ENTRY);
-	//CObjMgr::Get_Instance()->Delete_ID(ENTRY);
 	CSoundMgr::Get_Instance()->StopSound(SOUND_BGM);
+	//CPlayer::Destroy_Instance();
+
 }

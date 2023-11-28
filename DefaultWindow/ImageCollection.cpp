@@ -98,6 +98,14 @@ ImageCollection::ImageCollection()
 	
 	//SubMonster ÃÑ¾Ë
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Monster/Boss/Bullet/IceBullet.png", L"SubMonster_Bullet");
+
+
+	//GameEnding
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/GameEnd/Fail_End.png", L"Fail_Ending");
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/GameEnd/Success.png", L"Success_Ending");
+
+	//EndButton
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/GameEnd/EndButton.png", L"EndButton");
 }
 
 ImageCollection::~ImageCollection()
