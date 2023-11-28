@@ -25,15 +25,15 @@ void EasyMapLindeMgr::Initialize(void)
 		{ 1088.f, 360.f },
 		{ 1300.f, 360.f },
 
-		{ 875.f, 240.f },
-		{ 1000.f, 240.f },
+		{ 875.f, 260.f },
+		{ 1000.f, 260.f },
 	};
 
 	m_LineList.push_back(new CLine(tLinePoint[0], tLinePoint[1]));
 	m_LineList.push_back(new CLine(tLinePoint[1], tLinePoint[2]));
 	m_LineList.push_back(new CLine(tLinePoint[2], tLinePoint[3]));
-	m_LineList.push_back(new CLine(tLinePoint[3], tLinePoint[4]));
-	m_LineList.push_back(new CLine(tLinePoint[4], tLinePoint[5]));
+	//m_LineList.push_back(new CLine(tLinePoint[3], tLinePoint[4]));
+	//m_LineList.push_back(new CLine(tLinePoint[4], tLinePoint[5]));
 	m_LineList.push_back(new CLine(tLinePoint[6], tLinePoint[7]));
 }
 

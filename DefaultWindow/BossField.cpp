@@ -29,7 +29,7 @@ BossField::~BossField()
 
 void BossField::Initialize()
 {
-
+	CPlayer::Get_Instance()->Set_Pos(100.f, 680.f);
 	dynamic_cast<CPlayer*>(CPlayer::Get_Instance())->Set_SC_ID(SCENEID::SC_BOSS);
 	//CObjMgr::Get_Instance()->Add_Object(PLAYER, CPlayer::Get_Instance());
 	//PngMrg::Get_Instance()->Insert_Png()
