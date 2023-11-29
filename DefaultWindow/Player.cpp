@@ -98,10 +98,7 @@ int CPlayer::Update()
 	Key_Input();
 	nSoundCount++;
 
-	if (m_bIsHit) {
-		m_tInfo.fX -= 10.0f;
-
-	}
+	
 	//if (dwFrameTime + 500 < GetTickCount()) {
 	//dwFrameTime = GetTickCount();
 	//}
@@ -622,6 +619,19 @@ bool CPlayer::Posin_half_Check()
 	}
 	else
 		return false;
+}
+
+void CPlayer::Knock_back(float _Target_X)
+{
+	if (_Target_X>=m_tInfo.fX) {
+		m_tInfo.fX -= 10.0f;
+
+	}
+	else {
+		m_tInfo.fX += 10.0f;
+	}
+
+
 }
 
 

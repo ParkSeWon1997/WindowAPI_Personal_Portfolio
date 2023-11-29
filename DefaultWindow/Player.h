@@ -57,7 +57,7 @@ public:
 
 	bool		IsDead() { return m_bDead; }
 	bool		Posin_half_Check();
-
+	void		Knock_back(float _Target_X);
 
 private:
 	void		Key_Input();
