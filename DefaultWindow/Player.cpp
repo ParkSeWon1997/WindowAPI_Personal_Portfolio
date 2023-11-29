@@ -97,10 +97,15 @@ int CPlayer::Update()
 
 	Key_Input();
 	nSoundCount++;
-	m_bIsHit = false;
+
+	if (m_bIsHit) {
+		m_tInfo.fX -= 10.0f;
+
+	}
 	//if (dwFrameTime + 500 < GetTickCount()) {
 	//dwFrameTime = GetTickCount();
 	//}
+	m_bIsHit = false;
 	__super::Update_Rect();
 
 	return OBJ_NOEVENT;
