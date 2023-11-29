@@ -17,6 +17,7 @@ public:
 	void			Release();
 
 	bool			Collision_Line(float* pHeight, float& _fX, float _fY,float _fCY);
+	bool			DropItemCollision_Line(float* pHeight, float& _fX, float _fY,float _fCY);
 	void			Load_Line();
 
 	list<CLine*>*	Get_LineList() { return &m_LineList; }

@@ -288,7 +288,7 @@ void CPlayer::Key_Input()
 			{
 				dynamic_cast<Sword*>(CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD))->AttachCollisionBox(m_tPosin.x, m_tPosin.y);
 			}
-
+ 
 		}
 
 	}

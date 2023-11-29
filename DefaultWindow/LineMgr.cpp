@@ -121,6 +121,37 @@ bool CLineMgr::Collision_Line(float* pHeight, float& _fX,float _fY, float _fCY)
 	//return true;
 }
 
+bool CLineMgr::DropItemCollision_Line(float* pHeight, float& _fX, float _fY, float _fCY)
+{
+	if (m_LineList.empty())
+		return false;
+
+
+	CLine* pTargetLine = nullptr;
+
+	for (auto& iter : m_LineList)
+	{
+		if (_fX >= iter->Get_Info().tLPoint.fX &&
+			_fX < iter->Get_Info().tRPoint.fX)
+		{
+			pTargetLine = iter;
+		}
+	}
+
+	if (!pTargetLine)
+		return false;
+
+	float x1 = pTargetLine->Get_Info().tLPoint.fX;
+	float y1 = pTargetLine->Get_Info().tLPoint.fY;
+
+	float x2 = pTargetLine->Get_Info().tRPoint.fX;
+	float y2 = pTargetLine->Get_Info().tRPoint.fY;
+
+	*pHeight = ((y2 - y1) / (x2 - x1)) * (_fX - x1) + y1;
+
+	return true;
+}
+
 void CLineMgr::Load_Line()
 {
 	// CreateFile: API 파일 개방함수

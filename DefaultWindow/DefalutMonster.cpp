@@ -44,7 +44,7 @@ void DefalutMonster::Initialize()
 int DefalutMonster::Update()
 {
 	if (m_bDead) {
-		CObjMgr::Get_Instance()->Add_Object(ITEM_HP, CAbstractFactory<HpPotion>::Create(333.f, 333.f, 0));
+		CObjMgr::Get_Instance()->Add_Object(ITEM_HP, CAbstractFactory<HpPotion>::Create(this->m_tInfo.fX, this->m_tInfo.fY, 0));
         return OBJ_DEAD;
 	}
 

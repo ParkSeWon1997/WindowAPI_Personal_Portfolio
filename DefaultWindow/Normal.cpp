@@ -35,6 +35,7 @@ Normal::~Normal()
 
 void Normal::Initialize()
 {
+	CPlayer::Get_Instance()->Set_Pos(50.f, 285.f);
 	dynamic_cast<CPlayer*>(CPlayer::Get_Instance())->Set_SC_ID(SCENEID::SC_NORMAL);
 	CObjMgr::Get_Instance()->Add_Object(STAGE_ENTRY, CAbstractFactory<StageEntry>::Create(15.f,214.f,90));
 	CObjMgr::Get_Instance()->Add_Object(STAGE_ENTRY, CAbstractFactory<StageEntry>::Create(934.f, 134.f, 0));
@@ -150,6 +151,7 @@ void Normal::Release()
 	CTileMgr::Destroy_Instance();
 	Safe_Delete(m_pEndBotton);
 	CObjMgr::Get_Instance()->Delete_ID(BOSS_MONSTER);
+	CObjMgr::Get_Instance()->Delete_ID(ITEM_HP);
 	CObjMgr::Get_Instance()->Delete_ID(BULLET);
 	CObjMgr::Get_Instance()->Delete_ID(SUB_MONSTER_BULLET);
 	CObjMgr::Get_Instance()->Delete_ID(MONSTER);

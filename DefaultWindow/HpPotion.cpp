@@ -4,6 +4,7 @@
 #include "CollisionMgr.h"
 #include "Player.h"
 #include "EasyMapLindeMgr.h"
+#include "LineMgr.h"
 
 HpPotion::HpPotion()
 {
@@ -74,6 +75,8 @@ void HpPotion::Render(HDC hDC)
 			m_tInfo.fCX, m_tInfo.fCY,
 			UnitPixel);
 
+	//Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+
 }
 
 void HpPotion::Release()
@@ -112,39 +115,29 @@ void HpPotion::Move()
 
 void HpPotion::DropMove()
 {
-	float fY = 0;
-	bool bEasyLineCol = EasyMapLindeMgr::Get_Instance()->Collision_Line(&fY, m_tInfo.fX, m_tInfo.fCY);
+	float	fY(0.f);
+
+	bool bLineCol = EasyMapLindeMgr::Get_Instance()->DropItemCollision_Line(&fY, m_tInfo.fX,0,0);
+
 	if (m_bJump)
 	{
 		m_tInfo.fY -= (m_fPower * m_fAccelTime) - (9.8f * m_fAccelTime * m_fAccelTime * 0.5f);
 
 		m_fAccelTime += 0.2f;
 
-
-		if (bEasyLineCol && fY < m_tInfo.fY + m_tInfo.fCY / 2 && fY > m_tInfo.fY)
+		if (bLineCol && fY < m_tInfo.fY)
 		{
 			m_bJump = false;
 			m_fAccelTime = 0.f;
-
-			m_tInfo.fY = fY - m_tInfo.fCY / 2;
-
+			m_tInfo.fY = fY;
 		}
 
 	}
 
-	else if (fY > m_tInfo.fY + m_tInfo.fCY / 2 || !bEasyLineCol)
+	else if (bLineCol)
 	{
-		m_bJump = false;
-		m_fAccelTime = 0.f;
+		m_tInfo.fY = fY;
 	}
-	else if (fY < m_tInfo.fY + m_tInfo.fCY / 2 && fY > m_tInfo.fY)
-	{
-		m_bJump = false;
-		m_tInfo.fY = fY - m_tInfo.fCY / 2;
-	}
-	if (!m_bJump)
-	{
-		m_tInfo.fY = fY - m_tInfo.fCY / 2;
-	}
+
 
 }
