@@ -17,7 +17,7 @@ void AroundBullet::Initialize()
 
 	m_fDamage = 20.0f;
 	m_fAngle = 40.f;
-	m_fSpeed = 5.f;
+	m_fSpeed = 3.f;
 	m_eRender = GAMEOBJECT;
 }
 

@@ -44,6 +44,8 @@ public:
 	void Motion_Change();
 
 
+	void MoveReflection();
+
 private:
 	void SubMonster_pattern();
 
@@ -58,6 +60,10 @@ private:
 
 	float m_fRotateAngle=0;
 
+
+
+	float mDirX = 1.0f;
+	float mDirY = 1.0f;
 private:
 	SUBMOSTER_STATE	SubState;
 	CObj* m_pSubMonsterHpBar;

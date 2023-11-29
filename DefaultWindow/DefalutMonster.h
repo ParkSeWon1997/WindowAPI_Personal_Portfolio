@@ -29,6 +29,10 @@ public:
 private:
 	int FrameCheck = 0;
 
+
+	//방향을 바꾸기 위한 스칼라 성분
+	float mDirX = 1.0f;
+	float mDirY = 1.0f;
 	 ImageSTATE			m_ePreState;
 	 ImageSTATE			m_eCurState;
 

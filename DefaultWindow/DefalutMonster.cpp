@@ -177,21 +177,25 @@ void DefalutMonster::Default_Pattern()
 
 void DefalutMonster::Move()
 {
-	if (m_tInfo.fX < WINCX)
+	if (m_tInfo.fX  >=1000.f)
 	{
-		m_tInfo.fX -= m_fSpeed;
+		mDirX = -1.0f;
 	}
-	if (m_tInfo.fX > 0)
+	else if (m_tInfo.fX <= 200.f)
 	{
-		m_tInfo.fX += m_fSpeed;
+		mDirX = 1.0f;
 	}
-	//	m_tInfo.fY > WINCY ||
-	//	m_tInfo.fY < 0)
-	//{
-	//	m_bDead = true;
-	//}
-
+	m_tInfo.fX = m_tInfo.fX + mDirX * m_fSpeed;
 	
+	if (m_tInfo.fY >= 600.f)
+	{
+		mDirY = -1.0f;
+	}
+	else if(m_tInfo.fY<=100.f)
+	{
+		mDirY = 1.0f;
+	}
+	m_tInfo.fY = m_tInfo.fY + mDirY * m_fSpeed;
 }
 
 CObj* DefalutMonster::Fire(DIRECTION _eDir)

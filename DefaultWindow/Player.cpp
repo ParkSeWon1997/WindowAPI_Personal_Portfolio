@@ -388,6 +388,10 @@ void CPlayer::Jump()
 		float	fY(0.f);
 		bool bEasyLineCol = EasyMapLindeMgr::Get_Instance()->Collision_Line(&fY, m_tInfo.fX, m_tInfo.fCY);
 		auto iterLine = EasyMapLindeMgr::Get_Instance()->Get_LineList()->begin();
+
+
+		auto qqqIter = EasyMapLindeMgr::Get_Instance()->Get_LineList();
+		auto testIter = EasyMapLindeMgr::Get_Instance()->Get_LineList()->begin();
 		
 		if (m_bJump)
 		{
@@ -421,8 +425,6 @@ void CPlayer::Jump()
 		{
 			m_tInfo.fY = fY - m_tInfo.fCY / 2;
 		}
-
-
 		
 		auto SaveIter = iterLine;
 		
@@ -433,7 +435,7 @@ void CPlayer::Jump()
 			LeftWallCheck = false;
 		}
 		
-
+		
 		//내가 원하는 지형의 좌표를 얻기 위한 코드
 		for (size_t i = 0; i < 2; i++)
 		{
@@ -450,6 +452,27 @@ void CPlayer::Jump()
 		else {
 			RightWallCheck = false;
 		}
+
+	//	auto tempIter = testIter;
+	//
+	//for (size_t i = 0; qqqIter->begin() != qqqIter->end(); i++)
+	//{
+	//	if (m_tInfo.fX >= (*tempIter)->Get_Info().tLPoint.fX+10)
+	//	{
+	//		LeftWallCheck = true;
+	//	}
+	//	else
+	//	{
+	//		LeftWallCheck = false;
+	//	}
+	//	testIter++;
+	//	
+	//}
+	//	testIter->begin();
+
+
+
+
 
 
 

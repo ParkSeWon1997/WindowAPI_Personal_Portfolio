@@ -98,7 +98,17 @@ void SubMonster::Attack()
 {
 	if (dynamic_cast<BossMonster*>(CObjMgr::Get_Instance()->Get_ObjList(BOSS_MONSTER))->Get_HP() < 100) {
 		if (dwFrameTime + 100 < GetTickCount()) {
-			CObjMgr::Get_Instance()->Add_Object(SUB_MONSTER_BULLET, CAbstractFactory<MonsterBullet>::Create(this->m_tInfo.fX, this->m_tInfo.fY, Monster_AngleAdd, 15.f));
+			if (dynamic_cast<BossMonster*>(CObjMgr::Get_Instance()->Get_ObjList(BOSS_MONSTER))->Get_HP() < 20)
+			{
+				CObjMgr::Get_Instance()->Add_Object(SUB_MONSTER_BULLET, CAbstractFactory<MonsterBullet>::Create(this->m_tInfo.fX, this->m_tInfo.fY, Monster_AngleAdd, 3.f));
+
+			}
+
+			else
+			{
+				CObjMgr::Get_Instance()->Add_Object(SUB_MONSTER_BULLET, CAbstractFactory<MonsterBullet>::Create(this->m_tInfo.fX, this->m_tInfo.fY, Monster_AngleAdd, 7.f));
+
+			}
 			dwFrameTime = GetTickCount();
 		}
 		
@@ -181,6 +191,29 @@ void SubMonster::Motion_Change()
 {
 }
 
+void SubMonster::MoveReflection()
+{
+	if (m_tInfo.fX >= WINCX)
+	{
+		mDirX = -1.0f;
+	}
+	else if (m_tInfo.fX <= 0.0f)
+	{
+		mDirX = 1.0f;
+	}
+	m_tInfo.fX = m_tInfo.fX + mDirX * m_fSpeed;
+
+	if (m_tInfo.fY >= 664.f)
+	{
+		mDirY = -1.0f;
+	}
+	else if (m_tInfo.fY <= 0.0f)
+	{
+		mDirY = 1.0f;
+	}
+	m_tInfo.fY = m_tInfo.fY + mDirY * m_fSpeed;
+}
+
 void SubMonster::SubMonster_pattern()
 {
 	switch (SubState)
@@ -194,6 +227,11 @@ void SubMonster::SubMonster_pattern()
 			
 			SubState = SUBMOSTER_STATE::ATTACK;
 			FrameChek = 0;
+		}
+
+		if (dynamic_cast<BossMonster*>(CObjMgr::Get_Instance()->Get_ObjList(BOSS_MONSTER))->Get_HP() < 20)
+		{
+			SubState = SUBMOSTER_STATE::MOVE_TO_BOSS;
 		}
 	}  break;
 
@@ -213,6 +251,7 @@ void SubMonster::SubMonster_pattern()
 		
 		m_tInfo.fX += m_fSpeed * cos(m_fAngle * PI / 180.f);
 		m_tInfo.fY -= m_fSpeed * sin(m_fAngle * PI / 180.f);
+		//MoveReflection();
 		Target_Attack();
 		if (FrameChek > 300)
 		{
@@ -223,7 +262,11 @@ void SubMonster::SubMonster_pattern()
 	}
 	case SUBMOSTER_STATE::MOVE_TO_BOSS:
 	{
-	
+		
+		
+			MoveReflection();
+			Attack();
+		
 
 	}
 

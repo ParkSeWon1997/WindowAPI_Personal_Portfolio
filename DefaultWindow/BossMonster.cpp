@@ -36,7 +36,7 @@ void BossMonster::Initialize()
 
 	// m_tInfo = { 700.f, 300.f, 80, 80 };
 
-	m_fHP = 1.f;
+	m_fHP = 200.f;
 
 	m_tFrame.dwSpeed = 200;
 	m_tFrame.dwTime = GetTickCount();
