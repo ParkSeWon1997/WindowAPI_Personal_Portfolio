@@ -35,7 +35,7 @@ void NPC::Initialize()
 int NPC::Update()
 {
 	//m_bIsHit = false;
-	Move();
+	//Move();
 	__super::Update_Rect();
 	return OBJ_NOEVENT;
 }
@@ -76,6 +76,7 @@ void NPC::Render(HDC hDC)
 
 void NPC::Release()
 {
+	CObjMgr::Get_Instance()->Delete_ID(SWORD, new DragonSword);
 }
 
 void NPC::Motion_Change()
@@ -105,7 +106,7 @@ void NPC::Motion_Change()
 
 void NPC::Create_Weapon()
 {
-	
+	CObjMgr::Get_Instance()->Delete_ID(SWORD, new DragonSword);
 	CObjMgr::Get_Instance()->Add_Object(SWORD, CAbstractFactory<DragonSword>::Create(m_tInfo.fX, m_tInfo.fY, 0));
 
 

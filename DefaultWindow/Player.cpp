@@ -104,7 +104,7 @@ int CPlayer::Update()
 	Key_Input();
 	nSoundCount++;
 
-	
+
 	//if (dwFrameTime + 500 < GetTickCount()) {
 	//dwFrameTime = GetTickCount();
 	//}
@@ -190,8 +190,8 @@ void CPlayer::Render(HDC hDC)
 
 	if (m_bIsHit)
 	{
-		g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Hit_Effect"), m_tInfo.fX , m_tInfo.fY , 30.f, 30.f);
-		g.DrawImage(PngMrg::Get_Instance()->Get_Image( L"Player_Hit"),0.f ,0.f , 1280.f, 800.f);
+		g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Hit_Effect"), m_tInfo.fX, m_tInfo.fY, 30.f, 30.f);
+		g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Hit"), 0.f, 0.f, 1280.f, 800.f);
 		//m_bIsHit = false;
 	}
 
@@ -219,28 +219,28 @@ void CPlayer::Key_Input()
 
 
 		if (CKeyMgr::Get_Instance()->Key_Pressing('A'))
+		{
+			m_eCurState = RUN;
+			CSoundMgr::Get_Instance()->PlaySound(L"step_lth1-sharedassets2.assets-325.wav", SOUND_PLAYER_WALK, g_fVolume);
+			if (LeftWallCheck)
 			{
-				m_eCurState = RUN;
-				CSoundMgr::Get_Instance()->PlaySound(L"step_lth1-sharedassets2.assets-325.wav", SOUND_PLAYER_WALK, g_fVolume);
-				if (LeftWallCheck)
-				{
 
-					m_tInfo.fX -= m_fSpeed;
-				}
-
+				m_tInfo.fX -= m_fSpeed;
 			}
-		
 
-			if (CKeyMgr::Get_Instance()->Key_Pressing('D'))
+		}
+
+
+		if (CKeyMgr::Get_Instance()->Key_Pressing('D'))
+		{
+			m_eCurState = RUN;
+			CSoundMgr::Get_Instance()->PlaySound(L"step_lth1-sharedassets2.assets-325.wav", SOUND_PLAYER_WALK, g_fVolume);
+			if (RightWallCheck)
 			{
-				m_eCurState = RUN;
-				CSoundMgr::Get_Instance()->PlaySound(L"step_lth1-sharedassets2.assets-325.wav", SOUND_PLAYER_WALK, g_fVolume);
-				if (RightWallCheck)
-				{
-					m_tInfo.fX += m_fSpeed;
-				}
+				m_tInfo.fX += m_fSpeed;
 			}
-		
+		}
+
 
 
 		if (CKeyMgr::Get_Instance()->Key_Pressing(VK_SPACE))
@@ -269,21 +269,22 @@ void CPlayer::Key_Input()
 
 		//NPC와 대화하기 용도
 		// 
-		
 
-		if (CCollisionMgr::CollisionRect_to_Rect(CObjMgr::Get_Instance()->Get_ObjList(ID_NPC, new NPC), this))
-		{
+
+
 			//NPC* srcNPC = new NPC;
-			if (CKeyMgr::Get_Instance()->Key_Up('F'))
+		if (CKeyMgr::Get_Instance()->Key_Down('F'))
+		{
+			if (CCollisionMgr::CollisionRect_to_Rect(CObjMgr::Get_Instance()->Get_ObjList(ID_NPC, new NPC), this))
 			{
 
 				dynamic_cast<NPC*>(CObjMgr::Get_Instance()->Get_ObjList(ID_NPC, new NPC))->Create_Weapon();
 
-
-
-
 			}
+
+
 		}
+
 
 
 
@@ -331,7 +332,7 @@ void CPlayer::Key_Input()
 			{
 				dynamic_cast<Sword*>(CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD))->AttachCollisionBox(m_tPosin.x, m_tPosin.y);
 			}
- 
+
 		}
 
 	}
@@ -340,9 +341,9 @@ void CPlayer::Key_Input()
 
 void CPlayer::Jump()
 {
-	
 
-	
+
+
 	switch (LineSC)
 	{
 
@@ -381,7 +382,7 @@ void CPlayer::Jump()
 		}
 		if (!m_bJump)
 		{
-		
+
 			m_tInfo.fY = fY - m_tInfo.fCY / 2;
 		}
 
@@ -416,7 +417,7 @@ void CPlayer::Jump()
 
 		auto qqqIter = EasyMapLindeMgr::Get_Instance()->Get_LineList();
 		auto testIter = EasyMapLindeMgr::Get_Instance()->Get_LineList()->begin();
-		
+
 		if (m_bJump)
 		{
 			m_tInfo.fY -= (m_fPower * m_fAccelTime) - (9.8f * m_fAccelTime * m_fAccelTime * 0.5f);
@@ -449,17 +450,17 @@ void CPlayer::Jump()
 		{
 			m_tInfo.fY = fY - m_tInfo.fCY / 2;
 		}
-		
+
 		auto SaveIter = iterLine;
-		
+
 		if (m_tInfo.fX >= (*SaveIter)->Get_Info().tLPoint.fX + 10) {
 			LeftWallCheck = true;
 		}
 		else {
 			LeftWallCheck = false;
 		}
-		
-		
+
+
 		//내가 원하는 지형의 좌표를 얻기 위한 코드
 		//나중에 좀더 손 봐야 할 듯
 		for (size_t i = 0; i < 2; i++)
@@ -467,7 +468,7 @@ void CPlayer::Jump()
 			iterLine++;
 			SaveIter = iterLine;
 		}
-		
+
 
 		if (m_tInfo.fX <= (*SaveIter)->Get_Info().tRPoint.fX - 20) {
 			RightWallCheck = true;
@@ -489,7 +490,7 @@ void CPlayer::Jump()
 	case SCENEID::SC_BOSS:
 	{
 		float	fY(0.f);
-		bool bBossLineCol = BossMapLineMgr::Get_Instance()->Collision_Line(&fY, m_tInfo.fX, m_tInfo.fY,m_tInfo.fCY);
+		bool bBossLineCol = BossMapLineMgr::Get_Instance()->Collision_Line(&fY, m_tInfo.fX, m_tInfo.fY, m_tInfo.fCY);
 		auto NowLine = BossMapLineMgr::Get_Instance()->Get_TargetLine();
 		auto iterLine = BossMapLineMgr::Get_Instance()->Get_LineList();
 		if (m_bJump)
@@ -503,13 +504,13 @@ void CPlayer::Jump()
 			{
 				m_bJump = false;
 				m_fAccelTime = 0.f;
-				
-				m_tInfo.fY = fY - m_tInfo.fCY /2;
+
+				m_tInfo.fY = fY - m_tInfo.fCY / 2;
 
 			}
-		
+
 		}
-		
+
 		else if (fY > m_tInfo.fY + m_tInfo.fCY / 2 || !bBossLineCol)
 		{
 			m_bJump = false;
@@ -524,11 +525,11 @@ void CPlayer::Jump()
 		{
 			m_tInfo.fY = fY - m_tInfo.fCY / 2;
 		}
-		
+
 
 		//왼쪽 벽(+10)보다 클 때만 움직일 수 있게, 아니면 못 움직이게
-		
-		if (m_tInfo.fX>= iterLine->front()->Get_Info().tLPoint.fX +10) {
+
+		if (m_tInfo.fX >= iterLine->front()->Get_Info().tLPoint.fX + 10) {
 			LeftWallCheck = true;
 		}
 		else {
@@ -557,12 +558,12 @@ void CPlayer::Offset()
 
 
 	int		iOffSet = WINCX >> 1;
-	
+
 	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
-	
+
 	if (iOffSet > m_tInfo.fX + iScrollX)
 		CScrollMgr::Get_Instance()->Set_ScrollX(m_fSpeed);
-	
+
 	if (iOffSet < m_tInfo.fX + iScrollX)
 		CScrollMgr::Get_Instance()->Set_ScrollX(-m_fSpeed);
 
@@ -685,7 +686,7 @@ void CPlayer::WeaponChage()
 		else
 		{
 
-			CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD)->Set_Pos(m_tPosin.x, m_tPosin.y );
+			CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD)->Set_Pos(m_tPosin.x, m_tPosin.y);
 			CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD)->Set_Angle(m_fAngle);
 
 		}
@@ -733,7 +734,7 @@ bool CPlayer::Posin_half_Check()
 
 void CPlayer::Knock_back(float _Target_X)
 {
-	if (_Target_X>=m_tInfo.fX) {
+	if (_Target_X >= m_tInfo.fX) {
 		m_tInfo.fX -= 10.0f;
 
 	}

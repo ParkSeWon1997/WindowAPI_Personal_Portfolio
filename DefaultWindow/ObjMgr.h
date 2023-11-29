@@ -25,6 +25,7 @@ public:
 	void	Release();
 
 	void	Delete_ID(OBJID eID);
+	void	Delete_ID(OBJID eID,CObj* _pObjType);
 
 private:
 	list<CObj*>	m_ObjList[OBJ_END];

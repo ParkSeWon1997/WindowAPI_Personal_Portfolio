@@ -37,6 +37,9 @@ void CCollisionMgr::Collision_Rect(list<CObj*> Dst, list<CObj*> Src)
 
 bool CCollisionMgr::CollisionRect_to_Rect(CObj* _tmp, CObj* _Src)
 {
+	if(_tmp==nullptr || _Src==nullptr)
+		return false;
+
 	RECT	rc{};
 
 	return IntersectRect(&rc, &_tmp->Get_Rect(), &_Src->Get_Rect());

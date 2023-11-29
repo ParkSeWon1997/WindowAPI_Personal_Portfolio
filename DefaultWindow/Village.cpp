@@ -132,6 +132,7 @@ void Village::Release()
 
 	CLineMgr::Get_Instance()->Destroy_Instance();
 	CObjMgr::Get_Instance()->Delete_ID(ENTRY);
+	CObjMgr::Get_Instance()->Delete_ID(ID_NPC);
 	CSoundMgr::Get_Instance()->StopSound(SOUND_BGM);
 	//CPlayer::Destroy_Instance();
 

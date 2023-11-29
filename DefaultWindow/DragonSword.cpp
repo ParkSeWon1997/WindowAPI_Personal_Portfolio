@@ -8,7 +8,7 @@
 
 DragonSword::DragonSword()
 {
-    m_fDropSpeed = 5.0f;
+    m_fDropSpeed = 20.0f;
     
 }
 

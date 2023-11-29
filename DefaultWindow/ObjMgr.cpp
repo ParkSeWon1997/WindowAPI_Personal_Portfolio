@@ -28,8 +28,11 @@ CObj* CObjMgr::Get_ObjList(OBJID eID)
 //m_ObjList의 eID값을 가지는 객체를 2번째 인자값과 비교해서 찾은 객체를 넘겨줌 단, 인자값은 m_ObjList의 타입과 상속관계에 있어야 하고 m_ObjList의 타입 클래스에 가상 함수가 있어야 함
 CObj* CObjMgr::Get_ObjList(OBJID eID, CObj* _pCOjType)
 {
-	if (m_ObjList[eID].empty()|| _pCOjType==nullptr)
+	if (m_ObjList[eID].empty() || _pCOjType == nullptr)
+	{
+		delete _pCOjType;
 		return nullptr;
+	}
 	for (CObj* pObj : m_ObjList[eID])
 	{
 		if (typeid(*pObj) == typeid(*_pCOjType))
@@ -187,4 +190,24 @@ void CObjMgr::Delete_ID(OBJID eID)
 		Safe_Delete(iter);
 
 	m_ObjList[eID].clear();
+}
+
+void CObjMgr::Delete_ID(OBJID eID, CObj* _pObjType)
+{
+	if (m_ObjList[eID].empty() || _pObjType == nullptr)
+	{
+		delete _pObjType;
+		return;
+	}
+	for (auto& iter = m_ObjList[eID].begin(); iter != m_ObjList[eID].end();)
+	{
+		if (typeid(**iter) == typeid(*_pObjType))
+		{
+			delete _pObjType;
+			Safe_Delete(*iter);
+			iter = m_ObjList[eID].erase(iter);
+		}
+		else
+			++iter;
+	}
 }
