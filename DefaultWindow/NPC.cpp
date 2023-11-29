@@ -24,7 +24,7 @@ void NPC::Initialize()
 	
 	m_tInfo.fCX = 200.f;
 	m_tInfo.fCY = 192.f;
-
+	m_fSpeed = 3.0f;
 	m_tFrame.dwSpeed = 200;
 	m_tFrame.dwTime = GetTickCount();
 
@@ -35,6 +35,7 @@ void NPC::Initialize()
 int NPC::Update()
 {
 	//m_bIsHit = false;
+	Move();
 	__super::Update_Rect();
 	return OBJ_NOEVENT;
 }
@@ -105,8 +106,21 @@ void NPC::Motion_Change()
 void NPC::Create_Weapon()
 {
 	
-	CObjMgr::Get_Instance()->Add_Object(SWORD, CAbstractFactory<DragonSword>::Create(300.f, 400.f, 0));
+	CObjMgr::Get_Instance()->Add_Object(SWORD, CAbstractFactory<DragonSword>::Create(m_tInfo.fX, m_tInfo.fY, 0));
 
 
 
+}
+
+void NPC::Move()
+{
+	if (m_tInfo.fX >= 1280.f)
+	{
+		mDirX = -1.0f;
+	}
+	else if (m_tInfo.fX <= 0.f)
+	{
+		mDirX = 1.0f;
+	}
+	m_tInfo.fX = m_tInfo.fX + mDirX * m_fSpeed;
 }

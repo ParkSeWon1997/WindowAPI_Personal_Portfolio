@@ -26,15 +26,16 @@ public:
 
 	void Create_Weapon();
 
-
+	void Move();
 
 
 private:
 
 	bool	IsInteracted;
 
-
-
+	//마을 돌아다니는 용도
+	float	mDirX = 1.0f;
+	float	mDirY = 1.0f;
 	ImageSTATE			m_ePreState = PS_END;
 	ImageSTATE			m_eCurState = PS_END;
 
