@@ -19,7 +19,7 @@ void PlayerBullet::Initialize()
 	m_fSpeed = 10.f;
 
 
-	m_fDamage = 10.f;
+	m_fDamage = 15.f;
 	m_fHP = 1.f;
 	m_eRender = GAMEOBJECT;
 }

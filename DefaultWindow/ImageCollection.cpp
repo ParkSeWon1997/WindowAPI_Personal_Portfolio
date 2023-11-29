@@ -121,7 +121,11 @@ ImageCollection::ImageCollection()
 	//HitEffect
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Effect/SummonBallFX05_Size_12.png", L"Hit_Effect");
 
+	//NPC
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/NPC/NPC_1.0.0.png", L"NPC_Giant");
 
+	//F ¹öÆ°
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Button/Keyboard_F.png", L"F_Button");
 }
 
 ImageCollection::~ImageCollection()

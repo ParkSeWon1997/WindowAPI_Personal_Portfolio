@@ -193,6 +193,9 @@
     <Filter Include="01. Obj\14. Item">
       <UniqueIdentifier>{7d636bc7-53f4-4d81-a055-d30c13945820}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Obj\15. NPC">
+      <UniqueIdentifier>{baf84f21-2009-410f-859b-b861bedc360c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -363,9 +366,6 @@
     <ClInclude Include="PlayerWeaponBox.h">
       <Filter>01. Obj\11. UI\01. PlayerUI</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionBox.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="HpBar.h">
       <Filter>01. Obj\11. UI\01. PlayerUI</Filter>
     </ClInclude>
@@ -398,6 +398,12 @@
     </ClInclude>
     <ClInclude Include="HpPotion.h">
       <Filter>01. Obj\14. Item</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionBox.h">
+      <Filter>01. Obj\13. CollisionBox</Filter>
+    </ClInclude>
+    <ClInclude Include="NPC.h">
+      <Filter>01. Obj\15. NPC</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -554,9 +560,6 @@
     <ClCompile Include="PlayerWeaponBox.cpp">
       <Filter>01. Obj\11. UI\01. PlayerUI</Filter>
     </ClCompile>
-    <ClCompile Include="CollisionBox.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="HpBar.cpp">
       <Filter>01. Obj\11. UI\01. PlayerUI</Filter>
     </ClCompile>
@@ -589,6 +592,12 @@
     </ClCompile>
     <ClCompile Include="HpPotion.cpp">
       <Filter>01. Obj\14. Item</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionBox.cpp">
+      <Filter>01. Obj\13. CollisionBox</Filter>
+    </ClCompile>
+    <ClCompile Include="NPC.cpp">
+      <Filter>01. Obj\15. NPC</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

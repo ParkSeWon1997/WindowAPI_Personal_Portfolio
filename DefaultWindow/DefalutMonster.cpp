@@ -36,7 +36,7 @@ void DefalutMonster::Initialize()
 
 	m_tFrame.dwSpeed = 200;
 	m_tFrame.dwTime = GetTickCount();
-
+	m_eCurState = IDLE;
 	m_pStateKey = L"Defalut_Ice";
     m_eRender = GAMEOBJECT;
 }
@@ -150,11 +150,12 @@ void DefalutMonster::Default_Pattern()
 		
 	}
 	else {
-		m_eCurState = IDLE;
+	
 		
 
-		if (FrameCheck>50) {
+		if (FrameCheck>100) {
 
+			m_eCurState = ATTACK;
 			CObjMgr::Get_Instance()->Add_Object(OBJID::SUB_MONSTER_BULLET, Fire(DIR_LEFT));
 			CObjMgr::Get_Instance()->Add_Object(OBJID::SUB_MONSTER_BULLET, Fire(DIR_RIGHT));
 			CObjMgr::Get_Instance()->Add_Object(OBJID::SUB_MONSTER_BULLET, Fire(DIR_UP));
@@ -167,7 +168,8 @@ void DefalutMonster::Default_Pattern()
 			FrameCheck = 0;
 			
 		}
-
+		else 
+			m_eCurState = IDLE;
 
 		
 

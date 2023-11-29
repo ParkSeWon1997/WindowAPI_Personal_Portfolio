@@ -187,6 +187,7 @@
     <ClInclude Include="MyMenu.h" />
     <ClInclude Include="MyPng.h" />
     <ClInclude Include="Normal.h" />
+    <ClInclude Include="NPC.h" />
     <ClInclude Include="Obj.h" />
     <ClInclude Include="ObjMgr.h" />
     <ClInclude Include="Player.h" />
@@ -254,6 +255,7 @@
     <ClCompile Include="MyMenu.cpp" />
     <ClCompile Include="MyPng.cpp" />
     <ClCompile Include="Normal.cpp" />
+    <ClCompile Include="NPC.cpp" />
     <ClCompile Include="Obj.cpp" />
     <ClCompile Include="ObjMgr.cpp" />
     <ClCompile Include="Player.cpp" />

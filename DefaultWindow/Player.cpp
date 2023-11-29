@@ -62,7 +62,7 @@ void CPlayer::Initialize()
 
 	LeftWallCheck = false;
 	RightWallCheck = false;
-	this->m_fHP = 300.f;
+	this->m_fHP = 100.f;
 	this->m_fDamage = 10.f;
 	m_bDead = false;
 	m_tFrame.dwSpeed = 200;
@@ -175,7 +175,7 @@ void CPlayer::Render(HDC hDC)
 				m_tInfo.fCX, m_tInfo.fCY),
 			m_tInfo.fCX * m_tFrame.iFrameStart,
 			m_tInfo.fCY * m_tFrame.iMotion,
-			64, 64, UnitPixel);
+			m_tInfo.fCX, m_tInfo.fCY, UnitPixel);
 	}
 	else {
 		g.DrawImage(img, destinationPoints, 3, m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, 64, 64, UnitPixel);
