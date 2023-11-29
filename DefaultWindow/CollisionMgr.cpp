@@ -64,6 +64,7 @@ void CCollisionMgr::DoDamageObj_to_Obj(list<CObj*> Dst, list<CObj*> Src)
 				{
 
 					DstList->TakeDamage(SrcList->GetDamage());
+					DstList->Set_IsHit(true);
 					CSoundMgr::Get_Instance()->PlaySound(L"Hit_Player-resources.assets-1729.wav", SOUND_HIT, g_fVolume);
 					if (DstList->Get_HP() <= 0)
 					{
@@ -86,6 +87,7 @@ void CCollisionMgr::DoDamageObj_to_Obj(CObj* _Player, list<CObj*> Src)
 				{
 
 					_Player->TakeDamage(SrcList->GetDamage());
+					_Player->Set_IsHit(true);
 					CSoundMgr::Get_Instance()->PlaySound(L"Hit_Player-resources.assets-1729.wav", SOUND_HIT, g_fVolume);
 					if (_Player->Get_HP() <= 0)
 					{

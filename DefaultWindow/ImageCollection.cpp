@@ -119,7 +119,7 @@ ImageCollection::ImageCollection()
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/Hp/AED_Motion.png", L"Item_HP");
 
 	//HitEffect
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Effect/SummonBallFX05.png", L"Hit_Effect");
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Effect/SummonBallFX05_Size_12.png", L"Hit_Effect");
 
 
 }

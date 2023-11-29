@@ -98,7 +98,7 @@ int CPlayer::Update()
 	Key_Input();
 	nSoundCount++;
 
-
+	m_bIsHit = false;
 	__super::Update_Rect();
 
 	return OBJ_NOEVENT;
@@ -178,6 +178,11 @@ void CPlayer::Render(HDC hDC)
 	}
 
 
+	if (m_bIsHit)
+	{
+		g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Hit_Effect"), m_tInfo.fX , m_tInfo.fY , 30.f, 30.f);
+		//m_bIsHit = false;
+	}
 
 
 

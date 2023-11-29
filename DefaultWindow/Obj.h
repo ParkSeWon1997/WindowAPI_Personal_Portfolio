@@ -64,7 +64,7 @@ public:
 	float			Get_Target_InitY() {	return m_fTargetInitY;}
 	void			Set_Target_InitX(float _Target_X) { m_fTargetInitX = _Target_X; }
 	void			Set_Target_InitY(float _Target_Y) { m_fTargetInitY = _Target_Y; }
-
+	void			Set_IsHit(bool _IsHit) { m_bIsHit = _IsHit; }
 public:
 	virtual void	Initialize()	PURE;
 	virtual int		Update()		PURE;
@@ -95,8 +95,8 @@ protected:
 	float m_fTargetInitX;
 	float m_fTargetInitY;
 	bool  m_IsGround;
-
 	bool m_bIsHit;
+
 
 	float		m_fSpeed;
 	bool		m_bDead;
