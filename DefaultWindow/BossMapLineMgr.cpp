@@ -18,7 +18,7 @@ void BossMapLineMgr::Initialize(void)
 	LINEPOINT		tLinePoint[18]
 	{
 		{ 0.f, 670.f },	  //¹Ù´Ú
-		{ 2000.f, 670.f },// ¹Ù´Ú
+		{ 1210.f, 670.f },// ¹Ù´Ú
 
 		{225.f,536.f},		//¿ÞÂÊ ¸Ç ¾Æ·¡
 		{ 349.f, 536.f },	//¿ÞÂÊ ¸Ç ¾Æ·¡
@@ -54,8 +54,8 @@ void BossMapLineMgr::Initialize(void)
 
 void BossMapLineMgr::Render(HDC hDC)
 {
-	//for (auto& iter : m_LineList)
-	//	iter->Render(hDC);
+	for (auto& iter : m_LineList)
+		iter->Render(hDC);
 }
 
 void BossMapLineMgr::Release()
@@ -83,6 +83,7 @@ bool BossMapLineMgr::Collision_Line(float* pHeight, float& _fX,float _fY, float 
 					{
 						pTargetLine = iter;
 						m_pTargetLine= iter;
+						
 					}
 				}
 				else {

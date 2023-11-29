@@ -208,18 +208,6 @@ bool BossMonster::IsSubMonsterAlive()
 void BossMonster::CheckSpearOverrWindow()
 {
 
-	if (CObjMgr::Get_Instance()->Get_ObjList(BOSS_BULLET))
-	{
-		if (CObjMgr::Get_Instance()->Get_ObjList(BOSS_BULLET)->Get_Info().fX > WINCX ||
-			CObjMgr::Get_Instance()->Get_ObjList(BOSS_BULLET)->Get_Info().fX < 0 ||
-			CObjMgr::Get_Instance()->Get_ObjList(BOSS_BULLET)->Get_Info().fY > WINCY ||
-			CObjMgr::Get_Instance()->Get_ObjList(BOSS_BULLET)->Get_Info().fY < 0)
-		{
-			CObjMgr::Get_Instance()->Get_ObjList(BOSS_BULLET)->Set_Dead();
-		}
-
-	}
-
 }
 
 

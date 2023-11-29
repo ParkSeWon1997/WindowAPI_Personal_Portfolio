@@ -90,7 +90,8 @@ private:
 	float				m_fGravity = 9.8f;
 
 
-
+	bool				LeftWallCheck;
+	bool				RightWallCheck;
 	bool				IsGround;
 
 	int					nSoundCount;

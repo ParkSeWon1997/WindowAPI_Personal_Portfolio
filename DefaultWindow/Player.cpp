@@ -60,8 +60,9 @@ void CPlayer::Initialize()
 	m_fDiagonal = 20.f;
 	m_fPower = 17.f;
 
-
-	this->m_fHP = 100.f;
+	LeftWallCheck = false;
+	RightWallCheck = false;
+	this->m_fHP = 300.f;
 	this->m_fDamage = 10.f;
 	m_bDead = false;
 	m_tFrame.dwSpeed = 200;
@@ -212,21 +213,29 @@ void CPlayer::Key_Input()
 		m_eCurState = IDLE;
 
 
-
 		if (CKeyMgr::Get_Instance()->Key_Pressing('A'))
-		{
-			m_eCurState = RUN;
-			CSoundMgr::Get_Instance()->PlaySound(L"step_lth1-sharedassets2.assets-325.wav", SOUND_PLAYER_WALK, g_fVolume);
-			m_tInfo.fX -= m_fSpeed;
+			{
+				m_eCurState = RUN;
+				CSoundMgr::Get_Instance()->PlaySound(L"step_lth1-sharedassets2.assets-325.wav", SOUND_PLAYER_WALK, g_fVolume);
+				if (LeftWallCheck)
+				{
 
-		}
+					m_tInfo.fX -= m_fSpeed;
+				}
 
-		if (CKeyMgr::Get_Instance()->Key_Pressing('D'))
-		{
-			m_eCurState = RUN;
-			CSoundMgr::Get_Instance()->PlaySound(L"step_lth1-sharedassets2.assets-325.wav", SOUND_PLAYER_WALK, g_fVolume);
-			m_tInfo.fX += m_fSpeed;
-		}
+			}
+		
+
+			if (CKeyMgr::Get_Instance()->Key_Pressing('D'))
+			{
+				m_eCurState = RUN;
+				CSoundMgr::Get_Instance()->PlaySound(L"step_lth1-sharedassets2.assets-325.wav", SOUND_PLAYER_WALK, g_fVolume);
+				if (RightWallCheck)
+				{
+					m_tInfo.fX += m_fSpeed;
+				}
+			}
+		
 
 
 		if (CKeyMgr::Get_Instance()->Key_Pressing(VK_SPACE))
@@ -309,13 +318,15 @@ void CPlayer::Jump()
 {
 	
 
-	float	fY(0.f);
+	
 	switch (LineSC)
 	{
 
 	case SCENEID::SC_VILLAGE:
 	{
+		float	fY(0.f);
 		bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(&fY, m_tInfo.fX, m_tInfo.fY, m_tInfo.fCY);
+		auto iterLine = CLineMgr::Get_Instance()->Get_LineList();
 		if (m_bJump)
 		{
 			m_tInfo.fY -= (m_fPower * m_fAccelTime) - (9.8f * m_fAccelTime * m_fAccelTime * 0.5f);
@@ -328,7 +339,7 @@ void CPlayer::Jump()
 				m_bJump = false;
 				m_fAccelTime = 0.f;
 
-				m_tInfo.fY = fY - m_tInfo.fCY / 2;
+				m_tInfo.fY = (fY - m_tInfo.fCY / 2);
 
 			}
 
@@ -352,12 +363,32 @@ void CPlayer::Jump()
 
 
 
+		if (m_tInfo.fX >= iterLine->front()->Get_Info().tLPoint.fX + 10) {
+			LeftWallCheck = true;
+		}
+		else {
+			LeftWallCheck = false;
+		}
+
+
+
+
+		if (m_tInfo.fX <= iterLine->front()->Get_Info().tRPoint.fX - 20) {
+			RightWallCheck = true;
+		}
+		else {
+			RightWallCheck = false;
+		}
+
 
 		break;
 	}
 	case SCENEID::SC_NORMAL:
 	{
+		float	fY(0.f);
 		bool bEasyLineCol = EasyMapLindeMgr::Get_Instance()->Collision_Line(&fY, m_tInfo.fX, m_tInfo.fCY);
+		auto iterLine = EasyMapLindeMgr::Get_Instance()->Get_LineList()->begin();
+		
 		if (m_bJump)
 		{
 			m_tInfo.fY -= (m_fPower * m_fAccelTime) - (9.8f * m_fAccelTime * m_fAccelTime * 0.5f);
@@ -391,11 +422,43 @@ void CPlayer::Jump()
 			m_tInfo.fY = fY - m_tInfo.fCY / 2;
 		}
 
+
+		
+		auto SaveIter = iterLine;
+		
+		if (m_tInfo.fX >= (*SaveIter)->Get_Info().tLPoint.fX + 10) {
+			LeftWallCheck = true;
+		}
+		else {
+			LeftWallCheck = false;
+		}
+		
+
+		//내가 원하는 지형의 좌표를 얻기 위한 코드
+		for (size_t i = 0; i < 2; i++)
+		{
+			iterLine++;
+			SaveIter = iterLine;
+		}
+		
+		//iterLine[2]
+		//iterLine[2].front()->Get_Info().tRPoint.fX;
+		if (m_tInfo.fX <= (*SaveIter)->Get_Info().tRPoint.fX - 20) {
+			RightWallCheck = true;
+			//iterLine== EasyMapLindeMgr::Get_Instance()->Get_LineList()->begin();
+		}
+		else {
+			RightWallCheck = false;
+		}
+
+
+
 		break;
 	}
 
 	case SCENEID::SC_BOSS:
 	{
+		float	fY(0.f);
 		bool bBossLineCol = BossMapLineMgr::Get_Instance()->Collision_Line(&fY, m_tInfo.fX, m_tInfo.fY,m_tInfo.fCY);
 		auto NowLine = BossMapLineMgr::Get_Instance()->Get_TargetLine();
 		auto iterLine = BossMapLineMgr::Get_Instance()->Get_LineList();
@@ -432,6 +495,23 @@ void CPlayer::Jump()
 			m_tInfo.fY = fY - m_tInfo.fCY / 2;
 		}
 		
+
+		//왼쪽 벽(+10)보다 클 때만 움직일 수 있게, 아니면 못 움직이게
+		
+		if (m_tInfo.fX>= iterLine->front()->Get_Info().tLPoint.fX +10) {
+			LeftWallCheck = true;
+		}
+		else {
+			LeftWallCheck = false;
+		}
+
+		//오른쪽 벽(-10)보다 작을 때만 움직일 수 있게, 아니면 못 움직이게
+		if (m_tInfo.fX <= iterLine->front()->Get_Info().tRPoint.fX - 20) {
+			RightWallCheck = true;
+		}
+		else {
+			RightWallCheck = false;
+		}
 
 		break;
 	}

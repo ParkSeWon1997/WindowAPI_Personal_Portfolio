@@ -35,6 +35,14 @@ int MonsterIceSpear::Update()
 
 void MonsterIceSpear::Late_Update()
 {
+
+	if (m_tInfo.fX > WINCX ||
+		m_tInfo.fX < 0 ||
+		m_tInfo.fY > WINCY ||
+		m_tInfo.fY < 0)
+	{
+		m_bDead = true;
+	}
 }
 
 void MonsterIceSpear::Render(HDC hDC)

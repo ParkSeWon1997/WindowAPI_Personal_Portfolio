@@ -67,7 +67,7 @@ int SubMonster::Update()
 
 void SubMonster::Late_Update()
 {
-	CheckOverrWindow();
+	//CheckOverrWindow();
 
 	if (dynamic_cast<BossMonster*>(CObjMgr::Get_Instance()->Get_ObjList(BOSS_MONSTER))) {
 		SubMonster_pattern();

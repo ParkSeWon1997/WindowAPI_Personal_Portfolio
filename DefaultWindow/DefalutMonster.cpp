@@ -48,7 +48,7 @@ int DefalutMonster::Update()
         return OBJ_DEAD;
 	}
 
-
+	Move();
 	FrameCheck++;
 
 
@@ -151,7 +151,7 @@ void DefalutMonster::Default_Pattern()
 	}
 	else {
 		m_eCurState = IDLE;
-		//Move();
+		
 
 		if (FrameCheck>50) {
 
@@ -177,18 +177,18 @@ void DefalutMonster::Default_Pattern()
 
 void DefalutMonster::Move()
 {
-	
-	if (m_tInfo.fX >= WINCX-100)
+	if (m_tInfo.fX < WINCX)
 	{
 		m_tInfo.fX -= m_fSpeed;
 	}
-	else
+	if (m_tInfo.fX > 0)
 	{
 		m_tInfo.fX += m_fSpeed;
 	}
-	//else if (m_tInfo.fX <= 0)
+	//	m_tInfo.fY > WINCY ||
+	//	m_tInfo.fY < 0)
 	//{
-	//	m_tInfo.fX += m_fSpeed;
+	//	m_bDead = true;
 	//}
 
 	
