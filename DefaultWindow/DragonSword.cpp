@@ -76,7 +76,7 @@ void DragonSword::Touch_To_Player()
 void DragonSword::NotYetAttachPlayer()
 {
 	float	fY(0.f);
-	bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(&fY, m_tInfo.fX, m_tInfo.fY, m_tInfo.fCY);
+	bool bLineCol = CLineMgr::Get_Instance()->DropItemCollision_Line(&fY, m_tInfo.fX, m_tInfo.fY, m_tInfo.fCY);
     if (m_bJump)
     {
         m_tInfo.fX += m_fDropSpeed;
