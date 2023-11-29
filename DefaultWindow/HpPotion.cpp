@@ -121,7 +121,7 @@ void HpPotion::DropMove()
 
 	if (m_bJump)
 	{
-		m_tInfo.fY -= (m_fPower * m_fAccelTime) - (9.8f * m_fAccelTime * m_fAccelTime * 0.5f);
+		m_tInfo.fY -= (m_fPower * m_fAccelTime) - (9.0f * m_fAccelTime * m_fAccelTime * 0.5f);
 
 		m_fAccelTime += 0.2f;
 
