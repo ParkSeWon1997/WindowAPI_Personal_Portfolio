@@ -96,6 +96,7 @@ protected:
 	float m_fTargetInitY;
 	bool  m_IsGround;
 
+	bool m_bIsHit;
 
 	float		m_fSpeed;
 	bool		m_bDead;

@@ -54,20 +54,57 @@ void Sword::Late_Update()
 void Sword::Render(HDC hDC)
 {
 	Graphics g(hDC);
-	g.TranslateTransform(m_tInfo.fX, m_tInfo.fY);
-	g.RotateTransform(m_RotateAngle);
-	g.TranslateTransform(-m_tInfo.fX, -m_tInfo.fY);
+	Point destinationPoints[] = {
+		Point((int)(m_tInfo.fX + m_tInfo.fCX * 0.5) ,
+			   (int)(m_tInfo.fY - m_tInfo.fCY * 0.5)),   // destination for upper-left point of original
+		Point((int)(m_tInfo.fX - m_tInfo.fCX * 0.5),
+			  (int)(m_tInfo.fY - m_tInfo.fCY * 0.5)),  // destination for upper-right point of original
+		Point((int)(m_tInfo.fX + m_tInfo.fCX * 0.5),
+			   (int)(m_tInfo.fY + m_tInfo.fCY * 0.5)) };  // destination for lower-left point of original
 
 
-	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Sword_FireDragon"), (m_tInfo.fX - m_tInfo.fCX * 0.5), (m_tInfo.fY - m_tInfo.fCY * 0.5), m_tInfo.fCX, m_tInfo.fCY);
+
+	if (dynamic_cast<CPlayer*>(CObjMgr::Get_Instance()->Get_Player())->Posin_half_Check())
+	{
+		g.TranslateTransform(m_tInfo.fX, m_tInfo.fY);
+		g.RotateTransform(-m_RotateAngle);
+		g.TranslateTransform(-m_tInfo.fX, -m_tInfo.fY);
+		g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Sword_FireDragon"),
+			(m_tInfo.fX - m_tInfo.fCX * 0.5),
+			(m_tInfo.fY - m_tInfo.fCY * 0.5),
+			m_tInfo.fCX, m_tInfo.fCY);
+	}
+	else
+	{
+		g.TranslateTransform(m_tInfo.fX, m_tInfo.fY);
+		g.RotateTransform(m_RotateAngle);
+		g.TranslateTransform(-m_tInfo.fX, -m_tInfo.fY);
+		g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Sword_FireDragon"),
+			(m_tInfo.fX - m_tInfo.fCX * 0.5),
+			(m_tInfo.fY - m_tInfo.fCY * 0.5),
+			m_tInfo.fCX, m_tInfo.fCY);
+
+		//g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Sword_FireDragon"), destinationPoints, 3, m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, m_tInfo.fCX, m_tInfo.fCY, UnitPixel);
+	}
+
+
+	//g.TranslateTransform(m_tInfo.fX, m_tInfo.fY);
+	//g.RotateTransform(m_RotateAngle);
+	//g.TranslateTransform(-m_tInfo.fX, -m_tInfo.fY);
+	//
+	//
+	//
+	//
+	//
+	//g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Sword_FireDragon"), (m_tInfo.fX - m_tInfo.fCX * 0.5), (m_tInfo.fY - m_tInfo.fCY * 0.5), m_tInfo.fCX, m_tInfo.fCY);
 
 
 
-	Rectangle(hDC,
-		m_tRect.left,
-		m_tRect.top,
-		m_tRect.right,
-		m_tRect.bottom);
+	//Rectangle(hDC,
+	//	m_tRect.left,
+	//	m_tRect.top,
+	//	m_tRect.right,
+	//	m_tRect.bottom);
 
 
 }
@@ -80,7 +117,7 @@ void Sword::Release()
 void Sword::AttachCollisionBox(float _X, float _Y)
 {
 	if (CollisionBoxQue[0] == nullptr) {
-		CObjMgr::Get_Instance()->Add_Object(COLLISIONBOX, CAbstractFactory<CollisionBox>::Create(SwordEND.x, SwordEND.y, m_tInfo.fCX, m_tInfo.fCY, 0));
+		CObjMgr::Get_Instance()->Add_Object(COLLISIONBOX, CAbstractFactory<CollisionBox>::Create(SwordEND.x, SwordEND.y, m_tInfo.fCX, m_tInfo.fCY, m_fAngle));
 		CollisionBoxQue[0] = CObjMgr::Get_Instance()->Get_ObjList(COLLISIONBOX);
 	}
 

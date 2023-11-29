@@ -36,6 +36,7 @@ public:
 		{
 			CObj*		pObj = new T;
 			pObj->Initialize();
+			pObj->Set_Angle(_Dumy);
 			pObj->Set_Info(_fX, _fY, _fCX, _fCY);
 
 			return pObj;
