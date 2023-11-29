@@ -24,6 +24,11 @@
 #include"PlayerWeaponBox.h"
 #include "EasyMapLindeMgr.h"
 #include "BossMapLineMgr.h"
+#include "CollisionMgr.h"
+
+
+//OBJ
+#include "NPC.h"
 
 
 
@@ -262,6 +267,25 @@ void CPlayer::Key_Input()
 		}
 
 
+		//NPC와 대화하기 용도
+		// 
+		
+
+		if (CCollisionMgr::CollisionRect_to_Rect(CObjMgr::Get_Instance()->Get_ObjList(ID_NPC, new NPC), this))
+		{
+			//NPC* srcNPC = new NPC;
+			if (CKeyMgr::Get_Instance()->Key_Up('F'))
+			{
+
+				dynamic_cast<NPC*>(CObjMgr::Get_Instance()->Get_ObjList(ID_NPC, new NPC))->Create_Weapon();
+
+
+
+
+			}
+		}
+
+
 
 
 
@@ -274,16 +298,16 @@ void CPlayer::Key_Input()
 			//실행도중 해당 함수를 실행하려고 할 때 동일한 OBJID에 Set_ImageKey()함수가 없으니 오류가 남 ( Get_ObjList()는 OBJID의 front()만 반환하고 있음 )
 			//Get_ObjList()의 구현부를 손 봐야 함
 			dynamic_cast<PlayerWeaponBox*>(CObjMgr::Get_Instance()->Get_ObjList(PLAYER_WEAPON_BOX))->Set_ImageKey(L"Player_Gun_Rusiian");
-			m_eWeaponMode = CPlayer::GUN;
+			m_eWeaponMode = PLAYER_GUN;
 			CObjMgr::Get_Instance()->Delete_ID(OBJID::SWORD);
-			m_pWeaponList[CPlayer::SWORD] = nullptr;
+			m_pWeaponList[PLAYER_SWORD] = nullptr;
 		}
 		if (CKeyMgr::Get_Instance()->Key_Down('1'))
 		{
 			dynamic_cast<PlayerWeaponBox*>(CObjMgr::Get_Instance()->Get_ObjList(PLAYER_WEAPON_BOX))->Set_ImageKey(L"Player_Sword_FireDragon");
-			m_eWeaponMode = CPlayer::SWORD;
+			m_eWeaponMode = PLAYER_SWORD;
 			CObjMgr::Get_Instance()->Delete_ID(OBJID::GUN);
-			m_pWeaponList[CPlayer::GUN] = nullptr;
+			m_pWeaponList[PLAYER_GUN] = nullptr;
 
 		}
 		if (CKeyMgr::Get_Instance()->Key_Pressing('0'))
@@ -299,11 +323,11 @@ void CPlayer::Key_Input()
 		//if (CKeyMgr::Get_Instance()->Key_Down(VK_LBUTTON))
 		if (CKeyMgr::Get_Instance()->Key_Down('Q'))
 		{
-			if (m_eWeaponMode == CPlayer::GUN)
+			if (m_eWeaponMode == PLAYER_GUN)
 			{
 				dynamic_cast<Gun*>(CObjMgr::Get_Instance()->Get_ObjList(OBJID::GUN))->FIre(true);
 			}
-			if (m_eWeaponMode == CPlayer::SWORD)
+			if (m_eWeaponMode == PLAYER_SWORD)
 			{
 				dynamic_cast<Sword*>(CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD))->AttachCollisionBox(m_tPosin.x, m_tPosin.y);
 			}
@@ -437,38 +461,21 @@ void CPlayer::Jump()
 		
 		
 		//내가 원하는 지형의 좌표를 얻기 위한 코드
+		//나중에 좀더 손 봐야 할 듯
 		for (size_t i = 0; i < 2; i++)
 		{
 			iterLine++;
 			SaveIter = iterLine;
 		}
 		
-		//iterLine[2]
-		//iterLine[2].front()->Get_Info().tRPoint.fX;
+
 		if (m_tInfo.fX <= (*SaveIter)->Get_Info().tRPoint.fX - 20) {
 			RightWallCheck = true;
-			//iterLine== EasyMapLindeMgr::Get_Instance()->Get_LineList()->begin();
+
 		}
 		else {
 			RightWallCheck = false;
 		}
-
-	//	auto tempIter = testIter;
-	//
-	//for (size_t i = 0; qqqIter->begin() != qqqIter->end(); i++)
-	//{
-	//	if (m_tInfo.fX >= (*tempIter)->Get_Info().tLPoint.fX+10)
-	//	{
-	//		LeftWallCheck = true;
-	//	}
-	//	else
-	//	{
-	//		LeftWallCheck = false;
-	//	}
-	//	testIter++;
-	//	
-	//}
-	//	testIter->begin();
 
 
 
@@ -650,14 +657,14 @@ void CPlayer::WeaponChage()
 {
 	switch (m_eWeaponMode)
 	{
-	case CPlayer::GUN:
+	case PLAYER_GUN:
 
 
-		if (m_pWeaponList[CPlayer::GUN] == nullptr)
+		if (m_pWeaponList[PLAYER_GUN] == nullptr)
 		{
 			CObjMgr::Get_Instance()->Add_Object(OBJID::GUN, CAbstractFactory<Gun>::Create(this->m_tPosin.x, this->m_tPosin.y, this->m_fAngle));
 
-			m_pWeaponList[CPlayer::GUN] = CObjMgr::Get_Instance()->Get_ObjList(OBJID::GUN);
+			m_pWeaponList[PLAYER_GUN] = CObjMgr::Get_Instance()->Get_ObjList(OBJID::GUN);
 		}
 		else
 		{
@@ -667,13 +674,13 @@ void CPlayer::WeaponChage()
 
 		}
 		break;
-	case CPlayer::SWORD:
+	case PLAYER_SWORD:
 		m_fDiagonal = 10.f;
-		if (m_pWeaponList[CPlayer::SWORD] == nullptr)
+		if (m_pWeaponList[PLAYER_SWORD] == nullptr)
 		{
 			CObjMgr::Get_Instance()->Add_Object(OBJID::SWORD, CAbstractFactory<Sword>::Create(this->m_tPosin.x, this->m_tPosin.y, m_fAngle));
 
-			m_pWeaponList[CPlayer::SWORD] = CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD);
+			m_pWeaponList[PLAYER_SWORD] = CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD);
 		}
 		else
 		{
@@ -734,6 +741,11 @@ void CPlayer::Knock_back(float _Target_X)
 		m_tInfo.fX += 10.0f;
 	}
 
+
+}
+
+void CPlayer::PushPlayerWeaponList(CObj* _WeaponType)
+{
 
 }
 

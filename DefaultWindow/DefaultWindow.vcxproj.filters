@@ -405,6 +405,9 @@
     <ClInclude Include="NPC.h">
       <Filter>01. Obj\15. NPC</Filter>
     </ClInclude>
+    <ClInclude Include="DragonSword.h">
+      <Filter>01. Obj\07. Weapon\02. Sword</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DefaultWindow.cpp">
@@ -598,6 +601,9 @@
     </ClCompile>
     <ClCompile Include="NPC.cpp">
       <Filter>01. Obj\15. NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="DragonSword.cpp">
+      <Filter>01. Obj\07. Weapon\02. Sword</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

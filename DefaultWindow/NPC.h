@@ -21,8 +21,18 @@ public:
 
 public:
 	void Motion_Change();
+	void Set_Interacted(bool _IsInteracted) { IsInteracted = _IsInteracted; }
+
 
 	void Create_Weapon();
+
+
+
+
+private:
+
+	bool	IsInteracted;
+
 
 
 	ImageSTATE			m_ePreState = PS_END;

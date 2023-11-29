@@ -18,6 +18,7 @@ public:
 
 	bool			Collision_Line(float* pHeight, float& _fX, float _fY,float _fCY);
 	bool			DropItemCollision_Line(float* pHeight, float& _fX, float _fY,float _fCY);
+	bool			IsCollision_Line_to_item(float pHeight, float _fX, float _fY);
 	void			Load_Line();
 
 	list<CLine*>*	Get_LineList() { return &m_LineList; }

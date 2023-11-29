@@ -14,6 +14,7 @@ private:
 public:
 	CObj* Get_Player() { return CPlayer::Get_Instance(); }//m_ObjList[PLAYER].front(); }
 	CObj* Get_ObjList(OBJID eID);
+	CObj* Get_ObjList(OBJID eID,CObj* _pCOjType);
 	list<CObj*> Get_ObjListProperty(OBJID eID) { return m_ObjList[eID]; }
 	CObj*	Get_Target(OBJID eID, CObj* pObj);
 public:

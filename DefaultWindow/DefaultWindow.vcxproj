@@ -160,6 +160,7 @@
     <ClInclude Include="DefalutMonster.h" />
     <ClInclude Include="DefaultWindow.h" />
     <ClInclude Include="Define.h" />
+    <ClInclude Include="DragonSword.h" />
     <ClInclude Include="EasyMapLindeMgr.h" />
     <ClInclude Include="EndButton.h" />
     <ClInclude Include="Entry.h" />
@@ -228,6 +229,7 @@
     <ClCompile Include="CollisionMgr.cpp" />
     <ClCompile Include="DefalutMonster.cpp" />
     <ClCompile Include="DefaultWindow.cpp" />
+    <ClCompile Include="DragonSword.cpp" />
     <ClCompile Include="EasyMapLindeMgr.cpp" />
     <ClCompile Include="EndButton.cpp" />
     <ClCompile Include="Entry.cpp" />

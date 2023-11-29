@@ -9,7 +9,7 @@ class PlayerUI;
 class CPlayer : public CObj
 {
 	enum PLAYERSTATE { IDLE, RUN, JUMP, ATTACK, HIT, DEAD, PS_END };
-	enum WEAPONMODE {GUN,SWORD,END};
+
 private:
 	CPlayer();
 	virtual ~CPlayer();
@@ -58,6 +58,9 @@ public:
 	bool		IsDead() { return m_bDead; }
 	bool		Posin_half_Check();
 	void		Knock_back(float _Target_X);
+	void		PushPlayerWeaponList(CObj* _WeaponType);
+
+	CObj* GetPlayerWeaponList() { return m_pWeaponList[WEAPON_END]; }
 
 private:
 	void		Key_Input();
@@ -99,7 +102,7 @@ private:
 	//CObj* PlayerUI_HpBar;
 	SCENEID				LineSC;
 
-	CObj*	m_pWeaponList[END];
+	CObj*	m_pWeaponList[WEAPON_END];
 	int					DashCount;
 	bool				m_bJump;
 	WEAPONMODE			m_eWeaponMode;

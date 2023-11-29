@@ -4,6 +4,11 @@
 #include "CollisionMgr.h"
 
 #include"Player.h"
+#include "ObjMgr.h"
+#include "AbstractFactory.h"
+#include "HpPotion.h"
+#include "Sword.h"
+#include "DragonSword.h"
 
 NPC::NPC()
 {
@@ -93,6 +98,15 @@ void NPC::Motion_Change()
 		}
 			m_ePreState = m_eCurState;
 	}
+
+
+}
+
+void NPC::Create_Weapon()
+{
+	
+	CObjMgr::Get_Instance()->Add_Object(SWORD, CAbstractFactory<DragonSword>::Create(300.f, 400.f, 0));
+
 
 
 }
