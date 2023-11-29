@@ -145,6 +145,7 @@ void BossMonster::Release()
 
 
 	CObjMgr::Get_Instance()->Delete_ID(MONSTER);
+	CObjMgr::Get_Instance()->Delete_ID(BOSS_BULLET);
 	CObjMgr::Get_Instance()->Delete_ID(MOSTER_UI);
 
 

@@ -97,8 +97,10 @@ int CPlayer::Update()
 
 	Key_Input();
 	nSoundCount++;
-
 	m_bIsHit = false;
+	//if (dwFrameTime + 500 < GetTickCount()) {
+	//dwFrameTime = GetTickCount();
+	//}
 	__super::Update_Rect();
 
 	return OBJ_NOEVENT;
@@ -181,6 +183,7 @@ void CPlayer::Render(HDC hDC)
 	if (m_bIsHit)
 	{
 		g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Hit_Effect"), m_tInfo.fX , m_tInfo.fY , 30.f, 30.f);
+		g.DrawImage(PngMrg::Get_Instance()->Get_Image( L"Player_Hit"),0.f ,0.f , 1280.f, 800.f);
 		//m_bIsHit = false;
 	}
 
