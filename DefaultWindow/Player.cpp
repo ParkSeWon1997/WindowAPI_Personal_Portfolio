@@ -681,13 +681,13 @@ void CPlayer::WeaponChage()
 		{
 			CObjMgr::Get_Instance()->Add_Object(OBJID::SWORD, CAbstractFactory<Sword>::Create(this->m_tPosin.x, this->m_tPosin.y, m_fAngle));
 
-			m_pWeaponList[PLAYER_SWORD] = CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD);
+			m_pWeaponList[PLAYER_SWORD] = CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD,new Sword);
 		}
 		else
 		{
 
-			CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD)->Set_Pos(m_tPosin.x, m_tPosin.y);
-			CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD)->Set_Angle(m_fAngle);
+			CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD, new Sword)->Set_Pos(m_tPosin.x, m_tPosin.y);
+			CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD, new Sword)->Set_Angle(m_fAngle);
 
 		}
 		break;
