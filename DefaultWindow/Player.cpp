@@ -278,7 +278,7 @@ void CPlayer::Key_Input()
 			if (CCollisionMgr::CollisionRect_to_Rect(CObjMgr::Get_Instance()->Get_ObjList(ID_NPC, new NPC), this))
 			{
 
-				dynamic_cast<NPC*>(CObjMgr::Get_Instance()->Get_ObjList(ID_NPC, new NPC))->Create_Weapon();
+				dynamic_cast<NPC*>(CObjMgr::Get_Instance()->Get_ObjList(ID_NPC))->Create_Weapon();
 
 			}
 
@@ -300,14 +300,14 @@ void CPlayer::Key_Input()
 			//Get_ObjList()의 구현부를 손 봐야 함
 			dynamic_cast<PlayerWeaponBox*>(CObjMgr::Get_Instance()->Get_ObjList(PLAYER_WEAPON_BOX))->Set_ImageKey(L"Player_Gun_Rusiian");
 			m_eWeaponMode = PLAYER_GUN;
-			CObjMgr::Get_Instance()->Delete_ID(OBJID::SWORD);
+			CObjMgr::Get_Instance()->Delete_ID(OBJID::SWORD,new Sword);
 			m_pWeaponList[PLAYER_SWORD] = nullptr;
 		}
 		if (CKeyMgr::Get_Instance()->Key_Down('1'))
 		{
 			dynamic_cast<PlayerWeaponBox*>(CObjMgr::Get_Instance()->Get_ObjList(PLAYER_WEAPON_BOX))->Set_ImageKey(L"Player_Sword_FireDragon");
 			m_eWeaponMode = PLAYER_SWORD;
-			CObjMgr::Get_Instance()->Delete_ID(OBJID::GUN);
+			CObjMgr::Get_Instance()->Delete_ID(OBJID::GUN, new Gun);
 			m_pWeaponList[PLAYER_GUN] = nullptr;
 
 		}
@@ -330,7 +330,7 @@ void CPlayer::Key_Input()
 			}
 			if (m_eWeaponMode == PLAYER_SWORD)
 			{
-				dynamic_cast<Sword*>(CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD))->AttachCollisionBox(m_tPosin.x, m_tPosin.y);
+				dynamic_cast<Sword*>(CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD,new Sword))->AttachCollisionBox(m_tPosin.x, m_tPosin.y);
 			}
 
 		}

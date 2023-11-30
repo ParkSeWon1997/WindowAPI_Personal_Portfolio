@@ -106,7 +106,7 @@ void NPC::Motion_Change()
 
 void NPC::Create_Weapon()
 {
-	CObjMgr::Get_Instance()->Delete_ID(SWORD, new DragonSword);
+	//CObjMgr::Get_Instance()->Delete_ID(SWORD, new DragonSword);
 	CObjMgr::Get_Instance()->Add_Object(SWORD, CAbstractFactory<DragonSword>::Create(m_tInfo.fX, m_tInfo.fY, 0));
 
 
