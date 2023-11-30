@@ -300,7 +300,7 @@ void CPlayer::Key_Input()
 			//Get_ObjList()의 구현부를 손 봐야 함
 			dynamic_cast<PlayerWeaponBox*>(CObjMgr::Get_Instance()->Get_ObjList(PLAYER_WEAPON_BOX))->Set_ImageKey(L"Player_Gun_Rusiian");
 			m_eWeaponMode = PLAYER_GUN;
-			CObjMgr::Get_Instance()->Delete_ID(OBJID::SWORD);
+			CObjMgr::Get_Instance()->Delete_ID(OBJID::SWORD,new Sword);
 			m_pWeaponList[PLAYER_SWORD] = nullptr;
 		}
 		if (CKeyMgr::Get_Instance()->Key_Down('1'))

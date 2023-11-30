@@ -194,11 +194,12 @@ void CObjMgr::Delete_ID(OBJID eID)
 
 void CObjMgr::Delete_ID(OBJID eID, CObj* _pObjType)
 {
-	if (m_ObjList[eID].empty() || _pObjType == nullptr)
+	if (m_ObjList[eID].empty())
 	{
 		delete _pObjType;
 		return;
 	}
+
 	for (auto& iter = m_ObjList[eID].begin(); iter != m_ObjList[eID].end();)
 	{
 		if (typeid(**iter) == typeid(*_pObjType))
