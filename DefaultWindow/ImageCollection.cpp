@@ -118,8 +118,11 @@ ImageCollection::ImageCollection()
 	//Item
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/Hp/AED_Motion.png", L"Item_HP");
 
-	//HitEffect
+	//HitEffect(player Hit)
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Effect/SummonBallFX05_Size_12.png", L"Hit_Effect");
+	//HitEffect(Monster Hit)
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Effect/HitFX1.png", L"Monster_Hit_Effect");
+
 
 	//NPC
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/NPC/NPC_1.0.0.png", L"NPC_Giant");

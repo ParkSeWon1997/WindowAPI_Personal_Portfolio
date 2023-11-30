@@ -199,7 +199,8 @@ void CObjMgr::Delete_ID(OBJID eID, CObj* _pObjType)
 		return; // 유효하지 않은 입력 처리
 	}
 
-	const std::type_info& targetType = typeid(*_pObjType);
+	//비교 대상이 될 객체를 지역 객체에 저장시켜 논다
+	const std::type_info& targetType = typeid(*_pObjType);	//실제 객체의 타입을 알기위한 *타입
 
 	for (auto iter = m_ObjList[eID].begin(); iter != m_ObjList[eID].end();)
 	{

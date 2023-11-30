@@ -73,7 +73,7 @@ int BossMonster::Update()
 	//	dwFrameTime = GetTickCount();
 	//}
 
-
+	m_bIsHit = false;
 
 	FrameCheck++;
 
@@ -137,6 +137,11 @@ void BossMonster::Render(HDC hDC)
 
 	}
 
+
+	if (m_bIsHit)
+	{
+		g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Monster_Hit_Effect"), m_tInfo.fX, m_tInfo.fY, 38.f, 47.f);
+	}
 	
 }
 
