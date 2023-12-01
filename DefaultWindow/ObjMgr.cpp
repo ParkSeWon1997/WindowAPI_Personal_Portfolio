@@ -33,9 +33,10 @@ CObj* CObjMgr::Get_ObjList(OBJID eID, CObj* _pCOjType)
 		delete _pCOjType;
 		return nullptr;
 	}
+	const std::type_info& targetType = typeid(*_pCOjType);
 	for (CObj* pObj : m_ObjList[eID])
 	{
-		if (typeid(*pObj) == typeid(*_pCOjType))
+		if (typeid(*pObj) == targetType)
 		{
 			delete _pCOjType;
 			return pObj;
