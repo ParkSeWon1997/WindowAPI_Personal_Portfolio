@@ -28,8 +28,9 @@ DefalutMonster::~DefalutMonster()
 
 void DefalutMonster::Initialize()
 {
-    m_tInfo = { 600.f,100.f,64.f,40.f };
-
+    //m_tInfo = { 600.f,100.f,64.f,40.f };
+	m_tInfo.fCX = 64.f;
+	m_tInfo.fCY = 40.f;
    
 	m_fSpeed = 3.f;
 	m_fHP = 20.f;

@@ -42,6 +42,10 @@ void Normal::Initialize()
 	//¾ÆÀÌÅÛ
 	//CObjMgr::Get_Instance()->Add_Object(ITEM_HP, CAbstractFactory<HpPotion>::Create(333.f, 333.f, 0));
 	CObjMgr::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<DefalutMonster>::Create(100.f, 200.f, 0));
+	CObjMgr::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<DefalutMonster>::Create(600.f, 300.f, 0));
+	CObjMgr::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<DefalutMonster>::Create(800.f, 500.f, 0));
+	CObjMgr::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<DefalutMonster>::Create(800.f, 500.f, 0));
+	CObjMgr::Get_Instance()->Add_Object(MONSTER, CAbstractFactory<DefalutMonster>::Create(800.f, 500.f, 0));
 
 	CSoundMgr::Get_Instance()->PlaySound(L"2.IceField-sharedassets10.assets-124.wav", SOUND_BGM, g_fVolume);
 
@@ -66,7 +70,7 @@ void Normal::Update()
 void Normal::Late_Update()
 {
 
-	if (!CObjMgr::Get_Instance()->Get_ObjList(MONSTER)) {
+	if (!CObjMgr::Get_Instance()->Get_ObjList(MONSTER,new DefalutMonster)) {
 		m_iOpenCheckCount++;
 		if (m_iOpenCheckCount>100) {
 			m_bOpenDoor = true;
@@ -78,8 +82,8 @@ void Normal::Late_Update()
 			m_bOpenDoor = false;
 			m_iOpenCheckCount = -1000;
 			//dynamic_cast<StageEntry*>(CObjMgr::Get_Instance()->Get_ObjList(STAGE_ENTRY))->SetOpenCondition(true);
-
-
+	
+	
 		}
 	}
 	else

@@ -67,7 +67,7 @@ void Entry::Render(HDC hDC)
             m_tInfo.fCX, m_tInfo.fCY),
         m_tInfo.fCX * m_tFrame.iFrameStart,
         m_tInfo.fCY * m_tFrame.iMotion,
-        240, 170, UnitPixel);
+        m_tInfo.fCX, m_tInfo.fCY, UnitPixel);
 
 
 

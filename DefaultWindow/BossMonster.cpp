@@ -54,13 +54,13 @@ int BossMonster::Update()
 {
 	if (m_bDead) {
 		//m_eBOSS_STATE = BOSS_STATE::SC__BOSS_DEAD;
-		for (size_t i = 0; i < m_pSubMonsterList.size(); i++)
-		{
-			m_pSubMonsterList.clear();
+		if (m_eCurState == DEAD) {
+			if (m_tFrame.iFrameStart == 7) {
+				//m_pEndBotton->Late_Update();
+				return OBJ_DEAD;
 
+			}
 		}
-	
-		return OBJ_DEAD;
 	}
 	else {
 	dynamic_cast<BossUI*>(CObjMgr::Get_Instance()->Get_ObjList(MOSTER_UI))->Set_UI_HpBar(200.f, m_fHP);
@@ -88,10 +88,10 @@ int BossMonster::Update()
 
 void BossMonster::Late_Update()
 {
-	if (m_bDead) {
-		m_pEndBotton->Late_Update();
-	}
-
+	//if (m_bDead) {
+	//	m_pEndBotton->Late_Update();
+	//}
+   //
 
 	Move_Frame();
 	Motion_Change();

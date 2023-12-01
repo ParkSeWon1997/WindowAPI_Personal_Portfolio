@@ -338,8 +338,6 @@ void CPlayer::Key_Input()
 void CPlayer::Jump()
 {
 
-
-
 	switch (LineSC)
 	{
 
@@ -655,18 +653,18 @@ void CPlayer::WeaponChage()
 	switch (m_eWeaponMode)
 	{
 	case PLAYER_GUN:
-		m_fDiagonal = 15.f;
+		m_fDiagonal = 20.f;
 
 		if (m_pWeaponList[PLAYER_GUN] == nullptr)
 		{
-			CObjMgr::Get_Instance()->Add_Object(OBJID::GUN, CAbstractFactory<Gun>::Create(this->m_tPosin.x, this->m_tPosin.y, this->m_fAngle));
+			CObjMgr::Get_Instance()->Add_Object(OBJID::GUN, CAbstractFactory<Gun>::Create(this->m_tPosin.x, this->m_tPosin.y-5, this->m_fAngle));
 
 			m_pWeaponList[PLAYER_GUN] = CObjMgr::Get_Instance()->Get_ObjList(OBJID::GUN);
 		}
 		else
 		{
 
-			CObjMgr::Get_Instance()->Get_ObjList(OBJID::GUN)->Set_Pos(m_tPosin.x, m_tPosin.y);
+			CObjMgr::Get_Instance()->Get_ObjList(OBJID::GUN)->Set_Pos(m_tPosin.x, m_tPosin.y-5);
 			CObjMgr::Get_Instance()->Get_ObjList(OBJID::GUN)->Set_Angle(m_fAngle);
 
 		}
