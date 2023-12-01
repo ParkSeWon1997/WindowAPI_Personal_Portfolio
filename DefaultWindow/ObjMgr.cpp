@@ -194,21 +194,26 @@ void CObjMgr::Delete_ID(OBJID eID)
 
 void CObjMgr::Delete_ID(OBJID eID, CObj* _pObjType)
 {
-	if (m_ObjList[eID].empty())
+	if (_pObjType == nullptr || m_ObjList[eID].empty())
 	{
-		delete _pObjType;
-		return;
+		return; // 유효하지 않은 입력 처리
 	}
 
-	for (auto& iter = m_ObjList[eID].begin(); iter != m_ObjList[eID].end();)
+	//비교 대상이 될 객체를 지역 객체에 저장시켜 논다
+	const std::type_info& targetType = typeid(*_pObjType);	//실제 객체의 타입을 알기위한 *타입
+
+	for (auto iter = m_ObjList[eID].begin(); iter != m_ObjList[eID].end();)
 	{
-		if (typeid(**iter) == typeid(*_pObjType))
+		if (typeid(**iter) == targetType)
 		{
-			delete _pObjType;
-			Safe_Delete(*iter);
+			delete _pObjType; // 전달된 객체 삭제
+			_pObjType = nullptr;
+			delete* iter; // 리스트에서 해당 객체 삭제
 			iter = m_ObjList[eID].erase(iter);
 		}
 		else
+		{
 			++iter;
+		}
 	}
 }

@@ -254,16 +254,12 @@ void CPlayer::Key_Input()
 
 		if (CKeyMgr::Get_Instance()->Key_Pressing(VK_RBUTTON))
 		{
-			if (DashCount > 0 && DashCount <= 2) {
-				m_InitSpeedY = -m_fGravity * 3.0f;
-
-				m_InitX = m_tInfo.fX;
-				m_InitY = m_tInfo.fY;
+			
 				m_bJump = true;
 				DashCount--;
 
 				m_eCurState = JUMP;
-			}
+			
 		}
 
 
@@ -278,7 +274,7 @@ void CPlayer::Key_Input()
 			if (CCollisionMgr::CollisionRect_to_Rect(CObjMgr::Get_Instance()->Get_ObjList(ID_NPC, new NPC), this))
 			{
 
-				dynamic_cast<NPC*>(CObjMgr::Get_Instance()->Get_ObjList(ID_NPC, new NPC))->Create_Weapon();
+				dynamic_cast<NPC*>(CObjMgr::Get_Instance()->Get_ObjList(ID_NPC))->Create_Weapon();
 
 			}
 
@@ -307,7 +303,7 @@ void CPlayer::Key_Input()
 		{
 			dynamic_cast<PlayerWeaponBox*>(CObjMgr::Get_Instance()->Get_ObjList(PLAYER_WEAPON_BOX))->Set_ImageKey(L"Player_Sword_FireDragon");
 			m_eWeaponMode = PLAYER_SWORD;
-			CObjMgr::Get_Instance()->Delete_ID(OBJID::GUN);
+			CObjMgr::Get_Instance()->Delete_ID(OBJID::GUN, new Gun);
 			m_pWeaponList[PLAYER_GUN] = nullptr;
 
 		}
@@ -330,7 +326,7 @@ void CPlayer::Key_Input()
 			}
 			if (m_eWeaponMode == PLAYER_SWORD)
 			{
-				dynamic_cast<Sword*>(CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD))->AttachCollisionBox(m_tPosin.x, m_tPosin.y);
+				dynamic_cast<Sword*>(CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD,new Sword))->AttachCollisionBox(m_tPosin.x, m_tPosin.y);
 			}
 
 		}
@@ -659,7 +655,7 @@ void CPlayer::WeaponChage()
 	switch (m_eWeaponMode)
 	{
 	case PLAYER_GUN:
-
+		m_fDiagonal = 15.f;
 
 		if (m_pWeaponList[PLAYER_GUN] == nullptr)
 		{
@@ -676,17 +672,17 @@ void CPlayer::WeaponChage()
 		}
 		break;
 	case PLAYER_SWORD:
-		m_fDiagonal = 10.f;
+		m_fDiagonal = -5.f;
 		if (m_pWeaponList[PLAYER_SWORD] == nullptr)
 		{
-			CObjMgr::Get_Instance()->Add_Object(OBJID::SWORD, CAbstractFactory<Sword>::Create(this->m_tPosin.x, this->m_tPosin.y, m_fAngle));
+			CObjMgr::Get_Instance()->Add_Object(OBJID::SWORD, CAbstractFactory<Sword>::Create(this->m_tPosin.x, this->m_tPosin.y-20.f, m_fAngle));
 
 			m_pWeaponList[PLAYER_SWORD] = CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD,new Sword);
 		}
 		else
 		{
 
-			CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD, new Sword)->Set_Pos(m_tPosin.x, m_tPosin.y);
+			CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD, new Sword)->Set_Pos(m_tPosin.x, m_tPosin.y-20.f);
 			CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD, new Sword)->Set_Angle(m_fAngle);
 
 		}

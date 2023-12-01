@@ -58,7 +58,7 @@ int SubMonster::Update()
 	FrameChek++;
 	
 
-	
+	m_bIsHit = false;
 
 
 	__super::Update_Rect();
@@ -87,6 +87,11 @@ void SubMonster::Render(HDC hDC)
 	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"SubMonster"), (m_tInfo.fX-m_tInfo.fCX*0.5), (m_tInfo.fY-m_tInfo.fCY*0.5), 56.f, 22.f);
 	m_pSubMonsterHpBar->Render(hDC);
 
+	//Rectangle(hDC, m_tRect.left , m_tRect.top , m_tRect.right, m_tRect.bottom );
+	if (m_bIsHit)
+	{
+		g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Monster_Hit_Effect"), m_tInfo.fX, m_tInfo.fY, 38.f, 47.f);
+	}
 }
 
 void SubMonster::Release()
