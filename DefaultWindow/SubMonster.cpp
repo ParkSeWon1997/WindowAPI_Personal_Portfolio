@@ -23,8 +23,8 @@ SubMonster::~SubMonster()
 
 void SubMonster::Initialize()
 {
-	m_tInfo.fCX = 56.f;
-	m_tInfo.fCY = 22.f;
+	m_tInfo.fCX = 112.f;
+	m_tInfo.fCY = 44.f;
 	m_fHP = 40.f;
 	m_fDistance = 100.f;
 	m_fSpeed = 2.75f;
@@ -84,7 +84,7 @@ void SubMonster::Render(HDC hDC)
 	g.TranslateTransform(m_tInfo.fX, m_tInfo.fY);
 	g.RotateTransform(m_fRotateAngle);
 	g.TranslateTransform(-m_tInfo.fX, -m_tInfo.fY);
-	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"SubMonster"), (m_tInfo.fX-m_tInfo.fCX*0.5), (m_tInfo.fY-m_tInfo.fCY*0.5), 56.f, 22.f);
+	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"SubMonster"), (m_tInfo.fX-m_tInfo.fCX*0.5), (m_tInfo.fY-m_tInfo.fCY*0.5), m_tInfo.fCX, m_tInfo.fCY);
 	m_pSubMonsterHpBar->Render(hDC);
 
 	//Rectangle(hDC, m_tRect.left , m_tRect.top , m_tRect.right, m_tRect.bottom );

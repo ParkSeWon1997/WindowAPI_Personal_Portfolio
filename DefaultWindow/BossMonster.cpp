@@ -47,6 +47,7 @@ void BossMonster::Initialize()
 	//m_bDead = true;
 
 	CObjMgr::Get_Instance()->Add_Object(OBJID::MOSTER_UI, CAbstractFactory<BossUI>::Create(WINCX*0.5,WINCY*0.9,0.f));
+	m_eCurState = ImageSTATE::IDLE;
 	m_eBOSS_STATE = BossMonster::SC_BOSS_CREATE_SUB;
 }
 
@@ -94,8 +95,8 @@ void BossMonster::Late_Update()
    //
 
 	Move_Frame();
-	Motion_Change();
 	Boss_pattern();
+	Motion_Change();
 
 
 
@@ -130,10 +131,10 @@ void BossMonster::Render(HDC hDC)
 				, (int)(m_tInfo.fY - m_tInfo.fCY * 0.5) + iScrollY
 				, (int)m_tInfo.fCX, (int)m_tInfo.fCY),
 			(int)m_tInfo.fCX * m_tFrame.iFrameStart,
-			(int)m_tInfo.fCY * m_tFrame.iMotion, 156, 156, UnitPixel);
+			(int)m_tInfo.fCY * m_tFrame.iMotion, m_tInfo.fCX, m_tInfo.fCY, UnitPixel);
 	}
 	else {
-		g.DrawImage(img, destinationPoints, 3, (int)m_tInfo.fCX * m_tFrame.iFrameStart, (int)m_tInfo.fCY * m_tFrame.iMotion, 156, 156, UnitPixel);
+		g.DrawImage(img, destinationPoints, 3, (int)m_tInfo.fCX * m_tFrame.iFrameStart, (int)m_tInfo.fCY * m_tFrame.iMotion, m_tInfo.fCX, m_tInfo.fCY, UnitPixel);
 
 	}
 
@@ -285,10 +286,11 @@ void BossMonster::Boss_pattern()
 {
 	switch (m_eBOSS_STATE)
 	{
-
+		
 	case BossMonster::SC_BOSS_CREATE_SUB:
 		if (!m_bDead)
 		{
+			m_eCurState = ImageSTATE::IDLE;
 			if (CreateSubCount < 4)
 			{
 				if (dwFrameTime + 500 < GetTickCount64()) {

@@ -73,7 +73,7 @@ void CMainGame::Late_Update(void)
 void CMainGame::Render(void)
 {
 #pragma region 프레임 출력
-
+#ifdef _DEBUG
 	++m_iFPS;
 
 	if (m_dwTime + 1000 < GetTickCount64())
@@ -85,7 +85,7 @@ void CMainGame::Render(void)
 		m_iFPS = 0;
 		m_dwTime = GetTickCount64();
 	}
-
+#endif // _DEBUG
 #pragma endregion 프레임 출력
 
 	if (SC_LOGO == CSceneMgr::Get_Instance()->Get_SceneID())
