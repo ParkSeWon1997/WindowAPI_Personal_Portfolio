@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "CollisionBox.h"
 #include"PngMrg.h"
+#include "Player.h"
+#include "ObjMgr.h"
 
 CollisionBox::CollisionBox()
 {
@@ -14,6 +16,13 @@ void CollisionBox::Initialize()
 {
     m_fDamage = 15.f;
     m_eRender = GAMEOBJECT;
+   m_pStateKey = L"Player_Sword_Effect";
+   m_tFrame.iFrameStart = 0;
+   m_tFrame.iFrameEnd = 6;
+   m_tFrame.iMotion = 0;
+   
+   m_tFrame.dwSpeed = 50;
+   m_tFrame.dwTime = GetTickCount();
 }
 
 int CollisionBox::Update()
@@ -28,6 +37,7 @@ int CollisionBox::Update()
 
 void CollisionBox::Late_Update()
 {
+    Move_Frame();
 }
 
 void CollisionBox::Render(HDC hDC)
@@ -36,16 +46,39 @@ void CollisionBox::Render(HDC hDC)
 
     m_fSpeed = 100.f;
   
-   // m_tRect.left += LONG(m_fSpeed * cos(m_fAngle * (PI / 180.f)));
-   //m_tRect.top -= LONG(m_fSpeed * cos(m_fAngle * (PI / 180.f)));
-   //m_tRect.right += LONG(m_fSpeed * sin(m_fAngle * (PI / 180.f)));
-   // m_tRect.bottom -= LONG(m_fSpeed * sin(m_fAngle * (PI / 180.f)));
-    //Rectangle()
-   // Rectangle(hDC,
-   // 	m_tRect.left,
-   // 	m_tRect.top,
-   // 	m_tRect.right,
-   // 	m_tRect.bottom);
+ // Rectangle(hDC,
+ // 	m_tRect.left,
+ // 	m_tRect.top,
+ // 	m_tRect.right,
+ // 	m_tRect.bottom);
+
+  if (dynamic_cast<CPlayer*>(CObjMgr::Get_Instance()->Get_Player())->Posin_half_Check())
+  {
+      g.TranslateTransform(m_tInfo.fX, m_tInfo.fY);
+      g.RotateTransform(m_fAngle+90);
+      g.TranslateTransform(-m_tInfo.fX, -m_tInfo.fY);
+      g.DrawImage(PngMrg::Get_Instance()->Get_Image(m_pStateKey),
+          Rect((m_tInfo.fX - m_tInfo.fCX * 0.5),
+              (m_tInfo.fY - m_tInfo.fCY * 0.5),
+              m_tInfo.fCX, m_tInfo.fCY),
+          m_tInfo.fCX * m_tFrame.iFrameStart,
+          m_tInfo.fCY * m_tFrame.iMotion,
+          m_tInfo.fCX, m_tInfo.fCY, UnitPixel);
+
+  }
+  else
+  {
+     g.TranslateTransform(m_tInfo.fX, m_tInfo.fY);
+     g.RotateTransform(m_fAngle+90);
+     g.TranslateTransform(-m_tInfo.fX, -m_tInfo.fY);
+    g.DrawImage(PngMrg::Get_Instance()->Get_Image(m_pStateKey),
+        Rect((m_tInfo.fX - m_tInfo.fCX * 0.5),
+            (m_tInfo.fY - m_tInfo.fCY * 0.5),
+            m_tInfo.fCX, m_tInfo.fCY),
+        m_tInfo.fCX * m_tFrame.iFrameStart,
+        m_tInfo.fCY * m_tFrame.iMotion,
+        m_tInfo.fCX, m_tInfo.fCY, UnitPixel);
+  }
 
 
 }
