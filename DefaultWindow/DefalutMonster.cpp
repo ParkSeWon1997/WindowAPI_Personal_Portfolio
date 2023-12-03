@@ -7,7 +7,9 @@
 #include"ObjMgr.h"
 #include "AbstractFactory.h"
 #include "HpPotion.h"
+#include "SoundMgr.h"
 
+static float g_fVolume = 0.7f;
 DefalutMonster::DefalutMonster()
 {
   
@@ -46,6 +48,7 @@ int DefalutMonster::Update()
 {
 	if (m_bDead) {
 		CObjMgr::Get_Instance()->Add_Object(ITEM_HP, CAbstractFactory<HpPotion>::Create(this->m_tInfo.fX, this->m_tInfo.fY, 0));
+		CSoundMgr::Get_Instance()->PlaySound(L"monster_sound8_bat-sharedassets7.assets-241.wav", MONSTER_DEAD, g_fVolume);
         return OBJ_DEAD;
 	}
 
@@ -165,7 +168,7 @@ void DefalutMonster::Default_Pattern()
 			CObjMgr::Get_Instance()->Add_Object(OBJID::SUB_MONSTER_BULLET, Fire(DIR_RU));
 			CObjMgr::Get_Instance()->Add_Object(OBJID::SUB_MONSTER_BULLET, Fire(DIR_LD));
 			CObjMgr::Get_Instance()->Add_Object(OBJID::SUB_MONSTER_BULLET, Fire(DIR_RD));
-			
+			CSoundMgr::Get_Instance()->PlaySound(L"high_pitch_scream_gverb-sharedassets7.assets-242.wav", MONSTER_ATTACK, g_fVolume);
 			FrameCheck = 0;
 			
 		}

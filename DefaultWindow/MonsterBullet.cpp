@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "MonsterBullet.h"
 #include"PngMrg.h"
+#include "SoundMgr.h"
+
+static float g_fVolume = 0.7f;
 MonsterBullet::MonsterBullet()
 {
 }
@@ -12,7 +15,7 @@ MonsterBullet::~MonsterBullet()
 
 void MonsterBullet::Initialize()
 {
-
+	CSoundMgr::Get_Instance()->PlaySound(L"Fantasy_Game_Attack_Ice_Arrow_kaminelacrystal-sharedassets27.assets-515.wav", MONSTER_ATTACK, g_fVolume);
 	m_tInfo.fCX = 18.f;
 	m_tInfo.fCY = 36.f;
 

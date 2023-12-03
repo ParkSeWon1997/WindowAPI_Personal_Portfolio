@@ -119,6 +119,7 @@ ImageCollection::ImageCollection()
 
 	//EndButton
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/GameEnd/EndButton.png", L"EndButton");
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/GameEnd/EndEntry.png", L"EndEntry");
 
 
 	//Item

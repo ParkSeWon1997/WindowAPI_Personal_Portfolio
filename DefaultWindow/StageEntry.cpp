@@ -106,6 +106,7 @@ void StageEntry::EntryOpen()
 		m_eCurState = STAGESTATE::OPEN;
 		if (m_tFrame.iFrameStart == 7) {
 			m_eCurState = END;
+			CSoundMgr::Get_Instance()->PlaySound(L"stoneDoor-sharedassets3.assets-344.wav", STAGE_WORK, g_fVolume);
 			m_bOpenCondition = false;
 		}
 	}
@@ -122,6 +123,7 @@ void StageEntry::EntryClose()
 		m_eCurState = STAGESTATE::CLOSE;
 		if (m_tFrame.iFrameStart == 7) {
 			m_eCurState = IDLE;
+			CSoundMgr::Get_Instance()->PlaySound(L"stoneDoor-sharedassets3.assets-344.wav", STAGE_WORK, g_fVolume);
 			m_bCloseCondition = false;
 		}
 

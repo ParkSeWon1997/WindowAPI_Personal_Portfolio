@@ -408,6 +408,9 @@
     <ClInclude Include="DragonSword.h">
       <Filter>01. Obj\07. Weapon\02. Sword</Filter>
     </ClInclude>
+    <ClInclude Include="EndEntry.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DefaultWindow.cpp">
@@ -604,6 +607,9 @@
     </ClCompile>
     <ClCompile Include="DragonSword.cpp">
       <Filter>01. Obj\07. Weapon\02. Sword</Filter>
+    </ClCompile>
+    <ClCompile Include="EndEntry.cpp">
+      <Filter>01. Obj\08. Entry</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

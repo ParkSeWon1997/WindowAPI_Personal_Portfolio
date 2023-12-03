@@ -25,5 +25,6 @@ public:
 
 private:
 	CObj* m_pEndBotton;
+	CObj* m_pEndEntry;
 };
 
