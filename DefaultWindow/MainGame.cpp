@@ -74,17 +74,17 @@ void CMainGame::Render(void)
 {
 #pragma region 프레임 출력
 #ifdef _DEBUG
-	++m_iFPS;
-
-	if (m_dwTime + 1000 < GetTickCount64())
-	{
-		swprintf_s(m_szFPS, L"FPS : %d", m_iFPS);
-
-		SetWindowText(g_hWnd, m_szFPS);
-
-		m_iFPS = 0;
-		m_dwTime = GetTickCount64();
-	}
+	//++m_iFPS;
+	//
+	//if (m_dwTime + 1000 < GetTickCount64())
+	//{
+	//	swprintf_s(m_szFPS, L"FPS : %d", m_iFPS);
+	//
+	//	SetWindowText(g_hWnd, m_szFPS);
+	//
+	//	m_iFPS = 0;
+	//	m_dwTime = GetTickCount64();
+	//}
 #endif // _DEBUG
 #pragma endregion 프레임 출력
 

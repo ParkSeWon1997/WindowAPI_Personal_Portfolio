@@ -335,7 +335,7 @@ void BossMonster::Boss_pattern()
 
 	case BOSS_STATE::SC_BOSS_EASY:
 	{
-		if (FrameCheck > 50)
+		if (FrameCheck > 150)
 		{
 			m_tInfo.fX = WINCX * 0.5;
 			m_tInfo.fY = WINCY * 0.3;

@@ -41,7 +41,7 @@ int HpPotion::Update()
 
 
 	DropMove();
-
+	
 
 
     __super::Update_Rect();
@@ -51,8 +51,9 @@ int HpPotion::Update()
 void HpPotion::Late_Update()
 {
 
-    Move_Frame();
-    Motion_Change();
+	Move_Frame();
+	Motion_Change();
+
 	if (CCollisionMgr::Check_Sphere(CPlayer::Get_Instance(), this) && (CPlayer::Get_Instance()->Get_HP()-5) < this->m_fHP)
 	{
 		CPlayer::Get_Instance()->Add_HP(this->m_fHP);
