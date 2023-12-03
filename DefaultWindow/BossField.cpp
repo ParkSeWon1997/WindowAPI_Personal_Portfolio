@@ -144,6 +144,7 @@ void BossField::Release()
 	CObjMgr::Get_Instance()->Delete_ID(BUTTON);
 	CObjMgr::Get_Instance()->Delete_ID(MOSTER_UI);
 	CObjMgr::Get_Instance()->Delete_ID(COLLISIONBOX);
+	CObjMgr::Get_Instance()->Delete_ID(HAMMER);
 	CSoundMgr::Get_Instance()->StopSound(SOUND_BGM);
 	CSoundMgr::Get_Instance()->StopSound(SOUND_BGM_BG);
 
