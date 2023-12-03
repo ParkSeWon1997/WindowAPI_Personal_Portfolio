@@ -56,7 +56,7 @@ int SubMonster::Update()
 	m_pSubMonsterHpBar->Update();
 	//m_fAngle123 += 2.0f;
 	FrameChek++;
-	
+	GFireCount++;
 
 	m_bIsHit = false;
 
@@ -130,14 +130,14 @@ void SubMonster::Attack()
 
 void SubMonster::Target_Attack()
 {
-	if (dwFrameTime + 100 < GetTickCount()) {
-		if (GFireCount <2)
-		{
+	if (dwFrameTime + 400 < GetTickCount()) {
+		
+		
 			CObjMgr::Get_Instance()->Add_Object(SUB_MONSTER_BULLET, CAbstractFactory<CGuideBullet>::Create(this->m_tInfo.fX, this->m_tInfo.fY, Monster_AngleAdd));
-			GFireCount++;
-		}
-	dwFrameTime = GetTickCount();
-	
+			
+		
+		dwFrameTime = GetTickCount();
+
 	}
 }
 
@@ -256,23 +256,22 @@ void SubMonster::SubMonster_pattern()
 		
 		m_tInfo.fX += m_fSpeed * cos(m_fAngle * PI / 180.f);
 		m_tInfo.fY -= m_fSpeed * sin(m_fAngle * PI / 180.f);
-		//MoveReflection();
-		Target_Attack();
 		if (FrameChek > 300)
 		{
 			SubState = SUBMOSTER_STATE::IDLE;
 			GFireCount = 0;
 			FrameChek = 0;
 		}
+		break;
 	}
 	case SUBMOSTER_STATE::MOVE_TO_BOSS:
 	{
 		
 		
 			MoveReflection();
-			Attack();
+			Target_Attack();
 		
-
+			break;
 	}
 
 	case SUBMOSTER_STATE::SUB_STATE_END:

@@ -6,8 +6,9 @@
 #include "AbstractFactory.h"
 #include "ScrollMgr.h"
 #include "Player.h"
+#include "SoundMgr.h"
 
-
+static float  g_fVolume = 1.0f;
 Gun::Gun()
 {
 }
@@ -77,4 +78,5 @@ void Gun::Release()
 void Gun::FIre(bool _IsShot)
 {
 	CObjMgr::Get_Instance()->Add_Object(BULLET, CAbstractFactory<PlayerBullet>::Create(this->m_tInfo.fX,this->m_tInfo.fY,this->m_fAngle));
+	
 }

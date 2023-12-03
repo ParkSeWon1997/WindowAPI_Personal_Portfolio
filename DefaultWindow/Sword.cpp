@@ -7,12 +7,17 @@
 #include "AbstractFactory.h"
 #include"CollisionBox.h"
 #include "Mouse.h"
+#include "SoundMgr.h"
+
+
+static float  g_fVolume=1.0f;
 Sword::Sword()
 {
 }
 
 Sword::~Sword()
 {
+
 }
 
 void Sword::Initialize()
@@ -143,11 +148,13 @@ void Sword::AttachCollisionBox(float _X, float _Y)
 		{
 			CObjMgr::Get_Instance()->Add_Object(COLLISIONBOX, CAbstractFactory<CollisionBox>::Create(SwordEND.x, SwordEND.y, 124.f, 98.f, m_fAngle));
 			CollisionBoxQue[0] = CObjMgr::Get_Instance()->Get_ObjList(COLLISIONBOX);
+			CSoundMgr::Get_Instance()->PlaySound(L"swing0-sharedassets16.assets-343.wav", PLAYER_SWING, g_fVolume);
 		}
 		else
 		{
 			CObjMgr::Get_Instance()->Add_Object(COLLISIONBOX, CAbstractFactory<CollisionBox>::Create(SwordEND.x, SwordEND.y, 124.f, 98.f, m_fAngle));
 			CollisionBoxQue[0] = CObjMgr::Get_Instance()->Get_ObjList(COLLISIONBOX);
+			CSoundMgr::Get_Instance()->PlaySound(L"swing0-sharedassets16.assets-343.wav", PLAYER_SWING, g_fVolume);
 		}
 	}
 

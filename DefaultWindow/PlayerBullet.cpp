@@ -2,7 +2,9 @@
 #include "PlayerBullet.h"
 #include"PngMrg.h"
 #include "LineMgr.h"
+#include "SoundMgr.h"
 
+static float g_fVolume = 1.0f;
 PlayerBullet::PlayerBullet()
 {
 }
@@ -41,7 +43,7 @@ void PlayerBullet::Late_Update()
 	//{
 		//m_bDead = true;
 	//}
-
+	//CSoundMgr::Get_Instance()->StopSound(PLAYER_FIRE);
 }
 
 void PlayerBullet::Render(HDC hDC)

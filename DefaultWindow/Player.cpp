@@ -323,6 +323,7 @@ void CPlayer::Key_Input()
 			if (m_eWeaponMode == PLAYER_GUN)
 			{
 				dynamic_cast<Gun*>(CObjMgr::Get_Instance()->Get_ObjList(OBJID::GUN))->FIre(true);
+				CSoundMgr::Get_Instance()->PlaySound(L"AKFire-resources.assets-1715.wav", PLAYER_FIRE, g_fVolume);
 			}
 			if (m_eWeaponMode == PLAYER_SWORD)
 			{
