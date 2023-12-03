@@ -11,6 +11,7 @@
 #include"IcicleBullet.h"
 #include"BossUI.h"
 #include "EndButton.h"
+#include "ItemBox.h"
 
 
 BossMonster::BossMonster():m_pEndBotton(nullptr)
@@ -57,6 +58,7 @@ int BossMonster::Update()
 		//m_eBOSS_STATE = BOSS_STATE::SC__BOSS_DEAD;
 		if (m_eCurState == DEAD) {
 			if (m_tFrame.iFrameStart == 7) {
+				CObjMgr::Get_Instance()->Add_Object(ITEM_BOX, CAbstractFactory<ItemBox>::Create(this->m_tInfo.fX, this->m_tInfo.fY, 0));
 				//m_pEndBotton->Late_Update();
 				return OBJ_DEAD;
 

@@ -100,8 +100,7 @@ void CMainGame::Render(void)
 
 	// 윈도우 문자열 출력 함수
 
-	//TCHAR	szBuff[32] = L"";
-
+	TCHAR	szBuff[32] = L"";
 	//wsprintf(szBuff, L"Bullet : %d", m_ObjList[BULLET].size()); 
 
 	//swprintf_s(szBuff, L"Bullet : %f", 3.14f);

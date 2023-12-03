@@ -49,7 +49,7 @@ int DefalutMonster::Update()
 {
 	if (m_bDead) {
 		CObjMgr::Get_Instance()->Add_Object(ITEM_HP, CAbstractFactory<HpPotion>::Create(this->m_tInfo.fX, this->m_tInfo.fY, 0));
-		CObjMgr::Get_Instance()->Add_Object(ITEM_BOX, CAbstractFactory<ItemBox>::Create(this->m_tInfo.fX, this->m_tInfo.fY, 0));
+		
 		CSoundMgr::Get_Instance()->PlaySound(L"monster_sound8_bat-sharedassets7.assets-241.wav", MONSTER_DEAD, g_fVolume);
         return OBJ_DEAD;
 	}

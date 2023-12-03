@@ -26,5 +26,7 @@ public:
 private:
 	CObj* m_pEndBotton;
 	CObj* m_pEndEntry;
+
+	int		iFrameCheck = 0;
 };
 

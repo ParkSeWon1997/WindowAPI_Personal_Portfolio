@@ -2,6 +2,7 @@
 #include "ItemBox.h"
 #include "PngMrg.h"
 #include "EasyMapLindeMgr.h"
+#include "BossMapLineMgr.h"
 
 ItemBox::ItemBox()
 {
@@ -76,7 +77,7 @@ void ItemBox::DropMove()
 {
     float	fY(0.f);
 
-    bool bLineCol = EasyMapLindeMgr::Get_Instance()->DropItemCollision_Line(&fY, m_tInfo.fX, 0, 0);
+    bool bLineCol = BossMapLineMgr::Get_Instance()->DropItemCollision_Line(&fY, m_tInfo.fX, 0, 0);
 
     if (m_bJump)
     {

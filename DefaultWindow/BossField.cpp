@@ -101,19 +101,28 @@ void BossField::Render(HDC hDC)
 	CObjMgr::Get_Instance()->Render(hDC);
 	if (CPlayer::Get_Instance()->Get_Dead())
 	{
+		//TCHAR	szBuff[32] = L"Test";
 		g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Fail_Ending"), 0, 0, 1280, 800);
-
+	
 		m_pEndBotton->Render(hDC);
 		m_pEndEntry->Render(hDC);
 		
 	}
 	if (!CObjMgr::Get_Instance()->Get_ObjList(BOSS_MONSTER))
 	{
-		g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Success_Ending"), 0, 0, 1280, 800);
-		CSoundMgr::Get_Instance()->StopSound( SOUND_BGM);
+		iFrameCheck++;
+			CSoundMgr::Get_Instance()->StopSound(SOUND_BGM);
+		if (!CObjMgr::Get_Instance()->Get_ObjList(ITEM_BOX)) {
 
-		m_pEndBotton->Render(hDC);
-		m_pEndEntry->Render(hDC);
+			if (iFrameCheck>400) {
+				g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Success_Ending"), 0, 0, 1280, 800);
+				m_pEndBotton->Render(hDC);
+				m_pEndEntry->Render(hDC);
+				
+			}
+		
+		}
+		
 	}
 	
 
