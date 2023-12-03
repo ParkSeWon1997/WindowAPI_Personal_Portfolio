@@ -15,5 +15,13 @@ public:
 	virtual void Render(HDC hDC) override;
 	virtual void Release() override;
 
+	void DropMove();
+
+
+private:
+
+	bool	m_bJump = false;
+	float m_fPower = 0;
+	float m_fAccelTime = 0;
 };
 

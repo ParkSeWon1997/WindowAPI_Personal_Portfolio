@@ -138,6 +138,8 @@ void CObjMgr::Late_Update()
 	//CCollisionMgr::DoDamageObj_to_Obj(m_ObjList[BOSS_MONSTER], m_ObjList[BULLET]);
 	CCollisionMgr::DoDamageObj_to_Obj(m_ObjList[MONSTER], m_ObjList[COLLISIONBOX]);
 	CCollisionMgr::DoDamageObj_to_Obj(m_ObjList[MONSTER], m_ObjList[BULLET]);
+	CCollisionMgr::DoDamageObj_to_Obj(m_ObjList[ITEM_BOX], m_ObjList[BULLET]);
+	CCollisionMgr::DoDamageObj_to_Obj(m_ObjList[ITEM_BOX], m_ObjList[COLLISIONBOX]);
 
 
 

@@ -124,6 +124,10 @@ ImageCollection::ImageCollection()
 
 	//Item
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/Hp/AED_Motion.png", L"Item_HP");
+	//item Box
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Item/BigBox0-sharedassets7.assets-144.png", L"Item_Box");
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Item/BigBoxParticle0-sharedassets5.assets-9.png", L"Item_Box_broken");
+	
 
 	//HitEffect(player Hit)
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Effect/SummonBallFX05_Size_12.png", L"Hit_Effect");
