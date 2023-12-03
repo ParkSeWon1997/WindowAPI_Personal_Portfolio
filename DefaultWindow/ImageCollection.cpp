@@ -28,6 +28,9 @@ ImageCollection::ImageCollection()
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Weapon/Gun/RussianRoulette_New.png", L"Player_Gun_Rusiian");
 	//검
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Weapon/Sword/FireDragonKiller.png", L"Player_Sword_FireDragon");
+	//Cosmos 검
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Weapon/Sword/CosmosSword_New.png", L"Player_Sword_Cosmos");
+	// 
 	//검 이펙트
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Weapon/Sword/FireGreatSwingFX00.png", L"Player_Sword_Effect");
 

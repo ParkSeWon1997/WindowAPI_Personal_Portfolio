@@ -22,6 +22,13 @@ void DragonSword::Initialize()
     m_tInfo.fCY = 60.f;
     m_fDamage = 30.0f;
 
+
+    m_tFrame.iFrameStart = 0;
+    m_tFrame.iFrameEnd = 8;
+    m_tFrame.iMotion = 0;
+
+    m_tFrame.dwSpeed = 50;
+    m_tFrame.dwTime = GetTickCount();
 	m_bJump = true;
     m_eRender = GAMEOBJECT;
 }
@@ -35,7 +42,7 @@ int DragonSword::Update()
 
 void DragonSword::Late_Update()
 {
-
+    Move_Frame();
     if (!IsAttach_To_Player)
     {
         NotYetAttachPlayer();
@@ -46,11 +53,13 @@ void DragonSword::Render(HDC hDC)
 {
     Graphics g(hDC);
 
-    g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Sword_FireDragon"),
-        (m_tInfo.fX - m_tInfo.fCX * 0.5),
-        (m_tInfo.fY - m_tInfo.fCY * 0.5),
-        m_tInfo.fCX, m_tInfo.fCY);
-
+    g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Sword_Cosmos"),
+        Rect((m_tInfo.fX - m_tInfo.fCX * 0.5),
+            (m_tInfo.fY - m_tInfo.fCY * 0.5),
+            m_tInfo.fCX, m_tInfo.fCY),
+        m_tInfo.fCX * m_tFrame.iFrameStart,
+        m_tInfo.fCY * m_tFrame.iMotion,
+        m_tInfo.fCX, m_tInfo.fCY, UnitPixel);
 
    // Rectangle(hDC,
    // 	m_tRect.left,
