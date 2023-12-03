@@ -31,8 +31,8 @@ BossMonster::~BossMonster()
 void BossMonster::Initialize()
 {
 
-	m_tInfo.fCX = 80.f;
-	m_tInfo.fCY = 80.f;
+	m_tInfo.fCX = 160.f;
+	m_tInfo.fCY = 160.f;
 
 	// m_tInfo = { 700.f, 300.f, 80, 80 };
 
@@ -130,10 +130,10 @@ void BossMonster::Render(HDC hDC)
 				, (int)(m_tInfo.fY - m_tInfo.fCY * 0.5) + iScrollY
 				, (int)m_tInfo.fCX, (int)m_tInfo.fCY),
 			(int)m_tInfo.fCX * m_tFrame.iFrameStart,
-			(int)m_tInfo.fCY * m_tFrame.iMotion, 78, 78, UnitPixel);
+			(int)m_tInfo.fCY * m_tFrame.iMotion, 156, 156, UnitPixel);
 	}
 	else {
-		g.DrawImage(img, destinationPoints, 3, (int)m_tInfo.fCX * m_tFrame.iFrameStart, (int)m_tInfo.fCY * m_tFrame.iMotion, 78, 78, UnitPixel);
+		g.DrawImage(img, destinationPoints, 3, (int)m_tInfo.fCX * m_tFrame.iFrameStart, (int)m_tInfo.fCY * m_tFrame.iMotion, 156, 156, UnitPixel);
 
 	}
 

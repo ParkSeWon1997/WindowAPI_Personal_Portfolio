@@ -18,9 +18,9 @@ Entry::~Entry()
 void Entry::Initialize()
 {
 
-   // m_tInfo.fCX = 240.f;
-   // m_tInfo.fCY = 170.f;
-    m_tInfo = { WINCX*0.7,WINCY-200,240.f,170.f };
+    m_tInfo.fCX = 240.f;
+    m_tInfo.fCY = 170.f;
+   // m_tInfo = { 500.f,WINCY-200,240.f,170.f };
    
 
 

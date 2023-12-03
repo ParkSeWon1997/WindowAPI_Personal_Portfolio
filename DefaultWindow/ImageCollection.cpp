@@ -23,9 +23,9 @@ ImageCollection::ImageCollection()
 
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/World/BossMap/Tile/BGLayer_1 #2319581.png", L"Map_Layer");
 	//플레이어 Image
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/Bear1.png", L"Player");
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Player/Bear_New.png", L"Player");
 	//총
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Weapon/Gun/RussianRoulette.png", L"Player_Gun_Rusiian");
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Weapon/Gun/RussianRoulette_New.png", L"Player_Gun_Rusiian");
 	//검
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Weapon/Sword/FireDragonKiller.png", L"Player_Sword_FireDragon");
 	
@@ -40,7 +40,7 @@ ImageCollection::ImageCollection()
 
 
 	//보스몬스터 Image
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Monster/Boss/Boss_Nifl1.png", L"Boss_Monster");
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Monster/Boss/Boss_New.png", L"Boss_Monster");
 	//보스 몬스터 HP UI
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Monster/UI/BossLife_1.png", L"Boss_UI");
 

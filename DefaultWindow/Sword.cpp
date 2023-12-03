@@ -23,8 +23,8 @@ void Sword::Initialize()
 	
 
 	m_fSpeed = 10.f;
-	m_tInfo.fCX = 26.f;
-	m_tInfo.fCY = 60.f;
+	m_tInfo.fCX = 39.f;
+	m_tInfo.fCY = 90.f;
 	m_fDiagonal = 60.f;
 	//m_fAngle = 45.f;
 
@@ -66,24 +66,61 @@ void Sword::Render(HDC hDC)
 
 	if (dynamic_cast<CPlayer*>(CObjMgr::Get_Instance()->Get_Player())->Posin_half_Check())
 	{
-		g.TranslateTransform(m_tInfo.fX, m_tInfo.fY);
-		g.RotateTransform(-m_RotateAngle);
-		g.TranslateTransform(-m_tInfo.fX, -m_tInfo.fY);
-		g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Sword_FireDragon"),
-			(m_tInfo.fX - m_tInfo.fCX * 0.5),
-			(m_tInfo.fY - m_tInfo.fCY * 0.5),
-			m_tInfo.fCX, m_tInfo.fCY);
+		if (IsSwing == false)
+		{
+			g.TranslateTransform(m_tInfo.fX, m_tInfo.fY);
+			g.RotateTransform(-m_RotateAngle);
+			g.TranslateTransform(-m_tInfo.fX, -m_tInfo.fY);
+			g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Sword_FireDragon"),
+				(m_tInfo.fX - m_tInfo.fCX * 0.5),
+				(m_tInfo.fY - m_tInfo.fCY * 0.5),
+				m_tInfo.fCX, m_tInfo.fCY);
+		}
+		else
+		{
+			g.TranslateTransform(m_tInfo.fX, m_tInfo.fY);
+			g.RotateTransform(m_RotateAngle+90);
+			g.TranslateTransform(-m_tInfo.fX, -m_tInfo.fY);
+			g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Sword_FireDragon"),
+				(m_tInfo.fX - m_tInfo.fCX * 0.5),
+				(m_tInfo.fY - m_tInfo.fCY * 0.5),
+				m_tInfo.fCX, m_tInfo.fCY);
+		}
 	}
 	else
 	{
-		g.TranslateTransform(m_tInfo.fX, m_tInfo.fY);
-		g.RotateTransform(m_RotateAngle);
-		g.TranslateTransform(-m_tInfo.fX, -m_tInfo.fY);
-		g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Sword_FireDragon"),
-			(m_tInfo.fX - m_tInfo.fCX * 0.5),
-			(m_tInfo.fY - m_tInfo.fCY * 0.5),
-			m_tInfo.fCX, m_tInfo.fCY);
 
+		if (IsSwing == false)
+		{
+
+			g.TranslateTransform(m_tInfo.fX, m_tInfo.fY);
+			g.RotateTransform(m_RotateAngle);
+			g.TranslateTransform(-m_tInfo.fX, -m_tInfo.fY);
+			g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Sword_FireDragon"),
+				(m_tInfo.fX - m_tInfo.fCX * 0.5),
+				(m_tInfo.fY - m_tInfo.fCY * 0.5),
+				m_tInfo.fCX, m_tInfo.fCY);
+		}
+		else
+		{
+			g.TranslateTransform(m_tInfo.fX, m_tInfo.fY);
+			g.RotateTransform(m_RotateAngle + 90);
+			g.TranslateTransform(-m_tInfo.fX, -m_tInfo.fY);
+			g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Sword_FireDragon"),
+				(m_tInfo.fX - m_tInfo.fCX * 0.5),
+				(m_tInfo.fY - m_tInfo.fCY * 0.5),
+				m_tInfo.fCX, m_tInfo.fCY);
+		}
+
+
+		//g.TranslateTransform(m_tInfo.fX, m_tInfo.fY);
+		//g.RotateTransform(m_RotateAngle);
+		//g.TranslateTransform(-m_tInfo.fX, -m_tInfo.fY);
+		//g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Sword_FireDragon"),
+		//	(m_tInfo.fX - m_tInfo.fCX * 0.5),
+		//	(m_tInfo.fY - m_tInfo.fCY * 0.5),
+		//	m_tInfo.fCX, m_tInfo.fCY);
+	
 		//g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Sword_FireDragon"), destinationPoints, 3, m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, m_tInfo.fCX, m_tInfo.fCY, UnitPixel);
 	}
 

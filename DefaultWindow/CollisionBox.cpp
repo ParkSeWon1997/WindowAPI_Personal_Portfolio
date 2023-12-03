@@ -41,11 +41,11 @@ void CollisionBox::Render(HDC hDC)
    //m_tRect.right += LONG(m_fSpeed * sin(m_fAngle * (PI / 180.f)));
    // m_tRect.bottom -= LONG(m_fSpeed * sin(m_fAngle * (PI / 180.f)));
     //Rectangle()
-    Rectangle(hDC,
-    	m_tRect.left,
-    	m_tRect.top,
-    	m_tRect.right,
-    	m_tRect.bottom);
+   // Rectangle(hDC,
+   // 	m_tRect.left,
+   // 	m_tRect.top,
+   // 	m_tRect.right,
+   // 	m_tRect.bottom);
 
 
 }

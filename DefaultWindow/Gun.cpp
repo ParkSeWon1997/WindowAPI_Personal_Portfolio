@@ -18,8 +18,8 @@ Gun::~Gun()
 
 void Gun::Initialize()
 {
-	m_tInfo.fCX = 28.f;
-	m_tInfo.fCY = 20.f;
+	m_tInfo.fCX = 56.f;
+	m_tInfo.fCY = 40.f;
 
 	m_eRender = GAMEOBJECT;
 }
@@ -58,14 +58,14 @@ void Gun::Render(HDC hDC)
 		g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Gun_Rusiian"),
 			(m_tInfo.fX - m_tInfo.fCX * 0.5) ,
 			(m_tInfo.fY - m_tInfo.fCY * 0.5) ,
-			28.f, 20.f);
+			m_tInfo.fCX, m_tInfo.fCY);
 	}
 	else
 	{
 		g.TranslateTransform(m_tInfo.fX, m_tInfo.fY);
 		g.RotateTransform(m_fAngle+180);
 		g.TranslateTransform(-m_tInfo.fX, -m_tInfo.fY);
-		g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Gun_Rusiian"), destinationPoints, 3, m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, 28.f, 20.f, UnitPixel);
+		g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Player_Gun_Rusiian"), destinationPoints, 3, m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, m_tInfo.fCX, m_tInfo.fCY, UnitPixel);
 	}
 
 }

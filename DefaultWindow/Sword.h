@@ -20,7 +20,8 @@ public:
 
 
 public:
-    void    Swing(bool _IsSwing);
+    void    SetSwing(bool _IsSwing) { IsSwing = _IsSwing; }
+    bool    GetSwing() { return IsSwing; }
     float   Get_SwordDamage() { return m_fSwordDamage; }
     void    AttachCollisionBox(float _X,float _Y);
     void    SwordEndPoint();
@@ -31,6 +32,8 @@ private:
     bool                IsSwing;
     float               m_fDiagonal;
     int                 CollisionBOxCount = 0;
+
+    
     POINT               SwordEND;
 
     CObj* CollisionBoxQue[1];

@@ -59,7 +59,7 @@ void CPlayer::Initialize()
 	m_InitX = 100.f;
 	m_InitY = 500.f;
 
-	m_tInfo = { m_InitX, m_InitY, 64, 64 };
+	m_tInfo = { m_InitX, m_InitY,128, 128 };
 
 	m_fSpeed = 5.f;
 	m_fDiagonal = 20.f;
@@ -183,7 +183,7 @@ void CPlayer::Render(HDC hDC)
 			m_tInfo.fCX, m_tInfo.fCY, UnitPixel);
 	}
 	else {
-		g.DrawImage(img, destinationPoints, 3, m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, 64, 64, UnitPixel);
+		g.DrawImage(img, destinationPoints, 3, m_tInfo.fCX * m_tFrame.iFrameStart, m_tInfo.fCY * m_tFrame.iMotion, m_tInfo.fCX, m_tInfo.fCY, UnitPixel);
 
 	}
 
@@ -327,6 +327,16 @@ void CPlayer::Key_Input()
 			if (m_eWeaponMode == PLAYER_SWORD)
 			{
 				dynamic_cast<Sword*>(CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD,new Sword))->AttachCollisionBox(m_tPosin.x, m_tPosin.y);
+				if (dynamic_cast<Sword*>(CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD, new Sword))->GetSwing()) {
+					dynamic_cast<Sword*>(CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD, new Sword))->SetSwing(false);
+				}
+				else {
+					dynamic_cast<Sword*>(CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD, new Sword))->SetSwing(true);
+				}
+				//if (!dynamic_cast<Sword*>(CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD, new Sword))->GetSwing())
+				//{
+				//	dynamic_cast<Sword*>(CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD, new Sword))->SetSwing(true);
+				//}
 			}
 
 		}
@@ -653,7 +663,7 @@ void CPlayer::WeaponChage()
 	switch (m_eWeaponMode)
 	{
 	case PLAYER_GUN:
-		m_fDiagonal = 20.f;
+		m_fDiagonal = 40.f;
 
 		if (m_pWeaponList[PLAYER_GUN] == nullptr)
 		{
@@ -670,7 +680,7 @@ void CPlayer::WeaponChage()
 		}
 		break;
 	case PLAYER_SWORD:
-		m_fDiagonal = -5.f;
+		m_fDiagonal = 10.f;
 		if (m_pWeaponList[PLAYER_SWORD] == nullptr)
 		{
 			CObjMgr::Get_Instance()->Add_Object(OBJID::SWORD, CAbstractFactory<Sword>::Create(this->m_tPosin.x, this->m_tPosin.y-20.f, m_fAngle));
@@ -679,9 +689,17 @@ void CPlayer::WeaponChage()
 		}
 		else
 		{
+			if (dynamic_cast<Sword*>(CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD, new Sword))->GetSwing())
+			{
+				CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD, new Sword)->Set_Pos(m_tPosin.x+20.f, m_tPosin.y+30.f);
+				CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD, new Sword)->Set_Angle(m_fAngle);
+			}
 
-			CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD, new Sword)->Set_Pos(m_tPosin.x, m_tPosin.y-20.f);
-			CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD, new Sword)->Set_Angle(m_fAngle);
+			else {
+				CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD, new Sword)->Set_Pos(m_tPosin.x, m_tPosin.y - 20.f);
+				CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD, new Sword)->Set_Angle(m_fAngle);
+			}
+	
 
 		}
 		break;

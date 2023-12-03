@@ -42,7 +42,7 @@ void Village::Initialize()
 
 	CPlayer::Get_Instance()->Initialize();
 	dynamic_cast<CPlayer*>(CPlayer::Get_Instance())->Set_SC_ID(SCENEID::SC_VILLAGE);
-	CObjMgr::Get_Instance()->Add_Object(ENTRY, CAbstractFactory<Entry>::Create());
+	CObjMgr::Get_Instance()->Add_Object(ENTRY, CAbstractFactory<Entry>::Create(700.f,500.f-85.f,0.f));
 	CObjMgr::Get_Instance()->Add_Object(ID_NPC, CAbstractFactory<NPC>::Create(100.f,600.f,0.f));
 	
 	//CTileMgr::Get_Instance()->Load_Data4();
