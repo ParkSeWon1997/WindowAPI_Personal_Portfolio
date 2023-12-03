@@ -193,8 +193,11 @@
     <Filter Include="01. Obj\14. Item">
       <UniqueIdentifier>{7d636bc7-53f4-4d81-a055-d30c13945820}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. Obj\15. NPC">
+    <Filter Include="01. Obj\16. NPC">
       <UniqueIdentifier>{baf84f21-2009-410f-859b-b861bedc360c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\15. ItemBox">
+      <UniqueIdentifier>{7ff5d11c-6d63-4f14-bdba-00f92929442c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -403,13 +406,16 @@
       <Filter>01. Obj\13. CollisionBox</Filter>
     </ClInclude>
     <ClInclude Include="NPC.h">
-      <Filter>01. Obj\15. NPC</Filter>
+      <Filter>01. Obj\16. NPC</Filter>
     </ClInclude>
     <ClInclude Include="DragonSword.h">
       <Filter>01. Obj\07. Weapon\02. Sword</Filter>
     </ClInclude>
+    <ClInclude Include="ItemBox.h">
+      <Filter>01. Obj\15. ItemBox</Filter>
+    </ClInclude>
     <ClInclude Include="EndEntry.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>01. Obj\08. Entry</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -603,13 +609,16 @@
       <Filter>01. Obj\13. CollisionBox</Filter>
     </ClCompile>
     <ClCompile Include="NPC.cpp">
-      <Filter>01. Obj\15. NPC</Filter>
+      <Filter>01. Obj\16. NPC</Filter>
     </ClCompile>
     <ClCompile Include="DragonSword.cpp">
       <Filter>01. Obj\07. Weapon\02. Sword</Filter>
     </ClCompile>
     <ClCompile Include="EndEntry.cpp">
       <Filter>01. Obj\08. Entry</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemBox.cpp">
+      <Filter>01. Obj\15. ItemBox</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
