@@ -308,6 +308,12 @@ void CPlayer::Key_Input()
 			m_pWeaponList[PLAYER_GUN] = nullptr;
 
 		}
+		//if (CKeyMgr::Get_Instance()->Key_Down('3'))
+		//{
+		//	m_eWeaponMode = PLAYER_HAMMER;
+		//
+		//
+		//}
 		if (CKeyMgr::Get_Instance()->Key_Pressing('0'))
 		{
 			CSceneMgr::Get_Instance()->Scene_Change(SC_BOSS);
@@ -705,6 +711,14 @@ void CPlayer::WeaponChage()
 	
 
 		}
+		break;
+
+	case PLAYER_HAMMER:
+		if (WeaponList.front()) {
+			CObjMgr::Get_Instance()->Add_Object(OBJID::HAMMER, WeaponList.front());
+		}
+		//CObjMgr::Get_Instance()->Get_ObjList(OBJID::HAMMER)->Set_Pos(m_tPosin.x + 20.f, m_tPosin.y + 30.f);
+		//CObjMgr::Get_Instance()->Get_ObjList(OBJID::HAMMER)->Set_Angle(m_fAngle);
 		break;
 	}
 

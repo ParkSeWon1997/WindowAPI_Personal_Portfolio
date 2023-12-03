@@ -61,6 +61,8 @@ public:
 	void		PushPlayerWeaponList(CObj* _WeaponType);
 
 	CObj* GetPlayerWeaponList() { return m_pWeaponList[WEAPON_END]; }
+	void	Set_PlayerWeaponList(CObj* _weapon) { WeaponList.push_back(_weapon); }
+
 
 private:
 	void		Key_Input();
@@ -103,6 +105,7 @@ private:
 	SCENEID				LineSC;
 
 	CObj*	m_pWeaponList[WEAPON_END];
+	list<CObj*>		WeaponList;
 	int					DashCount;
 	bool				m_bJump;
 	WEAPONMODE			m_eWeaponMode;

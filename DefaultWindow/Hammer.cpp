@@ -33,6 +33,7 @@ void Hammer::Late_Update()
 {
 	if (CCollisionMgr::Check_Sphere(CPlayer::Get_Instance(), this))
 	{
+		static_cast<CPlayer*>(CPlayer::Get_Instance())->Set_PlayerWeaponList(this);
 		this->m_bDead = true;
 
 	}
