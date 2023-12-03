@@ -3,6 +3,10 @@
 #include "PngMrg.h"
 #include "EasyMapLindeMgr.h"
 #include "BossMapLineMgr.h"
+#include "AbstractFactory.h"
+#include "ObjMgr.h"
+#include"Hammer.h"
+#include "HpPotion.h"
 
 ItemBox::ItemBox()
 {
@@ -26,6 +30,7 @@ int ItemBox::Update()
 {
     if (m_bDead) {
         if (dwFrameTime + 1500 < GetTickCount()) {
+            CObjMgr::Get_Instance()->Add_Object(HAMMER, CAbstractFactory<Hammer>::Create(this->m_tInfo.fX, this->m_tInfo.fY, 0));
             return OBJ_DEAD;
             dwFrameTime = GetTickCount();
         }

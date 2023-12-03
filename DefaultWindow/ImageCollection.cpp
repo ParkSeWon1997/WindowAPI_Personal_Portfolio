@@ -28,7 +28,8 @@ ImageCollection::ImageCollection()
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Weapon/Gun/RussianRoulette_New.png", L"Player_Gun_Rusiian");
 	//°Ë
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Weapon/Sword/FireDragonKiller.png", L"Player_Sword_FireDragon");
-	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Weapon/Sword/DragonHammer-resources.assets-82.png", L"Player_Hammer");
+	//¸ÁÄ¡
+	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Weapon/Sword/DragonHammer.png", L"Player_Hammer");
 	//Cosmos °Ë
 	PngMrg::Get_Instance()->Insert_Png(L"../Image/Dun/Weapon/Sword/CosmosSword_New.png", L"Player_Sword_Cosmos");
 	// 

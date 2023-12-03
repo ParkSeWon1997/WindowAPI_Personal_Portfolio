@@ -106,6 +106,7 @@ void BossField::Render(HDC hDC)
 	
 		m_pEndBotton->Render(hDC);
 		m_pEndEntry->Render(hDC);
+	
 		
 	}
 	if (!CObjMgr::Get_Instance()->Get_ObjList(BOSS_MONSTER))
@@ -118,6 +119,7 @@ void BossField::Render(HDC hDC)
 				g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"Success_Ending"), 0, 0, 1280, 800);
 				m_pEndBotton->Render(hDC);
 				m_pEndEntry->Render(hDC);
+	
 				
 			}
 		

@@ -199,6 +199,9 @@
     <Filter Include="01. Obj\15. ItemBox">
       <UniqueIdentifier>{7ff5d11c-6d63-4f14-bdba-00f92929442c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Obj\07. Weapon\03. Hammer">
+      <UniqueIdentifier>{44f7618c-e5e9-4fed-923f-6db59e192c6e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -417,6 +420,9 @@
     <ClInclude Include="EndEntry.h">
       <Filter>01. Obj\08. Entry</Filter>
     </ClInclude>
+    <ClInclude Include="Hammer.h">
+      <Filter>01. Obj\07. Weapon\03. Hammer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DefaultWindow.cpp">
@@ -619,6 +625,9 @@
     </ClCompile>
     <ClCompile Include="ItemBox.cpp">
       <Filter>01. Obj\15. ItemBox</Filter>
+    </ClCompile>
+    <ClCompile Include="Hammer.cpp">
+      <Filter>01. Obj\07. Weapon\03. Hammer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

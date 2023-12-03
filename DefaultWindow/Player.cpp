@@ -18,6 +18,7 @@
 #include "PlayerBullet.h"
 #include "ScrewBullet.h"
 #include "GuideBullet.h"
+#include"Hammer.h"
 #include "Bullet.h"
 //UI
 #include"PlayerUI.h"
@@ -100,7 +101,7 @@ int CPlayer::Update()
 	}
 	dynamic_cast<PlayerUI*>(CObjMgr::Get_Instance()->Get_ObjList(PlAYER_UI))->Set_UI_HpBar(100.f, m_fHP);
 	Jump();
-
+	
 	Key_Input();
 	nSoundCount++;
 
@@ -333,6 +334,7 @@ void CPlayer::Key_Input()
 				}
 				else {
 					dynamic_cast<Sword*>(CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD, new Sword))->SetSwing(true);
+				
 				}
 				//if (!dynamic_cast<Sword*>(CObjMgr::Get_Instance()->Get_ObjList(OBJID::SWORD, new Sword))->GetSwing())
 				//{
