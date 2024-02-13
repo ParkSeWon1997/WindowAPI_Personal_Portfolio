@@ -81,9 +81,9 @@ void SubMonster::Render(HDC hDC)
 {
 	Graphics g(hDC);
 
-	g.TranslateTransform(m_tInfo.fX, m_tInfo.fY);
-	g.RotateTransform(m_fRotateAngle);
 	g.TranslateTransform(-m_tInfo.fX, -m_tInfo.fY);
+	g.RotateTransform(m_fRotateAngle);
+	g.TranslateTransform(m_tInfo.fX, m_tInfo.fY);
 	g.DrawImage(PngMrg::Get_Instance()->Get_Image(L"SubMonster"), (m_tInfo.fX-m_tInfo.fCX*0.5), (m_tInfo.fY-m_tInfo.fCY*0.5), m_tInfo.fCX, m_tInfo.fCY);
 	m_pSubMonsterHpBar->Render(hDC);
 
